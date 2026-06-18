@@ -4,6 +4,8 @@
 
 The physical/mechanical properties of a polymer material often related to the molecular weight, molecular architecture, and the interaction among the monomer units of the molecule. 
 
+edit
+
 A few general trends are:
 - Higher degree of crystalization results in stronger/harder material.
 - Long range regular molecular structure enhance the ability to crystalize.
