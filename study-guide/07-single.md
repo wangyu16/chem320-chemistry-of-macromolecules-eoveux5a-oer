@@ -1,7 +1,3 @@
-## Ch07 - Single Chain Conformation{{attrs[#blk-vt7x2t6ik6t2]}}
-
-Welcome to **Ch07 - Single Chain Conformation**. Replace this with your own material.
-
 ## Ideal chains{{attrs[#blk-psefbb0x0eyx]}}
 
 In this chapter, we will discuss the statistical features of polymer chain conformations and "sizes".
