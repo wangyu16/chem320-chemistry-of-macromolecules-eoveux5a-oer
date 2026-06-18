@@ -27,7 +27,10 @@ IUPAC definition of polymer
 
 **Polymerization:** is a process of reacting monomer molecules together in a chemical reaction to form polymers. 
 
-**Molecular Weight / Molar Mass:** A polymer typically has a molar mass $\geq 10^3$ g/mol.
+**Molar Mass and Molecular Weight:** While these terms are often used interchangeably in polymer science, they have distinct formal definitions.
+- **Molar Mass ($M$):** The mass of one mole of a substance, expressed in grams per mole (g/mol). A polymer typically has a molar mass $\geq 10^3$ g/mol.
+- **Relative Molecular Mass ($M_r$), or Molecular Weight (M.W.):** A dimensionless quantity that is the ratio of the mass of a molecule to 1/12th the mass of a carbon-12 atom.
+For simplicity, this course will follow the common convention in the field and use the term "molecular weight" when referring to molar mass.
 
 **Oligomer:** A molecule with a small number of repeating units (typically $<10$).
 
@@ -48,7 +51,7 @@ In 1830s, Henri Braconnol along with Christian and others, developed derivatives
 Celluloids 
 : a class of materials produced by mixing nitrocellulose and camphor, often with added dyes and other agents. 
 
-![](https://upload.wikimedia.org/wikipedia/commons/8/83/Nitrocellulose-2D-skeletal.png =300x)
+![2D skeletal chemical structure of nitrocellulose.](https://upload.wikimedia.org/wikipedia/commons/8/83/Nitrocellulose-2D-skeletal.png =300x)
 
 Nitrocellulose-based plastics slightly predate celluloid. Collodion, invented in 1848 and used as a wound dressing and an emulsion for photographic plates, is dried to a celluloid like film.
 
@@ -79,7 +82,7 @@ Example products:
 ![](https://upload.wikimedia.org/wikipedia/commons/c/c4/Vinegar_Syndrome_D.D._Teoli_Jr_%282%29.jpg =200x)
 
 
-#### Vulcanized natrual rubber
+#### Vulcanized natural rubber
 
 In the 1840s, Friedrich Ludersdorf and Nathaniel Hayward independently discovered that adding sulfur to raw natural rubber (polyisoprene) helped prevent the material from becoming sticky. In 1844 Charles Goodyear received a U.S. patent for vulcanizing natural rubber with sulfur and heat. Thomas Hancock had received a patent for the same process in the UK the year before. This process strengthened natural rubber and prevented it from melting with heat without losing flexibility. This made practical products such as waterproofed articles possible. It also facilitated practical manufacture of such rubberized materials. Vulcanized rubber represents the first commercially successful product of polymer research.
 
@@ -133,29 +136,13 @@ The Nobel Prize in Chemistry 1953 was awarded to Hermann Staudinger "for his dis
 
 ## Typical size of a polymer{{attrs[#blk-y9kbd5vrzky8]}}
 
-### Molecular weight
+### Molar Mass
 
-Molar mass and molecular weight have the same quantity. 
+As defined earlier, polymers are macromolecules with high molar mass, typically at least $10^3$ g/mol. For comparison, methane ($\ce{CH4}$) has a molar mass of 16.04 g/mol and a molecular diameter of $\pu{0.68 nm}$.
 
-Molar mass 
-: The molar mass ($M$) of a chemical compound is defined as the ratio between the mass and the amount of substance (measured in moles) of any sample of the compound. The unit for molar mass is g/mol. 
+Molecules with a small number of repeating units (e.g., < 10) are called oligomers.
 
-Molecular weight
-: Molecular weight (M.W.) (for molecular compounds) and formula weight (F.W.) (for non-molecular compounds), are older terms for what is now more correctly called the relative molar mass (Mr). This is a dimensionless quantity (i.e., a pure number, without units) equal to the molar mass divided by the molar mass constant which is 1/12 of the molar mass of $\ce{^{12}C}$ atoms.
-
-Degree of polymerization
-: The number of monomeric units in a polymer, oligomer, or macromolecule. It's calculated by dividing the molecular weight of the polymer by the molecular weight of the repeat unit.
-
-To compare with, methane ($\ce{CH4}$) has a molar mass 16.04 and a molecular diameter of $\pu{0.68 nm}$. 
-
-There is no strict boundary between small molecules and polymers ragarding their molar masses. But typically a polymer should have a molar mass at least $10^3$. 
-
-If a molecule has only a few, e.g., < 10, repeating units, we call it an 
-
-Oligomer
-: A molecule made up of a small number of repeating units, or monomers, that are derived from smaller molecules. The word oligomer comes from the Greek words oligo-, meaning "a few", and -mer, meaning "parts". 
-
-### Spacial extent
+### Spatial Extent
 
 Consider a linear polyethylene which has $\ce{-CH2-CH2 -}$ as the repeating units. 
 - Each $\ce{C-C}$ bond has a fixed bond length of 0.153 nm. 
@@ -165,7 +152,7 @@ Consider a linear polyethylene which has $\ce{-CH2-CH2 -}$ as the repeating unit
 
 For a fully extended chain, the distance between every other $\ce{C}$ is 0.25 nm. If a vinyl polymer has a degree of polymerization $10^4$, the full length of the chain is $\pu{2.2 \mu m}$. 
 
-Because the polymer chain is flexible, the actual size of a polymer chain increases as $N^{1/2}$. The spacial structure of a polymer chain is called the conformation. 
+Because the polymer chain is flexible, the actual size of a polymer chain increases as $N^{1/2}$. The spatial structure of a polymer chain is called the conformation. 
 
 Consider the following compounds, how do their properties change with increasing number of $\ce{C}$ atoms. 
 

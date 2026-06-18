@@ -150,7 +150,7 @@ The difference between the properties of the cis- and trans-isomers is apparent 
 Gutta percha  
 ![](https://upload.wikimedia.org/wikipedia/commons/9/97/Guttapercha.svg =300x)
 
-Natrual rubber  
+Natural rubber  
 ![](https://upload.wikimedia.org/wikipedia/commons/9/9e/RubberSyn%26Natural.png =500x)
 
 
@@ -172,7 +172,7 @@ Copolymers and polymer blends are employed to create new materials with novel pr
 Statistical copolymer
 : is a polymer molecule made up of two or more different monomers that are arranged in a random sequence without a specific order. 
 
-Statistical copolyemrs are also called random copolymers. 
+Statistical copolymers are also called random copolymers. 
 
 Example and practice question: What properties does a propylene and ethylene copolymer have? Is it rigid or flexible? Transparent or translucent? What applications is it suitable for?
 
@@ -420,7 +420,7 @@ In general, inorganic materials such as glass, metal alloys, and metal oxides cr
 
 Many organic compounds can have significant environmental impacts. For example, DDT (dichlorodiphenyltrichloroethane), a chemical compound developed in the 1940s as an insecticide, and more recently, the herbicide Roundup (isopropylamine salt of glyphosate). In recent years, PFAS (per- and polyfluoroalkyl substances) have frequently made headlines due to their environmental and health concerns.
 
-Many polymers have a common problem: they are enviromentally persistant. Though this is also the property what we need for many applications. 
+Many polymers have a common problem: they are environmentally persistent. Though this is also the property what we need for many applications. 
 
 #### Conventional ways to deal with polymer wastes
 
@@ -438,7 +438,7 @@ To deal with these problems, we need better solution for degradation or depolyme
 
 **Biodegradable polymers**
 
-Biodegradable polymers are a special class of polymer that breaks down after its intended purpose by bacterial decomposition process to result in natural byproducts such as gases ($\ce{CO2}$, $\ce{N2}$), water, biomass, and inorganic salts. Some biodegradable polymers are produced from biomass, some are from fossil fuel. The polymers have chemical structures similar to natrually occurring polymers, thus can be degraded by microbes. Considering the price, available types which determines possible mechanical/physical properties, biodegradable polymers only contribute a small fraction of commercial products. More importantly, some products do need to be durable and thus cannot be produced using biodegradable polymers. 
+Biodegradable polymers are a special class of polymer that breaks down after its intended purpose by bacterial decomposition process to result in natural byproducts such as gases ($\ce{CO2}$, $\ce{N2}$), water, biomass, and inorganic salts. Some biodegradable polymers are produced from biomass, some are from fossil fuel. The polymers have chemical structures similar to naturally occurring polymers, thus can be degraded by microbes. Considering the price, available types which determines possible mechanical/physical properties, biodegradable polymers only contribute a small fraction of commercial products. More importantly, some products do need to be durable and thus cannot be produced using biodegradable polymers. 
 
 **Train microbes to degrade synthetic polymers**
 
