@@ -1,7 +1,3 @@
-## Ch03 - Step Growth{{attrs[#blk-ym8ntzutgedc]}}
-
-Welcome to **Ch03 - Step Growth**. Replace this with your own material.
-
 ## Commercial products{{attrs[#blk-84gg4uyw71vi]}}
 
 For each type of polymer, think about these two questions:
