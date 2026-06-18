@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "chapters": [
     {
-      "slug": "01-getting-started",
+      "slug": "01-intro",
       "title": "Ch01 - Introduction"
     },
     {
@@ -16,6 +16,6 @@
       "title": "Ch02 - Overview"
     }
   ],
-  "createdAt": "2026-06-15T01:26:02.108Z",
-  "unitTerm": "module"
+  "unitTerm": "module",
+  "createdAt": "2026-06-15T01:26:02.108Z"
 }
