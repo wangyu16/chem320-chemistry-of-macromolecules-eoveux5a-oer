@@ -22,6 +22,10 @@
     {
       "slug": "04-chain",
       "title": "Ch04 - Chain Growth"
+    },
+    {
+      "slug": "05-precision",
+      "title": "Ch05 - Precision Polymerization"
     }
   ],
   "unitTerm": "module",
