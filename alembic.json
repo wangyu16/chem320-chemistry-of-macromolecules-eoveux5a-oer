@@ -6,13 +6,16 @@
   "discipline": "chemistry",
   "courseContext": {},
   "license": "CC-BY-4.0",
+  "chapters": [
+    {
+      "slug": "01-getting-started",
+      "title": "Ch01 - Introduction"
+    },
+    {
+      "slug": "ch02-overview",
+      "title": "Ch02 - Overview"
+    }
+  ],
   "createdAt": "2026-06-15T01:26:02.108Z",
-  "publicRepo": {
-    "owner": "wangyu16",
-    "name": "chem320-chemistry-of-macromolecules-eoveux5a-oer"
-  },
-  "privateRepo": {
-    "owner": "wangyu16",
-    "name": "chem320-chemistry-of-macromolecules-eoveux5a-private"
-  }
+  "unitTerm": "module"
 }
