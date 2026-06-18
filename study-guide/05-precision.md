@@ -1,7 +1,3 @@
-## Ch05 - Precision Polymerization{{attrs[#blk-wzzg3kyr2emp]}}
-
-Welcome to **Ch05 - Precision Polymerization**. Replace this with your own material.
-
 ## Overview{{attrs[#blk-snsif1frksjl]}}
 
 The central challenge in polymer chemistry is to precisely tailor molecular architectures and functionalities, mirroring the complexity and specificity found in biomacromolecules. Proteins, for example, exhibit a precise sequential order of amino acids along their polypeptide chains. These polypeptides fold into specific three-dimensional structures, providing distinct functionalities. Achieving this level of precision is the ultimate goal of polymer chemistry. However, we are still far from reaching this objective.
