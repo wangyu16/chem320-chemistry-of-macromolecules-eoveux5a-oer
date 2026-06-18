@@ -18,6 +18,10 @@
     {
       "slug": "03-step",
       "title": "Ch03 - Step Growth"
+    },
+    {
+      "slug": "04-chain",
+      "title": "Ch04 - Chain Growth"
     }
   ],
   "unitTerm": "module",
