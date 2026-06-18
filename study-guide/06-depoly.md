@@ -1,7 +1,3 @@
-## Ch06 - Depolymerization{{attrs[#blk-35zkrne15nrs]}}
-
-Welcome to **Ch06 - Depolymerization**. Replace this with your own material.
-
 ## Destinies of polymer wastes{{attrs[#blk-9qxylcaovcsj]}}
 
 The annual loss in value of single-use packaging waste — equating to 47% of polymer waste — is estimated at US$80–120 billion (corresponding to 95% of the embed- ded value), a figure that does not include externalized environmental costs. Recovered plastics are either valo- rized through primary (closed-loop) and secondary (cascade) recycling or, more commonly, combusted for energy production. However, most plastics are relegated to landfill or are leaked into the environment. If, at the outset of commodity polymer synthesis, we had known what we know now, how would we have designed our materials differently?(DOI: 10.1038/s41578-020-0190-4)
