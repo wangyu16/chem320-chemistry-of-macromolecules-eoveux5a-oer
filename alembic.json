@@ -26,6 +26,10 @@
     {
       "slug": "05-precision",
       "title": "Ch05 - Precision Polymerization"
+    },
+    {
+      "slug": "06-depoly",
+      "title": "Ch06 - Depolymerization"
     }
   ],
   "unitTerm": "module",
