@@ -1,0 +1,30 @@
+[
+  {
+    "targetBlockId": "blk-k8li4aivr8ts",
+    "sourcePackageId": "pkg-test-chemistry-gegpm8vz",
+    "sourceBlockId": "blk-b801baskjviq",
+    "sourcePath": "study-guide/01-getting-started.md",
+    "sourceContentHash": "59f6ff26"
+  },
+  {
+    "targetBlockId": "blk-amog7sw86ion",
+    "sourcePackageId": "pkg-test-chemistry-gegpm8vz",
+    "sourceBlockId": "blk-9dtvy20cwf73",
+    "sourcePath": "study-guide/01-getting-started.md",
+    "sourceContentHash": "92764a64"
+  },
+  {
+    "targetBlockId": "blk-vfnk1hwmmrzg",
+    "sourcePackageId": "pkg-test-chemistry-gegpm8vz",
+    "sourceBlockId": "blk-jxkictyyv9hj",
+    "sourcePath": "study-guide/01-getting-started.md",
+    "sourceContentHash": "4792de1e"
+  },
+  {
+    "targetBlockId": "blk-v6ohb1cjqibo",
+    "sourcePackageId": "pkg-test-chemistry-gegpm8vz",
+    "sourceBlockId": "blk-t1djrcwxo0ef",
+    "sourcePath": "study-guide/01-getting-started.md",
+    "sourceContentHash": "276e250b"
+  }
+]

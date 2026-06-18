@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "packageId": "pkg-chem320-chemistry-of-macromolecules-eoveux5a",
+  "title": "CHEM320 - Chemistry of Macromolecules",
+  "description": "",
+  "discipline": "chemistry",
+  "courseContext": {},
+  "license": "CC-BY-4.0",
+  "createdAt": "2026-06-15T01:26:02.108Z",
+  "publicRepo": {
+    "owner": "wangyu16",
+    "name": "chem320-chemistry-of-macromolecules-eoveux5a-oer"
+  },
+  "privateRepo": {
+    "owner": "wangyu16",
+    "name": "chem320-chemistry-of-macromolecules-eoveux5a-private"
+  }
+}
