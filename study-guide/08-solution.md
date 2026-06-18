@@ -1,7 +1,3 @@
-## Ch08 - Mixture and Solutions{{attrs[#blk-hpc38i7w3uuj]}}
-
-Welcome to **Ch08 - Mixture and Solutions**. Replace this with your own material.
-
 ## Thermodynamics of mixing{{attrs[#blk-tb1d0pqq8bhl]}}
 
 The tendency for substances to mix is governed by thermodynamics, specifically the change in Gibbs free energy (ΔG) upon mixing:
