@@ -30,6 +30,10 @@
     {
       "slug": "06-depoly",
       "title": "Ch06 - Depolymerization"
+    },
+    {
+      "slug": "07-single",
+      "title": "Ch07 - Single Chain Conformation"
     }
   ],
   "unitTerm": "module",
