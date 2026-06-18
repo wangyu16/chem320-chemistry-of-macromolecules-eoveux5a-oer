@@ -5,8 +5,6 @@ Polymer
 
 Typically, a polymer consists of small *repeating units* that are hold together by chemical bond. 
 
-edit 
-
 **Example:**
 
 ![Polystyrene](https://upload.wikimedia.org/wikipedia/commons/1/10/Polystyrene_formation.PNG)
