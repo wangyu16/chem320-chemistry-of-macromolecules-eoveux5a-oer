@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Ch01 - Introduction</title>
+<meta name="generator" content="Alembic (orz-markdown@1.0.0)">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.35/dist/katex.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+@import './common.css';
+
+/* --- common.css (inlined) --- */
+/* Shared structural rules for all themes. Theme files should keep visual styling
+   and variables, while this file handles cross-theme behavior and layout hooks. */
+
+.markdown-body table {
+  width: max-content;
+  max-width: 100%;
+  display: block;
+  overflow-x: auto;
+}
+
+.markdown-body img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.markdown-body p > img {
+  display: inline;
+  margin: 0;
+}
+
+.markdown-body span.success,
+.markdown-body span.info,
+.markdown-body span.warning,
+.markdown-body span.danger {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.markdown-body div.smiles-render {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.markdown-body div.smiles-render canvas,
+.markdown-body canvas[data-smiles] {
+  display: block;
+  max-width: min(100%, 16rem);
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.markdown-body span.qrcode {
+  display: inline-block;
+  position: relative;
+  padding: 4px;
+  line-height: 0;
+  cursor: zoom-in;
+}
+
+.markdown-body .qrcode__icon {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
+  font-size: 0.7rem;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+  pointer-events: none;
+}
+
+.markdown-body span.qrcode:hover .qrcode__icon,
+.markdown-body span.qrcode:focus-visible .qrcode__icon,
+.markdown-body span.qrcode.is-expanded .qrcode__icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.markdown-body span.qrcode.is-expanded {
+  visibility: hidden;
+}
+
+.qrcode-overlay {
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: min(90vmin, 36rem) !important;
+  height: min(90vmin, 36rem) !important;
+  aspect-ratio: 1 / 1;
+  max-width: calc(100vw - 2rem) !important;
+  max-height: calc(100vh - 2rem) !important;
+  padding: 1.5rem !important;
+  background: rgba(10, 16, 24, 0.86) !important;
+  border-radius: 1rem !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: zoom-out;
+}
+
+.markdown-body span.qrcode svg,
+.qrcode-overlay svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.qrcode-overlay svg {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  flex: 0 1 auto;
+  object-fit: contain;
+}
+
+.qrcode-overlay .qrcode__icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media print {
+  table {
+    display: table !important;
+    width: auto !important;
+    max-width: 100% !important;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  tr,
+  img,
+  svg,
+  canvas,
+  iframe,
+  video,
+  pre,
+  blockquote,
+  .smiles-render,
+  .qrcode {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .youtube-embed {
+    display: none !important;
+  }
+
+  .qrcode__icon {
+    display: none !important;
+  }
+}
+/* --- light-academic-1.css --- */
+
+/* 1. Tokens and global setup */
+:root {
+  --bg-color: #fffff8;
+  --text-main: #111111;
+  --text-muted: #555555;
+  --link-color: #1a1add;
+  --link-hover: #b30000;
+  --border-color: #333333;
+  --border-soft: #cccccc;
+
+  --main-font: 'Alegreya', 'Noto Serif SC', 'Noto Serif TC', serif;
+  --sans-font: 'Lato', 'Helvetica Neue', Helvetica, Arial, 'Noto Sans SC', 'Noto Sans TC', sans-serif;
+  --code-font: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  --base-size: 19px;
+  --line-height: 1.7;
+
+  --markdown-body-max-width: 820px;
+  --markdown-body-padding: 4rem 2rem;
+  --markdown-body-border: none;
+  --markdown-body-radius: 0;
+  --markdown-body-shadow: none;
+}
+
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+
+.markdown-body {
+  display: flow-root;
+  font-family: var(--main-font);
+  font-size: var(--base-size);
+  line-height: var(--line-height);
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  max-width: var(--markdown-body-max-width);
+  margin: 0 auto;
+  padding: var(--markdown-body-padding);
+  border: var(--markdown-body-border);
+  border-radius: var(--markdown-body-radius);
+  box-shadow: var(--markdown-body-shadow);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* 2. Headings and body copy */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  clear: both;
+  color: var(--text-main);
+  font-weight: 400;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+.markdown-body h1 {
+  font-size: 2.2rem;
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body h2 {
+  font-size: 1.6rem;
+  font-style: italic;
+  margin-top: 2.2rem;
+}
+
+.markdown-body h3 {
+  font-size: 1.2rem;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+}
+
+.markdown-body p {
+  margin-top: 0;
+  margin-bottom: 1.4rem;
+}
+
+.markdown-body a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.markdown-body a:hover {
+  color: var(--link-hover);
+}
+
+.markdown-body strong {
+  font-weight: 600;
+}
+
+/* 3. Lists and task lists */
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2rem;
+  margin-bottom: 1.4rem;
+}
+
+.markdown-body li {
+  margin-bottom: 0.4rem;
+}
+
+.markdown-body .task-list-item {
+  list-style: none;
+  padding-left: 0;
+}
+.markdown-body .task-list-item input[type="checkbox"],
+.markdown-body .task-list-item-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1em;
+  height: 1em;
+  border: 2px solid var(--border-color);
+  border-radius: 2px;
+  background: transparent;
+  vertical-align: -0.1em;
+  margin-right: 0.5em;
+  cursor: default;
+  position: relative;
+  display: inline-block;
+}
+.markdown-body .task-list-item input[type="checkbox"]:checked,
+.markdown-body .task-list-item-checkbox:checked {
+  background: var(--link-color);
+  border-color: var(--link-color);
+}
+.markdown-body .task-list-item input[type="checkbox"]:checked::after,
+.markdown-body .task-list-item-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: -1px;
+  width: 4px;
+  height: 8px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+/* Footnotes */
+.markdown-body .footnotes-sep {
+  margin: 2rem 0 1rem;
+}
+.markdown-body .footnotes {
+  font-size: 0.88em;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-soft);
+  padding-top: 1rem;
+}
+.markdown-body .footnotes ol {
+  margin-bottom: 0;
+}
+.markdown-body .footnote-ref a,
+.markdown-body .footnote-backref {
+  color: var(--link-color);
+  text-decoration: none;
+  font-size: 0.85em;
+  vertical-align: super;
+}
+
+/* 4. Code and math */
+.markdown-body code {
+  font-family: var(--code-font);
+  color: #000000;
+  font-size: 0.85em;
+  background-color: transparent;
+  padding: 0;
+}
+
+.markdown-body pre {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  border: none;
+  overflow-x: auto;
+  margin-bottom: 1.4rem;
+}
+
+/* KaTeX math */
+.markdown-body .katex {
+  font-size: 1.1em;
+}
+.markdown-body .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.75rem 0;
+  margin: 1.5rem 0;
+}
+.markdown-body .katex-error {
+  background: #fff3f3;
+  color: #c0392b;
+  border: 1px solid #e0a0a0;
+  border-radius: 3px;
+  padding: 0.15em 0.4em;
+  font-family: var(--code-font);
+  font-size: 0.85em;
+}
+
+/* 5. Structural blocks */
+.markdown-body blockquote {
+  margin: 2rem 3rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  font-style: italic;
+  border-left: none;
+  color: var(--text-muted);
+  background-color: #f0f0e6;
+}
+
+.markdown-body blockquote blockquote {
+  font-size: 1rem;
+  margin: 0.75rem 0;
+}
+
+.markdown-body table {
+  margin: 2rem auto;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  border-top: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  border: none;
+}
+
+.markdown-body th {
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: bottom;
+}
+
+.markdown-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-body tbody td {
+  vertical-align: middle;
+}
+
+.markdown-body hr {
+  border: 0;
+  text-align: center;
+  margin: 2.5rem 0;
+}
+
+.markdown-body hr::before {
+  content: '* * *';
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+  color: var(--text-main);
+}
+
+.markdown-body img {
+  margin: 1.4rem auto;
+}
+
+.markdown-body p > img {
+  display: inline;
+  margin: 0;
+}
+
+/* 6. Containers and layout helpers */
+.markdown-body .success,
+.markdown-body .info,
+.markdown-body .warning,
+.markdown-body .danger {
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  background-color: #fdfdfd;
+  border: 1px solid var(--border-soft);
+  font-family: var(--sans-font);
+  font-size: 0.9em;
+  border-left-width: 4px;
+}
+
+.markdown-body .success {
+  border-left-color: #2e8540;
+}
+
+.markdown-body .info {
+  border-left-color: #2b5585;
+}
+
+.markdown-body .warning {
+  border-left-color: #a37213;
+}
+
+.markdown-body .danger {
+  border-left-color: #a32a2a;
+}
+
+.markdown-body .left {
+  float: left;
+  max-width: min(44%, 20rem);
+  padding: 0.75rem 1rem;
+  margin: 0 1.5rem 1rem 0;
+  background: #f0f0e6;
+  border: 1px solid var(--border-soft);
+  border-radius: 2px;
+}
+
+.markdown-body .right {
+  text-align: right;
+  margin: 0 0 1rem;
+}
+
+.markdown-body .center {
+  text-align: center;
+  margin: 0 0 1rem;
+}
+
+.markdown-body details.spoil {
+  border: 1px solid var(--border-soft);
+  margin-bottom: 1.4rem;
+  background: #fff;
+}
+
+.markdown-body details.spoil > summary {
+  padding: 0.8rem 1.2rem;
+  font-family: var(--sans-font);
+  cursor: pointer;
+  background: #fdfdfd;
+  font-weight: bold;
+}
+
+.markdown-body details.spoil[open] > summary {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.markdown-body details.spoil > :not(summary) {
+  padding: 1.2rem;
+}
+
+.markdown-body .cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body .col {
+  padding: 1rem;
+  border: 1px solid var(--border-soft);
+}
+
+.markdown-body .tabs {
+  border: 1px solid var(--border-soft);
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body .tabs-bar {
+  display: flex;
+  border-bottom: 1px solid var(--border-soft);
+  background: #fdfdfd;
+}
+
+.markdown-body .tabs-bar-btn {
+  background: none;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  font-family: var(--sans-font);
+  font-size: 0.9rem;
+}
+
+.markdown-body .tabs-bar-btn.active {
+  background: #fff;
+  border-bottom: 2px solid var(--text-main);
+  font-weight: bold;
+}
+
+.markdown-body .tab {
+  display: none;
+  padding: 1.5rem;
+}
+
+.markdown-body .tab.active {
+  display: block;
+}
+
+.markdown-body .tabs:not([data-js]) .tab {
+  display: block;
+  border-top: 1px solid var(--border-soft);
+}
+
+/* 7. Navigation, footnotes, and plugin output */
+.markdown-body span.red {
+  color: #9e2a2b;
+  font-weight: 600;
+}
+
+.markdown-body span.yellow {
+  color: #b8860b;
+  font-weight: 600;
+}
+
+.markdown-body span.green {
+  color: #386641;
+  font-weight: 600;
+}
+
+.markdown-body span.blue {
+  color: #2a5a8c;
+  font-weight: 600;
+}
+
+.markdown-body span.success,
+.markdown-body span.info,
+.markdown-body span.warning,
+.markdown-body span.danger {
+  padding: 0.1em 0.5em;
+  font-family: var(--sans-font);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  border: 1px solid;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.markdown-body span.success {
+  color: #2e8540;
+  border-color: #2e8540;
+}
+
+.markdown-body span.info {
+  color: #2b5585;
+  border-color: #2b5585;
+}
+
+.markdown-body span.warning {
+  color: #a37213;
+  border-color: #a37213;
+}
+
+.markdown-body span.danger {
+  color: #a32a2a;
+  border-color: #a32a2a;
+}
+
+.markdown-body span.qrcode {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+}
+
+/* TOC */
+.markdown-body .toc-wrapper {
+  /* container */
+}
+.markdown-body nav.toc,
+.markdown-body .toc-list {
+  background: #f9f8f5;
+  border: 1px solid var(--border-soft);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--sans-font);
+  font-size: 0.9em;
+}
+.markdown-body nav.toc ul,
+.markdown-body .toc-list ul {
+  padding-left: 1.25em;
+  margin-bottom: 0;
+}
+.markdown-body nav.toc li,
+.markdown-body .toc-list li {
+  margin-bottom: 0.3em;
+}
+.markdown-body nav.toc li::before,
+.markdown-body .toc-list li::before {
+  display: none;
+}
+.markdown-body nav.toc a,
+.markdown-body .toc-list a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+.markdown-body nav.toc a:hover,
+.markdown-body .toc-list a:hover {
+  color: var(--link-hover);
+}
+
+/* Focus indicators */
+.markdown-body a:focus-visible,
+.markdown-body .tabs-bar-btn:focus-visible,
+.markdown-body details.spoil > summary:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+  text-decoration: none;
+}
+.markdown-body .task-list-item input[type="checkbox"]:focus-visible,
+.markdown-body .task-list-item-checkbox:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .markdown-body {
+    padding: 2rem 1.25rem;
+    font-size: 17px;
+  }
+  .markdown-body .cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 8. Print */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+    padding: 0;
+  }
+
+  .markdown-body {
+    max-width: 100%;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="markdown-body">
+<p><a href="../index.html">← CHEM320 - Chemistry of Macromolecules</a></p>
+<h1>Ch01 - Introduction</h1>
+<h2 id="blk-ewr9xk1ay8hj" tabindex="-1">Definitions of polymer and macromolecule</h2>
+<p>Polymer
+: The term “polymer” derives from Greek πολύς (polus) ‘many, much’ and μέρος (meros) ‘part’.</p>
+<p>Typically, a polymer consists of small <em>repeating units</em> that are hold together by chemical bond.</p>
+<p><strong>Example:</strong></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Polystyrene_formation.PNG" alt="Polystyrene"></p>
+<p>In this case, the repeating units are also called the <em>monomer units</em>.</p>
+<p>Macromolecule
+: A molecule of high relative molecular mass.</p>
+<p>Strictly speaking, a polymer is always a macromolecule but a macromolecule may not be a polymer.</p>
+<p><strong>Example:</strong></p>
+<p>A protein is not made by repeating one or two chemical units many times, but involves a precise selection from among 20 different amino acids. Thus a protein is a macromolecule but cannot be called a polymer by above definition.</p>
+<p>In reality, we always use polymer and macromolecule as interchangeable terms. The definition of a polymer has slightly changed from its original meaning. Actually, IUPAC uses macromolecule to define polymer.</p>
+<p>IUPAC definition of polymer
+: A polymer is a substance composed of macromolecules. A macromolecule is a molecule of high relative molecular mass, the structure of which essentially comprises the multiple repetition of units derived, actually or conceptually, from molecules of low relative molecular mass.</p>
+<p><strong>Polymerization:</strong> is a process of reacting monomer molecules together in a chemical reaction to form polymers.</p>
+<p><strong>Molecular Weight / Molar Mass:</strong> A polymer typically has a molar mass <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><msup><mn>10</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">\geq 10^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> g/mol.</p>
+<p><strong>Oligomer:</strong> A molecule with a small number of repeating units (typically <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">&lt;10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span>).</p>
+<p><strong>Degree of Polymerization (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>DP</mtext></mrow><annotation encoding="application/x-tex">\text{DP}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">DP</span></span></span></span></span>):</strong> The number of monomeric units in a polymer, oligomer, or macromolecule. It’s calculated by dividing the molecular weight of the polymer by the molecular weight of the repeat unit.</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>DP</mtext><mo>=</mo><mfrac><mtext>Polymer M.W.</mtext><mtext>Repeat Unit M.W.</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{DP}=\frac{\text{Polymer M.W.}}{\text{Repeat Unit M.W.}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">DP</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2519em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Repeat Unit M.W.</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Polymer M.W.</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h2 id="blk-mrjv9fofpn1a" tabindex="-1">History of polymer science</h2>
+<h3 id="prehistory" tabindex="-1">Prehistory</h3>
+<p>People have been using polymers for … years, such as cotton and natural rubber. But when we talk about science, it means at least some level of fundamental understanding.</p>
+<h4 id="semi-synthetic-celluloid-and-cellulose-acetate." tabindex="-1">Semi-synthetic celluloid and cellulose acetate.</h4>
+<p>In 1830s, Henri Braconnol along with Christian and others, developed derivatives of the natural polymer cellulose, producing new, semi-synthetic materials, such as celluloid and cellulose acetate.</p>
+<p>Celluloids
+: a class of materials produced by mixing nitrocellulose and camphor, often with added dyes and other agents.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Nitrocellulose-2D-skeletal.png" alt="" width="300" height="200"></p>
+<p>Nitrocellulose-based plastics slightly predate celluloid. Collodion, invented in 1848 and used as a wound dressing and an emulsion for photographic plates, is dried to a celluloid like film.</p>
+<p>Once much more common for its use as photographic film before the advent of safer methods, celluloid’s common present-day uses are for manufacturing table tennis balls, musical instruments, combs, office equipment, fountain pen bodies, and guitar picks.</p>
+<p>Example products:<br>
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Undeveloped_35_mm_film.jpg" alt="film" width="300">
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/40mm_table_tennis_ball_Celluloid.jpg" alt="" width="400">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Arco_pen.jpg" alt="" width="200">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Celluloid_Picks.jpg" alt="" width="300">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/67/%D0%9D%D0%B5%D0%B2%D0%B0%D0%BB%D1%8F%D1%88%D0%BA%D0%B0.jpg" alt="" width="150"></p>
+<p>Cellulose acetate
+: refers to any acetate ester of cellulose, usually cellulose diacetate.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Formation_of_Cellulose_acetate_V1.png" alt="" width="300"></p>
+<p>In 1865, French chemist Paul Schützenberger discovered that cellulose reacts with acetic anhydride to form cellulose acetate. The German chemists Arthur Eichengrün and Theodore Becker invented the first soluble forms of cellulose acetate in 1903.</p>
+<p>A bioplastic, cellulose acetate is used as a film base in photography, as a component in some coatings, and as a frame material for eyeglasses; it is also used as a synthetic fiber in the manufacture of cigarette filters and playing cards. In photographic film, cellulose acetate film replaced nitrate film in the 1950s, being far less flammable and cheaper to produce.</p>
+<p>Example products:<br>
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Cutlery_made_from_Cellulose_Acetate_Biograde.JPG" alt="" width="200">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Celluloseacetuar.jpg" alt="" width="200"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Ball_Pen_made_from_Cellulose_Acetate_Biograde.jpg" alt="" width="300">
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Vinegar_Syndrome_D.D._Teoli_Jr_%282%29.jpg" alt="" width="200"></p>
+<h4 id="vulcanized-natrual-rubber" tabindex="-1">Vulcanized natrual rubber</h4>
+<p>In the 1840s, Friedrich Ludersdorf and Nathaniel Hayward independently discovered that adding sulfur to raw natural rubber (polyisoprene) helped prevent the material from becoming sticky. In 1844 Charles Goodyear received a U.S. patent for vulcanizing natural rubber with sulfur and heat. Thomas Hancock had received a patent for the same process in the UK the year before. This process strengthened natural rubber and prevented it from melting with heat without losing flexibility. This made practical products such as waterproofed articles possible. It also facilitated practical manufacture of such rubberized materials. Vulcanized rubber represents the first commercially successful product of polymer research.</p>
+<p>Natural rubber is polyisoprene that comes from tree syrup. After adding of sulfur, it becomes non sticky elastomer.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Latex_-_Hevea_-_Cameroun.JPG" alt="" width="300">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Vulcanization_of_POLYIsoprene_V.2.png" alt="" width="300"></p>
+<h4 id="bakelite" tabindex="-1">Bakelite</h4>
+<p><a href="https://en.wikipedia.org/wiki/Bakelite">Bakelite:</a>
+A thermosetting <a href="https://en.wikipedia.org/wiki/Phenol_formaldehyde_resin">phenol formaldehyde resin</a>, formed from a condensation reaction of phenol with formaldehyde.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/9/95/3-D_Structure_of_Bakelite.png" alt="" width="300"></p>
+<p>Bakelite is the first plastic made from synthetic components. It was produced for the first time in 1872 by Adolf von Baeyer, though its use as a commercial product was not considered at the time. It was further developed by Leo Baekeland in Yonkers, New York, in 1907, and patented on December 7, 1909.</p>
+<p>Reaction mechanism:</p>
+<p><img src="https://hackmd.io/_uploads/rJKFxkOdJg.jpg" alt="phenolic resins" width="500"></p>
+<h3 id="dawn-of-polymer-science" tabindex="-1">Dawn of polymer science</h3>
+<p><img src="https://www.nobelprize.org/images/staudinger-13089-portrait-mini-2x.jpg" alt="Hermann Staudinger" width="300"></p>
+<p>The Nobel Prize in Chemistry 1953 was awarded to Hermann Staudinger “for his discoveries in the field of macromolecular chemistry”.  In 1861, Thomas Graham that cellulose and other polymers were colloids, aggregates of molecules having small molecular mass connected by an unknown intermolecular force. Hermann Staudinger proposed in a landmark paper published in 1920 that rubber and other polymers such as starch, cellulose and proteins are long chains of short repeating molecular units linked by covalent bonds. It took over a decade for Staudinger’s work to gain wide acceptance in the scientific community.</p>
+<h3 id="milestones" tabindex="-1">Milestones</h3>
+<p><img src="https://www.plasticcollective.co/wp-content/uploads/2021/12/timeline-png-1024x576.png" alt="image">
+<img src="https://renewable-carbon.eu/publications/wp-content/uploads/2026/02/Figure-01-Plastics-Production-From-1950-to-2024_TN.png" alt=""></p>
+<h4 id="nobel-prizes-related-to-polymer-science" tabindex="-1">Nobel prizes related to polymer science</h4>
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Field</th>
+<th>Laureates</th>
+<th>Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2005</td>
+<td>Chemistry</td>
+<td>Robert Grubbs, Richard Schrock, Yves Chauvin</td>
+<td>for olefin metathesis.</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Chemistry</td>
+<td>John Bennett Fenn, Koichi Tanaka, and Kurt Wüthrich</td>
+<td>for the development of methods for identification and structure analyses of biological macromolecules. (MS and NMR spectroscopy)</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>Chemistry</td>
+<td>Alan G. MacDiarmid, Alan J. Heeger, and Hideki Shirakawa</td>
+<td>for work on conductive polymers, contributing to the advent of molecular electronics.</td>
+</tr>
+<tr>
+<td>1991</td>
+<td>Physics</td>
+<td>Pierre-Gilles de Gennes</td>
+<td>for developing a generalized theory of phase transitions with particular applications to describing ordering and phase transitions in polymers.</td>
+</tr>
+<tr>
+<td>1974</td>
+<td>Chemistry</td>
+<td>Paul J. Flory</td>
+<td>for contributions to theoretical polymer chemistry.</td>
+</tr>
+<tr>
+<td>1963</td>
+<td>Chemistry</td>
+<td>Giulio Natta and Karl Ziegler</td>
+<td>for contributions in polymer synthesis. (Ziegler-Natta catalysis).</td>
+</tr>
+<tr>
+<td>1953</td>
+<td>Chemistry</td>
+<td>Hermann Staudinger</td>
+<td>for contributions to the understanding of macromolecular chemistry.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="current-status-of-plastic-production" tabindex="-1">Current status of plastic production</h4>
+<iframe src="https://ourworldindata.org/grapher/plastic-production-polymer?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+<h2 id="blk-xdq0c4ue8a05" tabindex="-1">Typical size of a polymer</h2>
+<h3 id="molecular-weight" tabindex="-1">Molecular weight</h3>
+<p>Molar mass and molecular weight have the same quantity.</p>
+<p>Molar mass
+: The molar mass (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">M</span></span></span></span>) of a chemical compound is defined as the ratio between the mass and the amount of substance (measured in moles) of any sample of the compound. The unit for molar mass is g/mol.</p>
+<p>Molecular weight
+: Molecular weight (M.W.) (for molecular compounds) and formula weight (F.W.) (for non-molecular compounds), are older terms for what is now more correctly called the relative molar mass (Mr). This is a dimensionless quantity (i.e., a pure number, without units) equal to the molar mass divided by the molar mass constant which is 1/12 of the molar mass of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px" depth="0px"><mphantom></mphantom></mpadded><mpadded height="0px" depth="0px"><mphantom><mn>12</mn></mphantom></mpadded></msubsup><msubsup><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mrow><mpadded width="0px"><mphantom><mn>2</mn></mphantom></mpadded><mpadded lspace="-1width" width="0px"><mpadded height="0px"><mrow></mrow></mpadded></mpadded></mrow><mrow><mpadded height="0px"><mpadded width="0px"><mphantom><mn>2</mn></mphantom></mpadded></mpadded><mpadded lspace="-1width" width="0px"><mn>12</mn></mpadded></mrow></msubsup><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">\ce{^{12}C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1343em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4362em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord smash mtight"><span><span class="mord mtight"></span></span></span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord smash mtight"><span><span class="mord mtight"><span class="mord mtight" style="color:transparent;">12</span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-2.453em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord rlap mtight"><span class="inner"><span class="mord mtight" style="color:transparent;"><span class="mord mtight" style="color:transparent;">2</span></span></span><span class="fix"></span></span><span class="mord vbox mtight"><span class="thinbox mtight"><span class="llap mtight"><span class="strut" style="height:0em;"></span><span class="inner"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2em;"><span class="pstrut" style="height:2em;"></span><span><span class="mord mtight"></span></span></span></span></span></span></span></span></span><span class="fix"></span></span></span></span></span></span></span><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord rlap mtight"><span class="inner"><span class="mord mtight" style="color:transparent;"><span class="mord mtight" style="color:transparent;">2</span></span></span><span class="fix"></span></span></span></span></span></span></span></span></span><span class="mord vbox mtight"><span class="thinbox mtight"><span class="llap mtight"><span class="strut" style="height:0.6444em;"></span><span class="inner"><span class="mord mtight"><span class="mord mtight">12</span></span></span><span class="fix"></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span> atoms.</p>
+<p>Degree of polymerization
+: The number of monomeric units in a polymer, oligomer, or macromolecule. It’s calculated by dividing the molecular weight of the polymer by the molecular weight of the repeat unit.</p>
+<p>To compare with, methane (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>4</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CH4}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>) has a molar mass 16.04 and a molecular diameter of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.68</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">m</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{0.68 nm}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord"><span class="mord">0.68</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord mathrm">nm</span></span></span></span></span></span>.</p>
+<p>There is no strict boundary between small molecules and polymers ragarding their molar masses. But typically a polymer should have a molar mass at least <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">10^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>.</p>
+<p>If a molecule has only a few, e.g., &lt; 10, repeating units, we call it an</p>
+<p>Oligomer
+: A molecule made up of a small number of repeating units, or monomers, that are derived from smaller molecules. The word oligomer comes from the Greek words oligo-, meaning “a few”, and -mer, meaning “parts”.</p>
+<h3 id="spacial-extent" tabindex="-1">Spacial extent</h3>
+<p>Consider a linear polyethylene which has <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mrow></mrow><mo>−</mo><mrow></mrow></mrow><annotation encoding="application/x-tex">\ce{-CH2-CH2 -}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"></span></span></span></span></span> as the repeating units.</p>
+<ul>
+<li>Each <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mo lspace="0em" rspace="0em">−</mo><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">\ce{C-C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathrm">C</span><span class="mord"><span class="mord">−</span></span><span class="mord mathrm">C</span></span></span></span></span> bond has a fixed bond length of 0.153 nm.</li>
+<li>Any two adjacent <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mo lspace="0em" rspace="0em">−</mo><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">\ce{C-C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathrm">C</span><span class="mord"><span class="mord">−</span></span><span class="mord mathrm">C</span></span></span></span></span> bonds have a fixed bond angle of 109.5 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow></mrow><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6741em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span>.</li>
+<li>The molecule can rotate around any <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mo lspace="0em" rspace="0em">−</mo><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">\ce{C-C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathrm">C</span><span class="mord"><span class="mord">−</span></span><span class="mord mathrm">C</span></span></span></span></span> bond.</li>
+<li>Fully extended polyethylene should have a zigzag profile.</li>
+</ul>
+<p>For a fully extended chain, the distance between every other <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">\ce{C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm">C</span></span></span></span></span> is 0.25 nm. If a vinyl polymer has a degree of polymerization <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span>, the full length of the chain is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.2</mn><mtext> </mtext><mrow><mi>μ</mi><mi mathvariant="normal">m</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{2.2 \mu m}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord">2.2</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord mathnormal">μ</span><span class="mord mathrm">m</span></span></span></span></span></span>.</p>
+<p>Because the polymer chain is flexible, the actual size of a polymer chain increases as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>N</mi><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">N^{1/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.888em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1/2</span></span></span></span></span></span></span></span></span></span></span></span>. The spacial structure of a polymer chain is called the conformation.</p>
+<p>Consider the following compounds, how do their properties change with increasing number of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">\ce{C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm">C</span></span></span></span></span> atoms.</p>
+<table>
+<thead>
+<tr>
+<th>Formula</th>
+<th>Molar Mass</th>
+<th>Properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>4</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CH4}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></td>
+<td>16</td>
+<td></td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CH3-CH3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></td>
+<td>30</td>
+<td></td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CH3-CH2-CH3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></td>
+<td>44</td>
+<td></td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mo stretchy="false">)</mo><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CH3-(CH2)2-CH3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></td>
+<td>58</td>
+<td></td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mo stretchy="false">)</mo><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>6</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CH3-(CH2)6-CH3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></td>
+<td>114</td>
+<td></td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mo stretchy="false">)</mo><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>30</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CH3-(CH2)30-CH3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">30</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></td>
+<td>450</td>
+<td></td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mo stretchy="false">)</mo><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3000</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CH3-(CH2)3000-CH3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3000</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></td>
+<td>420030</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Think about the following questions, and if you don’t know the answers, use Google or an AI assistant to look them up. Be sure to double-check any answers provided by AI models.</p>
+<ul>
+<li>What is the chemical formula of natural gas?</li>
+<li>What fuel, stored in a steel pressure tank, is commonly used for camping?</li>
+<li><img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Propane_tank_20lb.jpg" alt="Propane" width="300"></li>
+<li>What fuel is typically used in a plastic lighter or a chef’s torch?</li>
+<li><img src="https://cdn11.bigcommerce.com/s-tumf4kk1l4/images/stencil/1280x1280/products/3342/6111/disposable-butane-lighters-5__99235.1640715424.jpg?c=1?imbypass=on" alt="" width="200"> <img src="https://hollowick.com/wp-content/uploads/2021/06/prd_pri_image_702-173_e2ht.jpg" alt="" width="200"> <img src="https://hollowick.com/wp-content/uploads/2021/06/prd_pri_image_701-171_zzqg.jpg" alt="" width="200"></li>
+<li>What substance is often used as a non-polar solvent in laboratories?</li>
+<li>What is the main component of gasoline?</li>
+<li>What compounds are primarily found in petroleum-based waxes?</li>
+<li>Provide examples of commercial products made from polyethylene (PE) and summarize its general properties.</li>
+<li>How do the physical and mechanical properties of PE compare to those of short-chain hydrocarbons?</li>
+</ul>
+<h3 id="general-properties" tabindex="-1">General properties</h3>
+<p>Compare organic polymers to small molecular organic compounds, what are in common and what are different?</p>
+<ul>
+<li>Polymers are usually in semi-solid or liquid forms but cannot exist in gas state.</li>
+<li>Some polymers can crystalize but cannot reach 100% crystallinity.</li>
+<li>Polymers exhibit a wide range of mechanical properties.</li>
+</ul>
+<p>Since both are organic compounds, polymers and small molecules would involve in the same type of reactions if they have the same functional groups. Most of them can burn in air.</p>
+<h2 id="blk-tfrz1xyz0ja9" tabindex="-1">New challenges</h2>
+<p>Organic
+: relating to or derived from living matter.</p>
+<p>Synthetic polymers are mainly organic materials but not produced naturally by animals or plants. The nature did not have enough time to learn how to decomposite those materials. Thus the waste cumulate in environment.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Pathway-of-plastic-to-ocean.png" alt=""></p>
+<h4 id="great-pacific-garbage-patch" tabindex="-1">Great pacific garbage patch</h4>
+<p>The Great Pacific garbage patch (also Pacific trash vortex and North Pacific garbage patch is a garbage patch, a gyre of marine debris particles, in the central North Pacific Ocean. It is located roughly from 135°W to 155°W and 35°N to 42°N. The collection of plastic and floating trash originates from the Pacific Rim, including countries in Asia, North America, and South America.</p>
+<p><img src="https://images.nationalgeographic.org/image/upload/t_edhub_resource_key_image/v1652302883/EducationHub/photos/great-pacific-garbage-patch.jpg" alt="">
+Figure from National Geographic <a href="https://education.nationalgeographic.org/resource/great-pacific-garbage-patch/">Great Pacific Garbage Patch</a>.</p>
+<h4 id="micro--and-nano--plastics" tabindex="-1">Micro- and nano- plastics</h4>
+<p>Microplastics are fragments of any type of plastic less than 5 mm (0.20 in) in length, according to the U.S. National Oceanic and Atmospheric Administration (NOAA) and the European Chemicals Agency. They cause pollution by entering natural ecosystems from a variety of sources, including cosmetics, clothing, food packaging, and industrial processes.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Microplastics_in_the_surface_ocean%2C_OWID.svg" alt=""></p>
+<p>Nanoplastics are thought to be a risk to environmental and human health. Due to their small size, nanoplastics can cross cellular membranes and affect the functioning of cells.</p>
+<p>To learn more about this topic, read “Toxicity of microplastics and nanoplastics: invisible killers of female fertility and offspring health”, <em>Front. Physiol.</em>, <strong>2023</strong>, <em>14</em>, <a href="https://doi.org/10.3389/fphys.2023.1254886">DOI: 10.3389/fphys.2023.1254886</a>.</p>
+<div class="info">
+<p><strong>Example Questions Level 1</strong></p>
+<ol>
+<li>What are the structures of following functional groups: amino, hydroxyl, ether, ester, amide, isocyanate, epoxyl, carboxyl.</li>
+<li>Give a few examples of naturally occuring polymers.</li>
+<li>Give a few examples of commonly used commercial polymers.</li>
+<li>What synthetic and semi-synthetic polymer products had been produced before the scientific concept of polymer was proposed?</li>
+<li>A series of compounds have <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub><mo lspace="0em" rspace="0em">−</mo><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mo stretchy="false">)</mo><mi mathvariant="normal">x</mi><mo lspace="0em" rspace="0em">−</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">H</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CH3-(CH2)x-CH3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">−</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathrm">x</span><span class="mord"><span class="mord">−</span></span><span class="mord"><span class="mord mathrm">CH</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> as the general form of the molecular structures. What kind of property would you expect at ambient pressure and temperature when <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">x = 5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span>?</li>
+</ol>
+</div>
+
+<hr>
+<nav class="chapter-nav">
+<p><a href="02-overview.html">Next: Ch02 - Overview →</a></p>
+</nav>
+</div>
+</body>
+</html>

@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Ch06 - Depolymerization</title>
+<meta name="generator" content="Alembic (orz-markdown@1.0.0)">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.35/dist/katex.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+@import './common.css';
+
+/* --- common.css (inlined) --- */
+/* Shared structural rules for all themes. Theme files should keep visual styling
+   and variables, while this file handles cross-theme behavior and layout hooks. */
+
+.markdown-body table {
+  width: max-content;
+  max-width: 100%;
+  display: block;
+  overflow-x: auto;
+}
+
+.markdown-body img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.markdown-body p > img {
+  display: inline;
+  margin: 0;
+}
+
+.markdown-body span.success,
+.markdown-body span.info,
+.markdown-body span.warning,
+.markdown-body span.danger {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.markdown-body div.smiles-render {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.markdown-body div.smiles-render canvas,
+.markdown-body canvas[data-smiles] {
+  display: block;
+  max-width: min(100%, 16rem);
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.markdown-body span.qrcode {
+  display: inline-block;
+  position: relative;
+  padding: 4px;
+  line-height: 0;
+  cursor: zoom-in;
+}
+
+.markdown-body .qrcode__icon {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
+  font-size: 0.7rem;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+  pointer-events: none;
+}
+
+.markdown-body span.qrcode:hover .qrcode__icon,
+.markdown-body span.qrcode:focus-visible .qrcode__icon,
+.markdown-body span.qrcode.is-expanded .qrcode__icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.markdown-body span.qrcode.is-expanded {
+  visibility: hidden;
+}
+
+.qrcode-overlay {
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: min(90vmin, 36rem) !important;
+  height: min(90vmin, 36rem) !important;
+  aspect-ratio: 1 / 1;
+  max-width: calc(100vw - 2rem) !important;
+  max-height: calc(100vh - 2rem) !important;
+  padding: 1.5rem !important;
+  background: rgba(10, 16, 24, 0.86) !important;
+  border-radius: 1rem !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: zoom-out;
+}
+
+.markdown-body span.qrcode svg,
+.qrcode-overlay svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.qrcode-overlay svg {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  flex: 0 1 auto;
+  object-fit: contain;
+}
+
+.qrcode-overlay .qrcode__icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media print {
+  table {
+    display: table !important;
+    width: auto !important;
+    max-width: 100% !important;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  tr,
+  img,
+  svg,
+  canvas,
+  iframe,
+  video,
+  pre,
+  blockquote,
+  .smiles-render,
+  .qrcode {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .youtube-embed {
+    display: none !important;
+  }
+
+  .qrcode__icon {
+    display: none !important;
+  }
+}
+/* --- light-academic-1.css --- */
+
+/* 1. Tokens and global setup */
+:root {
+  --bg-color: #fffff8;
+  --text-main: #111111;
+  --text-muted: #555555;
+  --link-color: #1a1add;
+  --link-hover: #b30000;
+  --border-color: #333333;
+  --border-soft: #cccccc;
+
+  --main-font: 'Alegreya', 'Noto Serif SC', 'Noto Serif TC', serif;
+  --sans-font: 'Lato', 'Helvetica Neue', Helvetica, Arial, 'Noto Sans SC', 'Noto Sans TC', sans-serif;
+  --code-font: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  --base-size: 19px;
+  --line-height: 1.7;
+
+  --markdown-body-max-width: 820px;
+  --markdown-body-padding: 4rem 2rem;
+  --markdown-body-border: none;
+  --markdown-body-radius: 0;
+  --markdown-body-shadow: none;
+}
+
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+
+.markdown-body {
+  display: flow-root;
+  font-family: var(--main-font);
+  font-size: var(--base-size);
+  line-height: var(--line-height);
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  max-width: var(--markdown-body-max-width);
+  margin: 0 auto;
+  padding: var(--markdown-body-padding);
+  border: var(--markdown-body-border);
+  border-radius: var(--markdown-body-radius);
+  box-shadow: var(--markdown-body-shadow);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* 2. Headings and body copy */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  clear: both;
+  color: var(--text-main);
+  font-weight: 400;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+.markdown-body h1 {
+  font-size: 2.2rem;
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body h2 {
+  font-size: 1.6rem;
+  font-style: italic;
+  margin-top: 2.2rem;
+}
+
+.markdown-body h3 {
+  font-size: 1.2rem;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+}
+
+.markdown-body p {
+  margin-top: 0;
+  margin-bottom: 1.4rem;
+}
+
+.markdown-body a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.markdown-body a:hover {
+  color: var(--link-hover);
+}
+
+.markdown-body strong {
+  font-weight: 600;
+}
+
+/* 3. Lists and task lists */
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2rem;
+  margin-bottom: 1.4rem;
+}
+
+.markdown-body li {
+  margin-bottom: 0.4rem;
+}
+
+.markdown-body .task-list-item {
+  list-style: none;
+  padding-left: 0;
+}
+.markdown-body .task-list-item input[type="checkbox"],
+.markdown-body .task-list-item-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1em;
+  height: 1em;
+  border: 2px solid var(--border-color);
+  border-radius: 2px;
+  background: transparent;
+  vertical-align: -0.1em;
+  margin-right: 0.5em;
+  cursor: default;
+  position: relative;
+  display: inline-block;
+}
+.markdown-body .task-list-item input[type="checkbox"]:checked,
+.markdown-body .task-list-item-checkbox:checked {
+  background: var(--link-color);
+  border-color: var(--link-color);
+}
+.markdown-body .task-list-item input[type="checkbox"]:checked::after,
+.markdown-body .task-list-item-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: -1px;
+  width: 4px;
+  height: 8px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+/* Footnotes */
+.markdown-body .footnotes-sep {
+  margin: 2rem 0 1rem;
+}
+.markdown-body .footnotes {
+  font-size: 0.88em;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-soft);
+  padding-top: 1rem;
+}
+.markdown-body .footnotes ol {
+  margin-bottom: 0;
+}
+.markdown-body .footnote-ref a,
+.markdown-body .footnote-backref {
+  color: var(--link-color);
+  text-decoration: none;
+  font-size: 0.85em;
+  vertical-align: super;
+}
+
+/* 4. Code and math */
+.markdown-body code {
+  font-family: var(--code-font);
+  color: #000000;
+  font-size: 0.85em;
+  background-color: transparent;
+  padding: 0;
+}
+
+.markdown-body pre {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  border: none;
+  overflow-x: auto;
+  margin-bottom: 1.4rem;
+}
+
+/* KaTeX math */
+.markdown-body .katex {
+  font-size: 1.1em;
+}
+.markdown-body .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.75rem 0;
+  margin: 1.5rem 0;
+}
+.markdown-body .katex-error {
+  background: #fff3f3;
+  color: #c0392b;
+  border: 1px solid #e0a0a0;
+  border-radius: 3px;
+  padding: 0.15em 0.4em;
+  font-family: var(--code-font);
+  font-size: 0.85em;
+}
+
+/* 5. Structural blocks */
+.markdown-body blockquote {
+  margin: 2rem 3rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  font-style: italic;
+  border-left: none;
+  color: var(--text-muted);
+  background-color: #f0f0e6;
+}
+
+.markdown-body blockquote blockquote {
+  font-size: 1rem;
+  margin: 0.75rem 0;
+}
+
+.markdown-body table {
+  margin: 2rem auto;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  border-top: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  border: none;
+}
+
+.markdown-body th {
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: bottom;
+}
+
+.markdown-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-body tbody td {
+  vertical-align: middle;
+}
+
+.markdown-body hr {
+  border: 0;
+  text-align: center;
+  margin: 2.5rem 0;
+}
+
+.markdown-body hr::before {
+  content: '* * *';
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+  color: var(--text-main);
+}
+
+.markdown-body img {
+  margin: 1.4rem auto;
+}
+
+.markdown-body p > img {
+  display: inline;
+  margin: 0;
+}
+
+/* 6. Containers and layout helpers */
+.markdown-body .success,
+.markdown-body .info,
+.markdown-body .warning,
+.markdown-body .danger {
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  background-color: #fdfdfd;
+  border: 1px solid var(--border-soft);
+  font-family: var(--sans-font);
+  font-size: 0.9em;
+  border-left-width: 4px;
+}
+
+.markdown-body .success {
+  border-left-color: #2e8540;
+}
+
+.markdown-body .info {
+  border-left-color: #2b5585;
+}
+
+.markdown-body .warning {
+  border-left-color: #a37213;
+}
+
+.markdown-body .danger {
+  border-left-color: #a32a2a;
+}
+
+.markdown-body .left {
+  float: left;
+  max-width: min(44%, 20rem);
+  padding: 0.75rem 1rem;
+  margin: 0 1.5rem 1rem 0;
+  background: #f0f0e6;
+  border: 1px solid var(--border-soft);
+  border-radius: 2px;
+}
+
+.markdown-body .right {
+  text-align: right;
+  margin: 0 0 1rem;
+}
+
+.markdown-body .center {
+  text-align: center;
+  margin: 0 0 1rem;
+}
+
+.markdown-body details.spoil {
+  border: 1px solid var(--border-soft);
+  margin-bottom: 1.4rem;
+  background: #fff;
+}
+
+.markdown-body details.spoil > summary {
+  padding: 0.8rem 1.2rem;
+  font-family: var(--sans-font);
+  cursor: pointer;
+  background: #fdfdfd;
+  font-weight: bold;
+}
+
+.markdown-body details.spoil[open] > summary {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.markdown-body details.spoil > :not(summary) {
+  padding: 1.2rem;
+}
+
+.markdown-body .cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body .col {
+  padding: 1rem;
+  border: 1px solid var(--border-soft);
+}
+
+.markdown-body .tabs {
+  border: 1px solid var(--border-soft);
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body .tabs-bar {
+  display: flex;
+  border-bottom: 1px solid var(--border-soft);
+  background: #fdfdfd;
+}
+
+.markdown-body .tabs-bar-btn {
+  background: none;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  font-family: var(--sans-font);
+  font-size: 0.9rem;
+}
+
+.markdown-body .tabs-bar-btn.active {
+  background: #fff;
+  border-bottom: 2px solid var(--text-main);
+  font-weight: bold;
+}
+
+.markdown-body .tab {
+  display: none;
+  padding: 1.5rem;
+}
+
+.markdown-body .tab.active {
+  display: block;
+}
+
+.markdown-body .tabs:not([data-js]) .tab {
+  display: block;
+  border-top: 1px solid var(--border-soft);
+}
+
+/* 7. Navigation, footnotes, and plugin output */
+.markdown-body span.red {
+  color: #9e2a2b;
+  font-weight: 600;
+}
+
+.markdown-body span.yellow {
+  color: #b8860b;
+  font-weight: 600;
+}
+
+.markdown-body span.green {
+  color: #386641;
+  font-weight: 600;
+}
+
+.markdown-body span.blue {
+  color: #2a5a8c;
+  font-weight: 600;
+}
+
+.markdown-body span.success,
+.markdown-body span.info,
+.markdown-body span.warning,
+.markdown-body span.danger {
+  padding: 0.1em 0.5em;
+  font-family: var(--sans-font);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  border: 1px solid;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.markdown-body span.success {
+  color: #2e8540;
+  border-color: #2e8540;
+}
+
+.markdown-body span.info {
+  color: #2b5585;
+  border-color: #2b5585;
+}
+
+.markdown-body span.warning {
+  color: #a37213;
+  border-color: #a37213;
+}
+
+.markdown-body span.danger {
+  color: #a32a2a;
+  border-color: #a32a2a;
+}
+
+.markdown-body span.qrcode {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+}
+
+/* TOC */
+.markdown-body .toc-wrapper {
+  /* container */
+}
+.markdown-body nav.toc,
+.markdown-body .toc-list {
+  background: #f9f8f5;
+  border: 1px solid var(--border-soft);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--sans-font);
+  font-size: 0.9em;
+}
+.markdown-body nav.toc ul,
+.markdown-body .toc-list ul {
+  padding-left: 1.25em;
+  margin-bottom: 0;
+}
+.markdown-body nav.toc li,
+.markdown-body .toc-list li {
+  margin-bottom: 0.3em;
+}
+.markdown-body nav.toc li::before,
+.markdown-body .toc-list li::before {
+  display: none;
+}
+.markdown-body nav.toc a,
+.markdown-body .toc-list a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+.markdown-body nav.toc a:hover,
+.markdown-body .toc-list a:hover {
+  color: var(--link-hover);
+}
+
+/* Focus indicators */
+.markdown-body a:focus-visible,
+.markdown-body .tabs-bar-btn:focus-visible,
+.markdown-body details.spoil > summary:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+  text-decoration: none;
+}
+.markdown-body .task-list-item input[type="checkbox"]:focus-visible,
+.markdown-body .task-list-item-checkbox:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .markdown-body {
+    padding: 2rem 1.25rem;
+    font-size: 17px;
+  }
+  .markdown-body .cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 8. Print */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+    padding: 0;
+  }
+
+  .markdown-body {
+    max-width: 100%;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="markdown-body">
+<p><a href="../index.html">← CHEM320 - Chemistry of Macromolecules</a></p>
+<h1>Ch06 - Depolymerization</h1>
+<h2 id="blk-9qxylcaovcsj" tabindex="-1">Destinies of polymer wastes</h2>
+<p>The annual loss in value of single-use packaging waste — equating to 47% of polymer waste — is estimated at US$80–120 billion (corresponding to 95% of the embed- ded value), a figure that does not include externalized environmental costs. Recovered plastics are either valo- rized through primary (closed-loop) and secondary (cascade) recycling or, more commonly, combusted for energy production. However, most plastics are relegated to landfill or are leaked into the environment. If, at the outset of commodity polymer synthesis, we had known what we know now, how would we have designed our materials differently?(DOI: 10.1038/s41578-020-0190-4)</p>
+<p><img src="https://hackmd.io/_uploads/SykGyITyJg.png" alt="Screenshot 2024-10-16 at 09.34.12" width="600"></p>
+<p>Impediments to the recycling of commodity polymers include separation, impurities and degradation of the macromolecular structures, all of which can negatively affect the properties of recycled materials.</p>
+<p>Chemical recycling to monomer (CRM). Material recycled in this way exhibits no loss in properties, creating an ideal, circular polymer economy. Frustratingly, the chemical success of these recycling efforts is roughly inversely proportional to the scale of their production. Although not commercially viable, CRM of nylon 6 proceeds with very high yields and selectivities; this is also true for other relatively low-volume resins, such as PTHF. Of the individually numbered resins, PS and PET are produced in the lowest volumes; although CRM of the former has selectivity issues, monomers can still be recovered in well above 90% yield, and PET is the most highly recycled resin. However, for the three polymers produced in largest volumes — PVC, PE and PP — CRM is either chemically impossible (PVC) or extremely challenging (polyolefins).</p>
+<p>We will also discuss other meaningful depolymerization and recycling methods.</p>
+<p>Polyolefins have long constituted the largest segment of the polymer market, consistently amounting to more than half of global primary polymer production and waste. Consequently, the development of materials that serve as polyolefin replacements would have the largest potential economic and environmental impact.</p>
+<p>To understand the thermodynamic and kinetic context of CRM, we need examine the energetics of polymerization and depolymerization.</p>
+<h2 id="blk-a0cbir5bkp5q" tabindex="-1">Thermodynamics</h2>
+<p>Polymerization reactions are usually exothermic. Why? The process of polymerizatin causes the loss of monomer translational freedom which reesults in a negative entropy change. To achieve a negative change in Gibbs free energy, the polymerization must be exergonic driven by enthalpy which must exceed the entropic penalty.</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>G</mi><mo>=</mo><mi mathvariant="normal">Δ</mi><mi>H</mi><mo>−</mo><mi>T</mi><mi mathvariant="normal">Δ</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">\Delta G = \Delta H - T\Delta S
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mord mathnormal">G</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span></p>
+<p>Each polymerization system has a critical temperature (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>) which is a function of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>H</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">Δ</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">\Delta H /\Delta S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="mord">/Δ</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span>. At the critical temperature <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">\Delta G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mord mathnormal">G</span></span></span></span> becomes zero and the polymerization is at equilibrium. Dilution of the reaction lowers <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. In rare cases, such as for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">S</mi><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>8</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{S8}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathrm">S</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">e</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">O</mi></mrow><mo stretchy="false">)</mo><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>4</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{(Me2SiO)4}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mopen">(</span><span class="mord"><span class="mord mathrm">Me</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathrm">SiO</span></span><span class="mclose">)</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">\Delta S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span> is positive and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">\Delta H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.0813em;">H</span></span></span></span> is very small; in these instances, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is known as the floor temperature. We consider the former case only. Polymerization with high monomer conversion must be under <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, while complete reversion to monomer requires a temperature above <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</p>
+<p><img src="https://hackmd.io/_uploads/BkkC4LTk1x.png" alt="Screenshot 2024-10-16 at 09.58.55" width="600"></p>
+<p>If the polymerization is highly exothermic, the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> must be high. It would cost a lot of energy to depolymerize the polymer. Hard to be economic and may lead to side products. Some could be usefu and some may be applied to produce other chemicals instead of the monomer.</p>
+<p><img src="https://hackmd.io/_uploads/SyJd38a11x.png" alt="Screenshot 2024-10-16 at 10.31.39" width="600"></p>
+<p>If the polymerization has a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">\Delta G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mord mathnormal">G</span></span></span></span> close to 0, the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> must be low and the polymerization has be to carried out at low temperature. Thermodynamically, the polymer is not stable. But if chain end cap is applied, the polymer could remain stable even at elavated temperatures. One example is poly(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0556em;">γ</span></span></span></span>-butyrolactone) (PGBL) which has a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>9</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{-9 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">−</span><span class="mord">9</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>. End capped PGBL only begins to notably depolymerize near <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{200 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">200</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>. However, common metal halides (such as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CaCl2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CaCl</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">Z</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{ZnCl2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">ZnCl</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>) can catalyze the depolymerization and halve the energy barrier raising concern regarding the structural integrity of PGBL.</p>
+<p><img src="https://hackmd.io/_uploads/BkPn3IaJ1g.png" alt="Screenshot 2024-10-16 at 10.32.50" width="600"></p>
+<h2 id="blk-erlhf2yu5ql2" tabindex="-1">Chemical recycling to monomers (CRM)</h2>
+<p>Requirements of CRM:</p>
+<ul>
+<li>Achieve a delicate balance between the polymerization and depolymerization energetics.</li>
+<li>The polymer needs to remain stable under processing temperatures.</li>
+<li>End capping can help to enhance the stability of the polymer even above <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, but can also hinder the potential for recycling, even a chain end hydrogen can kinetically trap the polymer from depolymerization.</li>
+<li>Catalysis is crucial to the success of CRM.</li>
+</ul>
+<p>Tailored catalysis offers the potential to precisely define the temperature and prod- ucts of a depolymerization reaction. Hammond’s postulate implies that the best catalyst at the high temperatures (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≫</mo><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">\gg T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≫</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>) needed for depolymerization may differ from the optimal polymerization catalyst. At these higher temperatures, effective polymerization catalysts might favour a competing pathway66 or thermally decompose. Investigation on depolymerization catalysis is needed.</p>
+<h3 id="polyethylene-and-polypropylene" tabindex="-1">Polyethylene and polypropylene</h3>
+<ul>
+<li>Ideal for packaging
+<ul>
+<li>Lightweight</li>
+<li>Durable</li>
+<li>Flexible but pretty strong</li>
+<li>Optical properties</li>
+<li>Low cost starting materials</li>
+<li>Highly efficient synthesis</li>
+</ul>
+</li>
+</ul>
+<p>Polyolefins degrade during melt processing owing to radical reactions that raise the molecular weight for PE and lower it for PP, leading to an increase in dispersity for both. Unless advances in recycling, nascent PCW purification technologies or other research innovations alter this dynamic, polyolefin waste will continue to grow in pro- portion to polymer production. CRM is not energetically accessible for polyolefins. It is necessary to find replacements.</p>
+<h3 id="other-poly(alkene)s" tabindex="-1">Other poly(alkene)s</h3>
+<p><strong>Poly(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>-methylstyrene) (PAMS)</strong> The formation of PAMS (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub><mo>=</mo><mrow><mn>61</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow></mrow><annotation encoding="application/x-tex">T_c = \pu{61 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">61</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>) involves a propagating tertiary radical that is relatively easily regenerated for depolymerization. PAMS reverts almost exclusively to monomer. However, PAMS has poor thermomechanical properties and has not notable commercial usage.</p>
+<p><strong>Polystyrene (PS)</strong> is a widely used material but the depolymerization produces styrene, toluene, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>-methystyrene, 1,3-diphenylpropane and styrene dimer or trimer.</p>
+<p><strong>Poly(methyl methacrylate) (PMMA)</strong> may present the strongest case for CRM of a polymer not made through ROP. PMMA is widely used, but differ from polyolefins. PMMA is brittle and highly transparent, which finds its own applications rather than replacement of polyolefins. It has the lowest <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> among widely used polymers (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>220</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{220 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">220</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span> for bulk PMMA, compared with, for example, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>400</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{400 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">400</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span> for PE). Under an inert atmosphere, commercial PMMA heated to above <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>400</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{400 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">400</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span> produces methyl methacrylate in high yield, with trace by-products. Although potentially viable for industrial scrap, this process has not yet been effectively applied to PCW plastics, which are geo- graphically dispersed, commingled with other plastics and contaminated with other substances.</p>
+<p>CRM is difficult for many existing polymers. It will not be easy to displace current commodity polymers with any of the new materials examined herein. Meaningful CRM also requires collection and sorting of polymer wastes first. Certain level of cleaning may also be necessary.</p>
+<h3 id="rop-based-crm" tabindex="-1">ROP based CRM</h3>
+<p>Any ring with functionality that allows for ROP could, in principle, produce a polymer capable of CRM.</p>
+<p><strong>Polycarbonate</strong></p>
+<p>Polymers derived from geometrically constrained fused-ring systems (<strong>1</strong>, <strong>2</strong>, <strong>5</strong> and <strong>6</strong>) revert to either the epoxide and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">O</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{CO2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">CO</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> by RCDD or to the <em>cis</em>-fused carbonate by <em>c</em>-RCD. The former is a manifestation of CRM, whereas the latter has, thus far, been a reactive dead end. The second general observation is that relatively unconstrained trans- [4.3.0] carbonates (<strong>3</strong> and <strong>4</strong>) can cycle between polymer synthesis by ROP and monomer recovery by <em>t</em>-RCD.</p>
+<p><img src="https://hackmd.io/_uploads/SkZtNdaykg.png" alt="Screenshot 2024-10-16 at 12.14.21" width="600"></p>
+<p><img src="https://hackmd.io/_uploads/HJ9i4dTykx.png" alt="Screenshot 2024-10-16 at 12.14.53" width="600"></p>
+<p>All these polycarbonates have high <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">T_g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> values (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>110</mn><mo>−</mo><mn>130</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{110-130 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">110</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">130</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>) and mostly no <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">T_m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. They are not replacements of polyolefins. Several of the monomers have relatiely low price. Overall, it is not clear whether the polymers have the potential for large-scale applications.</p>
+<p><strong>Polyesters</strong></p>
+<p>Poly(lactic acid) (PLA) has good mechanical properties (tensile strength 59 MPa) and high <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>m</mi></msub><mo>=</mo><mrow><mn>165</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow></mrow><annotation encoding="application/x-tex">T_m = \pu{165 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">165</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>, but more brittle than polyolefin give <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>g</mi></msub><mo>=</mo><mrow><mn>55</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow></mrow><annotation encoding="application/x-tex">T_g = \pu{55 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">55</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span> and only 7% elongation at break. PLA are synthesized through step-growth oligomerization of lactic acid, depolymerized to lactide and then repolymerize into PLA. PLA can be composted, while such process eliminates the energetic investiments.</p>
+<p>CRM is not viable for PLA to produce lactide, owing to side reactions. It is susceptible to elimination to yield acrylic acid, as well as epimerization of the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>-position. Off-grade factory PLA can be hydrolysed to lactic acid and resubmitted to the step-growth process.</p>
+<p>Examples of ring-opening polymerization (ROP) and chemical recycling to monomer (CRM) of lactones:</p>
+<p><img src="https://hackmd.io/_uploads/rJrOFdTy1l.png" alt="Screenshot 2024-10-16 at 12.35.29" width="600"></p>
+<p>Whether these polymers are commercially attractive depends on the following factors</p>
+<ul>
+<li>Cost of the monomer</li>
+<li>Polymer properties</li>
+</ul>
+<p>The polyesters have low <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">T_g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> values and the potential to access higher values of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">T_m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> through co-monomer incorporation, manipulation of tacticity and stereocomplex formation, although the latter has complications. Depolymerization of a stereocomplex returns a racemic mixture.</p>
+<p>The thermal properties of polymer <strong>12</strong> were explored, revealing a relatively low <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">T_g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>27</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{27 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">27</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>) and a high <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">T_m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (centred at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>69</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{69 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">69</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>) present only in the first heating.</p>
+<p>For the polymer, <strong>14</strong>, low to moderate <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">T_g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> values were found (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>g</mi></msub><mo>=</mo><mrow><mn>32</mn><mo>−</mo><mn>37</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow></mrow><annotation encoding="application/x-tex">T_g = \pu{32-37 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">32</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">37</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span> or <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>67</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{67 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">67</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>, depending on R), but there was no <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">T_m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</p>
+<p>Polymers derived from 17 have been more extensively characterized. Some polymer properties are an excellent match to those of polyolefins, including <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">T_m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>130</mn><mo>−</mo><mn>200</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{130–200 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">130</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">200</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>) and tensile strength (26–55 MPa). However, other properties, such as <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">T_g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> (~ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>33</mn><mo>−</mo><mn>90</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{33–90 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">33</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">90</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>) and elongation at break (6–13%), are outside the desirable range.</p>
+<p>The lactones examined here are mostly petroleum derived, with 4-carbomethoxyvalerolactone <strong>8</strong> and thioester <strong>13</strong> being the notable exceptions.</p>
+<p>Both <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi></mrow><annotation encoding="application/x-tex">\delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span></span></span></span>-VL and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ε</span></span></span></span>-VL are produced industrially and are, consequently, available inexpensively at scale. Of the new-to-the-world polymers discussed here, the most thoroughly explored CRM process at present uses the fused GBLs <strong>15</strong> and <strong>17</strong>. The synthesis of these monomers is still complex and costly, despite having a higher atom economy and lower E-factor (total mass of waste/mass of product) than lactide.</p>
+<p>More about polyesters from lactones, see <a href="https://doi.org/10.1021/acs.macromol.3c01912">Macromolecules 2024, 57, 1919−1940</a>.</p>
+<h2 id="blk-6tbhothj851z" tabindex="-1">Recent progress</h2>
+<h3 id="polymerization-of-cyclic-acetals" tabindex="-1">Polymerization of cyclic acetals</h3>
+<p><em>Science</em> <strong>2021</strong>, <em>373</em>, 783–789. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">M_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> up to 220 K</p>
+<p>In practical usage, even a subtle problem could be fatal.</p>
+<p>Polyoxymethylene (POM), also known as acetal, polyacetal, and polyformaldehyde, is an engineering thermoplastic used in precision parts requiring high stiffness, low friction, and excellent dimensional stability. Melting temperature is 165 °C. The ceiling temperature of polyoxymethylene (POM) is around 119 °C. Good for normal usage but processing? End capping is needed. Recycling to monomer is relatively easy with strong acid catalysts.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Polyoxymethylene.svg" alt="" width="150">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Keck_clips.jpg" alt="" width="400">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Dunlop_Delrin_500.jpg" alt="" width="200"></p>
+<p>To make polyoxymethylene homopolymer, anhydrous formaldehyde must be generated. The principal method is by reaction of the aqueous formaldehyde with an alcohol to create a hemiformal, dehydration of the hemiformal/water mixture (either by extraction or vacuum distillation) and release of the formaldehyde by heating the hemiformal. The formaldehyde is then polymerized by anionic catalysis, and the resulting polymer stabilized by reaction with acetic anhydride.</p>
+<p>Poly(1,3-Dioxolane) (PDXL) is a good candidate to replace current packaging materials but faces several difficulties.</p>
+<p>Polyacetals can be synthesized by ring opening polymerization of cyclic acetal monomers. 1,3-Dioxolane (DXL) is commercially synthesized in a single step on a large scale from common industrial C1 and C2 feedstocks — formaldehyde and ethylene glycol, respectively — both of which also have bioderived routes. However, consistently obtaining high molecular weight polyacetals has remained challenging because cyclic acetal polymerization using Brønsted or Lewis acid catalysts affords poor molecular weight control. In the 2021 Science paper, Coates and coworkers developed a reversible deactivation polymerization method for DXL to be able to achieve <strong>high molecular weight</strong>. This polymerization method works for a broad variety of cyclic acetal monomers. Low molecular weight PDXL (37.9 kDa), which is comparable to the highest previously reported molecular weight, demonstrates poor mechanical properties, with a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\delta_B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0379em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> of only 13.5 ± 1.3 MPa at 5 ± 0.3% strain. At 82.3 kDa, PDXL tensile properties increase significantly to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\delta_B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0379em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> = 33.3 ± 1.2 MPa and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ε</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\varepsilon_B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">ε</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> = 640 ± 45%. At 180 kDa, PDXL showed high tensile strength, with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\delta_B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0379em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> = 40.4 ± 1.2 MPa and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ε</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\varepsilon_B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">ε</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> = 720 ± 20%, revealing the impressive toughness and ductility of PDXL at high molecular weights.</p>
+<p><img src="https://hackmd.io/_uploads/S1mXdH-ekx.png" alt="Screenshot 2024-10-19 at 09.53.58" width="600"></p>
+<p><img src="https://hackmd.io/_uploads/Hy_e9rWeke.png" alt="Screenshot 2024-10-19 at 10.01.48" width="600"></p>
+<p><img src="https://hackmd.io/_uploads/S1za9H-eJl.png" alt="Screenshot 2024-10-19 at 10.05.18" width="400"></p>
+<p>PDXL has low ceiling temperature 13 °C. But with the chain end caps it remains stable. In previous reports, <strong>residual catalyst or acid species</strong> from incomplete polymer purification prematurely catalyzed depolymerization of polyacetals. With an improved purification method, all five polyacetal derivatives exhibited excellent thermal stability by thermogravimetric analysis (TGA), with degradation temperatures at 5% mass loss above 337°C. Isothermal TGA data shows &gt;99% mass remaining after 2 hours at 140°C for each poly- acetal derivative. Semicrystalline PDXL exhibits a low glass transition temperature (Tg) of –63°C and a Tm of 58 °C.</p>
+<p>PDXL prototype items were formed by melt processing of PDXL films.</p>
+<p><img src="https://hackmd.io/_uploads/SyJxlUbe1g.png" alt="Screenshot 2024-10-19 at 10.27.06" width="300"></p>
+<p>Triggered depolymerization: PDXL was depolymerized via distillation in ambient atmosphere at 150° ± 5°C over 60 min to recover DXL monomer in near-quantitative yields. Using a polymer-supported acid catalyst, CRM of PDXL from a mixed commodity plastics feedstock yields exclusively DXL monomer without contamination by dyes, plasticizers, or other additives. PET, polyethylene terephthalate; PE, polyethylene; PVC, polyvinyl chloride; PS, polystyrene; PLA, polylactic acid; PC, polycarbonate; PCL, poly(e-caprolactone); EC, ethyl cellulose.</p>
+<p><img src="https://hackmd.io/_uploads/HktrlLbg1l.png" alt="Screenshot 2024-10-19 at 10.28.49" width="600"></p>
+<p><em>J. Am. Chem. Soc.</em> <strong>2023</strong>, <em>145</em>, 8800−8804. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">M_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> up to 1000 K</p>
+<p>A neat polymerization starting from commercially available compounds. Requires moiture and oxygen free environment. Use DTBP to avoid trace amount of proton causing side reactions. Representative stress−strain data demonstrate that PDXL is a ductile and tough thermoplastic with physical properties that vary with molecular weight. Some properties of PDXL are comparable or exceed that of HDPE.</p>
+<p><img src="https://hackmd.io/_uploads/rk6XRIWgkx.png" alt="Screenshot 2024-10-19 112806" width="600"></p>
+<p><img src="https://hackmd.io/_uploads/BJdIyv-gyx.png" alt="Screenshot 2024-10-19 113302" width="400"></p>
+<h2 id="blk-ld9et2ldv8wm" tabindex="-1">Bio or enzymatic degradation</h2>
+<p><a href="https://www.nature.com/articles/s41570-020-0163-6"><em>Nature Reviews Chemistry</em> <strong>2020</strong> <em>4</em>, 114–126</a></p>
+<p><a href="https://doi.org/10.1021/acs.chemrev.2c00644"><em>Chem. Rev.</em> <strong>2023</strong>, <em>123</em>, 9, 5612–5701</a></p>
+<p>Polymers with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">C</mi><mo lspace="0em" rspace="0em">−</mo><mi mathvariant="normal">C</mi></mrow><annotation encoding="application/x-tex">\ce{C-C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathrm">C</span><span class="mord"><span class="mord">−</span></span><span class="mord mathrm">C</span></span></span></span></span> backbonds and hydrophobic ones are difficult. A number of polyester-urethane (UR)-degrading microorganisms are known, but the enzymes that contribute to polymer decomposition remain elusive.</p>
+<h3 id="novel-depolymerization-approach-for-poly(ethylene-terephthalate)-(pet)" tabindex="-1">Novel depolymerization approach for poly(ethylene terephthalate) (PET)</h3>
+<ul>
+<li>PET has a large production volume.</li>
+<li>PET can be recycled and reporcessed but with decreased mechanical properteis.</li>
+<li>Esterification is a reversible reaction. It is necessary to remove water or alcohol during polymerization to get high molecular weight product.</li>
+<li>Thermodynamically, it is possible to depolymerize PET into monomers at relatively low temperature.</li>
+</ul>
+<h4 id="biodegradation" tabindex="-1">Biodegradation</h4>
+<p><a href="https://doi.org/10.1021/acscatal.8b05171"><em>ACS Catal.</em> <strong>2019</strong>, <em>9</em>, 4089–4105</a></p>
+<p>Not only for chemically recycling of the polymer to monomers, but also means the microplastics and nanoplastics of PET could be treated.</p>
+<p>A striking recent report describes the isolation of the PET-assimilating bacterium Ideonella sakaiensis 201-F6, which was isolated from a PET-recycling factory126. This bacterium expresses two key enzymes that decompose PET, which serves as its major carbon and energy source. (<em>Science</em> <strong>2016</strong>, <em>351</em>, 1196-1199. DOI: 10.1126/science.aad635) In a later report, high efficiency was achieved. Over 10 hours, a minimum of 90 percent PET depolymerization into monomers, with a productivity of 16.7 grams of terephthalate per litre per hour (200 grams per kilogram of PET suspension, with an enzyme concentration of 3 milligrams per gram of PET). (<em>Nature</em> <strong>2020</strong>, <em>580</em>, 216–219. <a href="https://doi.org/10.1038/s41586-020-2149-4">https://doi.org/10.1038/s41586-020-2149-4</a>) Another report in 2022 utilized machine learning to engineer the hydrolase using a structure-based, machine learning algorithm to engineer a robust and active PET hydrolase. “Our mutant and scaffold combination (FAST-PETase: functional, active, stable and tolerant PETase) contains five mutations compared to wild-type PETase (N233K/R224Q/S121E from prediction and D186H/R280A from scaffold) and shows superior PET-hydrolytic activity relative to both wild-type and engineered alternatives12 between 30 and 50 °C and a range of pH levels. We demonstrate that untreated, postconsumer-PET from 51 different thermoformed products can all be almost completely degraded by FAST-PETase in 1 week. FAST-PETase can also depolymerize untreated, amorphous portions of a commercial water bottle and an entire thermally pretreated water bottle at 50 ºC.” (<em>Nature</em> <strong>2022</strong>, <em>604</em>, 662–667. <a href="https://www.nature.com/articles/s41586-022-04599-z">https://www.nature.com/articles/s41586-022-04599-z</a>). And another <em>Nature Communications</em> <strong>2024</strong> 15, 1417 <a href="https://www.nature.com/articles/s41467-024-45662-9">https://www.nature.com/articles/s41467-024-45662-9</a>.</p>
+<h4 id="non-bio-approach" tabindex="-1">Non-bio approach</h4>
+<p><a href="https://doi.org/10.1039/D4IM00081A"><em>Ind. Chem. Mater.</em>, <strong>2024</strong></a></p>
+<p>PET EtOH <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>3</mn></mpadded></msub></mrow><annotation encoding="application/x-tex">\ce{FeCl3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">FeCl</span></span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> (1 – 5 mol%) <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>160</mn><mo>−</mo><mn>180</mn><mtext> </mtext><mrow><msup><mrow></mrow><mo>∘</mo></msup><mi mathvariant="normal">C</mi></mrow></mrow><annotation encoding="application/x-tex">\pu{160 - 180 ^\circ C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">160</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">180</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mord mathrm">C</span></span></span></span></span></span>, depolymerize into DET and ethylene glycol with 98 – 99% efficiency. May be more attractive for industry?</p>
+<p><img src="https://pubs.rsc.org/en/Image/Get?imageInfo.ImageType=GA&amp;imageInfo.ImageIdentifier.ManuscriptID=D4IM00081A&amp;imageInfo.ImageIdentifier.Year=2024" alt=""></p>
+<h2 id="blk-s3r1yznzg7ip" tabindex="-1">Other types of recycling concepts</h2>
+<h3 id="polymerization-and-depolymerization-by-metathesis-reactions" tabindex="-1">Polymerization and depolymerization by metathesis reactions</h3>
+<p><a href="https://pubs.acs.org/doi/10.1021/jacs.1c11197">https://pubs.acs.org/doi/10.1021/jacs.1c11197</a></p>
+<p>The four- and five-membered rings trans-fused to cyclooctene reduce the ring strain energies of the monomer, and the enthalpy changes of polymerizations are found to be in the range of −2.1 to −3.3 kcal mol–1. Despite the narrow range of enthalpy changes, the ceiling temperatures at 1.0 M span from 330 to 680 °C, due to the low entropy changes, ranging from −2.7 to −5.0 cal mol–1 K–1. Importantly, geminal substituents on the trans-five-membered cyclic acetal fused cyclooctenes are found to reduce the ceiling temperature by ∼300 °C, although they are not directly attached to the cyclooctene. The remote gem-disubstituent effect demonstrated here can be leveraged to promote depolymerization of the corresponding polymers and to tune their thermomechanical properties. A new possibility?</p>
+<p><img src="https://pubs.acs.org/cms/10.1021/jacs.1c11197/asset/images/medium/ja1c11197_0009.gif" alt=""></p>
+<h3 id="example-of-engineering-plastics" tabindex="-1">Example of engineering plastics</h3>
+<p>Chemical Science 2024, DOI: 10.1039/d4sc04147j</p>
+<p>PEEK is a type of engineering plastic that is stable under acidic, basic and high temperature conditions. How to make such plastic chemically recyclable but does not compromise the mechanical property and stability? Simply introducing a directing group (DG), i.e., 2-pyridyl, that serves as a design principle for depolymerizable polymers devoid of labile chemical bonds in their main chain.</p>
+<p><img src="https://pubs.rsc.org/image/article/2024/sc/d4sc04147j/d4sc04147j-f4.gif" alt="" width="600"></p>
+<!--
+### Light-driven polymer recycling to monomers and small molecules
+
+[*Nature Communications* **2024**, *15*, 2510](https://doi.org/10.1038/s41467-024-46656-3)
+
+Light-driven approaches for chemically recycling and upcycling plastic waste, with emphasis on reduced energy consumption and selective transformations not achievable with heat-driven methods.
+
+[Recycling of Post-Consumer Waste Polystyrene Using Commercial Plastic Additives]（https://pubs.acs.org/doi/10.1021/acscentsci.4c01317）
+-->
+<div class="info">
+<p><strong>Example Questions Level 1</strong></p>
+<ol>
+<li>List the criteria that a new polymer must meet to effectively replace current large-scale plastics and be efficiently recycled into its monomers.</li>
+<li>What makes poly(1,3-dioxolane) (PDXL) a promising alternative to polyethylene (PE) or polypropylene (PP) in terms of both usage and recyclability?</li>
+<li>Why is recycling polyethylene (PE), polypropylene (PP), polyethylene terephthalate (PET), polystyrene (PS), and polyvinyl chloride (PVC) back into their original monomers generally considered impractical?</li>
+<li>What is the ceiling temperature of a polymerization?</li>
+<li>Why are polymerizations generally exothermic?</li>
+<li>According to the second law of thermodynamics, what determines whether a process is spontaneous?</li>
+<li>Which of the current large-scale plastics (PE, PP, PS, PET, PVC, Nylon) have higher potential to be efficiently degraded by employing genetically engineered bacteria?</li>
+</ol>
+</div>
+
+<hr>
+<nav class="chapter-nav">
+<p><a href="05-precision.html">← Previous: Ch05 - Precision Polymerization</a></p>
+<p><a href="07-single.html">Next: Ch07 - Single Chain Conformation →</a></p>
+</nav>
+</div>
+</body>
+</html>
