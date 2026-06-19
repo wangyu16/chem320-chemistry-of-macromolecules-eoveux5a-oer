@@ -48,9 +48,9 @@ In 1830s, Henri Braconnol along with Christian and others, developed derivatives
 Celluloids 
 : a class of materials produced by mixing nitrocellulose and camphor, often with added dyes and other agents. 
 
-![](https://upload.wikimedia.org/wikipedia/commons/8/83/Nitrocellulose-2D-skeletal.png =300x)
+![](https://upload.wikimedia.org/wikipedia/commons/8/83/Nitrocellulose-2D-skeletal.png =300x200)
 
-Nitrocellulose-based plastics slightly predate celluloid. Collodion, invented in 1848 and used as a wound dressing and an emulsion for photographic plates, is dried to a celluloid like film.
+Nitrocellulose-based plastics slightly predate celluloid. Collodion, invented in 1848 and used as a wound dressing and an emulsion for photographic plates, is dried to a celluloid like film. 
 
 Once much more common for its use as photographic film before the advent of safer methods, celluloid's common present-day uses are for manufacturing table tennis balls, musical instruments, combs, office equipment, fountain pen bodies, and guitar picks.
 
