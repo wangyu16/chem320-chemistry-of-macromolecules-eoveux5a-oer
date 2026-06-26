@@ -204,7 +204,7 @@ Since both are organic compounds, polymers and small molecules would involve in 
 ## New challenges{{attrs[#blk-tfrz1xyz0ja9]}}
 
 Organic
-: relating to or derived from living matter. 
+: relating to or derived from living matter.  
 
 Synthetic polymers are mainly organic materials but not produced naturally by animals or plants. The nature did not have enough time to learn how to decomposite those materials. Thus the waste cumulate in environment.  
 
