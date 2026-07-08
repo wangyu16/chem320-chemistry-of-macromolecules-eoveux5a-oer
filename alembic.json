@@ -6,44 +6,14 @@
   "discipline": "chemistry",
   "courseContext": {},
   "license": "CC-BY-4.0",
-  "chapters": [
-    {
-      "slug": "01-intro",
-      "title": "Ch01 - Introduction"
-    },
-    {
-      "slug": "02-overview",
-      "title": "Ch02 - Overview"
-    },
-    {
-      "slug": "03-step",
-      "title": "Ch03 - Step Growth"
-    },
-    {
-      "slug": "04-chain",
-      "title": "Ch04 - Chain Growth"
-    },
-    {
-      "slug": "05-precision",
-      "title": "Ch05 - Precision Polymerization"
-    },
-    {
-      "slug": "06-depoly",
-      "title": "Ch06 - Depolymerization"
-    },
-    {
-      "slug": "07-single",
-      "title": "Ch07 - Single Chain Conformation"
-    },
-    {
-      "slug": "08-solution",
-      "title": "Ch08 - Mixture and Solutions"
-    },
-    {
-      "slug": "09-bulk",
-      "title": "Ch09 - Bulk Properties"
-    }
-  ],
-  "unitTerm": "module",
+  "publicRepo": {
+    "owner": "wangyu16",
+    "name": "chem320-chemistry-of-macromolecules-eoveux5a-oer"
+  },
+  "privateRepo": {
+    "owner": "wangyu16",
+    "name": "chem320-chemistry-of-macromolecules-eoveux5a-private"
+  },
+  "theme": "light-neat-2",
   "createdAt": "2026-06-15T01:26:02.108Z"
 }
