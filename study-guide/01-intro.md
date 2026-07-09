@@ -2,7 +2,7 @@
 
 ## Definitions of polymer and macromolecule{{attrs[#blk-ewr9xk1ay8hj]}}
 
-Polymer
+Polymer  
 : The term "polymer" derives from Greek πολύς (polus) 'many, much' and μέρος (meros) 'part'.
 
 Typically, a polymer consists of small *repeating units* that are hold together by chemical bond. 
