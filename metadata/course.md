@@ -6,7 +6,7 @@ This course introduces polymer chemistry as a structure-processing-property disc
 
 ## Tags / keywords
 
-Polymer Chemistry, Macromolecules, Step-Growth Polymerization, Chain-Growth Polymerization, Molar Mass, Dispersity, Tacticity, Thermoplastics, Thermosets, Elastomers, Living Polymerization, RDRP, ROMP, Macromolecular Engineering, Single-Chain Conformation, Flory-Huggins Theory, Glass Transition, Crystallinity, GPC, SEC, DSC, Depolymerization, Chemical Recycling, Biodegradation, Materials Chemistry
+Polymer, Polymerization, Polymer Chemistry, Macromolecules, Step-Growth Polymerization, Chain-Growth Polymerization, Molar Mass, Dispersity, Tacticity, Thermoplastics, Thermosets, Elastomers, Living Polymerization, RDRP, ROMP, Macromolecular Engineering, Single-Chain Conformation, Flory-Huggins Theory, Glass Transition, Crystallinity, GPC, SEC, DSC, Depolymerization, Chemical Recycling, Biodegradation, Materials Chemistry
 
 ## Objectives
 
