@@ -6,8 +6,8 @@ theme: architect
 
 <!-- slide template=title -->
 # Ch01 - Introduction · Slides
-## <subtitle>
-**<your name>**
+## subtitle
+**your name**
 
 <!-- slide -->
 ## <First topic>
