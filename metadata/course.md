@@ -1,10 +1,5 @@
 # CHEM320 - Chemistry of Macromolecules
 
-- **Course Number:** CHEM 320
-- **Instructor:** Dr. Yu Wang
-- **Institute:** University of Louisiana at Lafayette
-- **Department:** Chemistry
-
 ## Description
 
 This course introduces polymer chemistry as a structure-processing-property discipline. It begins with polymer definitions, molar mass, degree of polymerization, historical development, and environmental motivation; then moves through architecture, stereochemistry, copolymer composition, molar-mass distributions, and the two major polymerization families. The central synthesis sequence covers step-growth polymerization, chain-growth polymerization, precision/controlled methods, macromolecular engineering, and depolymerization/recycling by design. The final sequence connects molecular structure to single-chain conformation, polymer solutions and mixtures, molar-mass characterization, glass transition, and crystallinity. Viscoelasticity and rubber elasticity are treated only as optional instructor/advanced supplements.

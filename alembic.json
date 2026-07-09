@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "packageId": "pkg-chem320-chemistry-of-macromolecules-eoveux5a",
   "title": "CHEM320 - Chemistry of Macromolecules",
-  "description": "- Course Number: CHEM 320 - Instructor: Dr. Yu Wang - Institute: University of Louisiana at Lafayette - Department: Chemistry",
+  "description": "This course introduces polymer chemistry as a structure-processing-property discipline. It begins with polymer definitions, molar mass, degree of polymerization, historical development, and environmental motivation; then moves through architecture, stereochemistry, copolymer composition, molar-mass…",
   "discipline": "chemistry",
   "courseContext": {
     "instructor": "Dr. Yu Wang",
