@@ -6,6 +6,14 @@
   "discipline": "chemistry",
   "courseContext": {},
   "license": "CC-BY-4.0",
+  "publicRepo": {
+    "owner": "wangyu16",
+    "name": "chem320-chemistry-of-macromolecules-eoveux5a-oer"
+  },
+  "privateRepo": {
+    "owner": "wangyu16",
+    "name": "chem320-chemistry-of-macromolecules-eoveux5a-private"
+  },
   "chapters": [
     {
       "slug": "01-intro",
@@ -45,13 +53,5 @@
     }
   ],
   "unitTerm": "module",
-  "createdAt": "2026-06-15T01:26:02.108Z",
-  "publicRepo": {
-    "owner": "wangyu16",
-    "name": "chem320-chemistry-of-macromolecules-eoveux5a-oer"
-  },
-  "privateRepo": {
-    "owner": "wangyu16",
-    "name": "chem320-chemistry-of-macromolecules-eoveux5a-private"
-  }
+  "createdAt": "2026-06-15T01:26:02.108Z"
 }

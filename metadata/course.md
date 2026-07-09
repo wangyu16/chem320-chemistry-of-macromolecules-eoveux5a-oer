@@ -33,4 +33,3 @@ By the end of the guide, learners should be able to:
 
 ## Topics and concept map
 
-Outline the major topics. Once every chapter has a concept map, AI can draft this section for you.
