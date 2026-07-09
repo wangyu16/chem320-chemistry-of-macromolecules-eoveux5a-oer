@@ -2,14 +2,50 @@
   "schemaVersion": 1,
   "packageId": "pkg-chem320-chemistry-of-macromolecules-eoveux5a",
   "title": "CHEM320 - Chemistry of Macromolecules",
-  "description": "",
+  "description": "- Instructor: Dr. Yu Wang - Institute: University of Louisiana at Lafayette - Department: Chemistry",
   "discipline": "chemistry",
-  "courseContext": {
-    "instructor": "Dr. Yu Wang",
-    "courseNumber": "CHEM 320",
-    "department": "Department of Chemistry, University of Louisiana at Lafayette"
-  },
+  "courseContext": {},
   "license": "CC-BY-4.0",
+  "chapters": [
+    {
+      "slug": "01-intro",
+      "title": "Ch01 - Introduction"
+    },
+    {
+      "slug": "02-overview",
+      "title": "Ch02 - Overview"
+    },
+    {
+      "slug": "03-step",
+      "title": "Ch03 - Step Growth"
+    },
+    {
+      "slug": "04-chain",
+      "title": "Ch04 - Chain Growth"
+    },
+    {
+      "slug": "05-precision",
+      "title": "Ch05 - Precision Polymerization"
+    },
+    {
+      "slug": "06-depoly",
+      "title": "Ch06 - Depolymerization"
+    },
+    {
+      "slug": "07-single",
+      "title": "Ch07 - Single Chain Conformation"
+    },
+    {
+      "slug": "08-solution",
+      "title": "Ch08 - Mixture and Solutions"
+    },
+    {
+      "slug": "09-bulk",
+      "title": "Ch09 - Bulk Properties"
+    }
+  ],
+  "unitTerm": "module",
+  "createdAt": "2026-06-15T01:26:02.108Z",
   "publicRepo": {
     "owner": "wangyu16",
     "name": "chem320-chemistry-of-macromolecules-eoveux5a-oer"
@@ -17,11 +53,5 @@
   "privateRepo": {
     "owner": "wangyu16",
     "name": "chem320-chemistry-of-macromolecules-eoveux5a-private"
-  },
-  "theme": "light-neat-2",
-  "themes": {
-    "slides": "architect",
-    "practice": "light-neat-3"
-  },
-  "createdAt": "2026-06-15T01:26:02.108Z"
+  }
 }
