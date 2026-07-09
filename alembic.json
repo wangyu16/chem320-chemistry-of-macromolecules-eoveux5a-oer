@@ -86,6 +86,7 @@
     }
   ],
   "unitTerm": "chapter",
+  "theme": "light-neat-2",
   "themes": {
     "slides": "architect"
   },
