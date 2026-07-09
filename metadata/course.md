@@ -1,5 +1,6 @@
 # CHEM320 - Chemistry of Macromolecules
 
+- **Course Number:** CHEM 320
 - **Instructor:** Dr. Yu Wang
 - **Institute:** University of Louisiana at Lafayette
 - **Department:** Chemistry

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "packageId": "pkg-chem320-chemistry-of-macromolecules-eoveux5a",
   "title": "CHEM320 - Chemistry of Macromolecules",
-  "description": "- Instructor: Dr. Yu Wang - Institute: University of Louisiana at Lafayette - Department: Chemistry",
+  "description": "- Course Number: CHEM 320 - Instructor: Dr. Yu Wang - Institute: University of Louisiana at Lafayette - Department: Chemistry",
   "discipline": "chemistry",
   "courseContext": {
     "instructor": "Dr. Yu Wang",
