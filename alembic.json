@@ -53,5 +53,8 @@
     }
   ],
   "unitTerm": "module",
+  "themes": {
+    "slides": "architect"
+  },
   "createdAt": "2026-06-15T01:26:02.108Z"
 }
