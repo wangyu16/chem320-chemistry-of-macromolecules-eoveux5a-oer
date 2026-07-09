@@ -6,22 +6,21 @@ ratio: 16:9
 <!-- slide template=title -->
 # Ch03 - Step Growth · Slides
 ## subtitle
-**<your name>**
+**your name**
 
 <!-- slide -->
-## <First topic>
+## First topic
 
-- <key point>
-- <key point>
-- <key point>
+- key point 1
+- key point 2
+- key point 3
 
 <!-- slide -->
-## <Second topic>
+## Second topic
 
-- <key point>
-- <key point>
-- <key point>
-
+- key point 1
+- key point 2
+- key point 3
 <!-- slide template=closing -->
 # Thank you
 
