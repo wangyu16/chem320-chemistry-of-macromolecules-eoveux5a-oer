@@ -88,7 +88,8 @@
   "unitTerm": "chapter",
   "theme": "light-neat-2",
   "themes": {
-    "slides": "architect"
+    "slides": "architect",
+    "practice": "light-neat-2"
   },
   "currentTerm": "2027-spring",
   "currentTermLabel": "Spring 2027",
