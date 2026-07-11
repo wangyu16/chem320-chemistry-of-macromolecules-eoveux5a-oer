@@ -2,8 +2,6 @@
 
 ## Definitions of polymer and macromolecule{{attrs[#blk-ewr9xk1ay8hj]}}
 
-{{md-include https://alembic.orz.how/d/doc-9mm07rq6aw1x}}<!-- This is used to test insert markdown source. Will be deleted later. -->
-
 Polymer  
 : The term "polymer" derives from Greek πολύς (polus) 'many, much' and μέρος (meros) 'part'. 
 
