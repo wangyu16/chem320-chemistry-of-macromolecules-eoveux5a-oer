@@ -2,7 +2,6 @@
 
 ### Introduction: The Glass Transition Phenomenon
 
-{{md-include https://alembic.orz.how/d/doc-9mm07rq6aw1x}}
 
 As we know, polymers are long-chain molecules whose physical state is highly dependent on temperature. At high temperatures, polymer chains possess significant thermal energy, allowing for considerable movement, often resulting in a rubbery or liquid-like state. As the temperature decreases, this molecular mobility is reduced.
 
