@@ -54,7 +54,7 @@ where Cat means the catalyst.
 
 #### Other strategies
 
-Certain polycondensations of AB-type monomers can mimic chain-growth polymerization, resulting in a narrow molecular weight distribution. The key is that the monomers should not react directly with each other under the polymerization conditions. Instead, an initiator with an activated B group ($\ce{RB^*}$) can react with the A groups of the monomers. Once this reaction occurs, the B functional group from the previous monomer becomes activated and can continue to react with other monomers, leading to polymers of the form $\ce{RB(AB)_iAB^*}$. This type of polymerization is known as **living chain-growth polycondensation**. However, generalizing this concept is challenging, and only a limited number of monomers can be polymerized using living chain-growth polycondensation. 
+Certain polycondensations of AB-type monomers can mimic chain-growth polymerization, resulting in a narrow molecular weight distribution. The key is that the monomers should not react directly with each other under the polymerization conditions. Instead, an initiator with an activated B group ($\ce{RB^*}$) can react with the A groups of the monomers. Once this reaction occurs, the B functional group from the previous monomer becomes activated and can continue to react with other monomers, leading to polymers of the form $\ce{RB(AB)_iAB^*}$. This type of polymerization is known as **living chain-growth polycondensation**. However, generalizing this concept is challenging, and only a limited number of monomers can be polymerized using living chain-growth polycondensation.  
 
 $$\ce{RB^* ->[+AB] RB(AB)_iAB^*}$$
 
