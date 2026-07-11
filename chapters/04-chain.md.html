@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en" data-chrome="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ch04 - Chain Growth</title>
+<meta name="generator" content="orz-mdhtml">
+<meta name="author" content="Dr. Yu Wang">
+<meta name="description" content="This course introduces polymer chemistry as a structure-processing-property discipline. It begins with polymer definitions, molar mass, degree of polymerization, historical development, and environmental motivation; then moves through architecture, stereochemistry, copolymer composition, molar-mass distributions, and the two major polymerization families. The central synthesis sequence covers step-growth polymerization, chain-growth polymerization, precision/controlled methods, macromolecular engineering, and depolymerization/recycling by design. The final sequence connects molecular structure to single-chain conformation, polymer solutions and mixtures, molar-mass characterization, glass transition, and crystallinity. Viscoelasticity and rubber elasticity are treated only as optional instructor/advanced supplements.">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<meta name="dcterms.license" content="CC-BY-4.0">
+<link rel="canonical" href="https://github.com/wangyu16/chem320-chemistry-of-macromolecules-eoveux5a-oer">
+<script type="application/orz-meta+json" id="orz-meta">
+{
+  "title": "Ch04 - Chain Growth",
+  "author": "Dr. Yu Wang",
+  "description": "This course introduces polymer chemistry as a structure-processing-property discipline. It begins with polymer definitions, molar mass, degree of polymerization, historical development, and environmental motivation; then moves through architecture, stereochemistry, copolymer composition, molar-mass distributions, and the two major polymerization families. The central synthesis sequence covers step-growth polymerization, chain-growth polymerization, precision/controlled methods, macromolecular engineering, and depolymerization/recycling by design. The final sequence connects molecular structure to single-chain conformation, polymer solutions and mixtures, molar-mass characterization, glass transition, and crystallinity. Viscoelasticity and rubber elasticity are treated only as optional instructor/advanced supplements.",
+  "source": "https://github.com/wangyu16/chem320-chemistry-of-macromolecules-eoveux5a-oer",
+  "license": {
+    "spdx": "CC-BY-4.0",
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  }
+}
+</script>
+<style>
+  :root {
+    --orz-split: 44%;
+  }
+  [data-chrome="light"] {
+    --c-bg: #ffffff; --c-fg: #1f2328; --c-muted: #6b7280;
+    --c-border: #e6e8eb; --c-hover: #f2f4f6; --c-active: #e8eef7;
+    --c-accent: #2f6feb; --c-shadow: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.10);
+    --c-fab-bg: rgba(255,255,255,.92); --c-fab-fg: #374151;
+  }
+  [data-chrome="dark"] {
+    --c-bg: #1b1d21; --c-fg: #e6e8eb; --c-muted: #9aa1ab;
+    --c-border: #2c3036; --c-hover: #24272c; --c-active: #2b3340;
+    --c-accent: #5b8cff; --c-shadow: 0 1px 2px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.35);
+    --c-fab-bg: rgba(33,36,41,.92); --c-fab-fg: #cbd2da;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--c-bg); color: var(--c-fg);
+    height: 100vh; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+
+  /* ---- editor panel: dark chrome, slides in from the left ---- */
+  #orz-panel {
+    position: fixed; left: 0; top: 0; bottom: 0; width: var(--orz-split); z-index: 40;
+    display: flex; flex-direction: column;
+    background: #1f2228; border-right: 1px solid #333; box-shadow: 2px 0 16px rgba(0,0,0,.25);
+    transform: translateX(calc(-100% - 24px)); transition: transform .22s ease;
+    -webkit-user-select: none; user-select: none;
+  }
+  [data-mode="edit"] #orz-panel { transform: translateX(0); }
+  #orz-toolbar {
+    display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    padding: 7px 10px; background: #23262c; border-bottom: 1px solid #34383f;
+  }
+  #orz-toolbar .ic {
+    width: 32px; height: 30px; display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: 0; border-radius: 7px; color: #c2c8d0; cursor: pointer;
+    transition: background .12s, color .12s;
+  }
+  #orz-toolbar .ic:hover { background: #383d45; color: #fff; }
+  #orz-toolbar .ic svg { width: 17px; height: 17px; display: block; }
+  #orz-toolbar .ic[aria-pressed="true"] { color: #3b82f6; }
+  #orz-toolbar .ic[aria-pressed="false"] { opacity: .5; }
+  #orz-toolbar .ic.primary { background: #3b82f6; color: #fff; }
+  #orz-toolbar .ic.primary:hover { background: #2f6fe0; color: #fff; }
+  #orz-toolbar .orz-sep { width: 1px; height: 20px; background: #3c414a; margin: 0 5px; }
+  #orz-toolbar .orz-spacer { flex: 1; }
+  #orz-brand { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #cdd3df; padding: 2px 7px; border-radius: 7px; }
+  #orz-brand:hover { color: #fff; background: #383d45; }
+  #orz-brand .orz-logo svg { height: 22px; width: auto; display: block; }
+  #orz-brand .orz-brand-name { font: 700 13px/1 system-ui, sans-serif; letter-spacing: .01em; }
+  #orz-brand .orz-gh { display: inline-flex; opacity: .55; }
+  #orz-brand:hover .orz-gh { opacity: 1; }
+  #orz-brand .orz-gh svg { width: 15px; height: 15px; display: block; }
+  /* close tab — a small handle on the editor's right edge that slides it away */
+  #orz-close {
+    position: absolute; top: 50%; right: -19px; transform: translateY(-50%);
+    width: 19px; height: 48px; z-index: 46; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 0; border-radius: 0 8px 8px 0; background: #23262c; color: #c2c8d0;
+    cursor: pointer; box-shadow: 2px 0 8px rgba(0,0,0,.18);
+  }
+  #orz-close:hover { background: #383d45; color: #fff; }
+  #orz-close svg { width: 15px; height: 15px; display: block; }
+  select.theme-pick {
+    height: 30px; padding: 0 26px 0 10px; border: 1px solid #454b55; border-radius: 7px;
+    background: #34383f no-repeat right 8px center; color: #e6e8ec;
+    font: 500 12.5px/1 system-ui, sans-serif; cursor: pointer; max-width: 42%;
+    -webkit-appearance: none; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23aab2bd' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  }
+
+  /* ---- preview: fixed full-window wrapper; shifts right in edit mode ---- */
+  #orz-preview { position: fixed; inset: 0; left: 0; transition: left .22s ease; }
+  [data-mode="edit"] #orz-preview { left: calc(var(--orz-split) + 6px); }
+  #orz-frame { width: 100%; height: 100%; border: 0; background: #fff; display: block; }
+
+  /* draggable divider between editor and preview */
+  #orz-divider { display: none; }
+  [data-mode="edit"] #orz-divider { display: block; position: fixed; top: 0; bottom: 0;
+    left: var(--orz-split); width: 6px; z-index: 45; cursor: col-resize; background: #34383f; }
+  #orz-divider:hover, #orz-divider.dragging { background: #3b82f6; }
+
+  /* pencil FAB (opens the editor); bottom-left, where the editor slides in from */
+  #orz-edit-fab {
+    position: fixed; left: 22px; bottom: 18px; z-index: 30;
+    width: 42px; height: 42px; border: 0; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--c-accent); color: #fff; cursor: pointer;
+    box-shadow: var(--c-shadow); opacity: .92;
+  }
+  #orz-edit-fab svg { width: 19px; height: 19px; display: block; }
+  #orz-edit-fab:hover { opacity: 1; transform: scale(1.06); }
+  #orz-edit-fab::after { content: ""; position: absolute; top: 1px; right: 1px;
+    width: 11px; height: 11px; border-radius: 50%; background: #e5534b;
+    border: 2px solid var(--c-bg); opacity: 0; transition: opacity .15s; }
+  html[data-dirty="1"] #orz-edit-fab::after { opacity: 1; }
+  [data-mode="edit"] #orz-edit-fab { display: none; }
+
+  /* CodeMirror fills the editor area below the toolbar */
+  #orz-editor { flex: 1; min-height: 0; overflow: hidden; background: #1f2228; }
+  #orz-editor .CodeMirror { height: 100%; font-family: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; line-height: 1.6; }
+  #orz-textarea { width: 100%; height: 100%; box-sizing: border-box; border: 0; padding: 14px;
+    resize: none; outline: none; font: 13.5px/1.6 ui-monospace, Menlo, Consolas, monospace;
+    background: #1f2228; color: #e6e8eb; }
+  #orz-foot { flex: 0 0 auto; height: 24px; display: flex; align-items: center; justify-content: center;
+    font: 11.5px/1 system-ui, sans-serif; color: #8b93a0; background: #23262c; border-top: 1px solid #34383f; gap: 4px; }
+  #orz-foot a { color: #9aa3b2; text-decoration: none; }
+  #orz-foot a:hover { color: #fff; text-decoration: underline; }
+
+  /* banner buttons (update / served-note) */
+  .text-btn { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 11px;
+    border: 1px solid var(--c-border); border-radius: 8px; background: var(--c-bg); color: var(--c-fg);
+    cursor: pointer; font: inherit; font-weight: 500; }
+  .text-btn:hover { background: var(--c-hover); }
+  .text-btn.primary { background: var(--c-accent); border-color: var(--c-accent); color: #fff; }
+  .text-btn.primary:hover { filter: brightness(1.06); }
+
+  /* toast */
+  #orz-toast {
+    position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%) translateY(8px);
+    background: #111418; color: #fff; padding: 8px 14px; border-radius: 9px; font-size: 13px;
+    opacity: 0; pointer-events: none; transition: opacity .18s, transform .18s; z-index: 50;
+  }
+  #orz-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* update banner */
+  #orz-update {
+    position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 40;
+    display: none; align-items: center; gap: 12px;
+    padding: 8px 12px; border-radius: 10px; font-size: 13px;
+    background: var(--c-bg); color: var(--c-fg); border: 1px solid var(--c-border); box-shadow: var(--c-shadow);
+  }
+  #orz-update.show { display: flex; }
+
+  /* published-page (read-only) save notice */
+  #orz-served-note {
+    position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 41;
+    display: none; align-items: center; gap: 12px; max-width: min(92vw, 560px);
+    padding: 10px 12px; border-radius: 10px; font-size: 13px; line-height: 1.4;
+    background: var(--c-bg); color: var(--c-fg); border: 1px solid var(--c-border); box-shadow: var(--c-shadow);
+  }
+  #orz-served-note.show { display: flex; }
+  #orz-served-note .note-text { flex: 1; }
+</style>
+</head>
+<body>
+<!-- ═══════════ orz · editing this file with an AI agent ═══════════
+  This is a self-contained, EDITABLE orz-mdhtml document (.md.html). The editable
+  source of truth is the orz-markdown in the embedded source island below
+  (kind: md, format: 1) — NOT the rendered HTML.
+
+  To edit it correctly, load the official orz-mdhtml agent skill first: it defines
+  the syntax and the IMMUTABLE {{attrs[#blk-...]}} block-ID rules, and guarantees a
+  byte-identical round-trip (extract source -> edit -> re-embed).
+    - Fetch the skill: https://cdn.jsdelivr.net/npm/orz-mdhtml/orz-mdhtml-skills/SKILL.md
+    - Install routes:  https://markdown.orz.how/agents.html
+
+  Rules: edit ONLY the embedded source; re-embed it in place; never add, remove,
+  reuse, or reformat a block-ID marker.
+═══════════════════════════════════════════════════════════════════ -->
+
+<div id="orz-preview"><iframe id="orz-frame" title="Preview"></iframe></div>
+<div id="orz-divider" title="Drag to resize"></div>
+<button id="orz-edit-fab" title="Edit this document" aria-label="Edit this document"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>
+
+<div id="orz-panel">
+  <div id="orz-toolbar" role="toolbar" aria-label="Editor toolbar">
+    <a id="orz-brand" href="https://github.com/wangyu16/orz-mdhtml" target="_blank" rel="noopener noreferrer" title="orz-mdhtml on GitHub"><span class="orz-logo"><svg viewBox="-5 -5 180 100" xmlns="http://www.w3.org/2000/svg" class="orz-mark" aria-hidden="true"><defs><filter id="orzlogo-rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" /><feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" /></filter><path d="M 20,23 C 33,16 57,17 84,13 C 111,8 137,4 153,6 C 165,7 170,13 169,25 L 167,66 C 166,79 159,87 146,89 C 121,93 92,92 60,91 C 41,90 27,92 16,89 C 6,86 1,79 1,67 L 1,50 C 1,35 7,25 20,23 Z" id="orzlogo-seal" /><filter id="orzlogo-stone" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="11" result="noise" /><feColorMatrix in="noise" type="saturate" values="0" result="mono" /><feComponentTransfer in="mono" result="grain"><feFuncA type="table" tableValues="0 0.16" /></feComponentTransfer></filter><mask id="orzlogo-mask"><use href="#orzlogo-seal" fill="white" /><path d="M37.81 80.31Q30.44 80.31 24.50 77Q18.56 73.69 15.25 67.75Q11.94 61.81 11.94 54.19L11.94 54.19Q11.94 41.69 21.13 35.56Q30.31 29.44 43.69 29.44L43.69 29.44Q49.81 29.44 55.13 32.44Q60.44 35.44 63.69 41.06Q66.94 46.69 66.94 54.06L66.94 54.06Q66.94 62.06 62.81 68Q58.69 73.94 52 77.13Q45.31 80.31 37.81 80.31L37.81 80.31ZM36.44 73.19Q48.06 73.19 54.06 67.94Q60.06 62.69 60.06 52.56L60.06 52.56Q60.06 45.69 55.38 40.69Q50.69 35.69 42.31 35.69L42.31 35.69Q36.69 35.69 30.94 37.81Q25.19 39.94 21.44 44.19Q17.69 48.44 17.69 54.44L17.69 54.44Q17.69 59.44 20.19 63.75Q22.69 68.06 27 70.63Q31.31 73.19 36.44 73.19L36.44 73.19ZM87.94 80.19Q82.81 70.19 79.88 56.69Q76.94 43.19 76.94 33.31L76.94 33.31Q76.94 29.44 78.69 28.31L78.69 28.31Q79.69 27.69 80.19 27.69L80.19 27.69Q81.06 27.69 81.50 29.06Q81.94 30.44 82.44 34.06L82.44 34.06L83.06 38.56Q84.44 31.81 88.38 27.88Q92.31 23.94 98.06 23.94L98.06 23.94Q104.44 23.94 107.56 26.38Q110.69 28.81 110.69 34.44L110.69 34.44Q104.44 31.44 99.31 31.44L99.31 31.44Q94.44 31.44 90.94 34.06Q87.44 36.69 86.06 41.81L86.06 41.81Q84.94 45.31 84.94 48.44L84.94 48.44Q84.94 51.81 85.88 54.75Q86.81 57.69 88.81 61.94L88.81 61.94Q90.69 66.31 91.75 69.44Q92.81 72.56 92.94 76.19L92.94 76.19Q92.94 78.31 91.44 79.25Q89.94 80.19 87.94 80.19L87.94 80.19ZM160.56 66.19Q163.06 68.06 163.06 70.19L163.06 70.19Q163.06 73.56 157.31 75.81Q151.56 78.06 144.31 79.13Q137.06 80.19 132.81 80.19L132.81 80.19Q128.06 80.19 123.75 78.63Q119.44 77.06 119.44 73.19L119.44 73.19Q119.44 69.44 123.63 63.44Q127.81 57.44 133.69 51.19L133.69 51.19L117.56 51.19Q116.31 51.19 116.31 48.94L116.31 48.94Q116.31 47.19 116.69 46.50Q117.06 45.81 117.69 45.69Q118.31 45.56 120.06 45.56L120.06 45.56L139.31 45.56Q143.94 39.69 146.38 35.50Q148.81 31.31 148.81 27.69L148.81 27.69Q148.81 24.06 146.31 21.19L146.31 21.19Q142.44 20.44 138.81 20.44L138.81 20.44Q131.94 20.44 127.19 22.75Q122.44 25.06 121.94 28.81L121.94 28.81Q119.06 28.81 118.13 27.81Q117.19 26.81 117.19 24.44L117.19 24.44Q117.19 21.94 119.75 19.63Q122.31 17.31 126.94 15.88Q131.56 14.44 137.31 14.44L137.31 14.44Q142.06 14.44 147.31 15.56L147.31 15.56Q150.56 16.19 152.81 19.69Q155.06 23.19 155.06 27.44L155.06 27.44Q155.06 31.19 152.75 35.31Q150.44 39.44 145.94 45.56L145.94 45.56L152.06 45.56Q156.81 45.56 158.38 46.06Q159.94 46.56 159.94 48.06L159.94 48.06Q159.94 49.31 159.13 50.19Q158.31 51.06 157.44 51.06L157.44 51.06L140.19 51.06Q134.06 57.94 130.81 63.25Q127.56 68.56 128.19 70.81L128.19 70.81Q128.69 73.19 135.94 74.06L135.94 74.06Q144.06 74.06 149.69 72.13Q155.31 70.19 160.56 66.19L160.56 66.19Z" fill="black" stroke="black" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" /></mask></defs><g filter="url(#orzlogo-rough)"><use href="#orzlogo-seal" fill="#96d969" mask="url(#orzlogo-mask)" /><use href="#orzlogo-seal" fill="#6ea84d" opacity="0.28" filter="url(#orzlogo-stone)" mask="url(#orzlogo-mask)" /><use href="#orzlogo-seal" fill="none" stroke="#c8f7a5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.42" mask="url(#orzlogo-mask)" /><use href="#orzlogo-seal" fill="none" stroke="#5f8f44" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.35" mask="url(#orzlogo-mask)" /></g></svg></span><span class="orz-brand-name">mdhtml</span><span class="orz-gh"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></span></a>
+    <span class="orz-sep"></span>
+    <button class="ic primary" id="orz-save" title="Save (Cmd/Ctrl+S)" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg></button>
+    <button class="ic" id="orz-download" title="Download a copy" aria-label="Download a copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></button>
+    <span class="orz-spacer"></span>
+    <button class="ic" id="orz-ai" title="AI assistant — improve the whole document" aria-label="AI assistant" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z"/></svg></button>
+    <button class="ic" id="orz-sync" title="Sync scrolling" aria-label="Sync scrolling" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><path d="M8 12h8"/></svg></button>
+    <select class="theme-pick" id="orz-theme" title="Theme" aria-label="Theme"><option value="light-neat-3">Orchard</option><option value="light-neat-1">Neat</option><option value="light-neat-2" selected>Neat 2</option><option value="light-academic-1">Academic</option><option value="light-academic-2">Academic 2</option><option value="beige-decent-1">Beige</option><option value="beige-decent-2">Beige 2</option><option value="light-playful-1">Playful</option><option value="light-playful-2">Playful 2</option><option value="dark-elegant-1">Dark Elegant</option><option value="dark-elegant-2">Dark Elegant 2</option><option value="dark-elegant-3">Nocturne</option></select>
+  </div>
+  <button id="orz-close" title="Close editor" aria-label="Close editor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div id="orz-editor"><textarea id="orz-textarea" spellcheck="false"></textarea></div>
+  <div id="orz-foot">© <a href="https://markdown.orz.how" target="_blank" rel="noopener noreferrer">orz-markdown</a></div>
+</div>
+
+<div id="orz-update">
+  <span class="upd-text"></span>
+  <button class="text-btn primary" id="orz-upd-apply">Update</button>
+  <button class="text-btn" id="orz-upd-dismiss">Dismiss</button>
+</div>
+
+<div id="orz-served-note">
+  <span class="note-text">This is a published page — your edits can't be saved back to the server. You can download a local copy to edit and save.</span>
+  <button class="text-btn primary" id="orz-served-download">Download copy</button>
+  <button class="text-btn" id="orz-served-dismiss">Dismiss</button>
+</div>
+<div id="orz-toast"></div>
+
+<!-- Embedded markdown source (single source of truth) -->
+<script type="text/markdown" id="orz-src">
+## Methods and products{{attrs[#blk-n92d9d05lsnc]}}
+
+A chain reaction describes a whole series of successive events triggered by some initial occurrence. 
+
+Two major catagories of chain-growth polymerization: 
+
+1. Polymerization of vinyl monomers (such as styrene and vinyl chloride) or monomers with substituted vinyl groups (such as methyl methacrylate and tetrafluoroethylene); 
+2. Ring-opening polymerization of cyclic monomers (such as caprolactam and epoxide). 
+
+For simplicity, in the rest of this document, when vinyl monomers are refered, monomers with both vinyl groups and substituted vinly groups are included. There are a large variety of vinyl monomers, some representative ones are shown below. 
+
+![](https://raw.githubusercontent.com/wangyu16/PolymerScienceEducation/master/Fig/Vinyl-monomers.svg)
+
+The carbon-carbon double bond is typically reactive. In organic chemistry, we learned about several types of addition reactions that can occur to a carbon-carbon double bond. One such reaction is nucleophilic addition, which results in a negatively charged carbanion as an intermediate product. With appropriate substituents, this carbanion can attack another molecule with a carbon-carbon double bond, i.e., a vinyl monomer, leading to a chain addition. This chain reaction, known as anionic polymerization, can be used to produce polymers. Addition reactions can also follow radical or cationic pathways, resulting in radical polymerization and cationic polymerization, respectively. Additionally, some organometallic species can trigger a coordination, insertion, and addition process, leading to coordination polymerization. Many vinyl monomers can undergo one or several types of polymerizations described above.  Consequently, many commercially useful products can be produced through these processes. The backbones of resulting polymers consist exclusively $\ce{-C-C -}$ bonds.
+
+Ring-opening polymerization can proceed via anionic, or cationic mechanisms, or with the assistance of organometallic catalysts. Radical mechanism is also possible, though not very common. This type of polymerization is particularly useful for producing polymers with heteroatoms in the backbone, such as oxygen, nitrogen, or sulfur, which can impart unique properties to the resulting materials. 
+
+### Radical polymerization
+
+#### Properties of free radicals and features of radical polymerization
+
+Free radicals are very active species which can potentially react with all components in the reaction system, such as the monomer, the polymer, the solvent, etc. Free radicals can also react one another resulting in stable species. Thus, the life-time of radicals is usually just a few seconds. However, this short time period is sufficient to lead to long chain molecules with thousands of monomer units or even above. 
+
+One important feature of radicals is that they are electrically neutral and typically do not behave as either nucleophile or electrophile, thus radical polymerization can be carried out even in water regardless the medium is neutral, acidic or basic. Radical polymerization is not sensitive to many functional groups as well. Ionic polymerizations, on the other hand, are sensitive to tiny amount of moisture or functional groups prone to nucleophilic or electrophilic attacks. 
+
+Radical polymerization is one of the easiest polymerization reactions to be carried out. Generally, small amount of impurities in the monomer, a little oxygen, and the presence of water do not prevent the formation of high molecular weight polymers. With sufficient amount of initiator and proper temperature (usually $\pu{50 ^\circ C}$ to $\pu{100 ^\circ C}$), the polymerization can reach high monomer conversion in one or a few hours. 
+
+#### Available monomers  
+
+Majority of vinyl monomers can be polymerized via radical polymerization. Exceptions include isobutylene, propylene, and vinyl ether. Monomers with functional groups such as carboxylic acid, hydroxyl, and amino can also be polymerized directly via radical polymerization.  
+
+#### Reaction techniques
+
+**Solution polymerization** 
+
+Solution reactions are typically the most convenient method for performing organic synthesis, including polymerizations. The presence of a solvent helps maintain the polymerization system as a fluid rather than a solid mass, making it easier to remove the product from the reactor. If the resulting polymer is water-soluble, the polymerization can be carried out in an aqueous solution. Otherwise, many organic solvents can be used. However, some commonly used organic solvents, such as chloroform, may react rapidly with radicals and should be avoided 
+
+**Bulk polymerization**
+
+In solution polymerization, removing the solvent after polymerization is essential. To reuse the solvent, further purification is required. Both incur additional costs. In some cases, avoiding the use of solvents altogether is advisable if possible. 
+
+Bulk polymerization involves only the monomer and initiator as starting agents. Commercial examples of bulk radical polymerization are limited due to heat dissipation and viscosity issues. However, for products like flat plastic plates or sheets, bulk polymerization is convenient.
+
+Polymethyl methacrylate (PMMA) is a highly transparent and rigid plastic that can replace glass. To make PMMA plates, the monomer and initiator are polymerized to a low conversion to form a syrup, which is essentially a solution of PMMA in its own monomers. This viscous syrup is cast into a mold and further polymerized to consume all the monomers, resulting in a solidified product.
+
+During this process, it is crucial to avoid air bubbles. Additionally, the expansion during polymerization and shrinkage upon cooling must be considered. 
+
+**Suspension polymerization** 
+
+In contrast to solution polymerization, if you choose a solvent that is immiscible with the monomer and does not dissolve the polymer, a suspension system can be created under mechanical agitation. The most commonly used suspension system involves water and non-water-soluble monomers. Polymerization under these conditions offers several advantages over solution polymerization:
+
+1. The monomer forms small droplets in the suspension system and eventually becomes polymer particles. The viscosity of the system remains low since the polymers are solid particles.  
+2. Heat dissipation is easier than in solution polymerization.  
+3. Removal of water by simple filtration is possible.
+
+**Emulsion polymerization**
+
+Emulsions can be created by adding surfactants to immiscible monomers and solvents. In this case, mild stirring is sufficient to prevent phase separation. Polymerization can be carried out in emulsions, which offer all the advantages of suspension polymerization. The monomer droplets and polymer particles, typically 50–500 nm, are even smaller than in suspension polymerization. Radicals are often separated in individual monomer droplets, resulting in longer lifetimes and higher molecular weights compared to other radical polymerization techniques.
+
+However, the addition of surfactants raises the question of how to remove them after polymerization. Additionally, since the polymer particles are much smaller than in suspension polymerization, separating the polymers from water is more challenging. In many cases, when using emulsion polymerization, the resulting mixture is used directly without further separation. The latex, i.e., the dispersion resulting from emulsion polymerization, is used directly in adhesives, paints, paper coatings, and textile coatings. These are often preferred over solvent-based products due to the absence of volatile organic compounds.
+
+#### Products
+
+**Low density polyethylene (LDPE)** 
+
+Ethylene can be polymerized via a radical mechanism. However, ethylene is a gas at ambient conditions and has relatively low reactivity towards radical addition. Therefore, high pressure, e.g., 1200 -- 3000 bar, is required for the radical polymerization of ethylene. During this polymerization process, the propagating radicals can also react with already-formed polymer chains, causing radical transfer from the chain end to the mid-chain and initiating branches. As a result, radical polymerization of ethylene under high pressure produces branched polyethylene, which has relatively low crystallinity and low density. 
+
+> Why not polypropylene produced by radical polymerization?
+
+**Polytetrafluoroethylene (PTFE)**
+
+Tetrafluoroethylene is ethylene with the four hydrogen atoms replaced by fluorine. PTFE is produced by free-radical polymerization of tetrafluoroethylene. The commonly known brand name of PTFE-based composition is Teflon by Chemours, a spin-off from DuPont, which originally discovered the compound in 1938.
+
+Because tetrafluoroethylene can explosively decompose to tetrafluoromethane ($\ce{CF4}$) and carbon, a special apparatus is required for the polymerization to prevent hot spots that might initiate this dangerous side reaction. The process is typically initiated with persulfate, which homolyzes to generate sulfate radicals. The molecular weights of the polymers are high, ranging up to $10^5 - 10^6$, due to the lack of appreciable chain transfer reactions and the precipitation of growing radicals leading to greatly decreased termination. 
+
+Granular PTFE is produced via suspension polymerization, where PTFE is suspended in an aqueous medium primarily via agitation and sometimes with the use of a surfactant. PTFE is also synthesized via emulsion polymerization, where a surfactant is the primary means of keeping PTFE in an aqueous medium. Surfactants in the past have included toxic perfluorooctanoic acid (PFOA) and perfluorooctanesulfonic acid (PFOS). More recently, Perfluoro 3,6 dioxaoctanoic acid (PFO2OA) and FRD-903 (GenX) are being used as an alternative surfactants.
+
+Properties: 
+- chemically inert
+- wide range of temperature 
+- coefficient of friction
+- flexible and tough
+
+Health concerns of Teflon non-sticky cookwares. 
+
+1. Overheating: When Teflon-coated cookware is heated above 500°F (260°C), it can start to break down and release toxic fumes. Inhaling these fumes can cause flu-like symptoms known as “polymer fume fever” or "Teflon flu".
+2. PFOA and PFAS: Previously, Teflon production involved perfluorooctanoic acid (PFOA), a chemical linked to various health issues such as thyroid disorders, chronic kidney disease, liver disease, and certain cancers. Although PFOA has been phased out since 2013, concerns remain about other per- and polyfluoroalkyl substances (PFAS) used in non-stick coatings.
+3. Long-term Exposure: Studies have shown that chemicals in Teflon can persist in the environment and human body, potentially leading to health risks over time
+
+Environmental issues caused by PFAS. 
+
+1. Persistence: PFAS are often referred to as “forever chemicals” because they break down very slowly in the environment. This means they can accumulate over time in soil, water, and living organisms.
+2. Water Contamination: PFAS have been found in drinking water supplies, groundwater, and surface water. Contaminated water sources can affect entire communities, leading to widespread exposure.
+3. Bioaccumulation: These chemicals can accumulate in the bodies of animals and humans. This bioaccumulation can lead to higher concentrations of PFAS in the food chain, affecting wildlife and potentially human health.
+4. Soil and Air Pollution: PFAS can also contaminate soil and air, particularly near industrial sites where they are produced or used. This contamination can spread to nearby areas, affecting agriculture and residential zones.
+5. Health Risks: Environmental exposure to PFAS has been linked to various health issues, including cancers, liver and thyroid diseases, developmental issues in infants and children, and immune system effects. 
+
+Other commonly used plastics made by radical polymerization are **Polystyrene (PS)**, **Poly(vinyl chloride) (PVC)**, **Poly(methyl methacrylate) (PMMA)**, **Polyacrylonitrile (PAN)**, **Poly(vinyl acetate)**. Find out their structure, production methods, special properties, applications. Any thing special or interesting? Feel free to share. 
+
+### Anionic polymerization 
+
+#### Properties of carbanions and features of anionic polymerization
+
+A carbanion is the conjugate base of a carbon acid:
+
+$$\ce{R3CH + B− → R3C− + HB}$$
+
+where B stands for the base.
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/34/Carbanion_Structural_Formulae_V.1.svg =300x)
+
+Carbanions have a concentration of electron density at the negatively charged carbon, which, in most cases, reacts efficiently with a variety of electrophiles of varying strengths, including carbonyl groups, imines/iminium salts, halogenating reagents (e.g., N-bromosuccinimide and diiodine), and proton donors. Usually, only systems with high purity monomers and aprotic solvent can lead to sufficient polymerization. Monomers with proton donating functional groups apparently will not work. Tiny amount of moisture can affect the polymerization. 
+
+Example of anionic polymerization: 
+
+![](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-642-36199-9_188-1/MediaObjects/300049_0_En_188-1_Fig1_HTML.gif)
+
+
+A well purified and isolated polymerization system, however, will preserve active carbanions even after consumption of all monomers. Thus, it is possible to add a second batch of monomer to produce block copolymers. Finaly, the reaction can be quenched by adding of protic agents. 
+
+Carbanions resulted from different monomers have dramatically differient activities. Less active carbanion cannot initiate polymerization of monomers that would result in more active carbanions. 
+
+#### Available monomers 
+
+Monomers with electron withdrawing substituents can be polymerized by anionic polymerization. the most important ones are styrene, butadiene, and isoprene. A second major class of monomers are acrylates, acrylonitrile, methacrylate, cyanoacrylate, etc. 
+
+#### Products
+
+**SBS rubber**
+
+Polymer styrene can be produced by radical polymerization, which is much easier to carry out than anionic polymerization. Any reason that people would employ anionic polymerization for industrial production of polystyrene? SBS rubber is one of the examples why anionic polymerization is needed. Find out the method to produce SBS rubber. What special molecular structure does SBS have and how does such molecular structure affect the mechanical property of the material?
+
+**Super glue and liquid bandage**
+
+Super Glue 502 is essentially a monomer with a vinyl group. It remains as small molecules in a sealed bottle but polymerizes spontaneously when exposed to air. This polymerization is anionic. What is the structure of the monomer? Why it is not sensitive to impurities or moisture that polymers can be obtained even in open air? Super Glue 502 results in a relatively rigid plastic. Similar monomers can be used as liquid bandages, which result in more flexible plastics. What are the difference of their structures?
+
+**polyformaldehyde**
+
+Polyformaldehyde is an example that not only vinyl group is polymerizable. The $\ce{C=O}$ bond in formaldehyde can also lead to polymerization. What is special of this polymer? Any interesting products? 
+
+### Cationic polymerization
+
+#### Properties of carbocations and features of cationic polymerization
+
+A carbocation is any even-electron cation with significant partial positive charge on a carbon atom. In polymerization, the carbocation is formed by protonation of alkene resulting in a formal positive charge that is surrounded by a sextet of electrons instead of the usual octet required to fill the valence shell of carbon. Therefore, carbenium ions (and carbocations in general) are often reactive, seeking to fill the octet of valence electrons as well as regain a neutral charge. The protonation is a reversible process. When the deprotonation happens, a chain end double bond will be formed and the proton would transfer to the counterion or another monomer. 
+
+Propagation 
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/3f/Lewis_acid_initiation.png =400x)
+
+Chain transfer
+
+![](https://upload.wikimedia.org/wikipedia/commons/c/c9/Termination.png =400x)
+
+![](https://upload.wikimedia.org/wikipedia/commons/f/fd/Charge_transfer_with_monomer.png =400x)
+
+
+#### Available monomers 
+
+The types of monomers necessary for cationic polymerization are limited to alkenes with electron-donating substituents as shown in the figure below. Vinyl ether and isobutylene can be polymerized only by cationic polymerization. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/6/6e/Olefin_Reactivity.png =600x)
+
+#### Products
+
+**Polyisobutylene** must be produced by cationic polymerization. It is a very special polymer with unique properties. What is unique? What special applications does it have?
+
+**Poly(vinyl ether)** must be produced by cationic polymerization as well. Any specific applications that must use poly(vinyl ether)? 
+
+### Coordination polymerization
+
+#### Features of coordination polymerization
+
+Ziegler-Natta catalysts based on titanium tetrachloride and organoaluminium co-catalysts are widely used for the production of polyethylene and polypropylene which occupy more than a quarter of all plastic production. One significant feature is that the polymerization process is stereoselective that isotactic or syndiotactic polypropylene can be produced instead of atactic.The stereoregulating capability of Ziegler–Natta catalysts is believed to depend on a coordination mechanism in which both the growing polymer chain and the monomer coordinate with the catalyst. The addition then occurs by insertion of the monomer between the growing chain and the catalysts by a concerted mechanism. Since the coordination almost certainly involves the transition metal atom, there is a resemblance here to anionic polymerization. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/ee/ZNonSingleSite.png =600x)
+
+Monometallic mechanism
+
+![](https://media.springernature.com/full/springer-static/image/chp%3A10.1007%2F978-3-642-38730-2_9/MediaObjects/307395_1_En_9_Sch1_HTML.gif?as=webp =400x)
+
+Bimetallic mechanism
+
+![](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-642-38730-2_9/MediaObjects/307395_1_En_9_Sch2_HTML.gif?as=webp =400x)
+
+#### Available monomers 
+
+Typically olefens are polymerized by coordination polymerization. Many alkenes do not polymerize in the presence of Ziegler–Natta or Kaminsky catalysts. This problem applies to polar olefins such as vinyl chloride, vinyl ethers, and acrylate esters.
+
+#### Products
+
+**Polypropylene (PP)** and **high density polyethylene (HDPE)** are representative products of coordination polymerization which have been discussed in previous chapters. 
+
+### Ring-opening polymerization (ROP)
+
+The initiators used for ROP are generally the same as being used for cationic and anionic polymerization of vinyl monomers. Monomers used for ROP inlcude cyclic ethers, acetals, amides, esters, siloxanes, as well as amines, sulfides, olefins, cyclotriphosphazenes, and N-carboxy-a-amino acid anhydrides. Some monomers can be polymerized via both cationic and anionic mechanisms, while some can only be polymerized in one way. The propagation rate constants for ring-opening polymerizations are generally similar to the rate constants in most step polymerizations, which makes them several orders of magnitude lower than those in typical polymerizations of carbon–carbon double-bond monomers.
+
+#### Cationic pathway 
+
+Cationic ROP usually involve the formation of oxonium ion centers and the nucleophilic attack of monomer on the oxonium ion. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/b/bb/ROP_cationic.png =600x)
+
+Some ROP proceed by a different route that the monomer is protonated and reacts with the neutral functional end group of the propagating polymer. 
+
+#### Anionic pathway 
+
+Typical anionic ROP involves the formation of propagating anionic centers and nucleophilic attack of the propagating anion on monomer. 
+
+![](.img/AnionROP.png =600x)
+
+#### Commercial products
+
+**Polymerization of cyclic ethers**
+
+![](https://upload.wikimedia.org/wikipedia/commons/6/64/PEG_Structural_Formula_V1.svg =200x)
+
+Polyethylene glycol (PEG) or polyethylene oxide (PEO) is a widely used polymer in industrial manufacturing and medicine. What is the monomer and what is the polymerization route? What is the typical properties of the product? What special applications does it have? 
+
+**Polylactams**
+
+![](https://upload.wikimedia.org/wikipedia/commons/4/4c/Caprolactam_polymerization.png =400x)
+
+In situ anionic polymerization is employed for cast nylon production where conversion from ε-caprolactam to Nylon 6 takes place inside a mold. In conjunction with endless fiber processing the term thermoplastic resin transfer molding (T-RTM) is often used.
+
+**Polylactones**
+
+Polyactic acid (PLA) can degrade into innocuous lactic acid, making it suitable for use as medical implants in the form of anchors, screws, plates, pins, rods, and mesh. Depending on the type used, it breaks down inside the body within 6 months to 2 years. This gradual degradation is desirable for a support structure, because it gradually transfers the load to the body (e.g., to the bone) as that area heals. The strength characteristics of PLA and PLLA implants are well documented.
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/e0/PLA_from_lactic_acid_%26_lactide.png =300x)
+
+Polycaprolactone (PCL) is degraded by hydrolysis of its ester linkages in physiological conditions (such as in the human body) and has therefore received a great deal of attention for use as an implantable biomaterial. In particular it is especially interesting for the preparation of long term implantable devices, owing to its degradation which is even slower than that of polylactide.
+
+![](https://upload.wikimedia.org/wikipedia/commons/6/63/Polycaprolactone_synthesis.png =400x)
+
+#### Ring-opening metathesis polymerization and products
+
+Olefin metathesis is an organic reaction that entails the redistribution of fragments of alkenes (olefins) by the scission and regeneration of carbon-carbon double bonds. Because of the relative simplicity of olefin metathesis, it often creates fewer undesired by-products and hazardous wastes than alternative organic reactions.
+
+![](https://upload.wikimedia.org/wikipedia/commons/8/8c/Reaction_scheme_of_the_olefin_metathesis.svg =300x)
+
+Schrock catalysts
+
+![](https://upload.wikimedia.org/wikipedia/commons/6/67/SchrockMetathesisCatalysts.png =500x)
+
+Grubbs catalysts
+
+![](https://upload.wikimedia.org/wikipedia/commons/7/7b/GrubbsMetathesisCatalysts.png =500x)
+
+Mechanism
+
+![](https://upload.wikimedia.org/wikipedia/commons/f/f6/Metathesis_mechanism_jypx3.png =400x)
+
+The ROMP process is useful because a regular polymer with a regular amount of double bonds is formed. The resulting product can be subjected to partial or total hydrogenation, crosslinking, or can be functionalized into more complex compounds.
+
+**Polynorbornene**  
+Norbornenes are important monomers in ring-opening metathesis polymerizations (ROMP). Typically these conversions are effected with ill-defined catalysts. Polynorbornenes exhibit high glass transition temperatures and high optical clarity.
+
+![](https://upload.wikimedia.org/wikipedia/commons/4/46/Polynbornene.png =400x)
+
+**Polydicyclopentadiene**(PDCPD) is a polymer material which is formed through ring-opening metathesis polymerization of dicyclopentadiene (DCPD). PDCPD exhibits high crosslinking, which grants its properties, such as high impact resistance, good chemical corrosion resistance, and high heat deflection temperature. PDCPD is frequently used in the automotive industry to make body panels, bumpers, and other components for trucks, buses, tractors, and construction equipment. PDCPD is being investigated for the creation of porous materials for tissue engineering or gas storage applications, as well as for self-healing polymers.
+
+![](https://ars.els-cdn.com/content/image/1-s2.0-S0141391014000470-fx1.jpg)
+
+## Kinetics and statistics{{attrs[#blk-zpozsa8mjabc]}}
+
+### Initiation
+
+One key feature of chain-growth polymerization is that monomers do not react directly with each other. Instead, a specific type of active center must be introduced into the polymerization system. This active center reacts with the monomers. After the addition of one monomer, the active center links to the monomer, generating a new active center of the same type on the opposite end of the newly attached monomer unit. 
+
+The addition of the first monomer units to either externally introduced or in-situ generated active centers is known as initiation. 
+
+<!--
+The number of initiation is directly related to the number of polymers you will get from the polymerization. In principle, each active center introduced to the system would create one polymer chain. However, some of the active centers may fail to initiate a chain. The actual number of active centers sucessfully initiate polymers to the total number of available active centers defines the initiation efficiency. 
+-->
+
+#### Radical initiators
+
+Some organic compounds decompose spontaneously at elavated temperatures and produce radicals, such as peroxides or hydroperoxides, azo compounds. Two commonly used thermal initiators are as follows:
+
+Benzoyl peroxide (BPO)
+
+![](https://upload.wikimedia.org/wikipedia/commons/f/fd/Initiation_-_thermal_decomp.png =400x)
+
+Azobisisobutyronitrile (AIBN)
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/3f/AIBN-radical-2D.png =400x)
+
+Some compounds, e.g., AIBN, can produce radicals under photo radiation.
+
+![](https://upload.wikimedia.org/wikipedia/commons/2/22/Initiation_-_photolysis.png =400x)
+
+Redox reactions can possibly create radicals. 
+
+$$\ce{H2O2 + Fe^{2+} -> Fe^{3+} + OH- +HO*}$$
+
+There are many other ways to produce radicals and be used to initiate radical polymerizations. 
+
+Due to side reactions, not all radicals formed by the dissociation of initiator molecules actually add monomers to form polymer chains. The efficiency factor $f$ is defined as the fraction of the original initiator which contributes to the polymerization reaction. The maximal value of $f$ is 1, but typical values range from 0.3 to 0.8.
+
+#### Acids for cationic polymerization
+
+During initiation, a carbenium ion is generated from which the polymer chain is made. The counterion should be non-nucleophilic, otherwise the reaction is terminated instantaneously.  
+
+Lewis acids are the most common compounds used for initiation of cationic polymerization. The more popular Lewis acids are $\ce{SnCl4}$, $\ce{AlCl3}$, $\ce{BF3}$, and $\ce{TiCl4}$. Although these Lewis acids alone are able to induce polymerization, the reaction occurs much faster with a suitable cation source. The cation source can be water, alcohols, or even a carbocation donor such as an ester or an anhydride. In these systems the Lewis acid is referred to as a coinitiator while the cation source is the initiator. Upon reaction of the initiator with the coinitiator, an intermediate complex is formed which then goes on to react with the monomer unit. The counterion produced by the initiator-coinitiator complex is less nucleophilic than that of the Brønsted acid $\ce{A−}$ counterion. Use Brønsted acid as the initiator for cationic polymerization is possible, but usually produce low molecular weight polymers only. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/3f/Lewis_acid_initiation.png =400x)
+
+![](https://upload.wikimedia.org/wikipedia/commons/c/c4/Carbenium_ion_initiation.png =400x)
+
+![](https://upload.wikimedia.org/wikipedia/commons/8/83/Ionizing_radiation_initiation.png =400x)
+
+#### Nucleophilic initiators for anionic polymerization
+
+Highly electrophilic monomers such as cyanoacrylates require only weakly nucleophilic initiators, such as amines, phosphines, or even halides. Less reactive monomers such as styrene require powerful nucleophiles such as butyl lithium. Reactions of intermediate strength are used for monomers of intermediate reactivity such as vinylpyridine.
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/38/RLi%2BStyrene.png =600x)
+
+![](https://upload.wikimedia.org/wikipedia/commons/b/b7/Wiki_Anion2.pn =600x)
+
+#### Transition metal complex for coordination polymerization
+
+Coordination polymerization started in the 1950s with heterogeneous Ziegler–Natta catalysts based on titanium tetrachloride and organoaluminium co-catalysts. The mixing of $\ce{TiCl4}$ with trialkylaluminium complexes produces Ti(III)-containing solids that catalyze the polymerization of ethene and propene. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/ee/ZNonSingleSite.png =600x)
+
+Monometallic mechanism
+
+![](https://media.springernature.com/full/springer-static/image/chp%3A10.1007%2F978-3-642-38730-2_9/MediaObjects/307395_1_En_9_Sch1_HTML.gif?as=webp)
+
+Bimetallic mechanism
+
+![](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-642-38730-2_9/MediaObjects/307395_1_En_9_Sch2_HTML.gif?as=webp)
+
+### Propagation
+
+Propagation is the process in which the active centers react with monomers repeatedly to form long chain molecules. Typically, the reaction rate is proportional to the concentrations of both the active centers and the monomers. 
+
+$$R_p = k_p[\ce{P}^*][\ce{M}]$$
+
+where $\ce{P}^*$ is the propogating polymer chain with an active species at the chain end and $\ce{M}$ is the monomer.  
+
+Temperature certainly plays a role on the propagation rate. Solvent can also affect the rate coefficient. In case of radical polymerization, the effect of solvent is relatively weak; while in case of ionic polymerizations, choice of solvents could be critical. The rate of ionic polymerization is also significantly influenced by the counterions.
+
+The reaction mechanisms are discussed in the "Methods and products" section.
+
+#### Concentration of active centers
+
+Active centers could be relatively stable under polymerization conditions and keep nearly constant concentrations until termination reagents are added on purpose. For example, in anionic polymerization, the number of propagating anions nearly do not change even after monomers are completely consumed. 
+
+In some other cases, the transfer of active centers happens frequently but the total concentration keeps nearly constant. Cationic polymerization could be in this category. 
+
+The other scenario is that the generation and consumption of the active center reaches a dynamic steady state that the concentration also maintains at a constant level in a relatively long time period. The example is radical polymerization. The radical concentration can be calculated by assuming the rate of initiation equals that of termination. This is called the **steady state assumption**.
+
+$$
+\begin{align*}
+& R_i = 2k_df[\ce{I}] \\
+& R_t = 2k_t[\ce{P*}]^2 \\
+& 2k_df[\ce{I}] = 2k_t[\ce{P*}]^2\\
+& [\ce{P*}] = \left(\frac{k_d[\ce{I}]f}{k_t}\right)^{1/2}
+\end{align*}
+$$
+
+#### Propagation rate coefficient
+
+Different monomers could have dramatically different propagation rate coefficient. In case of radical polymerization, the relative reactivity of monomers determines what kind of copolymer would be produced when copolymerization of these monomers is carried out. 
+
+In case of ionic polymerization, the reactivity of the active centers varies dramatically with the structure of the monomer. Usually, a less reactive propagating ion cannot add to a monomer and generate a more reactive propagating ion. Thus copolymerization is more challenging. 
+
+#### Trommsdorff–Norrish effect 
+
+In radical polymerization there is a common phenomenon where the rate of a radical polymerization reaction suddenly increases during the later stages of the reaction. Such phenomenon is called **self-acceleration** or **Trommsdorff-Norrish effect**. The reason lies in the increase of viscosity and the entanglement of polymer chains that they cannot easily collide and terminate, leading to a rapid acceleration in polymerization rate. 
+
+### Termination
+
+Termination can occur spontaneously among active centers, as seen in radical polymerization, or between propagating chains and externally added reagents. The result of termination is polymers with stable chain ends that no longer propagate.  
+
+In case of radical polymerization, the radicals can react with each other by either coupling or disproportionation. Both reactions cause termination of propagating chains. The rate coefficient is typically diffusion controlled because of the high activity of radicals that they react with each other once encounter with each other. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/b/b0/Termination_-_combination.png =400x)
+![](https://upload.wikimedia.org/wikipedia/commons/b/b1/Termination_-_disproportionation.png =400x)
+
+Ionic polymerizations do not have direct termination between two propagating chains because the same type of chain end ions repulse each other. 
+
+### Competing reactions towards propagation
+
+In an ideal scenario, active centers react exclusively with monomers according to the propagation reaction mechanism. However, due to the high reactivity of the active centers, many competing reactions often occur. These competing reactions add complexity to the reaction system, leading to undesired products. Nonetheless, they can also offer opportunities for tailoring the molecular architecture or controlling the chain length and functionality, which will be discussed in "Advanced polymerization methods".  
+
+Chain transfer
+: In polymer chemistry, chain transfer is a polymerization reaction by which the activity of a growing polymer chain is transferred to another molecule
+
+Chain transfer reactions occur in most forms of addition polymerization including radical polymerization, ring-opening polymerization, coordination polymerization, and cationic polymerization. Anionic polymerizations sometimes have extremely low level of chain transfer. 
+
+The high-pressure radical polymerization of ethylene, the method used to produce low-density polyethylene (LDPE), is characterized by significant branching due to prevalent chain transfer to polymer. In the radical polymerization of vinyl chloride, chain transfer to monomer is substantial, making it the primary factor regulating polymer molecular weight, rather than termination.
+
+### Average degree of polymerization
+
+**Instantaneous average degree of polymerization**
+
+The average degree of polymerization ($DP$) can be calculated by comparing the rate of propagation to the rate of all reactions that can potentially terminate the propagation process. In case there is no termination reactions, the result will be infinity. The actual $DP$ cannot be infinity, the calculation simply imply that the polymers have the potential to continue growing to infinity length. When there are reactions to stop propagation, this method defines the instantaneous average $DP$, i.e., the average $DP$ of polymers produced at a specific moment. 
+
+Due to the change of concentrations and viscosity, the reaction rates also vary during the polymerization. Thus, the polymers produced at the beginning of the reaction may have dramatically different lengths compared to the polymers produced at high monomer conversion. 
+
+**Overall number average degree of polymerization**
+
+The overall number average degree of polymerization can be calculated as the number of monomers have been consumed versus the number of polymers produced during the reaction. Since the number of monomers can be calculated easily based on the conversion, the critical question is what determines the number of polymers. 
+
+In a simplest case, one initiator create one active center which grow into one polymer chain. The number of polymers equals the number of initiators. Some anionic polymerization follow such a simple senario. 
+
+Radical polymerizations with thermal initiators are also relatively simple, if chain transfer reactions are not significant. Each initiator usually produce two primary radicals and result in one or two polymers. Remember to take into account the initiation efficiency, the calculated average $DP$ should not be far from the experimental value. 
+
+$$DP_n = \frac{k_p[\ce{M}]}{2k_t[\ce{P*}]} = \frac{k_p[\ce{M}]}{2(fk_tk_d[\ce{I}])^{1/2}}$$
+
+When chain transfer or other competing reactions are significant, the situation becomes more complicated and sometimes it is very difficult to estimate the average $DP$.
+
+
+### Molecular weight distribution
+
+Consider two systems.  
+1. Anionic polymerization with constant concentration of active centers, no termination, nor chain transfer. 
+2. Radical polymerization with initiation and termination reaches a stady state without significant chain transfer reactions. 
+
+#### Anionic polymerization
+
+The number fraction distribution function (the probability that a given chain has degree of polymerization *i*) is given by the **Poisson distribution** function:
+
+$$x(i)=\frac{(DP_n-1)^{i-1}}{(i-1)!}\exp(1-DP_n)$$
+
+where $i$ is an integer, i.e., 1, 2, 3, ...; $DP_n = \sum ix(i)$ is the number average degree of polymerization; $x(i)$ is the number fraction of $i$-mers in the system. 
+
+The weight fraction distribution function is determined following equation:
+
+$$w(i)=\frac{ix(i)}{\sum ix(i)}=\frac{i(DP_n-1)^{i-1}}{DP_n(i-1)!}\exp(1-DP_n)$$
+
+and 
+
+$$DP_w = \sum iw(i)$$
+
+The dispersity for the Poisson distribution is :
+
+$$\frac{DP_w}{DP_n}=1+\frac{1}{DP_n}-\frac{1}{DP_n^2}\approx 1 + \frac{1}{DP_n}$$
+
+This applies for ideal living polymerization. It indicates the distribution becomes narrower with increasing $DP$. The chain lengths get more uniform as $DP$ increases. 
+
+:::success 
+The process of anionic polymerization can be represented by a simple statistical model: $N$ balls are randomly thrown into $n$ boxes, where $N \gg n$. We want to find the probability, $x(i)$, that a specific box contains exactly $i$ balls. This scenario perfectly describes a binomial distribution, but because $N \gg n$, we can approximate the binomial distribution with a Poisson distribution.
+
+- For a single box, the probability of a ball landing in that box is $p = 1/n$.
+- We have $N$ independent trials (each ball toss).
+- The probability of exactly $i$ balls landing in that box is given by the binomial probability:
+$$x(i) = P(X = i) = (N \text{ choose } i) \times p^i \times (1-p)^{(N-i)}$$
+where $(N \text{ choose } i) = N! / (i! \times (N-i)!)$
+
+Poisson Approximation:
+
+When $N$ is large and $p$ is small, the binomial distribution can be approximated by a Poisson distribution.
+
+- The Poisson distribution has a single parameter, $\lambda$, which is the average number of events (in our case, balls in a box).
+- $\lambda = N \times p = N / n$ (the average number of balls per box, i.e., number average degree of polymerization $DP_n$).
+- The Poisson probability mass function is:
+$$x(i) = \frac{\lambda^i}{i!}e^{-\lambda} $$
+
+In this case, the value of $i$ could be 0, 1, 2, 3, .... In an actual polymerization system, the minimal value of $i$ is 1. 
+:::
+
+#### Radical polymerization 
+
+A propagating radical can undergo propagation or termination, while chain transfer is omitted. The probability of propagation versus propagation plus termination is defined as $p$ which resembles the extent of reaction in step-growth polymerization. If the termination is only by disproportionation, the probability to find an $i$-mer is 
+
+$$x(i) = p^{i-1}(1-p)$$
+
+This also has the same format as in step-growth polymerization. Thus,
+
+$$\frac{DP_w}{DP_n} = 1+p \approx 2$$
+
+In case of termination by coupling, the mathematics is a little more complicated. The result is
+
+$$\frac{DP_w}{DP_n} \approx 1.5$$
+
+Note that the value of $p$ changes during polymerization, the average chain lengthes of polymers produced at different time could be dramatically different. The overall $\frac{DP_w}{DP_n}$ value could be much greater than 2. 
+
+To understand better, use the following simulation tool:
+
+> [OVESET -- Radical polymerization](https://colab.research.google.com/github/wangyu16/PolymerScienceEducation/blob/master/OVESET/03_Radical_Polymerization.ipynb)
+
+## Copolymerization{{attrs[#blk-qdz2x337f0zn]}}
+
+A copolymer is a polymer derived from more than one species of monomer. Copolymers can be produced by concurrent polymerization of more than one type of monomers, or by sequential polymerization, or by post-polymerization reactions. Since a copolymer consists of at least two types of constituent units (also structural units), copolymers can be classified based on how these units are arranged along the chain. Linear copolymers consist of a single main chain and include alternating copolymers, statistical copolymers, and block copolymers. Branched copolymers consist of a single main chain with one or more polymeric side chains, and can be grafted, star shaped, or have other architectures.
+
+The concurrent polymerization of different types of monomers into copolymers is called copolymerization. In principle, such copolymerization should provide statistical linear copolymer. However, the actual result is more complicated. 
+
+### Reactivity ratio
+
+Recall that the rate of propagation in chain growth polymerization is proportional to the concentrations of both the active centers and the monomers. In the case of copolymerization involving two monomers, four concentrations must be considered: the two types of monomers and the two types of active centers derived from each kind of monomer unit. We assume that only the last monomer unit affects the activity of the active center, which, while not entirely accurate, serves as a reasonable simplification.
+
+In addition to the concentrations, the reaction rate also depends on the rate coefficient, which reflects the activities of the reacting species. With two types of active centers and two types of monomers, there are four possible pairs, each with its own rate coefficient. Therefore, four rate coefficients must be taken into account. 
+
+Consider two monomers, labeled as Monomer 1 and Monomer 2. The active centers derived from each monomer are also labeled as 1 and 2, respectively. The rate coefficients for the interactions between these monomers and active centers are shown in the table below:
+
+|                 | Monomer 1 | Monomer 2 |
+| --------------- | --------- | --------- |
+| Active center 1 | $k_{11}$  | $k_{12}$  |
+| Active center 2 | $k_{21}$  | $k_{22}$  |
+
+$$\ce{-M1* + M1 ->[k_{11}] -M1M1*}$$
+$$\ce{-M1* + M2 ->[k_{12}] -M1M2*}$$
+$$\ce{-M2* + M1 ->[k_{21}] -M2M1*}$$
+$$\ce{-M2* + M2 ->[k_{22}] -M2M2*}$$
+
+The four reaction rates are
+
+$$R_{p,11} = k_{11}[\ce{M1*}][\ce{M1}]$$
+$$R_{p,12} = k_{12}[\ce{M1*}][\ce{M2}]$$
+$$R_{p,21} = k_{21}[\ce{M2*}][\ce{M1}]$$
+$$R_{p,22} = k_{22}[\ce{M2*}][\ce{M2}]$$
+
+We are interested in the distribution of both monomer units in the resulting polymers. To describe this, we define two reactivity ratios:
+
+$$r_1 = \frac{k_{11}}{k_{12}}\quad\text{and}\quad r_2 = \frac{k_{22}}{k_{21}}$$
+
+These ratios represent the probability of a given active center adding a monomer of the same type versus a different type.
+
+### Product composition
+
+Consider the ratio of the instantenous consumption of each monomer that equals the ratio of composition of the copolymer formed at that moment. The consumption of each monomer can be expressed by:
+
+$$-\frac{\mathrm{d}[\ce{M1}]}{\mathrm{d}t} = k_{11}[\ce{M1*}][\ce{M1}] + k_{21}[\ce{M2*}][\ce{M1}]$$
+$$-\frac{\mathrm{d}[\ce{M2}]}{\mathrm{d}t} = k_{12}[\ce{M1*}][\ce{M2}] + k_{22}[\ce{M2*}][\ce{M2}]$$
+
+Thus,
+
+$$\frac{\mathrm{d}[\ce{M1}]}{\mathrm{d}[\ce{M2}]} = \frac{k_{11}[\ce{M1*}][\ce{M1}] + k_{21}[\ce{M2*}][\ce{M1}]}{k_{12}[\ce{M1*}][\ce{M2}] + k_{22}[\ce{M2*}][\ce{M2}]}$$
+
+Assume the concentration of both types of active centers are constant know as the steady-state approximation. As a result, the rate of crossover between the different types of terminal active centers must be equal, i.e., $R_{p,12} = R_{p,21}$.
+
+$$k_{12}[\ce{M1*}][\ce{M2}] = k_{21}[\ce{M2*}][\ce{M1}]$$
+
+thus, 
+
+$$\frac{[\ce{M1*}]}{[\ce{M2*}]} = \frac{k_{21}[\ce{M1}]}{k_{12}[\ce{M2}]}$$
+
+Combining above equations, we get the copolymer composition equation:
+
+$$\frac{\mathrm{d}[\ce{M1}]}{\mathrm{d}[\ce{M2}]} = \frac{[\ce{M1}]}{[\ce{M2}]}\frac{r_1[\ce{M1}] + [\ce{M2}]}{r_2[\ce{M2}] + [\ce{M1}]} = \frac{1+r_1[\ce{M1}]/[\ce{M2}]}{1+r_2[\ce{M2}]/[\ce{M1}]}$$
+
+Define the feedstock fractions of monomers are $f_1$ and $f_2$, respectively. The composition fractions of monomer units in the polymer are $F_1$ and $F_2$. 
+
+$$f_1 = 1-f_2 = \frac{[\ce{M1}]}{[\ce{M1}]+[\ce{M2}]}$$
+
+$$F_1 = 1-F_2 = \frac{\mathrm{d}[\ce{M1}]}{\mathrm{d}[\ce{M1}]+\mathrm{d}[\ce{M2}]}$$
+
+We have the correlation
+
+$$F_1 = \frac{r_1f_1^2 + f_1f_2}{r_1f_1^2 + 2f_1f_2 + r_2f_2^2}$$
+
+So far what we have discussed is valid for any type of chain-growth polymerization. However, radical polymerizaitonis the most extensively studied. The table below provides some experimental values of $r_1$ and $r_2$ for different monomer pairs. Simulate the copolymerization using these data and answer the questions:
+
+1. Which monomer pair results in roughly the same consumption rate of both monomers? (In this case, the feedstock fraction should remain more or less constant.) 
+2. Which monomer pair can give you truely random copolymer? (Always give polymers with randomly distributed sections of a few monomer 1 and sections of a few monomer 2.)
+3. Which monomer pair would result in alternating copolymer? 
+4. Which monomer pair will not result in meaningful copolymer but would first consume nealry exclusively one monomer and then start to consume the other monomer. 
+
+
+
+| $\ce{M1}$ | $\ce{M2}$ | $r_1$ | $r_2$ |
+| --------- | --------- | ----- | ----- |
+| Acrylonitrile | Methyl methacrylate | 0.13 | 1.16 |
+|       | Vinyl acetate | 4.05 | 0.061 |
+|       | Styrene | 0.020  | 0.29  |
+| Methyl methacrylate | Styrene | 0.46 | 0.52 |
+|       | Methacrylic acid | 1.18 | 0.63 |
+|       | Vinyl acetate | 20 | 0.015 |
+| Styrene | Vinyl acetate | 50 | 0.01 |
+|       | Vinyl chloride | 17 | 0.02 |
+|       | Maleic anhydride  | 0.05 | 0.005 |
+| Methyl acrylate | Acrylonitrile | 0.84 | 1.5 |
+|       | Styrene | 0.80 | 0.19 |
+|       | Methyl methacrylate | 0.4 | 2.2 |
+
+
+> [OVESET -- Radical copolymerization](https://colab.research.google.com/github/wangyu16/PolymerScienceEducation/blob/master/OVESET/05_Copolymerization.ipynb)
+
+### Example products
+
+**Ethylene and propylene copolymer** produced by coordination polymerization. What physical/mechanical properties does the copolymer have? What products and applications are expected? 
+
+**Surlyn** is the commercial name of a copolymer of ethylene and mechancrylic acid (MAA) with relatively low MAA content. Does it look like or behave like polyethylene? Any special properties? Any special applications?  
+
+**ABS resin** is the copolymer of acrylonitrile, butadiene, and styrene. Typically, it is produced by radical copolymerization of acrylonitrile and styrene in the presence of polybutadiene. Polybutadiene has main chain $\ce{-C=C-}$ that can participate in the polymerization to create graft polymer structure. The fractions of each componient can vary that leaves the opportunity to adjust the property of the product. What physical/mechanical properties do ABS resin have in general? Any special applications?  
+
+**Nafion** tetrafluoroethylene based fluoropolymer-copolymer. It maintains the physical/mechanical properties of PTFE and has excellent chemical stability. The acidic units provides proton conductivity properties and thus can be used as proton conducting or exchange membrane for fuel cells and electrolyzers. 
+
+
+
+
+:::info
+**Example Questions Level 1**
+
+1. Give following vinyl monomers, choose all that can be polymerized by cationic polymerization. (Ethylene, Propylene, Styrene, Acrylonitrile, Vinly ehter, Isobutylene)
+2. Given following polymers, tell what are the proper polymerization methods to produce them, which of the polymers can make transparent and stiff products, which of the polymers can be used to make a thermoplastic rubber, which can be used as bio-degradable plastics, such as medical implants. (Atactic poly(methyl methacrylate), High density polyethylene, SBS resin, Isotactic polypropylene, Polyactic acid)
+3. Give an example of typical initiators for radical, anionic, cationic, coordination polymerizations, respectively. 
+4. Explain what is Tromsdorff effect in radical polymerization. 
+5. Explain what does steady state assumption tell in radical polymerization. 
+6. In a radical polymerization, if the thermal initiator concentration is increased, how would the polymerization rate change? Will the average molecular weight of the resulting polymers increase or decrease? Why?
+7. In a radical polymerization of MMA with AIBN as the initiator, the initial mole ratio of MMA to AIBN is 200 to 1. Suppose the volume of MMA used for this reaction is 10.0 mL, calculate the weight of AIBN needed. (Density of MMA is 0.940 g/mL. Molar masses of MMA and AIBN are 100 g/mol and 164 g/mol, respectively)
+8. In a radical copolymerization of monomers 1 and 2, initially present in the mole ratio 2:1, what is the composition ($F_1$) of the copolymer formed initially, if $r_1 = 2.1$ and $r_2 = 0.52$?
+9. Following the previous question, which monomer will be consumed faster? What type of polymer will be produced at the beginning and towards the end, respectively?
+10. For the copolymerization of monomer 1 with monomer 2, the reactivity ratio’s are $r_1 = 2.7$, $r_2 = 1.3$. At what mole fraction of monomer 1 in the feed will the composition of the copolymer exactly equal this feed composition?
+:::
+
+
+{{markdown ./license.md}}
+
+</script>
+
+<!-- orz-markdown renderer (parent) -->
+<script data-orz-asset="engine" src="https://cdn.jsdelivr.net/npm/orz-mdhtml-browser@0.9.0/orzmd.browser.js"></script>
+
+<!-- in-file app config + runtime -->
+<script data-orz-asset="config">window.__ORZ_MDHTML__ = {"filename":"Untitled","docId":"e3df5e9e-0948-4a08-8e58-b7f70e1cbd2a","rendererVersion":"0.9.0","defaultTheme":"light-neat-2","themes":[{"id":"light-neat-3","name":"Orchard","scheme":"light","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/light-neat-3.css"},{"id":"light-neat-1","name":"Neat","scheme":"light","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/light-neat-1.css"},{"id":"light-neat-2","name":"Neat 2","scheme":"light","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/light-neat-2.css"},{"id":"light-academic-1","name":"Academic","scheme":"light","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/light-academic-1.css"},{"id":"light-academic-2","name":"Academic 2","scheme":"light","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/light-academic-2.css"},{"id":"beige-decent-1","name":"Beige","scheme":"light","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/beige-decent-1.css"},{"id":"beige-decent-2","name":"Beige 2","scheme":"light","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/beige-decent-2.css"},{"id":"light-playful-1","name":"Playful","scheme":"light","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/light-playful-1.css"},{"id":"light-playful-2","name":"Playful 2","scheme":"light","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/light-playful-2.css"},{"id":"dark-elegant-1","name":"Dark Elegant","scheme":"dark","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/dark-elegant-1.css"},{"id":"dark-elegant-2","name":"Dark Elegant 2","scheme":"dark","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/dark-elegant-2.css"},{"id":"dark-elegant-3","name":"Nocturne","scheme":"dark","href":"https://cdn.jsdelivr.net/npm/orz-markdown@1.5.0/themes/dark-elegant-3.css"}],"frame":{"katexCss":"https://cdn.jsdelivr.net/npm/katex@0.16.35/dist/katex.min.css","hljsLightCss":"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css","hljsDarkCss":"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css","hljsJs":"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js","mermaidJs":"https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js","smilesJs":"https://unpkg.com/smiles-drawer@1.0.10/dist/smiles-drawer.min.js","chartJs":"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"},"editorLibs":{"codemirrorCss":"https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css","codemirrorLightThemeCss":"https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/eclipse.min.css","codemirrorDarkThemeCss":"https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css","codemirrorJs":"https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js","codemirrorMarkdownJs":"https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/markdown/markdown.min.js","codemirrorContinuelistJs":"https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/continuelist.min.js","morphdomJs":"https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"},"runtime":"\n(function (global) {\n  var expandedQr = null;\n  var expandedSourceQr = null;\n\n  function collapseQr() {\n    if (!expandedQr) return;\n\n    if (expandedSourceQr) {\n      expandedSourceQr.classList.remove('is-expanded');\n      expandedSourceQr.setAttribute('aria-expanded', 'false');\n    }\n\n    if (expandedQr.parentNode) {\n      expandedQr.parentNode.removeChild(expandedQr);\n    }\n\n    if (global.document && global.document.body) {\n      global.document.body.style.overflow = '';\n    }\n    expandedQr = null;\n    expandedSourceQr = null;\n  }\n\n  function toggleQr(node) {\n    if (expandedSourceQr === node) {\n      collapseQr();\n      return;\n    }\n\n    collapseQr();\n    if (!global.document || !global.document.body) {\n      return;\n    }\n\n    expandedSourceQr = node;\n    expandedSourceQr.classList.add('is-expanded');\n    expandedSourceQr.setAttribute('aria-expanded', 'true');\n\n    expandedQr = node.cloneNode(true);\n    expandedQr.classList.add('qrcode-overlay', 'is-expanded');\n    expandedQr.setAttribute('aria-hidden', 'true');\n    expandedQr.removeAttribute('aria-expanded');\n    expandedQr.removeAttribute('tabindex');\n    expandedQr.removeAttribute('role');\n    expandedQr.addEventListener('click', function (event) {\n      event.stopPropagation();\n      collapseQr();\n    });\n\n    global.document.body.appendChild(expandedQr);\n\n    if (global.document && global.document.body) {\n      global.document.body.style.overflow = 'hidden';\n    }\n  }\n\n  function initQrCodes(root) {\n    if (!root || typeof root.querySelectorAll !== 'function') return;\n\n    Array.prototype.slice.call(root.querySelectorAll('.qrcode')).forEach(function (node) {\n      if (node.getAttribute('data-qr-ready') === '1') return;\n\n      node.setAttribute('data-qr-ready', '1');\n      node.addEventListener('click', function (event) {\n        event.stopPropagation();\n        toggleQr(node);\n      });\n      node.addEventListener('keydown', function (event) {\n        if (event.key === 'Enter' || event.key === ' ') {\n          event.preventDefault();\n          toggleQr(node);\n        }\n        if (event.key === 'Escape') {\n          collapseQr();\n        }\n      });\n    });\n  }\n\n  function initTabs(root) {\n    if (!root || typeof root.querySelectorAll !== 'function') return;\n    Array.prototype.slice.call(root.querySelectorAll('.tabs')).forEach(function (tabs) {\n      // data-js both guards re-init and switches the theme CSS from the no-JS\n      // fallback (all panels shown) to JS mode (only the .active panel shown).\n      if (tabs.getAttribute('data-js') === '1') return;\n      var panels = Array.prototype.slice.call(tabs.querySelectorAll(':scope > .tab'));\n      if (!panels.length) return;\n      tabs.setAttribute('data-js', '1');\n\n      var bar = global.document.createElement('div');\n      bar.className = 'tabs-bar';\n      panels.forEach(function (panel, i) {\n        var label = panel.getAttribute('data-label') || 'Tab ' + (i + 1);\n        var btn = global.document.createElement('button');\n        btn.className = 'tabs-bar-btn' + (i === 0 ? ' active' : '');\n        btn.textContent = label;\n        btn.addEventListener('click', function () {\n          Array.prototype.slice.call(tabs.querySelectorAll('.tabs-bar-btn')).forEach(function (b) { b.classList.remove('active'); });\n          panels.forEach(function (p) { p.classList.remove('active'); });\n          btn.classList.add('active');\n          panel.classList.add('active');\n        });\n        bar.appendChild(btn);\n      });\n      tabs.insertBefore(bar, tabs.firstChild);\n      panels[0].classList.add('active');\n    });\n  }\n\n  function init(root) {\n    var r = root || global.document;\n    initQrCodes(r);\n    initTabs(r);\n  }\n\n  // ---- copy-as-markdown: DOM -> Markdown walker ---------------------------\n  // Converts a selected DOM fragment back to Markdown so that copying rendered\n  // content yields source, not HTML. Standard constructs are reconstructed from\n  // their tags; generated constructs (math, mermaid, smiles, qr, youtube, chart) carry\n  // a [data-md] breadcrumb that is emitted verbatim. Written without template\n  // literals/backticks because this whole file is a String.raw template.\n  var BT = String.fromCharCode(96);\n  var FENCE = BT + BT + BT;\n\n  function rt_repeat(s, n) {\n    var out = '';\n    for (var i = 0; i < n; i++) out += s;\n    return out;\n  }\n\n  function rt_attr(node, name) {\n    return node && node.getAttribute ? node.getAttribute(name) : null;\n  }\n\n  function rt_isBlockElement(node) {\n    if (!node || node.nodeType !== 1) return false;\n    if (rt_attr(node, 'data-md') != null) return true;\n    var tag = node.tagName.toLowerCase();\n    if (/^(p|div|section|article|figure|h[1-6]|ul|ol|li|blockquote|pre|table|thead|tbody|tr|hr|details)$/.test(tag)) return true;\n    if (node.classList && (node.classList.contains('katex-display') || node.classList.contains('mermaid'))) return true;\n    return false;\n  }\n\n  function rt_katex(node, display) {\n    var ann = node.querySelector ? node.querySelector('annotation[encoding=\"application/x-tex\"]') : null;\n    var tex = (ann ? ann.textContent : node.textContent) || '';\n    tex = tex.replace(/^\\s+|\\s+$/g, '');\n    if (display) return '$$\\n' + tex + '\\n$$';\n    return '$' + tex + '$';\n  }\n\n  function rt_img(node) {\n    var alt = rt_attr(node, 'alt') || '';\n    var src = rt_attr(node, 'src') || '';\n    var title = rt_attr(node, 'title');\n    return '![' + alt + '](' + src + (title ? ' \"' + title + '\"' : '') + ')';\n  }\n\n  function rt_inlineChildren(node) {\n    var out = '';\n    var kids = node.childNodes;\n    for (var i = 0; i < kids.length; i++) out += rt_inlineNode(kids[i]);\n    return out;\n  }\n\n  function rt_inlineNode(node) {\n    if (node.nodeType === 3) return node.nodeValue.replace(/\\s+/g, ' ');\n    if (node.nodeType !== 1) return '';\n    var dm = rt_attr(node, 'data-md');\n    if (dm != null) return dm;\n    if (node.classList && node.classList.contains('katex')) return rt_katex(node, false);\n    var tag = node.tagName.toLowerCase();\n    switch (tag) {\n      case 'strong': case 'b': return '**' + rt_inlineChildren(node) + '**';\n      case 'em': case 'i': return '*' + rt_inlineChildren(node) + '*';\n      case 'code': return BT + (node.textContent || '') + BT;\n      case 'a':\n        var href = rt_attr(node, 'href') || '';\n        var title = rt_attr(node, 'title');\n        return '[' + rt_inlineChildren(node) + '](' + href + (title ? ' \"' + title + '\"' : '') + ')';\n      case 'del': case 's': return '~~' + rt_inlineChildren(node) + '~~';\n      case 'ins': return '++' + rt_inlineChildren(node) + '++';\n      case 'mark': return '==' + rt_inlineChildren(node) + '==';\n      case 'sub': return '~' + rt_inlineChildren(node) + '~';\n      case 'sup': return '^' + rt_inlineChildren(node) + '^';\n      case 'br': return '  \\n';\n      case 'img': return rt_img(node);\n      case 'input': return '';\n      case 'span':\n        var spCls = (rt_attr(node, 'class') || '').trim();\n        return spCls ? '{{sp[' + spCls + '] ' + rt_inlineChildren(node) + '}}' : rt_inlineChildren(node);\n      default: return rt_inlineChildren(node);\n    }\n  }\n\n  function rt_align(cell) {\n    var style = (rt_attr(cell, 'style') || '').toLowerCase();\n    if (style.indexOf('center') !== -1) return 'center';\n    if (style.indexOf('right') !== -1) return 'right';\n    if (style.indexOf('left') !== -1) return 'left';\n    return '';\n  }\n\n  function rt_sep(align) {\n    if (align === 'center') return ':---:';\n    if (align === 'right') return '---:';\n    if (align === 'left') return ':---';\n    return '---';\n  }\n\n  function rt_tableRows(headRow, bodyRows) {\n    var rows = [];\n    var header = [];\n    var aligns = [];\n    if (headRow) {\n      var hc = headRow.children;\n      for (var i = 0; i < hc.length; i++) { header.push(rt_inlineChildren(hc[i]).trim()); aligns.push(rt_align(hc[i])); }\n    }\n    rows.push('| ' + header.join(' | ') + ' |');\n    var seps = [];\n    for (var s = 0; s < header.length; s++) seps.push(rt_sep(aligns[s]));\n    rows.push('| ' + seps.join(' | ') + ' |');\n    for (var r = 0; r < bodyRows.length; r++) {\n      var cells = [];\n      var tds = bodyRows[r].children;\n      for (var c = 0; c < tds.length; c++) cells.push(rt_inlineChildren(tds[c]).trim());\n      rows.push('| ' + cells.join(' | ') + ' |');\n    }\n    return rows.join('\\n');\n  }\n\n  function rt_table(tbl) {\n    var headRow = tbl.querySelector ? tbl.querySelector('thead tr') : null;\n    var bodyRows = tbl.querySelectorAll ? tbl.querySelectorAll('tbody tr') : [];\n    return rt_tableRows(headRow, bodyRows);\n  }\n\n  // Reconstruct a table from bare table-internal nodes (thead/tbody/tr), e.g.\n  // when a selection inside a table loses its <table> wrapper.\n  function rt_tableFromParts(parts) {\n    var headRow = null;\n    var bodyRows = [];\n    for (var i = 0; i < parts.length; i++) {\n      var p = parts[i];\n      var tag = p.tagName.toLowerCase();\n      if (tag === 'thead') { var tr = p.querySelector ? p.querySelector('tr') : null; if (tr && !headRow) headRow = tr; }\n      else if (tag === 'tbody') { var trs = p.querySelectorAll ? p.querySelectorAll('tr') : []; for (var j = 0; j < trs.length; j++) bodyRows.push(trs[j]); }\n      else if (tag === 'tr') { if (!headRow) headRow = p; else bodyRows.push(p); }\n    }\n    return rt_tableRows(headRow, bodyRows);\n  }\n\n  function rt_codeBlock(pre) {\n    var code = pre.querySelector ? (pre.querySelector('code') || pre) : pre;\n    var lang = '';\n    var cls = rt_attr(code, 'class') || '';\n    var m = cls.match(/language-([A-Za-z0-9_+#-]+)/);\n    if (m) lang = m[1];\n    var text = (code.textContent || '').replace(/\\n$/, '');\n    return FENCE + lang + '\\n' + text + '\\n' + FENCE;\n  }\n\n  function rt_list(node, ordered, depth) {\n    var items = [];\n    var idx = 1;\n    var kids = node.childNodes;\n    for (var i = 0; i < kids.length; i++) {\n      var li = kids[i];\n      if (li.nodeType !== 1 || li.tagName.toLowerCase() !== 'li') continue;\n      items.push(rt_listItem(li, ordered, idx, depth));\n      idx++;\n    }\n    return items.join('\\n');\n  }\n\n  function rt_listItem(li, ordered, idx, depth) {\n    var indent = rt_repeat('  ', depth);\n    var marker = ordered ? (idx + '. ') : '- ';\n    var task = '';\n    var cb = li.querySelector ? li.querySelector('input[type=\"checkbox\"]') : null;\n    if (cb) task = (cb.checked || rt_attr(cb, 'checked') != null) ? '[x] ' : '[ ] ';\n    var inlineParts = '';\n    var nested = '';\n    var kids = li.childNodes;\n    for (var i = 0; i < kids.length; i++) {\n      var c = kids[i];\n      if (c.nodeType === 1 && /^(ul|ol)$/.test(c.tagName.toLowerCase())) {\n        nested += '\\n' + rt_list(c, c.tagName.toLowerCase() === 'ol', depth + 1);\n      } else {\n        inlineParts += rt_inlineNode(c);\n      }\n    }\n    inlineParts = inlineParts.replace(/\\s+/g, ' ').trim();\n    return indent + marker + task + inlineParts + nested;\n  }\n\n  function rt_blockquote(node) {\n    var inner = rt_blockChildren(node);\n    var lines = inner.split('\\n');\n    var out = [];\n    for (var i = 0; i < lines.length; i++) out.push(lines[i] ? '> ' + lines[i] : '>');\n    return out.join('\\n');\n  }\n\n  function rt_blockChildren(node) {\n    var parts = [];\n    var kids = node.childNodes;\n    var i = 0;\n    while (i < kids.length) {\n      var k = kids[i];\n      // A selection can contain bare <li> elements (when the user selects a\n      // list's contents rather than the <ul>/<ol> wrapper). Group a run of them\n      // into a bullet list instead of emitting each as a separate block.\n      if (k.nodeType === 1 && k.tagName.toLowerCase() === 'li') {\n        var lis = [];\n        while (i < kids.length) {\n          var kk = kids[i];\n          if (kk.nodeType === 1 && kk.tagName.toLowerCase() === 'li') { lis.push(kk); i++; }\n          else if (kk.nodeType === 3 && !(kk.nodeValue || '').trim()) { i++; }\n          else break;\n        }\n        var items = [];\n        for (var j = 0; j < lis.length; j++) items.push(rt_listItem(lis[j], false, j + 1, 0));\n        parts.push(items.join('\\n'));\n        continue;\n      }\n      // Bare table-internal nodes (selection inside a table that lost its\n      // <table> wrapper) — reconstruct a Markdown table.\n      if (k.nodeType === 1 && /^(thead|tbody|tr)$/.test(k.tagName.toLowerCase())) {\n        var trows = [];\n        while (i < kids.length) {\n          var tk = kids[i];\n          if (tk.nodeType === 1 && /^(thead|tbody|tr)$/.test(tk.tagName.toLowerCase())) { trows.push(tk); i++; }\n          else if (tk.nodeType === 3 && !(tk.nodeValue || '').trim()) { i++; }\n          else break;\n        }\n        parts.push(rt_tableFromParts(trows));\n        continue;\n      }\n      var s = rt_blockNode(k);\n      if (s && s.replace(/\\s/g, '') !== '') parts.push(s.replace(/\\s+$/, ''));\n      i++;\n    }\n    return parts.join('\\n\\n');\n  }\n\n  var rt_containerNames = ['info', 'success', 'warning', 'danger', 'left', 'right', 'center', 'cols', 'col', 'tabs', 'tab'];\n  // A markdown-it-container div.name (or details.spoil) -> its ::: name\n  // directive name, or null if the node is not a container.\n  function rt_containerName(node) {\n    if (node.nodeType !== 1 || !node.classList) return null;\n    var tag = node.tagName.toLowerCase();\n    if (tag === 'details' && node.classList.contains('spoil')) {\n      var sum = node.querySelector ? node.querySelector('summary') : null;\n      var title = sum ? (sum.textContent || '').trim() : '';\n      return title ? 'spoil ' + title : 'spoil';\n    }\n    if (tag !== 'div') return null;\n    for (var i = 0; i < rt_containerNames.length; i++) {\n      var n = rt_containerNames[i];\n      if (node.classList.contains(n)) {\n        if (n === 'tab') { var lbl = rt_attr(node, 'data-label'); return lbl ? 'tab ' + lbl : 'tab'; }\n        return n;\n      }\n    }\n    return null;\n  }\n  // Emit a ::: name ... ::: block, using a fence longer than any inner fence so\n  // nested containers (cols > col, tabs > tab) re-parse correctly.\n  function rt_containerMd(node, name) {\n    var parts = [];\n    var kids = node.childNodes;\n    for (var i = 0; i < kids.length; i++) {\n      var k = kids[i];\n      if (k.nodeType === 1) {\n        var ktag = k.tagName.toLowerCase();\n        if (ktag === 'summary') continue; // spoil title, captured in the name\n        if (k.classList && k.classList.contains('tabs-bar')) continue; // JS-injected tab buttons\n      }\n      var m = rt_blockNode(k);\n      if (m && m.trim()) parts.push(m.trim());\n    }\n    var inner = parts.join('\\n\\n');\n    var maxFence = 2;\n    var lines = inner.split('\\n');\n    for (var j = 0; j < lines.length; j++) {\n      var mm = lines[j].match(/^(:{3,})/);\n      if (mm && mm[1].length > maxFence) maxFence = mm[1].length;\n    }\n    var fence = rt_repeat(':', Math.max(3, maxFence + 1));\n    return fence + ' ' + name + '\\n' + inner + '\\n' + fence;\n  }\n\n  function rt_blockNode(node) {\n    if (node.nodeType === 3) {\n      var t = node.nodeValue;\n      return (t && t.trim()) ? t.replace(/\\s+/g, ' ').trim() : '';\n    }\n    if (node.nodeType !== 1) return '';\n    var dm = rt_attr(node, 'data-md');\n    if (dm != null) return dm;\n    if (node.classList) {\n      // Display math: the katex-display span OR its katex-block <p> wrapper.\n      // Without this the wrapper is walked as a paragraph and the inner katex is\n      // emitted as inline math instead of a block equation.\n      if (node.classList.contains('katex-display') || node.classList.contains('katex-block')) {\n        var k = node.querySelector ? node.querySelector('.katex') : null;\n        return rt_katex(k || node, true);\n      }\n      if (node.classList.contains('mermaid')) return '{{mermaid\\n' + (node.textContent || '').trim() + '\\n}}';\n    }\n    var tag = node.tagName.toLowerCase();\n    var hm = tag.match(/^h([1-6])$/);\n    if (hm) return rt_repeat('#', parseInt(hm[1], 10)) + ' ' + rt_inlineChildren(node).trim();\n    switch (tag) {\n      case 'p': return rt_inlineChildren(node).trim();\n      case 'ul': return rt_list(node, false, 0);\n      case 'ol': return rt_list(node, true, 0);\n      case 'pre': return rt_codeBlock(node);\n      case 'blockquote': return rt_blockquote(node);\n      case 'table': return rt_table(node);\n      case 'hr': return '---';\n      case 'li': return rt_inlineChildren(node).trim();\n      case 'figure': case 'div': case 'section': case 'article': case 'details': case 'summary':\n        var cn = rt_containerName(node);\n        if (cn) return rt_containerMd(node, cn);\n        return rt_blockChildren(node);\n      default: return rt_inlineNode(node).trim();\n    }\n  }\n\n  function elementToMarkdown(root) {\n    if (!root) return '';\n    var hasBlock = false;\n    var kids = root.childNodes || [];\n    for (var i = 0; i < kids.length; i++) {\n      if (rt_isBlockElement(kids[i])) { hasBlock = true; break; }\n    }\n    var out = hasBlock ? rt_blockChildren(root) : rt_inlineChildren(root);\n    return out.replace(/[ \\t]+\\n/g, '\\n').replace(/\\n{3,}/g, '\\n\\n').replace(/^\\s+|\\s+$/g, '');\n  }\n\n  function rt_isEditable(node) {\n    while (node) {\n      if (node.nodeType === 1) {\n        var tag = node.tagName.toLowerCase();\n        if (tag === 'input' || tag === 'textarea') return true;\n        if (node.isContentEditable) return true;\n      }\n      node = node.parentNode;\n    }\n    return false;\n  }\n\n  function rt_isCopyRoot(node) {\n    return node.nodeType === 1 && node.classList &&\n      (node.classList.contains('markdown-body') || rt_attr(node, 'data-orz-copy') != null);\n  }\n  function rt_withinCopyRoot(node) {\n    while (node) {\n      if (rt_isCopyRoot(node)) return true;\n      node = node.parentNode;\n    }\n    return false;\n  }\n\n  // When a selection sits entirely within one table/blockquote/pre — or inside a\n  // ::: container — copy that whole block, so the wrapper is included (a partial\n  // table/quote fragment isn't valid Markdown, and a copied container should keep\n  // its ::: fence). Browsers often clone such selections without the wrapper.\n  // Tables/quotes/code don't nest, so the innermost wins; containers DO nest\n  // (cols > col, tabs > tab), so promote to the OUTERMOST one.\n  function rt_promotableBlock(node) {\n    var container = null;\n    while (node && !rt_isCopyRoot(node)) {\n      if (node.nodeType === 1) {\n        var tag = node.tagName.toLowerCase();\n        if (tag === 'table' || tag === 'blockquote' || tag === 'pre') return node;\n        // A selection inside a display equation copies the whole block equation;\n        // a partial KaTeX fragment is not valid Markdown.\n        if (node.classList &&\n            (node.classList.contains('katex-block') || node.classList.contains('katex-display'))) return node;\n        if (rt_containerName(node)) container = node;\n      }\n      node = node.parentNode;\n    }\n    return container;\n  }\n\n  function onCopy(event) {\n    if (!global.document) return;\n    var sel = global.getSelection ? global.getSelection()\n      : (global.document.getSelection ? global.document.getSelection() : null);\n    if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return;\n    if (rt_isEditable(sel.anchorNode) || rt_isEditable(sel.focusNode)) return;\n    if (!rt_withinCopyRoot(sel.anchorNode) && !rt_withinCopyRoot(sel.focusNode)) return;\n\n    var md;\n    var range0 = sel.getRangeAt(0);\n    var common = range0.commonAncestorContainer;\n    var promoted = rt_promotableBlock(common.nodeType === 1 ? common : common.parentNode);\n    if (promoted && sel.rangeCount === 1) {\n      var pwrap = global.document.createElement('div');\n      pwrap.appendChild(promoted.cloneNode(true));\n      md = elementToMarkdown(pwrap);\n    } else {\n      var container = global.document.createElement('div');\n      for (var i = 0; i < sel.rangeCount; i++) container.appendChild(sel.getRangeAt(i).cloneContents());\n      md = elementToMarkdown(container);\n    }\n    if (!md) return;\n    var cd = event.clipboardData || global.clipboardData;\n    if (cd && cd.setData) {\n      cd.setData('text/plain', md);\n      if (event.preventDefault) event.preventDefault();\n    }\n  }\n\n  function bindGlobalHandlers() {\n    if (!global.document || global.__orzMarkdownRuntimeBound) return;\n    global.__orzMarkdownRuntimeBound = true;\n\n    global.document.addEventListener('click', function (event) {\n      if (expandedQr && !expandedQr.contains(event.target)) {\n        collapseQr();\n      }\n    });\n\n    global.document.addEventListener('keydown', function (event) {\n      if (event.key === 'Escape') {\n        collapseQr();\n      }\n    });\n\n    // Copy rendered selections as Markdown source.\n    global.document.addEventListener('copy', onCopy);\n  }\n\n  global.OrzMarkdownRuntime = Object.assign({}, global.OrzMarkdownRuntime, {\n    init: init,\n    initQrCodes: initQrCodes,\n    initTabs: initTabs,\n    collapseQr: collapseQr,\n    elementToMarkdown: elementToMarkdown,\n  });\n\n  bindGlobalHandlers();\n\n  if (global.document) {\n    if (global.document.readyState === 'loading') {\n      global.document.addEventListener('DOMContentLoaded', function () {\n        init(global.document);\n      }, { once: true });\n    } else {\n      init(global.document);\n    }\n  }\n})(typeof globalThis !== 'undefined' ? globalThis : window);\n"};</script>
+<script data-orz-asset="app">/* orz-mdhtml in-file runtime.
+ *
+ * A document that is quietly editable. By default it shows the rendered
+ * Markdown in an <iframe> (full theme isolation) with one small edit button.
+ * Editing reveals a CodeMirror editor beside a live, incrementally-updated
+ * preview. The embedded <script type="text/markdown"> is the single source of
+ * truth; Save re-serializes the outer document. Editor libraries are
+ * lazy-loaded on first edit so reading stays lightweight.
+ *
+ * Config arrives on window.__ORZ_MDHTML__ (themes, frame/editor CDN assets,
+ * the orz-markdown browser runtime).
+ */
+(function () {
+  'use strict';
+
+  var CFG = window.__ORZ_MDHTML__ || {};
+  var root = document.documentElement;
+  var frame = document.getElementById('orz-frame');
+  var textarea = document.getElementById('orz-textarea');
+  var themeSelect = document.getElementById('orz-theme');
+
+  var currentTheme = CFG.defaultTheme;
+  var cm = null;
+  var libsLoading = null;
+  var dirty = false;
+  var fileHandle = null;
+
+  // ---- source helpers ------------------------------------------------------
+  function unescapeSource(s) { return s.replace(/<\\\/(script)/gi, '</$1'); }
+  function escapeSource(s) { return s.replace(/<\/(script)/gi, '<\\/$1'); }
+  function embeddedSource() {
+    var el = document.getElementById('orz-src');
+    return el ? unescapeSource(el.textContent || '').replace(/^\n/, '').replace(/\n$/, '') : '';
+  }
+  function currentSource() {
+    if (cm) return cm.getValue();
+    if (textarea && textarea.value) return textarea.value;
+    return embeddedSource();
+  }
+
+  function themeById(id) {
+    for (var i = 0; i < CFG.themes.length; i++) if (CFG.themes[i].id === id) return CFG.themes[i];
+    return CFG.themes[0];
+  }
+
+  // ---- preview iframe ------------------------------------------------------
+  // Inline scripts written into the iframe must not contain a literal
+  // <\/script>; escape defensively (the orz runtime is JS, so <\/script is fine).
+  function guard(js) { return String(js).replace(/<\/(script)/gi, '<\\/$1'); }
+
+  function frameHtml(theme) {
+    var f = CFG.frame;
+    var hljsCss = theme.scheme === 'dark' ? f.hljsDarkCss : f.hljsLightCss;
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
+      + '<meta name="viewport" content="width=device-width, initial-scale=1">'
+      + '<link id="orz-theme-css" rel="stylesheet" href="' + theme.href + '">'
+      + '<link rel="stylesheet" href="' + f.katexCss + '">'
+      + '<link id="orz-hljs-css" rel="stylesheet" href="' + hljsCss + '">'
+      // bottom padding so the last content clears the floating reader tools
+      + '<style>html,body{margin:0}body{padding-bottom:84px}</style></head><body>'
+      + '<article class="markdown-body" id="orz-doc"></article>'
+      + '<script src="' + f.hljsJs + '"><\/script>'
+      + '<script src="' + f.mermaidJs + '"><\/script>'
+      + '<script src="' + f.smilesJs + '"><\/script>'
+      + '<script src="' + f.chartJs + '"><\/script>'
+      + '<script>try{mermaid.initialize({startOnLoad:false})}catch(e){}<\/script>'
+      + '<script>' + guard(CFG.runtime) + '<\/script>'
+      + '<script>window.__orzEnhance=function(){'
+      + 'try{if(window.hljs){document.querySelectorAll("#orz-doc pre code:not(.hljs)").forEach(function(b){window.hljs.highlightElement(b)})}}catch(e){}'
+      + 'try{if(window.mermaid){window.mermaid.run({querySelector:"#orz-doc .mermaid:not([data-processed])"})}}catch(e){}'
+      // SMILES: draw each canvas once (tracked via a JS prop so morphdom keeps
+      // the drawn canvas across edits — DOM attributes stay identical).
+      + 'try{if(window.SmilesDrawer){document.querySelectorAll("#orz-doc canvas[data-smiles]").forEach(function(c){if(c.__orzSmilesDone)return;var s=c.getAttribute("data-smiles");if(!s)return;if(c.__orzOrigW===undefined){c.__orzOrigW=c.width;c.__orzOrigH=c.height;}c.width=c.__orzOrigW;c.height=c.__orzOrigH;c.__orzSmilesDone=true;var dr=new window.SmilesDrawer.Drawer({width:c.__orzOrigW,height:c.__orzOrigH});window.SmilesDrawer.parse(s,function(t){try{dr.draw(t,c,window.__orzSmilesTheme||"light",false)}catch(e){}},function(){})})}}catch(e){}'
+      + 'try{if(window.Chart){document.querySelectorAll("#orz-doc canvas.orz-chart[data-chart]").forEach(function(c){if(c.__orzChartDone)return;c.__orzChartDone=true;var w=c.ownerDocument.createElement("div");w.style.cssText="position:relative;width:100%;max-width:520px;margin:.6em auto";c.parentNode.insertBefore(w,c);w.appendChild(c);c.removeAttribute("width");c.removeAttribute("height");try{var cfg=JSON.parse(c.getAttribute("data-chart")||"{}");cfg.options=Object.assign({responsive:true,maintainAspectRatio:true,animation:false},cfg.options||{});new window.Chart(c,cfg)}catch(e){}})}}catch(e){}'
+      // Tabs init runs in the runtime on load (empty #orz-doc); re-run now that
+      // content is injected, and after each incremental update. Idempotent.
+      + 'try{if(window.OrzMarkdownRuntime&&window.OrzMarkdownRuntime.initTabs){window.OrzMarkdownRuntime.initTabs(document)}}catch(e){}'
+      + '};<\/script></body></html>';
+  }
+
+  function frameDoc() { return frame.contentDocument || (frame.contentWindow && frame.contentWindow.document); }
+
+  function buildFrame(theme) {
+    var doc = frameDoc();
+    doc.open(); doc.write(frameHtml(theme)); doc.close();
+  }
+
+  function applyThemeToFrame(theme) {
+    var doc = frameDoc(); if (!doc) return;
+    var link = doc.getElementById('orz-theme-css'); if (link) link.href = theme.href;
+    var hl = doc.getElementById('orz-hljs-css');
+    if (hl) hl.href = theme.scheme === 'dark' ? CFG.frame.hljsDarkCss : CFG.frame.hljsLightCss;
+  }
+
+  function renderHtml(src) {
+    ensureIncludes(src); // async: fetch any un-cached web includes via the host
+    var s = applyIncludes(src); // sync: inline what's already cached
+    return (window.orzmd && window.orzmd.render) ? window.orzmd.render(s) : '';
+  }
+
+  function enhance() {
+    var w = frame.contentWindow;
+    if (!w) return;
+    try { w.__orzSmilesTheme = themeById(currentTheme).scheme === 'dark' ? 'dark' : 'light'; } catch (e) {}
+    if (typeof w.__orzEnhance === 'function') { try { w.__orzEnhance(); } catch (e) {} }
+  }
+
+  // Re-draw SMILES canvases in the current light/dark theme (after a theme
+  // switch). Just clear the done flag; the draw hook resets each canvas to its
+  // original dimensions before redrawing, so sizes never drift.
+  function redrawSmiles() {
+    var doc = frameDoc(); if (!doc) return;
+    Array.prototype.forEach.call(doc.querySelectorAll('#orz-doc canvas[data-smiles]'), function (c) {
+      c.__orzSmilesDone = false;
+    });
+    enhance();
+  }
+  // CDN libs inside the iframe load async — retry enhance a few times.
+  function enhanceSoon() { enhance(); setTimeout(enhance, 150); setTimeout(enhance, 600); setTimeout(enhance, 1500); }
+
+  function firstPaint() {
+    var doc = frameDoc();
+    var container = doc.getElementById('orz-doc');
+    if (container) container.innerHTML = renderHtml(currentSource());
+    enhanceSoon();
+    scheduleAnchors();
+  }
+
+  function patch(src) {
+    var doc = frameDoc(); if (!doc) return;
+    var container = doc.getElementById('orz-doc'); if (!container) return;
+    var next = doc.createElement('article');
+    next.className = 'markdown-body'; next.id = 'orz-doc';
+    next.innerHTML = renderHtml(src);
+    if (window.morphdom) {
+      window.morphdom(container, next, {
+        onBeforeElUpdated: function (fromEl, toEl) {
+          if (fromEl.isEqualNode && fromEl.isEqualNode(toEl)) return false;
+          // Keep an already-rendered generated construct (mermaid / smiles / qr /
+          // youtube) when its source is unchanged. These are client-rendered into
+          // canvases / SVGs / iframes, so letting morphdom touch them would wipe
+          // the drawing (e.g. a SMILES canvas disappearing when nearby text is
+          // edited). data-md carries the source; skip the whole subtree on match.
+          var dm = fromEl.getAttribute && fromEl.getAttribute('data-md');
+          if (dm != null && toEl.getAttribute && dm === toEl.getAttribute('data-md')) return false;
+          // keep highlighted code when the text is unchanged
+          if (fromEl.nodeName === 'CODE' && fromEl.classList && fromEl.classList.contains('hljs') &&
+              fromEl.textContent === toEl.textContent) return false;
+          return true;
+        },
+      });
+    } else {
+      container.innerHTML = next.innerHTML;
+    }
+    enhance();
+    scheduleAnchors();
+  }
+
+  var updTimer = null;
+  function scheduleUpdate() { if (updTimer) clearTimeout(updTimer); updTimer = setTimeout(function () { patch(currentSource()); }, 120); }
+
+  // ---- editor <-> preview scroll sync -------------------------------------
+  // Source-line mapped (not percentage): each preview block carries
+  // data-src-line (stamped by the renderer). We map between CodeMirror lines
+  // and preview offsets, interpolating between anchors.
+  var anchors = [];
+  var activePane = null;   // 'editor' | 'preview' — whichever the user drives
+  var syncWired = false;
+  var syncEnabled = true;  // user-toggleable; persisted in localStorage
+
+  function scroller() { var d = frameDoc(); return d ? (d.scrollingElement || d.documentElement) : null; }
+
+  function rebuildAnchors() {
+    var doc = frameDoc(); if (!doc) { anchors = []; return; }
+    var sc = scroller();
+    var st = sc ? sc.scrollTop : 0;
+    var els = doc.querySelectorAll('#orz-doc [data-src-line]');
+    var arr = [];
+    for (var i = 0; i < els.length; i++) {
+      var line = parseInt(els[i].getAttribute('data-src-line'), 10);
+      if (isNaN(line)) continue;
+      // document-space offset: rect is viewport-relative, add the scroll position
+      arr.push({ line: line, top: els[i].getBoundingClientRect().top + st });
+    }
+    arr.sort(function (a, b) { return a.top - b.top; });
+    anchors = arr;
+  }
+  function scheduleAnchors() {
+    requestAnimationFrame(rebuildAnchors);
+    setTimeout(rebuildAnchors, 350); // after async mermaid/image layout
+  }
+
+  function lineToTop(line) {
+    if (!anchors.length) return 0;
+    var prev = anchors[0], next = anchors[anchors.length - 1], found = false;
+    for (var i = 0; i < anchors.length; i++) {
+      if (anchors[i].line <= line) prev = anchors[i];
+      if (anchors[i].line > line) { next = anchors[i]; found = true; break; }
+    }
+    if (!found || next.line === prev.line) return prev.top;
+    var f = (line - prev.line) / (next.line - prev.line);
+    return prev.top + f * (next.top - prev.top);
+  }
+  function topToLine(top) {
+    if (!anchors.length) return 0;
+    var prev = anchors[0], next = anchors[anchors.length - 1], found = false;
+    for (var i = 0; i < anchors.length; i++) {
+      if (anchors[i].top <= top) prev = anchors[i];
+      if (anchors[i].top > top) { next = anchors[i]; found = true; break; }
+    }
+    if (!found || next.top === prev.top) return prev.line;
+    var f = (top - prev.top) / (next.top - prev.top);
+    return prev.line + f * (next.line - prev.line);
+  }
+
+  function syncPreviewFromEditor() {
+    if (!syncEnabled || !cm || !isEdit()) return;
+    var sc = scroller(); if (!sc) return;
+    rebuildAnchors(); // fresh offsets (fonts/images may have changed heights)
+    // first visible source line: the line at the top edge of the editor viewport
+    var wrapTop = cm.getWrapperElement().getBoundingClientRect().top;
+    var line = cm.lineAtHeight(wrapTop, 'window');
+    sc.scrollTop = lineToTop(line);
+  }
+  function syncEditorFromPreview() {
+    if (!syncEnabled || !cm || !isEdit()) return;
+    var sc = scroller(); if (!sc) return;
+    rebuildAnchors();
+    cm.scrollTo(null, cm.heightAtLine(Math.round(topToLine(sc.scrollTop)), 'local'));
+  }
+
+  function rafThrottle(fn) {
+    var queued = false;
+    return function () { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; fn(); }); };
+  }
+
+  function wireScrollSync() {
+    if (syncWired || !cm) return;
+    syncWired = true;
+    var onEd = rafThrottle(function () { if (activePane === 'editor') syncPreviewFromEditor(); });
+    var onPv = rafThrottle(function () { if (activePane === 'preview') syncEditorFromPreview(); });
+    cm.on('scroll', onEd);
+    cm.getWrapperElement().addEventListener('mouseenter', function () { activePane = 'editor'; });
+    cm.on('focus', function () { activePane = 'editor'; });
+    var fw = frame.contentWindow;
+    if (fw) fw.addEventListener('scroll', onPv, { passive: true });
+    frame.addEventListener('mouseenter', function () { activePane = 'preview'; });
+  }
+
+  // ---- lazy editor libs ----------------------------------------------------
+  function loadScript(src) {
+    return new Promise(function (res, rej) {
+      var s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+  function loadCss(href) {
+    if (!href) return;
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href; document.head.appendChild(l);
+  }
+
+  function ensureLibs() {
+    if (libsLoading) return libsLoading;
+    var L = CFG.editorLibs;
+    loadCss(L.codemirrorCss); loadCss(L.codemirrorLightThemeCss); loadCss(L.codemirrorDarkThemeCss);
+    libsLoading = loadScript(L.morphdomJs)
+      .then(function () { return loadScript(L.codemirrorJs); })
+      .then(function () { return loadScript(L.codemirrorMarkdownJs); })
+      .then(function () { return loadScript(L.codemirrorContinuelistJs); });
+    return libsLoading;
+  }
+
+  function cmTheme(scheme) { return scheme === 'dark' ? 'material-darker' : 'eclipse'; }
+
+  function initEditor() {
+    if (cm || !window.CodeMirror) return;
+    textarea.value = currentSource();
+    cm = window.CodeMirror.fromTextArea(textarea, {
+      mode: 'markdown', lineNumbers: true, lineWrapping: true,
+      tabSize: 2, indentUnit: 2, indentWithTabs: false, smartIndent: false,
+      theme: cmTheme(themeById(currentTheme).scheme),
+      extraKeys: {
+        'Enter': 'newlineAndIndentContinueMarkdownList',
+        'Tab': function (c) { c.execCommand('indentMore'); },
+        'Shift-Tab': function (c) { c.execCommand('indentLess'); },
+        'Cmd-S': function () { save(); },
+        'Ctrl-S': function () { save(); },
+      },
+    });
+    cm.on('change', function () { markDirty(); scheduleUpdate(); aiHideAll(); });
+    cm.on('cursorActivity', function () { aiRefresh(); });
+    wireScrollSync();
+  }
+
+  // ---- edit mode (slide-in popout) -----------------------------------------
+  function isEdit() { return root.getAttribute('data-mode') === 'edit'; }
+
+  // Draggable divider — sets the editor/preview split (relative width). The
+  // iframe swallows pointer events, so disable them on the frame while dragging
+  // (otherwise the parent stops receiving mousemove/mouseup and the drag sticks).
+  var dividerWired = false;
+  function wireDivider() {
+    if (dividerWired) return; dividerWired = true;
+    var d = document.getElementById('orz-divider'); if (!d) return;
+    var dragging = false;
+    d.addEventListener('mousedown', function (e) {
+      dragging = true; d.classList.add('dragging'); e.preventDefault();
+      document.body.style.userSelect = 'none'; frame.style.pointerEvents = 'none';
+    });
+    document.addEventListener('mousemove', function (e) {
+      if (!dragging) return;
+      var pct = Math.max(20, Math.min(78, (e.clientX / window.innerWidth) * 100));
+      root.style.setProperty('--orz-split', pct + '%');
+    });
+    document.addEventListener('mouseup', function () {
+      if (!dragging) return;
+      dragging = false; d.classList.remove('dragging');
+      document.body.style.userSelect = ''; frame.style.pointerEvents = '';
+      if (cm) cm.refresh(); scheduleAnchors();
+    });
+  }
+
+  function enterEdit() {
+    root.setAttribute('data-mode', 'edit');
+    checkVersion(); // edit view only — broad viewers never see the update banner
+    wireDivider();
+    ensureLibs().then(function () {
+      initEditor();
+      if (cm) setTimeout(function () { cm.refresh(); cm.focus(); }, 30);
+      scheduleAnchors();
+    }).catch(function () {
+      // offline / lib load failed: the bare textarea is still editable
+      textarea.focus();
+      toast('Editor libraries unavailable — basic editing');
+    });
+  }
+  function exitEdit() {
+    root.removeAttribute('data-mode');
+    aiHideAll();
+    if (dirty) toast('Unsaved changes — press ' + (isMac() ? '⌘' : 'Ctrl') + '+S to save');
+  }
+  function isMac() { return /Mac|iPhone|iPad/.test(navigator.platform || ''); }
+
+  function setSyncEnabled(on) {
+    syncEnabled = !!on;
+    var btn = document.getElementById('orz-sync');
+    if (btn) {
+      btn.setAttribute('aria-pressed', syncEnabled ? 'true' : 'false');
+      btn.title = syncEnabled ? 'Scroll sync on' : 'Scroll sync off';
+    }
+    try { localStorage.setItem('orz-mdhtml:scrollsync', syncEnabled ? '1' : '0'); } catch (e) {}
+    if (syncEnabled && activePane === 'editor') syncPreviewFromEditor();
+  }
+
+  // ---- theme ---------------------------------------------------------------
+  function setTheme(id) {
+    currentTheme = id;
+    var t = themeById(id);
+    root.setAttribute('data-chrome', t.scheme);
+    if (themeSelect) themeSelect.value = id;
+    applyThemeToFrame(t);
+    redrawSmiles(); // pick up the new light/dark SMILES palette
+    if (cm) cm.setOption('theme', cmTheme(t.scheme));
+    markDirty();
+  }
+
+  // ---- dirty ---------------------------------------------------------------
+  function markDirty() { if (!dirty) { dirty = true; root.setAttribute('data-dirty', '1'); hostPostDirty(true); } }
+  function clearDirty() { if (dirty) hostPostDirty(false); dirty = false; root.setAttribute('data-dirty', '0'); }
+
+  // ---- host embedding (orz-host-save@1) -------------------------------------
+  // When a platform embeds this file in an iframe and announces the
+  // orz-host-save protocol (see PROTOCOL.md), Save posts the document to the
+  // host instead of touching the file system. Never enabled without the host's
+  // hello; protocol messages are accepted only from window.parent, and after
+  // the handshake only from the recorded host origin. Message content is read
+  // as data, never evaluated. Export/download keeps working unchanged.
+  var HOST_PROTOCOL = 'orz-host-save';
+  var HOST_VERSION = 1;
+  var hostOrigin = null;    // recorded at handshake; null = unhosted
+  var hostSaveTimer = null; // watchdog for a save awaiting acknowledgement
+
+  function isHosted() { return hostOrigin !== null; }
+  // An opaque embedder (sandboxed/srcdoc host) serializes as the string 'null',
+  // which postMessage rejects as a targetOrigin — fall back to '*' (the payload
+  // contains nothing the host doesn't already have).
+  function hostTarget() { return hostOrigin && hostOrigin !== 'null' ? hostOrigin : '*'; }
+  function hostPost(msg) { try { window.parent.postMessage(msg, hostTarget()); } catch (e) {} }
+  function hostPostDirty(d) {
+    if (!isHosted()) return;
+    hostPost({ type: 'orz-host-dirty', protocol: HOST_PROTOCOL, version: HOST_VERSION, dirty: !!d });
+  }
+  function hostSave(src, html) {
+    if (hostSaveTimer) return; // one save in flight at a time
+    hostSaveTimer = setTimeout(function () {
+      hostSaveTimer = null;
+      toast('Save failed — no response from the host'); // document intact, still dirty
+    }, 10000);
+    hostPost({ type: 'orz-host-save', protocol: HOST_PROTOCOL, version: HOST_VERSION, source: src, html: html, theme: currentTheme });
+  }
+  // ---- host AI assistant (orz-host-ai@1) ------------------------------------
+  // When the host advertises AI operations, selecting text in the editor shows
+  // an "Improve selection" affordance; picking an op sends the passage to the
+  // host, which returns a suggested replacement to apply. File owns the UI; the
+  // host owns the model + governance. Additive — no host, no affordance.
+  var AI_PROTOCOL = 'orz-host-ai';
+  var AI_VERSION = 1;
+  var aiOps = null;      // advertised operations, or null when no AI host
+  var aiOrigin = null;   // recorded at the AI handshake
+  var aiSeq = 0;
+  var aiPending = {};    // requestId -> resolve
+  var aiTrigger = null;  // the floating "Improve selection" chip
+  var aiPanel = null;    // the menu / result popover
+  var aiRect = null;     // anchor rect {left,top,bottom} for the active popover
+
+  function aiTarget() { return aiOrigin && aiOrigin !== 'null' ? aiOrigin : '*'; }
+  function aiPost(msg) { try { window.parent.postMessage(msg, aiTarget()); } catch (e) {} }
+  function aiRequest(op, text, sel) {
+    return new Promise(function (resolve) {
+      var id = 'ai' + (++aiSeq);
+      aiPending[id] = resolve;
+      aiPost({ type: 'orz-host-ai-request', protocol: AI_PROTOCOL, version: AI_VERSION, requestId: id, op: op, text: text, selection: !!sel });
+      setTimeout(function () { if (aiPending[id]) { delete aiPending[id]; resolve({ ok: false, error: 'No response from the host.' }); } }, 30000);
+    });
+  }
+
+  function aiBox() {
+    var b = document.createElement('div');
+    b.style.cssText = 'position:fixed;z-index:60;background:Canvas;color:CanvasText;border:1px solid GrayText;border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.28);font:13px system-ui,sans-serif;padding:4px;';
+    return b;
+  }
+  // Position `el` (already in the DOM, so it can be measured) just below the
+  // selection end; if it would overflow the bottom, flip it ABOVE the selection;
+  // if it fits neither, pin near the top and let it scroll. Clamp horizontally.
+  function aiSelRect() {
+    var to = cm.cursorCoords(cm.getCursor('to'), 'window');
+    var fr = cm.cursorCoords(cm.getCursor('from'), 'window');
+    return { left: to.left, top: fr.top, bottom: to.bottom };
+  }
+  function aiElRect(el) { var b = el.getBoundingClientRect(); return { left: b.left, top: b.top, bottom: b.bottom }; }
+  function aiPlace(el) {
+    if (!el) return;
+    var r = aiRect || (cm ? aiSelRect() : { left: 8, top: 8, bottom: 40 });
+    var w = el.offsetWidth || 240;
+    var h = el.offsetHeight || 40;
+    var left = Math.max(8, Math.min(r.left, window.innerWidth - w - 8));
+    var top = r.bottom + 6;
+    if (top + h > window.innerHeight - 8) {
+      var above = r.top - h - 6;
+      if (above >= 8) {
+        top = above;
+      } else {
+        top = 8;
+        el.style.maxHeight = (window.innerHeight - 16) + 'px';
+        el.style.overflowY = 'auto';
+      }
+    }
+    el.style.left = left + 'px';
+    el.style.top = top + 'px';
+  }
+  function aiHidePanel() { if (aiPanel) { try { aiPanel.remove(); } catch (e) {} aiPanel = null; } }
+  function aiHideTrigger() { if (aiTrigger) { try { aiTrigger.remove(); } catch (e) {} aiTrigger = null; } }
+  function aiHideAll() { aiHidePanel(); aiHideTrigger(); }
+
+  // Open the ops menu anchored at `rect`, operating on `text` (a selection when
+  // isSel, else the whole document).
+  function aiOpen(rect, text, isSel) {
+    aiHideAll();
+    aiRect = rect;
+    aiPanel = aiBox();
+    aiOps.forEach(function (op) {
+      var btn = document.createElement('button');
+      btn.textContent = op.title;
+      btn.style.cssText = 'display:block;width:220px;text-align:left;background:none;border:0;color:inherit;font:inherit;padding:6px 10px;border-radius:6px;cursor:pointer;';
+      btn.onmouseenter = function () { btn.style.background = 'rgba(127,127,127,.16)'; };
+      btn.onmouseleave = function () { btn.style.background = 'none'; };
+      btn.onclick = function () { aiRun(op, text, isSel); };
+      aiPanel.appendChild(btn);
+    });
+    document.body.appendChild(aiPanel);
+    aiPlace(aiPanel);
+  }
+
+  function aiRun(op, text, isSel) {
+    aiHideAll();
+    aiPanel = aiBox();
+    aiPanel.style.padding = '10px';
+    aiPanel.style.width = (isSel ? '340px' : '460px');
+    aiPanel.textContent = 'Thinking…';
+    document.body.appendChild(aiPanel);
+    aiPlace(aiPanel);
+    aiRequest(op.id, text, isSel).then(function (r) {
+      if (!aiPanel) return;
+      aiPanel.textContent = '';
+      if (!r.ok) { aiPanel.textContent = r.error || 'That didn’t work.'; aiPlace(aiPanel); return; }
+      var label = document.createElement('div');
+      label.textContent = isSel ? 'Suggested replacement — edit before applying'
+                                 : 'Suggested rewrite of the whole document — edit before applying';
+      label.style.cssText = 'font-size:11px;opacity:.7;margin-bottom:4px;';
+      var ta = document.createElement('textarea');
+      ta.value = r.proposed || '';
+      ta.style.cssText = 'width:100%;height:' + (isSel ? '130px' : '240px') + ';box-sizing:border-box;font:12px ui-monospace,monospace;resize:vertical;';
+      var row = document.createElement('div');
+      row.style.cssText = 'display:flex;justify-content:flex-end;gap:6px;margin-top:6px;';
+      var cancel = document.createElement('button');
+      cancel.textContent = 'Cancel'; cancel.style.cssText = 'padding:4px 10px;cursor:pointer;';
+      cancel.onclick = aiHidePanel;
+      var apply = document.createElement('button');
+      apply.textContent = isSel ? 'Replace' : 'Replace document'; apply.style.cssText = 'padding:4px 10px;cursor:pointer;font-weight:600;';
+      apply.onclick = function () {
+        if (isSel) { cm.replaceSelection(ta.value); }
+        else { var c = cm.getCursor(); cm.setValue(ta.value); try { cm.setCursor(c); } catch (e) {} }
+        aiHidePanel(); markDirty(); scheduleUpdate();
+      };
+      row.appendChild(cancel); row.appendChild(apply);
+      aiPanel.appendChild(label); aiPanel.appendChild(ta); aiPanel.appendChild(row);
+      aiPlace(aiPanel);
+      ta.focus();
+    });
+  }
+
+  // Called on selection change: show the chip when there's a usable selection.
+  function aiRefresh() {
+    if (!aiOps || !aiOps.length || !cm || !isEdit()) { aiHideAll(); return; }
+    if (aiPanel) return; // don't fight an open menu/result
+    var sel = cm.getSelection();
+    if (!sel || sel.trim().length < 2) { aiHideTrigger(); return; }
+    if (!aiTrigger) {
+      aiTrigger = document.createElement('button');
+      aiTrigger.textContent = '✦ Improve selection';
+      aiTrigger.style.cssText = 'position:fixed;z-index:55;background:Canvas;color:CanvasText;border:1px solid GrayText;border-radius:999px;font:12px system-ui,sans-serif;padding:4px 10px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.22);';
+      aiTrigger.onmousedown = function (e) { e.preventDefault(); }; // keep the cm selection
+      aiTrigger.onclick = function (e) { e.stopPropagation(); aiOpen(aiSelRect(), cm.getSelection(), true); };
+      document.body.appendChild(aiTrigger);
+    }
+    aiRect = aiSelRect();
+    aiPlace(aiTrigger);
+  }
+  document.addEventListener('mousedown', function (e) {
+    if (aiPanel && !aiPanel.contains(e.target)) aiHidePanel();
+  });
+
+  // ---- host-provided includes (orz-host-include@1) --------------------------
+  // When a host offers include resolution, `{{md-include URL}}` / `{{markdown
+  // URL}}` directives are resolved by the host (which owns the fetch + allowlist)
+  // and inlined into the PREVIEW render only. The editable source keeps the
+  // directive. STANDALONE (no host) the directives are left as-is — the file
+  // NEVER auto-fetches a URL from the viewer's browser.
+  var INCLUDE_PROTOCOL = 'orz-host-include';
+  var INCLUDE_VERSION = 1;
+  var includeOrigin = null;     // set at the include handshake; null = no host
+  var includeSeq = 0;
+  var includePending = {};      // requestId -> resolve
+  var includeCache = {};        // url -> markdown | null (null = declined)
+  var includeInflight = {};     // url -> true while a request is outstanding
+
+  function includeTarget() { return includeOrigin && includeOrigin !== 'null' ? includeOrigin : '*'; }
+  function includePost(msg) { try { window.parent.postMessage(msg, includeTarget()); } catch (e) {} }
+
+  function includeRequest(url) {
+    return new Promise(function (resolve) {
+      var id = 'inc' + (++includeSeq);
+      includePending[id] = resolve;
+      includePost({ type: 'orz-host-include-request', protocol: INCLUDE_PROTOCOL, version: INCLUDE_VERSION, requestId: id, url: url });
+      setTimeout(function () { if (includePending[id]) { delete includePending[id]; resolve(null); } }, 30000);
+    });
+  }
+
+  // Sync: substitute each cached include directive; leave un-cached ones as-is
+  // (they render empty via the fs include plugin — a transient "loading" state).
+  function applyIncludes(src) {
+    if (includeOrigin === null) return src; // unhosted → never resolve
+    return src.replace(/\{\{(?:markdown|md-include)\s+(https?:\/\/[^\s}]+)\}\}/g, function (whole, url) {
+      var v = includeCache[url];
+      return (typeof v === 'string') ? v : whole;
+    });
+  }
+
+  // Async: request any include URL not yet cached; on arrival, cache + re-render.
+  function ensureIncludes(src) {
+    if (includeOrigin === null) return;
+    var re = /\{\{(?:markdown|md-include)\s+(https?:\/\/[^\s}]+)\}\}/g;
+    var m, seen = {};
+    while ((m = re.exec(src))) {
+      var url = m[1];
+      if (seen[url]) continue; seen[url] = true;
+      if (Object.prototype.hasOwnProperty.call(includeCache, url) || includeInflight[url]) continue;
+      includeInflight[url] = true;
+      (function (u) {
+        includeRequest(u).then(function (md) {
+          includeCache[u] = (typeof md === 'string') ? md : null;
+          delete includeInflight[u];
+          scheduleUpdate(); // re-render with the now-cached content
+        });
+      })(url);
+    }
+  }
+
+  function onHostMessage(event) {
+    // only the embedding parent may speak the protocol
+    if (window.parent === window || event.source !== window.parent) return;
+    var d = event.data;
+    if (!d || typeof d !== 'object') return;
+    // after the handshake, hold the parent to the origin it introduced itself with
+    if (isHosted() && hostOrigin !== 'null' && event.origin !== hostOrigin) return;
+    if (d.type === 'orz-host-hello' && d.protocol === HOST_PROTOCOL && typeof d.version === 'number' && d.version >= 1) {
+      hostOrigin = event.origin;
+      // reply with the highest version we support ≤ the host's (we speak only 1)
+      hostPost({ type: 'orz-host-ready', protocol: HOST_PROTOCOL, version: HOST_VERSION, kind: 'md' });
+      if (dirty) hostPostDirty(true); // catch the host up on edits made pre-handshake
+    } else if (d.type === 'orz-host-saved' && hostSaveTimer) {
+      clearTimeout(hostSaveTimer); hostSaveTimer = null;
+      if (d.ok) { clearDirty(); toast('Saved'); }
+      else { toast('Save failed' + (d.error ? ' — ' + String(d.error) : '')); }
+    } else if (d.type === 'orz-host-ai-hello' && d.protocol === AI_PROTOCOL && Array.isArray(d.operations)) {
+      aiOrigin = event.origin;
+      aiOps = d.operations.filter(function (o) { return o && o.id && o.title; });
+      aiPost({ type: 'orz-host-ai-ready', protocol: AI_PROTOCOL, version: AI_VERSION });
+      // Reveal the toolbar's page-wide AI button — runs an op on the whole doc.
+      var aiBtn = document.getElementById('orz-ai');
+      if (aiBtn && aiOps.length) {
+        aiBtn.style.display = '';
+        aiBtn.onclick = function () { if (cm) aiOpen(aiElRect(aiBtn), cm.getValue(), false); };
+      }
+    } else if (d.type === 'orz-host-ai-result' && d.requestId && aiPending[d.requestId]) {
+      var aiRes = aiPending[d.requestId]; delete aiPending[d.requestId];
+      aiRes({ ok: !!d.ok, proposed: d.proposed, error: d.error });
+    } else if (d.type === 'orz-host-include-hello' && d.protocol === INCLUDE_PROTOCOL && typeof d.version === 'number' && d.version >= 1) {
+      includeOrigin = event.origin;
+      includePost({ type: 'orz-host-include-ready', protocol: INCLUDE_PROTOCOL, version: INCLUDE_VERSION, kind: 'md' });
+      scheduleUpdate(); // re-render now that web includes can resolve
+    } else if (d.type === 'orz-host-include-result' && d.requestId && includePending[d.requestId]) {
+      var incRes = includePending[d.requestId]; delete includePending[d.requestId];
+      incRes(d.ok ? d.markdown : null);
+    }
+  }
+  // listen from script load so an early hello isn't missed
+  window.addEventListener('message', onHostMessage);
+
+  // ---- save (self-reproducing) --------------------------------------------
+  function serializeDoc(src) {
+    var clone = root.cloneNode(true);
+    var s = clone.querySelector('#orz-src');
+    if (s) s.textContent = '\n' + escapeSource(src) + '\n';
+    clone.removeAttribute('data-mode');
+    clone.setAttribute('data-chrome', themeById(currentTheme).scheme);
+    clone.setAttribute('data-theme', currentTheme); // persist theme choice
+    clone.removeAttribute('data-dirty');
+    // never bake in the (edit-only) update banner so a viewer can't see it
+    var ub = clone.querySelector('#orz-update'); if (ub) { ub.classList.remove('show'); ub.removeAttribute('data-latest'); }
+    // strip live editor DOM (CodeMirror) — restore a clean textarea
+    var ed = clone.querySelector('#orz-editor');
+    if (ed) ed.innerHTML = '<textarea id="orz-textarea" spellcheck="false"></textarea>';
+    return '<!DOCTYPE html>\n' + clone.outerHTML + '\n';
+  }
+
+  // IndexedDB: persist the save handle so a reopened file can be saved with a
+  // one-click permission grant instead of the full picker. Best-effort — it
+  // no-ops gracefully where unavailable (e.g. file:// opaque origins).
+  function idbOpen() {
+    return new Promise(function (res, rej) {
+      var r = indexedDB.open('orz-mdhtml', 1);
+      r.onupgradeneeded = function () { r.result.createObjectStore('handles'); };
+      r.onsuccess = function () { res(r.result); };
+      r.onerror = function () { rej(r.error); };
+    });
+  }
+  function idbGet(key) {
+    return idbOpen().then(function (db) {
+      return new Promise(function (res, rej) {
+        var t = db.transaction('handles', 'readonly');
+        var g = t.objectStore('handles').get(key);
+        g.onsuccess = function () { res(g.result || null); };
+        g.onerror = function () { rej(g.error); };
+      });
+    }).catch(function () { return null; });
+  }
+  function idbPut(key, val) {
+    return idbOpen().then(function (db) {
+      return new Promise(function (res, rej) {
+        var t = db.transaction('handles', 'readwrite');
+        var p = t.objectStore('handles').put(val, key);
+        p.onsuccess = function () { res(); };
+        p.onerror = function () { rej(p.error); };
+      });
+    }).catch(function () {});
+  }
+
+  function pickAndStore() {
+    return window.showSaveFilePicker({
+      suggestedName: (CFG.filename || 'document') + '.md.html',
+      types: [{ description: 'Markdown HTML', accept: { 'text/html': ['.md.html', '.html'] } }],
+    }).then(function (h) { fileHandle = h; if (CFG.docId) idbPut(CFG.docId, h); return h; });
+  }
+
+  // Resolve a writable handle: in-memory → persisted (re-grant permission) → picker.
+  function acquireHandle() {
+    if (fileHandle) return Promise.resolve(fileHandle);
+    if (!CFG.docId) return pickAndStore();
+    return idbGet(CFG.docId).then(function (saved) {
+      if (!saved || !saved.queryPermission) return pickAndStore();
+      return saved.queryPermission({ mode: 'readwrite' }).then(function (p) {
+        if (p === 'granted') return saved;
+        // Chrome shows a prompt naming the file — a deliberate one-click gate.
+        return saved.requestPermission({ mode: 'readwrite' }).then(function (p2) {
+          return p2 === 'granted' ? saved : null;
+        });
+      }).then(function (h) {
+        if (h) { fileHandle = h; return h; }
+        return pickAndStore();
+      });
+    }).catch(function () { return pickAndStore(); });
+  }
+
+  function isServed() {
+    return location.protocol === 'http:' || location.protocol === 'https:';
+  }
+
+  function save() {
+    var src = currentSource();
+    var html = serializeDoc(src);
+    var s = document.getElementById('orz-src');
+    if (s) s.textContent = '\n' + escapeSource(src) + '\n';
+
+    // A hosting platform (verified handshake) receives the save instead of the
+    // file system; the host acknowledges with orz-host-saved (see PROTOCOL.md).
+    if (isHosted()) { hostSave(src, html); return; }
+
+    // On a published (served) page with no prior file handle, the reader has no
+    // write access to the server. Only nag — once they've actually edited — that
+    // they should download a local copy. (Never shown on open or on a no-op save.)
+    if (isServed() && !fileHandle) { if (dirty) showServedNote(); return; }
+
+    if (window.showSaveFilePicker) {
+      acquireHandle()
+        .then(function (h) { return h.createWritable(); })
+        .then(function (w) { return Promise.resolve(w.write(html)).then(function () { return w.close(); }); })
+        .then(function () { clearDirty(); toast('Saved'); })
+        .catch(function (err) { if (err && err.name === 'AbortError') return; downloadFile(html); clearDirty(); toast('Saved a local copy'); });
+    } else {
+      downloadFile(html); clearDirty(); toast('Saved a local copy');
+    }
+  }
+
+  function downloadFile(text) {
+    var blob = new Blob([text], { type: 'text/html' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = (CFG.filename || 'document') + '.md.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function exportCopy() { downloadFile(serializeDoc(currentSource())); toast('Downloaded a local copy'); }
+
+  function showServedNote() {
+    var n = document.getElementById('orz-served-note');
+    if (n) n.classList.add('show');
+  }
+
+  // ---- version check -------------------------------------------------------
+  // True only when `a` is a strictly newer semver than `b` (so an older
+  // resolved version never shows a bogus "update available").
+  function isNewer(a, b) {
+    var pa = String(a).split('.'), pb = String(b).split('.');
+    for (var i = 0; i < 3; i++) {
+      var x = parseInt(pa[i], 10) || 0, y = parseInt(pb[i], 10) || 0;
+      if (x > y) return true;
+      if (x < y) return false;
+    }
+    return false;
+  }
+  // SECURITY: the update source is HARDCODED here, never read from the file's
+  // config — a tampered/forged file cannot redirect "Update" to attacker code.
+  // Host is fixed to jsDelivr/HTTPS; the exact URLs are confirmed with the user.
+  // (Protects genuine files; a wholly-malicious file controls this code too — see
+  // the README security note. Clicking Update trusts npm + jsDelivr.)
+  var UPD = {
+    host: 'https://cdn.jsdelivr.net/npm/',
+    manifest: 'https://data.jsdelivr.com/v1/packages/npm/orz-mdhtml-browser/resolved',
+    enginePkg: 'orz-mdhtml-browser', engineFile: 'orzmd.browser.js', appPkg: 'orz-mdhtml'
+  };
+  function checkVersion() {
+    if (!CFG.rendererVersion) return;
+    try {
+      var cached = JSON.parse(localStorage.getItem('orz-mdhtml:vercheck') || 'null');
+      if (cached && (Date.now() - cached.t) < 86400000) {
+        if (cached.v && isNewer(cached.v, CFG.rendererVersion)) showUpdate(cached.v);
+        return;
+      }
+    } catch (e) {}
+    fetch(UPD.manifest).then(function (r) { return r.json(); }).then(function (j) {
+      var latest = j && j.version;
+      try { localStorage.setItem('orz-mdhtml:vercheck', JSON.stringify({ t: Date.now(), v: latest })); } catch (e) {}
+      if (latest && isNewer(latest, CFG.rendererVersion)) showUpdate(latest);
+    }).catch(function () {});
+  }
+  function showUpdate(latest) {
+    var bar = document.getElementById('orz-update'); if (!bar) return;
+    bar.querySelector('.upd-text').textContent = 'Framework ' + latest + ' available (file uses ' + CFG.rendererVersion + ').';
+    bar.setAttribute('data-latest', latest);
+    bar.classList.add('show');
+  }
+  /** One-click update: re-fetch the engine bundle + app.js at the latest version,
+   *  re-inline them, bump the version, save in place, and reload. */
+  function applyUpdate() {
+    var bar = document.getElementById('orz-update'); var latest = bar && bar.getAttribute('data-latest'); if (!latest) return;
+    var engineUrl = UPD.host + UPD.enginePkg + '@' + latest + '/' + UPD.engineFile;
+    var appUrl = UPD.host + UPD.appPkg + '@' + latest + '/assets/app.js';
+    if (!window.confirm('Update the framework to ' + latest + '?\n\nThis downloads and runs code from:\n  ' + engineUrl + '\n  ' + appUrl + '\n\nOnly proceed if you trust this document and its publisher.')) return;
+    toast('Downloading framework ' + latest + '…');
+    Promise.all([
+      fetch(engineUrl).then(function (r) { if (!r.ok) throw new Error('engine'); return r.text(); }),
+      fetch(appUrl).then(function (r) { if (!r.ok) throw new Error('app'); return r.text(); }),
+    ]).then(function (res) {
+      var es = document.querySelector('script[data-orz-asset="engine"]');
+      if (es) { if (es.getAttribute('src')) es.setAttribute('src', engineUrl); else es.textContent = res[0]; }
+      var as = document.querySelector('script[data-orz-asset="app"]');
+      if (as) as.textContent = res[1];
+      var cs = document.querySelector('script[data-orz-asset="config"]');
+      if (cs) { CFG.version = latest; CFG.rendererVersion = latest; cs.textContent = 'window.__ORZ_MDHTML__ = ' + JSON.stringify(CFG) + ';'; }
+      bar.classList.remove('show');
+      var html = serializeDoc(currentSource());
+      if (isServed() && !fileHandle) { showServedNote(); return; }
+      if (window.showSaveFilePicker) {
+        return acquireHandle()
+          .then(function (h) { return h.createWritable(); })
+          .then(function (w) { return Promise.resolve(w.write(html)).then(function () { return w.close(); }); })
+          .then(function () { toast('Updated to ' + latest + ' — reloading…'); setTimeout(function () { location.reload(); }, 700); });
+      }
+      downloadFile(html); toast('Updated copy downloaded — reopen it to use the new framework.');
+    }).catch(function () { toast('Update failed — check your connection.'); });
+  }
+
+  // ---- toast ---------------------------------------------------------------
+  var toastTimer = null;
+  function toast(msg) {
+    var t = document.getElementById('orz-toast'); if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 1800);
+  }
+
+  // ---- wiring --------------------------------------------------------------
+  function wireUi() {
+    document.getElementById('orz-edit-fab').addEventListener('click', enterEdit);
+    document.getElementById('orz-close').addEventListener('click', exitEdit);
+    document.getElementById('orz-save').addEventListener('click', save);
+    document.getElementById('orz-download').addEventListener('click', exportCopy);
+    document.getElementById('orz-served-download').addEventListener('click', function () {
+      exportCopy();
+      document.getElementById('orz-served-note').classList.remove('show');
+    });
+    document.getElementById('orz-served-dismiss').addEventListener('click', function () {
+      document.getElementById('orz-served-note').classList.remove('show');
+    });
+    document.getElementById('orz-upd-dismiss').addEventListener('click', function () {
+      document.getElementById('orz-update').classList.remove('show');
+    });
+    var ua = document.getElementById('orz-upd-apply');
+    if (ua) ua.addEventListener('click', applyUpdate);
+    if (themeSelect) themeSelect.addEventListener('change', function () { setTheme(this.value); });
+    var syncBtn = document.getElementById('orz-sync');
+    if (syncBtn) syncBtn.addEventListener('click', function () { setSyncEnabled(!syncEnabled); });
+    // plain-textarea fallback live updates (when CodeMirror isn't active)
+    textarea.addEventListener('input', function () { if (!cm) { markDirty(); scheduleUpdate(); } });
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') { e.preventDefault(); save(); }
+      else if (e.key === 'Escape' && isEdit()) { exitEdit(); }
+    });
+    // Warn before losing unsaved edits (close / reload / navigate away).
+    window.addEventListener('beforeunload', function (e) {
+      if (dirty) { e.preventDefault(); e.returnValue = ''; }
+    });
+  }
+
+  // ---- boot ----------------------------------------------------------------
+  function boot() {
+    currentTheme = root.getAttribute('data-theme') || CFG.defaultTheme;
+    var t = themeById(currentTheme);
+    root.setAttribute('data-chrome', t.scheme);
+    if (themeSelect) themeSelect.value = currentTheme;
+    textarea.value = embeddedSource();
+    buildFrame(t);
+    firstPaint();
+    wireUi();
+    try { if (localStorage.getItem('orz-mdhtml:scrollsync') === '0') syncEnabled = false; } catch (e) {}
+    setSyncEnabled(syncEnabled);
+    // version check runs on entering edit (edit view only), not on load
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+</body>
+</html>

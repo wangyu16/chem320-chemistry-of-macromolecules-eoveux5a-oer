@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="orz-paged 0.6.1">
+<title>Ch05 - Precision Polymerization</title>
+<meta name="author" content="Dr. Yu Wang">
+<meta name="description" content="This course introduces polymer chemistry as a structure-processing-property discipline. It begins with polymer definitions, molar mass, degree of polymerization, historical development, and environmental motivation; then moves through architecture, stereochemistry, copolymer composition, molar-mass distributions, and the two major polymerization families. The central synthesis sequence covers step-growth polymerization, chain-growth polymerization, precision/controlled methods, macromolecular engineering, and depolymerization/recycling by design. The final sequence connects molecular structure to single-chain conformation, polymer solutions and mixtures, molar-mass characterization, glass transition, and crystallinity. Viscoelasticity and rubber elasticity are treated only as optional instructor/advanced supplements.">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<meta name="dcterms.license" content="CC-BY-4.0">
+<link rel="canonical" href="https://github.com/wangyu16/chem320-chemistry-of-macromolecules-eoveux5a-oer">
+<style>
+  html, body { margin: 0; height: 100%; background: #f0f0f2; }
+  :root { --orz-split: 44%; }
+  /* the preview is a fixed full-window scroll container; in edit mode its left
+     edge animates inward to make room for the docked editor (side-by-side). */
+  #orz-pages { box-sizing: border-box; position: fixed; inset: 0; left: 0;
+    overflow: auto; background: #f0f0f2; transition: left .22s ease; }
+  [data-mode="edit"] #orz-pages { left: calc(var(--orz-split) + 6px); }
+  /* paged.js page boxes get a subtle drop shadow + centered layout */
+  .pagedjs_pages { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 0; }
+  .pagedjs_page { background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.18); }
+  @media print {
+    body { background: #fff; }
+    #orz-bar, #orz-panel, #orz-edit-fab, #orz-divider, #orz-close, .orz-banner, #orz-toast { display: none !important; }
+    #orz-pages { position: static; overflow: visible; left: 0; }
+    .pagedjs_pages { gap: 0; padding: 0; zoom: 1 !important; }
+    .pagedjs_page { box-shadow: none; }
+  }
+
+  #orz-edit-fab {
+    position: fixed; left: 22px; bottom: 18px; z-index: 30;
+    width: 42px; height: 42px; border: 0; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #2f6fe0; color: #fff; cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25); opacity: .9;
+  }
+  #orz-edit-fab svg { width: 19px; height: 19px; display: block; }
+  #orz-edit-fab:hover { opacity: 1; transform: scale(1.06); }
+  [data-mode="edit"] #orz-edit-fab { display: none; }
+
+  #orz-divider { display: none; }
+  [data-mode="edit"] #orz-divider {
+    display: block; position: fixed; top: 0; bottom: 0; left: var(--orz-split);
+    width: 6px; z-index: 45; cursor: col-resize; background: #34383f;
+  }
+  #orz-divider:hover, #orz-divider.dragging { background: #3b82f6; }
+
+  #orz-panel {
+    display: flex; flex-direction: column;
+    position: fixed; left: 0; top: 0; bottom: 0; width: var(--orz-split); z-index: 40;
+    background: #1f2228; border-right: 1px solid #333; box-shadow: 2px 0 16px rgba(0,0,0,.25);
+    /* extra offset so the protruding close tab also clears the viewport */
+    transform: translateX(calc(-100% - 24px)); transition: transform .22s ease;
+  }
+  [data-mode="edit"] #orz-panel { transform: translateX(0); }
+  /* close tab — a small handle on the editor's right edge that slides it away */
+  #orz-close {
+    position: absolute; top: 50%; right: -19px; transform: translateY(-50%);
+    width: 19px; height: 48px; z-index: 46; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 0; border-radius: 0 8px 8px 0; background: #23262c; color: #c2c8d0;
+    cursor: pointer; box-shadow: 2px 0 8px rgba(0,0,0,.18);
+  }
+  #orz-close:hover { background: #383d45; color: #fff; }
+  #orz-close svg { width: 15px; height: 15px; display: block; }
+  #orz-toolbar { display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    padding: 7px 10px; background: #23262c; border-bottom: 1px solid #34383f; }
+  #orz-toolbar .ic { width: 32px; height: 30px; display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: 0; border-radius: 7px; color: #c2c8d0; cursor: pointer; font-size: 16px; }
+  #orz-toolbar .ic:hover { background: #383d45; color: #fff; }
+  #orz-toolbar .ic svg { width: 17px; height: 17px; display: block; }
+  #orz-toolbar .ic[aria-pressed="true"] { color: #3b82f6; }
+  #orz-toolbar .ic[aria-pressed="false"] { opacity: .5; }
+  #orz-toolbar .ic.primary { background: #3b82f6; color: #fff; }
+  #orz-toolbar select { font: 500 12.5px/1 system-ui, sans-serif; color: #e6e8ec; background: #34383f;
+    border: 1px solid #454b55; border-radius: 7px; padding: 6px 8px; cursor: pointer; margin: 0 2px; }
+  #orz-toolbar .orz-sep { width: 1px; height: 20px; background: #3c414a; margin: 0 5px; }
+  #orz-dyn { display: inline-flex; align-items: center; gap: 4px; }
+  #orz-dyn .orz-dyn-ctl { display: inline-flex; align-items: center; gap: 4px; }
+  #orz-dyn label { font: 600 11px/1 system-ui, sans-serif; color: #9aa3b2; text-transform: capitalize; }
+  #orz-toolbar .orz-spacer { flex: 1; }
+  #orz-brand { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #cdd3df; padding: 2px 7px; border-radius: 7px; }
+  #orz-brand:hover { color: #fff; background: #383d45; }
+  #orz-brand .orz-logo svg { height: 22px; width: auto; display: block; }
+  #orz-brand .orz-brand-name { font: 700 13px/1 system-ui, sans-serif; }
+  #orz-brand .orz-gh { display: inline-flex; opacity: .55; }
+  #orz-brand:hover .orz-gh { opacity: 1; }
+  #orz-brand .orz-gh svg { width: 15px; height: 15px; display: block; }
+  #orz-editor-host { flex: 1; min-height: 0; overflow: hidden; }
+  #orz-editor-host .CodeMirror { height: 100%; font-size: 14px; }
+  #orz-foot { flex: 0 0 auto; height: 24px; display: flex; align-items: center; justify-content: center;
+    font: 11.5px/1 system-ui, sans-serif; color: #8b93a0; background: #23262c; border-top: 1px solid #34383f; gap: 4px; }
+  #orz-foot a { color: #9aa3b2; text-decoration: none; }
+  #orz-foot a:hover { color: #fff; text-decoration: underline; }
+  #orz-ta { width: 100%; height: 100%; box-sizing: border-box; border: 0; padding: 10px;
+    font: 14px/1.5 ui-monospace, Menlo, Consolas, monospace; }
+  #orz-toast { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%) translateY(20px);
+    z-index: 70; background: #111; color: #fff; padding: 9px 16px; border-radius: 8px;
+    font: 13px system-ui, sans-serif; opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; }
+  #orz-toast.show { opacity: .95; transform: translateX(-50%) translateY(0); }
+
+  /* template picker — a popover under the toolbar listing starter templates */
+  #orz-template-menu { position: absolute; left: 10px; right: 10px; top: 46px; z-index: 60;
+    max-height: 70vh; overflow: auto; padding: 8px; border-radius: 10px;
+    background: #23262c; border: 1px solid #3c414a; box-shadow: 0 8px 26px rgba(0,0,0,.4); }
+  #orz-template-menu[hidden] { display: none; }
+  #orz-template-menu .tpl-group { font: 700 10.5px/1 system-ui, sans-serif; text-transform: uppercase;
+    letter-spacing: .06em; color: #7f8896; padding: 8px 8px 4px; }
+  #orz-template-menu .tpl {
+    display: flex; gap: 9px; align-items: flex-start; width: 100%; text-align: left;
+    padding: 8px 9px; border: 0; border-radius: 8px; background: transparent; color: #dfe3ea; cursor: pointer; }
+  #orz-template-menu .tpl:hover { background: #34383f; }
+  #orz-template-menu .tpl .tpl-ic { flex: 0 0 auto; width: 30px; height: 38px; border-radius: 4px;
+    background: #fff; border: 1px solid #c9ccd2; position: relative; overflow: hidden; }
+  #orz-template-menu .tpl .tpl-ic::before { content: ""; position: absolute; left: 4px; right: 4px; top: 4px;
+    height: 7px; border-radius: 2px; background: var(--tpl-accent, #2f6fe0); }
+  #orz-template-menu .tpl .tpl-ic::after { content: ""; position: absolute; left: 4px; right: 4px; top: 15px;
+    bottom: 4px; background:
+      repeating-linear-gradient(#c7ccd4 0 1.5px, transparent 1.5px 5px); }
+  #orz-template-menu .tpl .tpl-meta { min-width: 0; }
+  #orz-template-menu .tpl .tpl-label { display: block; font: 600 13px/1.2 system-ui, sans-serif; }
+  #orz-template-menu .tpl .tpl-desc { display: block; font: 11.5px/1.35 system-ui, sans-serif; color: #98a0ae; margin-top: 2px; }
+
+  /* update banner — shown only in edit view (the editor triggers the check) */
+  .orz-banner { position: fixed; left: 50%; top: 14px; transform: translateX(-50%); z-index: 80;
+    display: none; align-items: center; gap: 10px; background: #2b2f36; color: #eee;
+    border: 1px solid #444; border-radius: 9px; padding: 9px 14px;
+    font: 13px/1.3 system-ui, sans-serif; box-shadow: 0 4px 16px rgba(0,0,0,.3); }
+  .orz-banner.show { display: flex; }
+  .orz-banner button { font: 500 12.5px system-ui, sans-serif; color: #e6e8ec; background: #3a3f48;
+    border: 1px solid #4a505a; border-radius: 6px; padding: 5px 11px; cursor: pointer; }
+  .orz-banner button.upd-primary { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+  .orz-banner button:hover { filter: brightness(1.1); }
+</style>
+<script type="application/orz-meta+json" id="orz-meta">
+{
+  "title": "Ch05 - Precision Polymerization",
+  "author": "Dr. Yu Wang",
+  "description": "This course introduces polymer chemistry as a structure-processing-property discipline. It begins with polymer definitions, molar mass, degree of polymerization, historical development, and environmental motivation; then moves through architecture, stereochemistry, copolymer composition, molar-mass distributions, and the two major polymerization families. The central synthesis sequence covers step-growth polymerization, chain-growth polymerization, precision/controlled methods, macromolecular engineering, and depolymerization/recycling by design. The final sequence connects molecular structure to single-chain conformation, polymer solutions and mixtures, molar-mass characterization, glass transition, and crystallinity. Viscoelasticity and rubber elasticity are treated only as optional instructor/advanced supplements.",
+  "source": "https://github.com/wangyu16/chem320-chemistry-of-macromolecules-eoveux5a-oer",
+  "license": {
+    "spdx": "CC-BY-4.0",
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  }
+}
+</script>
+</head>
+<body>
+<!-- ═══════════ orz · editing this document with an AI agent ═══════════
+  This is a self-contained, EDITABLE orz-paged document (.paged.html). The editable
+  source of truth is the markdown in the embedded source island below (kind: paged,
+  format: 1) — NOT the rendered HTML.
+
+  To edit it correctly, load the official orz-paged agent skill first: it defines
+  the page model (templates, page size, margins, running headers/footers, page
+  breaks) and guarantees a byte-identical round-trip.
+    - Fetch the skill: https://cdn.jsdelivr.net/npm/orz-paged/orz-paged-skills/SKILL.md
+    - Install routes:  https://markdown.orz.how/agents.html
+
+  Rules: edit ONLY the embedded source; re-embed it in place; preserve block IDs.
+═══════════════════════════════════════════════════════════════════ -->
+
+<div id="orz-pages" data-orz-copy></div>
+<div id="orz-divider" title="Drag to resize"></div>
+
+<button id="orz-edit-fab" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>
+
+<div id="orz-panel">
+  <div id="orz-toolbar">
+    <a id="orz-brand" href="https://github.com/wangyu16/orz-paged" target="_blank" rel="noopener noreferrer" title="orz-paged on GitHub"><span class="orz-logo"><svg viewBox="-5 -5 180 100" xmlns="http://www.w3.org/2000/svg" class="orz-mark" aria-hidden="true"><defs><filter id="orzlogo-rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G"/></filter><path d="M 20,23 C 33,16 57,17 84,13 C 111,8 137,4 153,6 C 165,7 170,13 169,25 L 167,66 C 166,79 159,87 146,89 C 121,93 92,92 60,91 C 41,90 27,92 16,89 C 6,86 1,79 1,67 L 1,50 C 1,35 7,25 20,23 Z" id="orzlogo-seal"/><filter id="orzlogo-stone" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="11" result="noise"/><feColorMatrix in="noise" type="saturate" values="0" result="mono"/><feComponentTransfer in="mono" result="grain"><feFuncA type="table" tableValues="0 0.16"/></feComponentTransfer></filter><mask id="orzlogo-mask"><use href="#orzlogo-seal" fill="white"/><path d="M37.81 80.31Q30.44 80.31 24.50 77Q18.56 73.69 15.25 67.75Q11.94 61.81 11.94 54.19L11.94 54.19Q11.94 41.69 21.13 35.56Q30.31 29.44 43.69 29.44L43.69 29.44Q49.81 29.44 55.13 32.44Q60.44 35.44 63.69 41.06Q66.94 46.69 66.94 54.06L66.94 54.06Q66.94 62.06 62.81 68Q58.69 73.94 52 77.13Q45.31 80.31 37.81 80.31L37.81 80.31ZM36.44 73.19Q48.06 73.19 54.06 67.94Q60.06 62.69 60.06 52.56L60.06 52.56Q60.06 45.69 55.38 40.69Q50.69 35.69 42.31 35.69L42.31 35.69Q36.69 35.69 30.94 37.81Q25.19 39.94 21.44 44.19Q17.69 48.44 17.69 54.44L17.69 54.44Q17.69 59.44 20.19 63.75Q22.69 68.06 27 70.63Q31.31 73.19 36.44 73.19L36.44 73.19ZM87.94 80.19Q82.81 70.19 79.88 56.69Q76.94 43.19 76.94 33.31L76.94 33.31Q76.94 29.44 78.69 28.31L78.69 28.31Q79.69 27.69 80.19 27.69L80.19 27.69Q81.06 27.69 81.50 29.06Q81.94 30.44 82.44 34.06L82.44 34.06L83.06 38.56Q84.44 31.81 88.38 27.88Q92.31 23.94 98.06 23.94L98.06 23.94Q104.44 23.94 107.56 26.38Q110.69 28.81 110.69 34.44L110.69 34.44Q104.44 31.44 99.31 31.44L99.31 31.44Q94.44 31.44 90.94 34.06Q87.44 36.69 86.06 41.81L86.06 41.81Q84.94 45.31 84.94 48.44L84.94 48.44Q84.94 51.81 85.88 54.75Q86.81 57.69 88.81 61.94L88.81 61.94Q90.69 66.31 91.75 69.44Q92.81 72.56 92.94 76.19L92.94 76.19Q92.94 78.31 91.44 79.25Q89.94 80.19 87.94 80.19L87.94 80.19ZM160.56 66.19Q163.06 68.06 163.06 70.19L163.06 70.19Q163.06 73.56 157.31 75.81Q151.56 78.06 144.31 79.13Q137.06 80.19 132.81 80.19L132.81 80.19Q128.06 80.19 123.75 78.63Q119.44 77.06 119.44 73.19L119.44 73.19Q119.44 69.44 123.63 63.44Q127.81 57.44 133.69 51.19L133.69 51.19L117.56 51.19Q116.31 51.19 116.31 48.94L116.31 48.94Q116.31 47.19 116.69 46.50Q117.06 45.81 117.69 45.69Q118.31 45.56 120.06 45.56L120.06 45.56L139.31 45.56Q143.94 39.69 146.38 35.50Q148.81 31.31 148.81 27.69L148.81 27.69Q148.81 24.06 146.31 21.19L146.31 21.19Q142.44 20.44 138.81 20.44L138.81 20.44Q131.94 20.44 127.19 22.75Q122.44 25.06 121.94 28.81L121.94 28.81Q119.06 28.81 118.13 27.81Q117.19 26.81 117.19 24.44L117.19 24.44Q117.19 21.94 119.75 19.63Q122.31 17.31 126.94 15.88Q131.56 14.44 137.31 14.44L137.31 14.44Q142.06 14.44 147.31 15.56L147.31 15.56Q150.56 16.19 152.81 19.69Q155.06 23.19 155.06 27.44L155.06 27.44Q155.06 31.19 152.75 35.31Q150.44 39.44 145.94 45.56L145.94 45.56L152.06 45.56Q156.81 45.56 158.38 46.06Q159.94 46.56 159.94 48.06L159.94 48.06Q159.94 49.31 159.13 50.19Q158.31 51.06 157.44 51.06L157.44 51.06L140.19 51.06Q134.06 57.94 130.81 63.25Q127.56 68.56 128.19 70.81L128.19 70.81Q128.69 73.19 135.94 74.06L135.94 74.06Q144.06 74.06 149.69 72.13Q155.31 70.19 160.56 66.19L160.56 66.19Z" fill="black" stroke="black" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></mask></defs><g filter="url(#orzlogo-rough)"><use href="#orzlogo-seal" fill="#96d969" mask="url(#orzlogo-mask)"/><use href="#orzlogo-seal" fill="#6ea84d" opacity="0.28" filter="url(#orzlogo-stone)" mask="url(#orzlogo-mask)"/><use href="#orzlogo-seal" fill="none" stroke="#c8f7a5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.42" mask="url(#orzlogo-mask)"/><use href="#orzlogo-seal" fill="none" stroke="#5f8f44" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.35" mask="url(#orzlogo-mask)"/></g></svg></span><span class="orz-brand-name">paged</span><span class="orz-gh"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></span></a>
+    <span class="orz-sep"></span>
+    <button id="orz-save" class="ic primary" title="Save (Ctrl/Cmd+S)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg></button>
+    <button id="orz-export" class="ic" title="Export PDF (print)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg></button>
+    <button id="orz-template" class="ic" title="Start from a template"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></button>
+    <span class="orz-spacer"></span>
+    <button id="orz-sync" class="ic" title="Sync scrolling on/off" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><path d="M8 12h8"/></svg></button>
+    <span id="orz-dyn"></span>
+    <select id="orz-theme" title="Theme"><option value="beige-decent-1">beige-decent-1</option><option value="beige-decent-2">beige-decent-2</option><option value="light-academic-1">light-academic-1</option><option value="light-academic-2">light-academic-2</option><option value="light-neat-1">light-neat-1</option><option value="light-neat-2">light-neat-2</option><option value="light-neat-3">light-neat-3</option></select>
+  </div>
+  <div id="orz-template-menu" hidden></div>
+  <button id="orz-close" title="Close editor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div id="orz-editor-host"><textarea id="orz-ta" spellcheck="false"></textarea></div>
+  <div id="orz-foot">© <a href="https://markdown.orz.how" target="_blank" rel="noopener noreferrer">orz-markdown</a></div>
+</div>
+
+<div id="orz-update" class="orz-banner">
+  <span class="upd-text"></span>
+  <button id="orz-upd-apply" class="upd-primary">Update</button>
+  <button id="orz-upd-dismiss">Dismiss</button>
+</div>
+
+<div id="orz-toast"></div>
+
+<script type="text/markdown" id="orz-src">
+## Overview{{attrs[#blk-snsif1frksjl]}}
+
+The central challenge in polymer chemistry is to precisely tailor molecular architectures and functionalities, mirroring the complexity and specificity found in biomacromolecules. Proteins, for example, exhibit a precise sequential order of amino acids along their polypeptide chains. These polypeptides fold into specific three-dimensional structures, providing distinct functionalities. Achieving this level of precision is the ultimate goal of polymer chemistry. However, we are still far from reaching this objective.
+
+<!-- It is worth noting that nature also makes use of many other macromolecular materials that are not so well-controlled as proteins and DNA; examples include polysaccharides such as cellulose, chitin, and starch. -->
+
+### Limits of conventional polymerization methods
+
+Conventional polymerization methods typically involve linking a single type of monomer unit repeatedly or combining a few types of monomer units in a statistical manner. 
+
+- The average molecular weight of the polymers cannot be easily adjusted as demanded. 
+- This often results in polymers with broad molecular weight distributions. 
+- While these methods can produce linear, branched, or crosslinked polymers, they do not allow for the design of more complex architectures;
+- or provide precise control over the composition at specific positions within the molecule. 
+
+### Living polymerization
+
+Achieving the precision found in biological systems remains a significant challenge, but notable progress has been made. A pioneering example is the ‘living polymerization’ discovered by Michael Szwarc in 1956. He demonstrated that the anionic polymerization of styrene with an alkali metal/naphthalene system in tetrahydrofuran (THF) could continue until all monomers were consumed. Remarkably, adding another batch of monomer could extend the polymerization, provided it was not intentionally quenched.  
+
+Living polymerization 
+: Chain-growth process for which there are no irreversible termination or transfer reactions.
+
+Living polymerization has several significant features:
+
+1. The number of active centers remains constant throughout the polymerization process, meaning each initiator (or initiation site) results in one polymer chain with one active chain end.
+2. All initiators initiate the polymerization at roughly the same time. 
+3. The number average degree of polymerization can be easily calculated as the number of monomers consumed divided by the number of active centers.
+4. The polymers have chain end functional groups determined by the structures of the initiator and externally added chain terminator.
+5. The molecular weight distribution is narrow, i.e., $M_w/M_n \approx 1 + \frac{1}{DP_n}$
+
+These features enable the design of polymers with relatively uniform sizes and desired molecular weights. Additionally, the functional groups at the chain ends can be utilized for further reactions, allowing for the construction of more complex macromolecular architectures.
+
+### Beyond living anionic polymerization
+
+The majority of conventional polymerization methods, with the exception of some anionic polymerizations, are not living. The challenge lies in adjusting reaction systems to achieve the features that mimic living polymerization. A typical desired polymerization scheme involves an initiator with the structure $\ce{R-X}$, which generates an active center, $\ce{R^*}$. From this active center, a polymer chain can grow resulting in $\ce{R-M_i-X}$. The resulting polymer possesses an $\ce{-X}$ chain end, which can serve as a macroinitiator for further polymerization. Living anionic polymerization meets these criteria. For instance, polymerization initiated by n-butyllithium ($\ce{BuLi}$) produces polymers with the structure $\ce{BuM_iLi}$. The question remains: how can other types of polymerization, such as cationic and radical, be adapted to follow this scheme?
+
+$$\ce{R-X ->[+M] R-M_i-X}$$
+
+#### Reversible deactivation
+
+One commonly applied strategy is **reversible deactivation polymerization**. If the initiator ($\ce{R-X}$) can be activated spontaneously or by a catalyst to produce the active center and establish an equilibrium between a dormant and an activated state, it becomes possible to control the molecular weight, molecular weight distribution, and chain-end functionalities. This strategy can be applied to cationic polymerization, radical polymerizations, and some ring-opening polymerizations. Although chain transfer and termination can still occur, under properly selected conditions, the majority of the product will have the desired structure ($\ce{R-M_i-X}$) and chain length. 
+
+$$\ce{R-X ->[activation] R^* ->[+M] R-M_i^* ->[deactivation] R-M_i-X}$$
+
+#### Fixed chain end catalyst
+
+Another possible route is to use an initiator $\ce{R-X}$, where the $\ce{-X}$ functionality, typically a catalyst, remains associated with the propagating chain end while monomers are added through a coordination and insertion mechanism. This allows for controlled polymerization, known as **single-site catalyst polymerization**. Heterogeneous Ti-based Ziegler-Natta catalysts do not meet this requirement because chain transfer occurs frequently, meaning each catalyst initiates one polymer chain and another, which become dead chains once chain transfer happens. Therefore, using a strongly associated transition metal catalyst that always coordinates to one chain end and typically does not involve transfer reactions can make coordination polymerization controllable. besides coordination plymerization of olefins, ring-opening metathesis polymerization (ROMP) can be conducted similarly to produce “living” polymers. 
+
+$$\ce{R-Cat ->[+M] R-M_i-Cat}$$
+
+where Cat means the catalyst. 
+
+**Catalyst transfer polycondensation (CTP)** is a chain-growth polycondensation mechanism in which the monomers do not directly react with one another and instead the monomer will only react with the polymer end group through a catalyst-mediated mechanism. 
+
+#### Other strategies
+
+Certain polycondensations of AB-type monomers can mimic chain-growth polymerization, resulting in a narrow molecular weight distribution. The key is that the monomers should not react directly with each other under the polymerization conditions. Instead, an initiator with an activated B group ($\ce{RB^*}$) can react with the A groups of the monomers. Once this reaction occurs, the B functional group from the previous monomer becomes activated and can continue to react with other monomers, leading to polymers of the form $\ce{RB(AB)_iAB^*}$. This type of polymerization is known as **living chain-growth polycondensation**. However, generalizing this concept is challenging, and only a limited number of monomers can be polymerized using living chain-growth polycondensation. 
+
+$$\ce{RB^* ->[+AB] RB(AB)_iAB^*}$$
+
+Some other less commonly used strategies include starve-fed approach, confined reactor and confined catalyst approaches, etc.  
+
+### Stereoselective polymerization
+
+Another significant feature we observed in biomacromolecules is their stereospecificity. Only L-amino acids serve as the building blocks of life. D-amino acid residues are rarely found in proteins; and if found, they are typically converted from L-amino acids through post-translational modifications. In contrast, synthetic polymers are predominantly meso compounds. Controlling stereoselectivity can significantly influence the properties of the product, such as crystallinity and mechanical properties. However, stereoselectivity is inherently involved only in coordination polymerization. As of the third decade of the 21st century, other polymerization methods achieve stereoselectivity only under specific conditions and for limited types of products. 
+
+### Towards precise sequence control
+
+Is there a way to synthesize polymers with precise sequence structures? One possible approach is to employ gene-engineered cells, using recombinant DNA techniques, to produce polymers. Although this method is not the focus of our discussion, it is certainly very useful. Focusing on purely synthetic approaches, it is possible to achieve precise sequence structures by adding one monomer at a time, purifying the product after each addition, and then repeating the process. While this step-by-step synthesis can be tedious, it has proven to be useful. With the advent of automated synthesis by programmed machines, this method can now be used to produce polymers with up to a hundred repeating units within a reasonable time frame. The synthesis of dentrimers can also be put into this category.   
+
+### Outlook
+
+The pursuit of simpler and more generalizable synthetic methods to produce polymers with higher levels of structural precision continues. As mentioned earlier, the ultimate goal is to achieve the precision found in biomacromolecules, such as proteins. The key question is: What can we learn from nature, and how can we utilize these lessons to pave the way for future development?
+
+Firstly, a blueprint or template is essential. To produce polymers with precise sequence structures, we must first instruct the synthetic instrument on the specific order to follow. In cells, this blueprint is DNA or RNA. In a synthetic scenario, we can use a molecule as the blueprint or program the sequence into a computer.
+
+Secondly, the monomers should not react with each other spontaneously under the polymerization conditions. For example, amino acids can react to form amides under suitable conditions. However, this would result in step-growth polymerization, leading to uncontrolled chain lengths and sequence structures. In cells, amino acids do not react directly with each other but instead react with the propagating polypeptide chain end, facilitated by transfer RNA (tRNA) and enzyme catalysts. 
+
+One fascinating example of precise polymer synthesis is the Polymerase Chain Reaction (PCR) testing, which gained widespread use during the COVID-19 pandemic. From a polymer synthesis perspective, PCR is astonishing. Essentially, PCR selects a specific type of DNA strand from hundreds or thousands and reproduces the targeted one millions or billions of times. The process is step-by-step, but the selection of the targeted DNA is automatic by using proper primers, and no purification is needed after each cycle. The procedure includes: 
+
+1. Denaturation
+    - The DNA sample is heated to around 94-98°C, causing the double-stranded DNA to separate into two single strands.
+2. Annealing
+    - The temperature is lowered to around 50-65°C, allowing short DNA sequences called primers to bind (anneal) to their complementary sequences on the single-stranded DNA. These primers are designed to flank the target DNA region.
+3. Extension
+    - The temperature is raised to around 72°C, the optimal temperature for the enzyme Taq polymerase. This enzyme synthesizes new DNA strands by adding nucleotides to the primers, using the original DNA strands as templates.
+3. Cycling
+    - These steps (denaturation, annealing, and extension) are repeated 20-40 times, doubling the amount of target DNA with each cycle. This exponential amplification results in millions to billions of copies of the specific DNA segment. 
+    
+![](https://upload.wikimedia.org/wikipedia/commons/9/96/Polymerase_chain_reaction.svg)
+    
+ This involves a combination of biomolecules, such as DNA and enzymes, and artificial synthetic procedures, like adding reagents and changing the temperature. The result is remarkable: precise polymer synthesis via a relatively simple procedure. However, not many monomers are like nucleotides that can recognize each other and polymerize under simple conditions. Therefore, the procedure cannot be generalized for other types of polymer synthesis. Nonetheless, it is definitely inspiring.
+
+## Reversible deactivation approach{{attrs[#blk-vzrvblmi1cao]}}
+
+To apply a reversible deactivation scheme in a polymerization process, start by considering a polymer chain with an X chain-end functional group. Identify the conditions or catalysts required to remove this X group, leaving behind an active center of interest. Ensure that the reaction is reversible. Once these conditions are established, design a small molecule with an R group that resembles a monomer unit and an X group as described. This RX molecule can then serve as the initiator. Under appropriate reaction conditions and in the presence of monomers, the polymerization will proceed as a reversible deactivation polymerization. Additionally, the initiator structure may sometimes vary slightly or be generated in situ, providing greater flexibility in the initiation system.
+
+### Reversible-deactivation radical polymerization
+
+#### Nitroxide mediated radical polymerization (NMP)
+
+Aminoxyl denotes a radical functional group with general structure $\ce{R2N–O*}$. It is commonly known as a nitroxyl radical or a nitroxide. Sterically hindered aminoxyls without α-hydrogens, such TEMPO and TEMPOL, and are persistent (stable) radicals and find use in a range of applications. 
+
+:::: cols
+::: col
+TEMPO: 
+
+![](https://upload.wikimedia.org/wikipedia/commons/5/5c/2%2C2%2C6%2C6-Tetramethylpiperidinyloxyl.svg =150x)
+:::
+::: col
+TEMPOL: 
+
+![](https://upload.wikimedia.org/wikipedia/commons/5/59/4-Hydroxy-TEMPO.svg =150x)
+
+::::
+They can be used in the radical polymerization of styrene and make this process an reversible deactivation polymerization. 
+
+<!-- The Mechanism of the Self-Initiated Thermal Polymerization of Styrene. Theoretical Solution of a Classic Problem, JASC 2005, 127, 4, 1265, https://doi.org/10.1021/ja0448667 -->
+
+Consider the simplest radical polymerization system using purified styrene monomer in a sealed flask, devoid of oxygen. When heated to 100°C, self-initiated polymerization occurs. Although the self-initiation mechanism is complex, once initiated, polymer chains grow by adding monomers and eventually terminate, forming dead chains. The polymerization process is relatively slow, achieving about 2% monomer conversion per hour at 100°C. While chain transfer does occur, it is negligible. Due to the low radical concentration, each radical has a relatively long lifetime, resulting in polymers with high molecular weight.
+
+![TEMPOStyrene](https://hackmd.io/_uploads/r1EmEU10R.svg =200x)
+
+When 1% (mol/mol) of 2,2,6,6-Tetramethyl-1-(1-phenylethoxy)piperidine is added to styrene and heated to 110-130°C, the polymerization behavior changes significantly. The C-O bond in this compound can undergo reversible dissociation at elevated temperatures, although the equilibrium heavily favors the associated molecule. Despite this, even at very low concentrations (typically around $\pu{1e-8 mol/L}$), carbon radicals are produced and can initiate polymerization by adding to monomers. TEMPO is also generated, which rapidly captures the propagating radicals and returns them to a dormant state. Consequently, each molecule of 2,2,6,6-Tetramethyl-1-(1-phenylethoxy)piperidine acts as an initiator, resulting in one polymer chain capped by a TEMPO unit. Since all initiators statistically begin polymer chain growth simultaneously and each polymer chain grows at the same rate, the resulting polymers exhibit a narrow molecular weight distribution. The experimental value of $M_w/M_n$ typically ranges from 1.1 to 1.2.
+
+Self-initiation occurs as usual, contributing to the formation of additional polymer chains. However, since self-initiation is relatively slow, the number of these additional chains is much lower than the number of initiators. Termination also occurs as a competing reaction with propagation, resulting in dead chains. As long as the number of dead chains is relatively small compared to the number of initiators, the majority of the resulting polymers remain “alive” with TEMPO-capped chain ends, which can be used for further reactions. Consequently, no polymer chains grow significantly longer than others, leading to polymers with comparable molecular weights and a narrow molecular weight distribution. 
+
+![link text](https://pubs.acs.org/cms/10.1021/cr990119u/asset/images/medium/cr990119uh00005.gif =400x)
+
+This type of polymerization is known as nitroxide-mediated polymerization (NMP), a reversible-deactivation approach to achieve controlled polymerization. The key to this technique is the spontaneous and reversible dissociation of the chain-end functional group. Compared to the polymerization of pure styrene without any additional reagents, this system involves only one additional ingredient: TEMPO. However, the introduction of this ingredient can increase complexity beyond the desired level. TEMPO can also lead to a catalytic termination process, increasing the number of dead chains. In case of styrene and TEMPO system, the catalytic termination is negligible. However, depending on the monomers, nitroxide, and temperature, the contribution of these side reactions can vary significantly. It is common that introducing one more reagent to the reaction system not only leads to the desired reaction mechanisms but also causes unwanted side reactions. But we do not always have full knowledge about those side reactions.  
+
+![](https://pubs.acs.org/cms/10.1021/cr990119u/asset/images/medium/cr990119uh00017.gif =400x)
+
+<!--
+Unfortunately, TEMPO only works for styrene and similar monomers. 
+
+Design the stable radical to adjust the activity and expand possible monomers. 
+
+Advantages and limits 
+-->
+
+#### Atom transfer radical polymerization (ATRP)
+
+ATRP is a catalyzed reversible deactivation process. Usually a halogen chain end is involved, which can be activated by a transition metal catalyst. Thus, ATRP usually employs an alkyl halide as the initiator (R-X). Various transition metal complexes, namely those of Cu, Fe, Ru, Ni, and Os, have been employed as catalysts for ATRP. In an ATRP process, the dormant species is activated by the transition metal complex to generate radicals via one electron transfer process. Simultaneously the transition metal is oxidized to higher oxidation state. This reversible process rapidly establishes an equilibrium that is predominately shifted to the side with very low radical concentrations. The number of polymer chains is determined by the number of initiators. Each growing chain has the same probability to propagate with monomers to form living/dormant polymer chains (R-Pn-X). As a result, polymers with similar molecular weights and narrow molecular weight distribution can be prepared. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/c/c5/ATRP_on_styrene.png)
+
+ATRP of styrene with targeted degree of polymerization 100. PMDETA stands for N,N,N′,N′′,N′′-pentamethyldiethylenetriamine.
+
+<!-- 
+catalyst activity
+monomers 
+Initiator activity
+Advantages and limits 
+-->
+
+#### Reversible addition-fragmentation chain transfer (RAFT)
+
+In RAFT polymerization, a dormant polymer chain is capped by a thiocarbonylthio group. When another propagating chain with a chain-end radical approaches, chain transfer can rapidly occur at the chain end, forming an intermediate species that links both polymer chains. This unstable intermediate species then dissociates, resulting in one propagating chain and one capped dormant chain, as illustrated in the figure below. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/9/96/RAFT_ChainEquilibration.png)
+
+
+The reactions associated with RAFT equilibria occur in addition to the conventional radical polymerization steps of initiation, propagation, and termination. In an ideal RAFT process, the RAFT agent functions solely as a transfer agent. Once radicals are generated from initiators such as AIBN, they initiate the growth of polymer chains. However, the propagating radicals quickly transfer to another chain, and then another, facilitated by the chain transfer agent. Consequently, all chains have an equal probability of growing, with the majority being capped by thiocarbonylthio groups. Termination is not suppressed by the RAFT process. The retention of thiocarbonylthio groups in the polymeric product is responsible for the living character of RAFT polymerization, making the process suitable for synthesizing block copolymers and end-functional polymers.
+
+<!-- 
+CTA design 
+monomers
+Advantages and limits 
+-->
+
+<!--
+
+#### Other RDRP
+
+-->
+
+#### Common features
+
+The prerequisite of a successful RDRP is fast and reversible activation/deactivation of propagating chains. There are many RDRP methods but all can be categoried into three types: deactivation by catalyzed reversible coupling, e.g., ATRP, deactivation by spontaneous reversible coupling, e.g., NMP, and deactivation by degenerative transfer (or reversible chain transfer), e.g., RAFT. A mixture of different mechanisms is possible; e.g. a transition metal mediated RDRP could switch among ATRP, OMRP and DT mechanisms depending on the reaction conditions and reagents used.
+
+In any RDRP processes, the radicals can propagate with the rate coefficient $k_p$ by addition of a few monomer units before the deactivation reaction occurs to regenerate the dormant species. Concurrently, two radicals may react with each other to form dead chains with the rate coefficient $k_t$. The rates of propagation and termination between two radicals usually are not influenced by the mechanism of deactivation or the catalyst used in the system.
+
+In addition, other chain breaking reactions such as irreversible chain transfer and catalytic termination reactions that involves the propagating radicals and solvent, monomer, polymer, catalyst, additives, etc. would introduce additional loss of chain end functionality. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/8/8d/Three_types_of_mechanisms_of_RDRP.svg)
+
+In all RDRP methods, the theoretical number average molecular weight of obtained polymers, $M_n$, can be defined by following equation:
+
+$$M_n = M_m\times\frac{[\ce{M}]_0 - [\ce{M}]_t}{[\ce{R-X}]_0}$$
+
+where $M_m$ is the molecular weight of monomer; $[\ce{M}]_0$ and $[\ce{M}]_t$ are the monomer concentrations at time $0$ and time $t$; $[\ce{R-X}]_0$ is the initial concentration of the initiator.
+
+Besides the designed molecular weight, a well controlled RDRP should give polymers with narrow molecular distributions, which can be quantified by $M_w/M_n$ values, and well preserved chain end functionalities. 
+
+A well controlled RDRP process requires: 1) the reversible deactivation process should be sufficiently fast; 2) the chain breaking reactions which cause the loss of chain end functionalities should be limited; 3) properly maintained radical concentration; 4) the initiator should have proper activity that facilitates fast initiation.
+
+### Living cationic polymerization
+
+In conventional cationic polymerization the actual initiator is usually $\ce{H+}$. However, a single initiator species is often not sufficient in cationic polymerizatin. A second ingredient or cocatalyst is needed. The initiator systems are generally Lewis acids, such as $\ce{BF3, AlCl3, TiCl4}$ with a proton-donating coinitiator like water or methanol, or protic acids, such as $\ce{H2SO4, HClO4, HI}$. In case of Lewis acid catlysts, equilibria are established. 
+
+$$
+\begin{align*}
+& \ce{H2O + BF3 <=> H+ + F3BOH-} \\
+& \ce{H2O + AlCl3 <=> H+ + Cl3AlOH-} \\
+& \ce{CH3OH + TiCl4 <=> H+ + Cl4TiOCH3-}
+\end{align*}
+$$
+
+With insufficient cocatalyst the equilibrium lie far to the left, while too much cocatalyst can terminate the chain or destroy the catalyst. 
+
+In case of protic acids, the proton concentration depend on the ionization equilibria which are stronly influenced the choice of solvent. 
+
+In both cases, not all available protons intiate the polymerization at the same time, but rather slow initiation is often observed.
+
+Besides initiation and propagation, cationic polymerization often involves several complications such as $\beta$-proton transfer, hydride transfer from monomer, intermolecular hydride transfer, spontaneous termination (or chain transfer to counterion). 
+
+To approach living cationic polymerization, there are to tasks: 1) enable fast initiation that all initiators start to propagate at the same time; 2) select conditions that maximize the rate of propagation relative to transfer. To extend the lifetime of the growing chain, a reversible deactivation equilibrium is favorable. 
+
+One simple example is $\ce{HI}$ initiated polymerization of vinyl ether in the presence of $\ce{I2}$. Fist, $\ce{H+}$ reacts with monomer via a typical addition reactin. The presence of $\ce{I2}$ can activate the addition product by removing the I to form $\ce{I3-}$ living a carbocation with can propagate with monomers. The equilibrium lies strongly towards the dormant state. 
+
+![](https://pubs.acs.org/cms/10.1021/cr900225g/asset/images/medium/cr-2009-00225g_0037.gif)
+
+## Kinetics of RDRP{{attrs[#blk-4a6nlesqbse7]}}
+
+In this section, we will examine the following key parameters involved in the polymerization process: the polymerization rate, which is proportional to the radical concentration; the number of polymers produced; the relationship between the number-average molecular weight and monomer conversion; and the distribution of molecular weight. Be careful -- in this section, we consider only ideal kinetic models, including thermal initiator decomposition, propagation, termination, and RDRP equilibrium. Real systems are often far more complex, and deviations from these ideal cases may occur.
+
+### NMP and normal ATRP
+
+**NMP** represents the simplest RDRP system. The initiator utilized for the NMP of styrene is 2,2,6,6-tetramethyl-1-(1-phenylethoxy)piperidine. Structurally, it resembles the addition product formed by styrene (with one extra hydrogen atom) and a TEMPO molecule. For simplicity, we refer to this compound as St-TEMPO.
+
+Consider the scenario involving two St-TEMPO molecules. When heated, each molecule can dissociate into two components: St* and TEMPO. This dissociation process is reversible, allowing the fragments to recombine into the original St-TEMPO molecule. However, it is not obligatory for TEMPO to reattach to its original partner; TEMPO can also couple with a different St*. Additionally, two St* radicals can react with each other to form an St-St molecule. Notably, TEMPO radicals cannot couple with one another. The accompanying figure illustrates all three possible reactions.
+
+![](https://lh3.googleusercontent.com/d/1-C26KG6QWNJFigfIBcbONIZc8197tHvx =600x)
+
+If a system contains many St-TEMPO molecules, heating it will establish a dynamic equilibrium between St-TEMPO and its dissociation products, St* and TEMPO. During this process, reactions between St* radicals will occur, leading to a gradual decrease in the number of St-TEMPO molecules. This decrease is accompanied by the accumulation of TEMPO. This phenomenon, known as the persistent radical effect, arises from TEMPO's stability as a long-lived radical, causing its concentration to increase gradually and continuously. As the concentration of St* decreases, the coupling reaction rate between two St* radicals correspondingly diminishes.
+
+$$\ce{St-TEMPO <=>[K_{NMP}] St* + TEMPO}$$
+
+$$K_{NMP} = \frac{[\ce{St*}][\ce{TEMPO}]}{[\ce{St-TEMPO}]}$$
+
+The value of $K_{NMP}$ is very small, thus the concentration of radicals, $[\ce{St*}]$, is always very low. Especially, the concentration of TEMPO will build up, leaving even lower level of $[\ce{St*}]$. 
+
+Finally, introducing styrene to the system at a concentration much higher than that of St-TEMPO initiates polymerization. The number of resulting polymer chains theoretically equals the initial number of St-TEMPO molecules. Upon the formation of St*, it can react with styrene units to create (St)$_n*$ radicals. Regardless of the number of monomer units added to an individual polymer chain, the subsequent reactions—whether between (St)$_n*$ and TEMPO, or between two (St)$_n*$ radicals—proceed in the same manner as previously described. 
+
+Due to termination reactions, the actual number of active polymers—defined as polymers with TEMPO chain ends—is slightly lower than the initial number of St-TEMPO molecules. The number of active polymers decreases slowly but continueously during the polymerizatin. However, when calculating the theoretical average molecular weight, we still use the initial concentration of St-TEMPO, represented as $[\ce{R-X}]_0$.
+
+The formula for the theoretical number-average molecular weight is given by: 
+$$M_n = M_m \times \frac{[\ce{M}]_0 - [\ce{M}]_t}{[\ce{R-X}]_0}$$
+
+where:
+- $M_m$ is the molecular weight of the monomer,
+- $[\ce{M}]_0$ is the monomer concentration at time $t=0$,
+- $[\ce{M}]_t$ is the monomer concentration at time $t$.
+
+During polymerization, the radical concentration is initially high but drops rapidly as TEMPO accumulates. As polymerization progresses, the radical concentration decreases at a much slower rate, influenced by the persistent radical effect. 
+
+**Normal ATRP** utilizes alkyl halide (RX) as the initiator. The process requires a catalyst, such as Cu(I)X paired with a suitable ligand, to generate an alkyl radical by facilitating the transfer of the halogen atom to oxidize Cu(I)X into Cu(II)X$_2$. Assuming the initial concentrations of RX and Cu(I)X are equal, the reaction kinetics closely resemble those observed in NMP. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/6/6a/ATRP_general.png)
+
+Equilibrium radical concentration:
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/30cc5d17e88a09ffcf5c87757ad665152bca820d)
+
+In the example shown above, chlorine serves as the halogen.
+The system achieves equilibrium involving four key reagents: RCl, Cu(I)Cl/ligand, R* (or P*), and Cu(II)Cl$_2$/ligand. Initially, the radical concentration is relatively high; however, as termination occurs and Cu(II)Cl$_2$/ligand accumulates, the radical concentration gradually diminishes to a much lower level. As polymerization progresses, the radical concentration continues to decrease slowly, accompanied by a steady increase in Cu(II)Cl$_2$/ligand. The calculation of theoretical molecular weight is based on the initial concentration of RCl, though the actual number of halogen capped polymer chains decreases slowly and coninuously.
+
+In both NMP and normal ATRP, the average molecular weight of the resulting polymers increases linearly with monomer conversion. As polymer chains continue to grow, the molecular weight distribution becomes progressively narrower. 
+
+### ICAR ATRP and RAFT
+
+**ATRP by Activator Regeneration** 
+
+In ATRP, it is not necessary to have an equal amount of initial RX and Cu(I). For example, polymerization can proceed with only 10% Cu(I) relative to RX. Even with just 1% Cu(I), the polymerization will begin, but may halt once the majority of Cu(I) is converted to Cu(II). To overcome this, introducing a method to reduce Cu(II) back to Cu(I) can allow the polymerization to continue. Furthermore, if a mechanism to regenerate Cu(I) from Cu(II) is available, the initial amount of Cu catalyst can be further minimized. Interestingly, it is not essential to start with Cu(I)—beginning with Cu(II) and reducing it to Cu(I) in situ will enable the polymerization to progress equally effectively. ATRP utilizing trace amounts of Cu catalyst has become widely adopted due to its efficiency and versatility. The process of reducing Cu(II) to Cu(I), known as activator regeneration, plays a pivotal role in sustaining polymerization. Various methods can be employed for activator regeneration, including the use of reducing agents like vitamin C, thermal initiators such as AIBN, electrochemical reactions, photoreduction, or even mechanical reactions. These approaches offer flexibility, enabling precise control over the polymerization process and minimizing the catalyst's environmental impact.
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/eb/Activator_Regeneration_Atom_Transfer_Radical_Polymerization.svg)
+
+**ICAR ATRP** 
+
+ATRP with trace amounts of Cu catalyst, when paired with a thermal initiator, is termed Initiators for Continuous Activator Regeneration (ICAR) ATRP. The reaction system typically comprises a thermal initiator, such as AIBN, a monomer, an alkyl halide initiator (RX), and a Cu catalyst, which can be either Cu(I) or Cu(II).
+
+If RX and the Cu catalyst are removed from the system, the resulting mixture mirrors a conventional radical polymerization setup, as discussed in the previous chapter. Thus, when RX and Cu are present, all the reactions characteristic of conventional radical polymerization still occur in the same manner.
+
+Introducing RX alone into a conventional radical polymerization system has no effect, as RX remains unchanged throughout polymerization. Likewise, adding Cu(I) catalyst without RX does not lead to any reaction involving Cu(I) during polymerization.
+
+However, when both RX and Cu catalyst are introduced into a conventional radical polymerization system, new reactions emerge, leading to the establishment of ATRP equilibrium. Cu(I)X/L interacts with RX or PX to generate radicals, while these radicals react with Cu(II)X₂/L to form RX or PX. A radical generated from AIBN does not merely initiate a single polymer chain but is continuously transferred to other RX molecules due to the ATRP mechanism. This does not mean that the same radical is passed from one chain to another; rather, ATRP equilibrium ensures that whenever one radical is deactivated, another is activated, preventing net radical consumption. The decomposition of AIBN contributes to the net radical generation, while termination accounts for radical consumption. Before termination occurs, a single radical can enable multiple polymer chains to incorporate more monomer units, ensuring that polymer chains grow at a similar rate.
+
+Consequently, the radical concentration in ICAR ATRP should be comparable to that of conventional radical polymerization under identical conditions without RX and Cu. Likewise, the polymerization rate and extent of termination should be nearly the same. However, the number of polymer chains in ICAR ATRP is primarily dictated by the number of RX molecules, whereas in conventional radical polymerization, it is determined by the number of decomposed AIBN molecules. In ICAR ATRP, AIBN decomposition contributes a small fraction of additional polymer chains beyond those derived from RX. Since AIBN is typically present at much lower concentrations than RX, and only a small fraction undergoes decomposition, the number of polymer chains remains predominantly governed by the RX count.
+
+**RAFT** 
+
+RAFT polymerization relies on a thermal initiator to generate radicals, each of which can be transferred to multiple polymer chains via reversible chain transfer, facilitated by RAFT agents (also known as chain transfer agents, CTAs). The net radical generation and consumption in RAFT polymerization are equivalent to those in ICAR ATRP. The number of polymer chains is primarily determined by the quantity of CTA, with each CTA effectively leading to the formation of a single polymer chain. Similar to ICAR ATRP, a small fraction of polymers arises from AIBN decomposition, contributing to the overall polymer system.
+
+In both ICAR ATRP and RAFT, the average molecular weight of the resulting polymers increases linearly with monomer conversion. As polymer chains continue to grow, the molecular weight distribution becomes progressively narrower. The number of active polymers, i.e., those with halogen chain end for ATRP and CTA for RAFT, remains constant. This is different from normal ATRP. However, there would be additional polymer chains produced by thermal initiator decomposition. 
+
+> [OVESET -- Atom Transfer Radical Polymerization](https://colab.research.google.com/github/wangyu16/PolymerScienceEducation/blob/master/OVESET/04_ATRP.ipynb)
+
+## Single site catalyst approach{{attrs[#blk-4ez7tzyshzwq]}}
+
+### Ziegler-Natta catalysts
+
+Ziegler–Natta recipe consists of two components: 
+- a halide or other compound of a transition metal from among the group IVB to VIIIB elements, 
+	- including $\ce{TiCl4, TiCl3, VCl4, VCl3, ZrCl4, CrCl3, MoCl5, CuCl}$;
+- and an organometallic compound of a representative metal from groups IA to IIIA,
+	- including $\ce{(C2H4)3Al, (C2H5)2Mg, C4H9Li, (C2H5)2Zn}$.
+
+The individual components can initiate polymerizations:
+- $\ce{TiCl4}$ can initiate cationic polymerization;
+- $\ce{C4H9Li}$ can initiate anionic polymerization. 
+
+But the combination is responsible for another different mechanism. When the two components are used together, complicated exchange reactions are possible. The catylst often must "age" to attain maximum effectiveness. Possible exchange equilibria are
+
+$$\ce{2Al(C2H5)3 <=> Al2(C2H5)6 <=> [Al(C2H5)2]+ + [Al(C2H5)4]-}$$
+
+$$\ce{TiCl4 + [Al(C2H5)2]+ <=> C2H5TiCl3 + [Al(C2H5)Cl]+}$$
+
+The organotitanium halide can be reduced to $\ce{TiCl3}$
+
+$$\ce{C2H5TiCl3 -> TiCl3 + C2H5*}$$
+
+The free radical can initiate radical polymerization. The Ziegler-Natta systems encompass several mechanisms for the initiation of polymerization. To account for stereoregularity, there must be a coordination mechanism in which both the grwoing chain and the monomer coordinate with the catalyst. 
+
+Since the coordination almost certainly involves the transition metal atom, there is a resemblance here to anionic polymerization. 
+
+Variables of Zieglar-Natta catalyst system include:
+
+1. Catalyst solubility. Ti based catalysts are mostly heterogeneous systems. Monomers that interact weakly with catalysts, i.e., non-polar monomers, requires more extreme orienting effect of solid surface for the formation of a stereoregular product. Thus heterogeneous catalysts are needed. For polar monomers, they interact stronger with catalysts, thus homogeneous catalysts are able to exert sufficient control for stereoregularity. 
+2. crystal structure of solids. The $\alpha$-crystal form of $\ce{TiCl3}$ is an excellent catalyst. It is believed the stereoactive Ti ions in this crystal are located at the edges of the crystal, where chloride ion vacancies in the coordination sphere allow coordination with the monomer molecules. 
+3. Tacticity of products. Most solid catalysts produce isotactic products. Syndiotacticity is mostly produced by soluble catalysts. Syndiotactic polymerizations are carried out at low temperatures, and even the catalyst must be prepared at low temperatures. With polar monomers syndiotacticity is also promoted by polar reaction media.
+4. Rate of polymerization. The rate of polymerization for homogeneous systems closely resembles anionic polymerization. For heterogeneous systems the concentration of alkylated transition metal sites on the surface appears in the rate law. Faster polymerization may result in lower degree of stereoregularity. 
+
+The general picture postulates an interaction between monomer and catalyst such that a complex is formed between the $\pi$ electrons of the olefin and the $d$ orbitals of the transition metal. A crucial consideration in the coordination is maximizing the overlap of the orbitals involved. Titanium(III) ions seem ideally suited for this function; higher effective nuclear charge on the metal results in less spatial extension of d orbitals and diminished overlap.
+
+Two generalized models about the mechanism: monometallic mechanism and bimetallic mechanism.
+
+Monometallic mechanism. This shifts the vacancy – represented by the square – in the coordination sphere of the titanium to a different site. Syndiotactic regulation occurs if the next addition takes place via this newly created vacancy. Isotactic growth the polymer chain must migrate back to its original position.
+
+![fig5_11](./img/Monometallic.png)
+
+Bimetallic mechanism. The precise distribution of halides and alkyls is not spelled out because of the exchanges described by Reaction. An alkyl bridge is assumed based on observations of other organometallic compounds. The $\pi$ coordination of the olefin with the titanium is followed by insertion of the monomer into the bridge to propagate the reaction.
+
+![fig5_12](./img/Bimetallic.png)
+
+In Ziegler-Natta system there might be multiple catalytic sites active in a given polymerization leading to greatly different propagation rates. Polymer materials produced by Ziegler–Natta catalysts, especially under commercial conditions, tend to be highly heterogeneous at the molecular level. 
+
+Heterogeneous catalysts are the majority in commercial use. Though complicated in mechanisms, it is easy to separate the catalyst from the product. 
+
+### Single site catalyst 
+
+Single-site catalyst
+: One that has a single, well-defined catalytic geometry that can control the desired aspect of propagation.
+
+Single-site polymerization catalysts are usually homogeneous: they are molecularly dispersed within the reaction medium. This situation leads to better defined products, and is much more amenable to detailed studies of mechanism. Furthermore, strategies for immobilizing such catalysts are available, making them also of potential commercial interest.
+
+Most single-site catalysts have the general formula [L~n~MP], where L~n~ represents a set of ligands, M is the active metal center, and P is the growing polymer. Cyclopentadienyl (Cp) rings are common ligands lead to metallocene systems. 
+
+Single-site catalysts involve another component. The most common is a partially hydrolyzed trimethyl aluminum species -- methylaluminoxane (MAO). The active center is more properly denoted [L~n~MP]^+^[X]^-^. The counterion contains MAO and a displaced ligand, such as chloride. 
+
+The stereoregulation of monomer addition can be achieved through one of two modes.
+
+- **Chain-end control:** the addition of a monomer is influenced mostly by the configuration of the previous repeat unit. 
+- **Site control:** the ligand set may be chosen to provide a chiral confining environment, which exerts a dominant influence on the stereochemistry of addition. 
+
+#### α-olefin polymerization
+
+Catalysts with a plane of symmetry, or $C_s$, provides:
+- site control $\to$ syndiotactic polymers;
+- chain-end control $\to$ iso- or syndiotactic polymers. 
+
+$C_2$ symmetry [5.XVI] is isospecific under site control. The proposed mechanism is 
+
+![str5_16](./img/Zr-1.png =100x)
+
+
+![fig5_14](./img/Zr-2.png =600x)
+
+
+[5.XVII] is syndiospecific, consistent with its $C_s$ symmetry. 
+
+![str5_17](./img/Zr-3.png =150x)
+
+
+Zirconocene [5.XVIII] oscillates between two isomeric structures. One catalyze isotactic polypropylene (left), the other atactic (right). The exchange between the two structures is slower than propagation resulting in blocky polymers with about 20 isotactic units and 20 atactic units in sequence. 
+
+![str5_18](./img/Zr-4.png =300x)
+
+<!-- G.W. Coates, Precise control of polyolefin stereochemistry using single-site metal catalysts, Chem. Rev., 100, 1223, 2000. -->
+
+
+#### Polar vinyl monomer polymerization
+
+<!-- Chem. Rev. 2009, 109, 11, 5157–5214 https://doi.org/10.1021/cr9000258 -->
+
+Coordination polymerization of polar vinyl monomers by single-site metal catalysts will include two major types of coordination polymerization: migratory insertion (i.e., coordination-insertion) and conjugate addition (coordination-addition).Metal-catalyzedcoordination-insertion polymerization of nonpolar or polar R-olefins and metalmediated coordination-addition polymerization of polar vinyl monomers are two fundamentally different polymerization processes. 
+
+![](https://pubs.acs.org/cms/10.1021/cr9000258/asset/images/medium/cr-2009-000258_0032.gif)
+
+Example: Chain Initiation and Propagation Steps in MMA Polymerization by $\ce{[Cp^*_2SmH]2}$
+
+![Screenshot 2024-09-30 at 9.38.31 AM](https://hackmd.io/_uploads/HyYEOV_AC.png =600x)
+
+
+### Living ring-opening metathesis polymerization
+
+<!-- Progress in Polymer Science Volume 32, Issue 1 , January 2007, Pages 1-29, https://doi.org/10.1016/j.progpolymsci.2006.08.006 -->
+
+Generally, ROMP reactions involve the conversion of a cyclic olefin with significant ring-strain (>5 kcal/mol), such as cyclobutene, norbornene, cyclopentene, etc., to a polymer that also contains double bonds. The important thing to note about ring-opening metathesis polymerizations is that the double bond is usually maintained in the backbone, which can allow it to be considered "living" under the right conditions.
+
+The general reaction process is as shown below
+
+![1-s2.0-S0079670006000736-gr2](https://hackmd.io/_uploads/SJkLtNuA0.gif)
+
+Major possible undesirable side reactions include
+
+![1-s2.0-S0079670006000736-gr3](https://hackmd.io/_uploads/B1CdK4uC0.gif)
+
+One series of very successful catalysts developed by Robert H. Grubbs are named as Grubbs catalyst which became the most commonly used catalysts for living ROMP. The figure below shows the first generation Grubbs catalyst and two of the second generation Grubbs catalysts. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/7/7b/GrubbsMetathesisCatalysts.png =400x)
+
+One example of the synthesis of well defined block copolymer by living ROMP is shown in the figure below. 
+
+![1-s2.0-S0079670006000736-gr26](https://hackmd.io/_uploads/HyGdo4uAC.gif)
+
+## Step-by-step synthesis{{attrs[#blk-v7vqlbcvq04d]}}
+
+Step-by-step synthesis discussed here aims to produce large molecular weight molecules with precise chain sequence and the same molecular architecture. 
+
+General features: 
+
+* The reactions involved must be highly efficient that a decent overal yield could be achieved after several/many generations/steps.
+* Purification is needed after each step. 
+* If AB or AB~n~ type monomers are used, usually protection and deprotection of one type of functional group is necessary.
+* Using AA and BB (or B~n~) type monomers can help to avoid protection/deprotection. Similarly, using AA (or A~n~) and BC type monomers, where B and C do not react with each other but both react with A, can help to avoid protection/deprotection as well. 
+* Using solid immobilized initiators to grow polymers on the solid surface can help to simplify the purification process after each step of reaction. 
+
+
+### Dendrimers
+
+Dendrimers are highly ordered, branched polymeric molecules. Typically, dendrimers are symmetric about the core, and often adopt a spherical three-dimensional morphology. The word dendron is also encountered frequently. A dendron usually contains a single chemically addressable group called the focal point or core. The difference between dendrons and dendrimers is illustrated in the figure below, but the terms are typically encountered interchangeably.
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/e8/Graphs.jpg =600x)
+
+Dendritic molecules are characterized by structural perfection. Dendrimers and dendrons are monodisperse and usually highly symmetric, spherical compounds. A dendrimer is a nanoparticle with the size at nanometer ragnge. The surface functional groups can be used to anchor detecting agents, affinity ligands, targeting components, radioligands, imaging agents, pharmaceutically active compounds, etc. The inner space can also be used to load drugs, etc. It typically takes a long route to synthesize dendrimers, either divergently or convergently. Thus the potential applications are mainly in highly value-added areas, such as drug delivery. 
+
+![](https://ars.els-cdn.com/content/image/1-s2.0-S2468519417302033-gr3_lrg.jpg =600x)<!-- https://doi.org/10.1016/j.mtchem.2019.04.004 -->
+
+The figure below shows one example synthetic procedure of a dendrimer.  
+
+![](https://ars.els-cdn.com/content/image/1-s2.0-S2468519417302033-gr6_lrg.jpg =800x)
+
+### Precise sequence
+
+Robotic automated synthesis gained significant progress in the first two decades of 21^st^ century. Without automation, synthesising a molecule with a precise sequence order of 100 monomer units is very time consuming. It is very doughtful if anyone would try to do so. The advance of robotic automated synthesis made such kind of task possible and applicable. 
+
+Here are two reported examples:
+
+Bradley L. Pentelute and coworkers at the Massachusetts Institute of Technology created an automated chemical protocol to synthesize peptides up to 164 amino acids long in hours. The machine they used is shown in the figure below. 
+
+<!-- C&EN by Leigh Krietsch Boerner, 
+May 28, 2020, A version of this story appeared in Volume 98, Issue 21. -->
+
+![](https://s7d1.scene7.com/is/image/CENODS/09821-scicon6-amidator?$responsive$&wid=700&qlt=90,0&resMode=sharp2)
+
+The work was published in Science 29 May 2020, Vol 368, Issue 6494, pp. 980-987, https://doi.org/10.1126/science.abb24.
+
+Using Automated Glycan Assembly (AGA), researchers achieved the synthesis of a 100-mer polysaccharide through a 201-step process completed in 188 hours. Additionally, the convergent block coupling of 30- and 31-mer oligosaccharide fragments, also prepared via AGA, resulted in a highly branched 151-mer polymannoside. This significant advancement was published in the Journal of the American Chemical Society in 2020 (Vol. 142, Issue 19, pp. 8561–8564, https://doi.org/10.1021/jacs.0c00751).
+
+![images_medium_ja0c00751_0003](https://hackmd.io/_uploads/S1KznQOAC.gif)
+
+
+<!-- Macromolecules 2015, 48, 14, 4759–4767 
+
+Similar synthetic procedure can be used to synthesize non-naturally occurring polymers. 
+The monomer units of a polymer can be used to encode a message. This property is used, for instance, by nature to store genetic information in DNA macromolecules. Therefore, during the past decades, many researchers have aimed to recreate in vitro or in vivo the properties of nucleic acids. Peptide nucleic acids, or more generally speaking xeno-nucleic acids, are interesting examples of man-made genetic polymers. However, the genetic code is surely not the only type of code that can be “written” in a polymer. In principle, many other monomer-based codes could be developed. For example, a binary code can be potentially implemented in a synthetic macromolecule using two comonomers defined as 0 and 1 bit. This possibility is exciting because it would permit to develop a full new class of synthetic polymers, which contain sequence-coded information. Such polymers could be interesting for a variety of new applications, for example in the field of data storage and product identification. However, these tempting options are currently underexplored. It should be clarified that the development of information-containing macromolecules is not trivial. First of all, in order to contain “readable” information, such polymers should possess perfectly controlled comonomer sequences. Moreover, chemical and analytical methods that allow deciphering of sequence-coded information have to be developed. The aim of the present Perspective is to show that significant progress has been done in that direction during the past two years. For instance, convenient strategies have been reported for the preparation of monodisperse sequence-defined macromolecules. In addition, encouraging advances have been made for the sequencing of non-natural polymers. These recent results are discussed and critically analyzed herein. Altogether, monomer-based information storage should be regarded as a new property of synthetic matter.
+
+![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fncomms8237/MediaObjects/41467_2015_Article_BFncomms8237_Fig1_HTML.jpg?as=webp)
+
+-->
+
+## Macromolecular engineering{{attrs[#blk-9gp4ytm026ug]}}
+
+Macromolecular engineering involves (precisely) designing macromolecular structures to achieve specific material functionalities.
+
+Broadly speaking, all polymer material development falls under the umbrella of macromolecular engineering. However, this discussion focuses on topics such as pursuing higher levels of precision and ordered structures, incorporating novel functional moieties into polymer chains, and deriving functionalities from the design of individual macromolecules. The properties of polymers synthesized directly by conventional polymerization methods from common commercial monomers are not the focus of this section.
+
+### Miscellaneous synthetic methods
+
+Previous sections discussed several general stragegies to achieve controlled or living polymerization to produce polymers with narrow molecular weight distribution and predetermined chain end functionalities, which are valuable tools for macromolecular engineering. Some other synthetic methods are also frequently used for tailoring the molecular structures. 
+
+#### Click chemistry
+
+Click chemistry is an approach to chemical synthesis that emphasizes efficiency, simplicity, selectivity, and modularity in chemical processes used to join molecular building blocks. 
+
+For a reaction to be considered a click reaction, it must satisfy certain characteristics:
+
+- modularity
+- insensitivity to solvent parameters
+- high chemical yields
+- insensitivity towards oxygen and water
+- regiospecificity and stereospecificity
+- a large thermodynamic driving force (>20 kcal/mol) to favor a reaction with a single reaction product. A distinct exothermic reaction makes a reactant "spring-loaded".
+
+The process would preferably:
+
+- have simple reaction conditions
+- use readily available starting materials and reagents
+- use no solvent or use a solvent that is benign or easily removed (preferably water)
+- provide simple product isolation by non-chromatographic methods (crystallisation or distillation)
+- have high atom economy.
+
+One most commonly used click reaction is copper(I) catalyzed azide-alkyne cycloaddition (CuAAC). 
+
+![](https://upload.wikimedia.org/wikipedia/commons/6/6b/Azide_Alkyne_cycloaddition.png =600x)
+
+This reaction can be used to link polymer strands together or to add pandent functional groups or to the chain ends. 
+
+#### Supramolecular chemistry
+
+Supramolecular polymer
+: polymeric arrays of monomeric units that are connected by reversible and highly directional secondary interactions–that is, non-covalent bonds. 
+
+
+![](./img/Supramolecular.png)
+
+Supramolecular structures of polymers describe the interaction of polymer molecules to form higher level ordered structure, such as the self-assembly of block copolymer, the double helix of DNA. This is different from supramolecular polymer because in these cases the polymers are based on covalent bonds.
+
+Apparently, there could be a combination of two. For example, two homopolymers with complementary end groups that can recognize and associate with each other can form supromolecular polymer and self-assemble as block copolymers.  
+
+<!-- More strategies to convert step-growth polymerization to "living" polymerizations. Confined space, confined catalyst, slow addition. -->
+
+<!-- stereo control -->
+
+
+### Macromolecular architectures
+
+Many possible macromolecular architectures have been discussed in previous sections. Here, the discussion is mainly on how to choose proper synthetic methods to achieve specific well-defined polymer structures. 
+
+#### Polymers with specific chain end functional groups 
+
+Living polymerization, as well as polymerization methods resembles the featuers of living polymerization, results in polymers with the same chain end functionalities. This is important for further reaction to introduce the polymer into more complex structures with higher level of order. But the chain end functional group resulted directly from the polymerization may or may not be suitable for the desired next step reactions. 
+
+Using ATRP as an example, some possible end group transition reactions are: 
+
+![](https://www.cmu.edu/maty/images/8d-scheme-2.jpg =600x)
+
+End group modification is simply organic chemistry. However, the reaction must be highly efficient and selective. Otherwise, ill structured polymers will be obtained and will be difficult to remove from the product. 
+
+#### Block copolymers
+
+Reversible deactivation polymerization and single site catalyst polymerization typically allow sequential addition of monomers to make block copolymers. Generally, more active monomers should be polymerized first and less active monomers later; otherwise slow initiation or even no initiation would happen when trying to polymerize the second monomer. The activity here refers to both the activation of the polymer with a functional chain end group and the addition of the next monomer. 
+
+It is also possible to use a dual functional initiator to polymerize two types of monomers via different mechanisms. Sometimes, the two polymerizations can happen simultaneously to produce a block copolymer in one pot and one step. 
+
+In addition, click reaction can be used to link together two polymers with complementary chain end functional groups. 
+
+#### Molecular brushes or bottlebrush polymers
+
+<!-- Bottlebrush polymers: From controlled synthesis, self-assembly, properties to applications. Progress in Polymer Science Volume 116 , May 2021, 101387. https://doi.org/10.1016/j.progpolymsci.2021.101387 -->
+
+Overview of the synthetic approaches and possible architectures of the products. 
+
+![image](https://hackmd.io/_uploads/H1dY2PO0A.png)
+
+Example of grafting from approach
+
+![image](https://hackmd.io/_uploads/rJoR2DuAR.png)
+
+Example of grafting through approach
+
+![image](https://hackmd.io/_uploads/HymT3v_AA.png)
+
+
+#### Surface initiated polymers
+
+![image](https://hackmd.io/_uploads/ByCaTPdAR.png)
+
+![image](https://hackmd.io/_uploads/rk6CTPOR0.png)
+
+#### Bio conjugate materials
+
+enerating polymer-modified exosomes. the conjugation of an oligonucleotide with Chol, which is then immobilized onto the exosome surface, causing the negatively charged deoxyribonucleic acid (DNA) to extend outward from the lipid membrane. This method of exosome surface modification with tailored polymers allows for the adjustment of stability and in vivo behavior of these biological entities. 
+
+![image](https://hackmd.io/_uploads/SkSRJuuA0.png)
+
+#### Supramolecular structures
+
+![image](https://hackmd.io/_uploads/B1Vk-dOCA.png)
+
+![image](https://hackmd.io/_uploads/BJSQZ_dRR.png)
+
+![fig-9-photonic-crystals-based-on-bottlebrush-block-uoz4ld97](https://hackmd.io/_uploads/HJQ2Zu_0A.png)
+
+#### Functional units in the polymer chains
+
+For example, self-healing materials are typically synthesized by introducing dynamic covalent bonds into the polymer framework. 
+
+![image](https://hackmd.io/_uploads/ByK7z__0C.png)
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/eb/Cross-linking_DA.png =600x)
+
+### Functional materials 
+
+The above discussion is mainly about synthetic techniques to achieve specific molecular structures and compositions. Some application aspects were also briefly involved. 
+
+For scientific exploration we always prefer relatively simple components, clear reaction mechanisms, well defined local chemical structure and overall molecular architecture, etc. However, for commertial applications,  perfectly ordered molecular structures are not always required; instead, useful products generated from least effort and cost are prefered. These two aspects interwoven in scientific research and development, and, apparently, both are important. 
+
+ABS resin is a copolymer of acrylonitrile, butadiene and styrene. But it is not a simple statistic copolymer of three monomers. The resin is produced by radical polymerization of acrylonitrile and styrene in the presence of polybutadiene. Due to the presence of alkene groups in the backbone of polybutadiene, the copolymer of acrylonitrile and styrene has the chance to grow onto the polybutadiene backbone. As a result, a certain fraction of grafting copolymer is produced. The final product is possiblely a mixture of acrylonitrile/styrene copolymer, grafting copolymer, unreacted polybutadiene. The grafting copolymer has variable chain lengthes and different number of branching points. The mechanical property of ABS resin can be adjusted by changing the ratio of three components. The soft polybutadiene provides impact resistancy and the acrylonitrile/sytrene copolymer provides hardness and strength. It is a very useful material with special molecular architecture, but do not have high precision molecular structures. Many application oriented material development is like the case of ABS resin. But some applications require more uniform molecular size and well defined structures, such as dendrimers used as nanoparticles for drug delivery. 
+
+As long as useful materials are produced, the lack of precision of the composition and molecular structure should not be a issue for commercial products. One problem in common is the batch-to-batch variation of the product could be significant, which should be taken care of. 
+
+Regardless, the ability to achieve more precise control on the molecular structure and targeted functionality is more appealing. Inspired by bio functional macromolecules, many efforts were made to pursuit such advanced functional materials. Some examples are as follows.
+
+**Biodegradable non-metal magnetic resonance imaging agents** are synthesized as a block copolymer of poly(ethylene glycol) and polycarbonate based polymer containing pendant persistent organic radicals. The block copolymer self-assemble into micellar nanoparticles in aqueous media and can preferentially accumulate in tumor tissue. The nanomaterials are effective as metal-free MRI contrast agents. Anticancer drugs can be readily loaded into the nanoparticles for therapeutic delivery. 
+
+![Screenshot 2024-09-30 at 3.19.43 PM](https://hackmd.io/_uploads/H1WzdKd0A.png =600x)
+
+![image](https://hackmd.io/_uploads/H1zmdFuRR.png)
+
+
+**Colorimetric pH sensor**
+
+<!-- ACS Nano 2014, 8, 3, 2848–2856,
+https://doi.org/10.1021/nn406657b -->
+
+Blue and orange color-emitting QDs (BQDs and OQDs) are tethered on graphene oxide using poly(acrylic acid) and poly(2-vinylpyridine) as the spacer, respectively. Both polymers are pH sensitive. The PAA chains change their conformation at around pH = 4.5, while p2VP exhibit coil-globule transition at aroung pH = 3.0. The change of the polymer conformations is reflected by the change of the strength of the fluorescent emmision and can be seen directly. 
+
+
+![image](https://hackmd.io/_uploads/BJeoiYORA.png)
+
+![image](https://hackmd.io/_uploads/Sky3jFd00.png)
+
+**Lubrication materials**
+
+Core/shell charged polymer brushes-grafted hollow silica nanoparticles were prepared. Because of the excellent hydration capability of the shells consisting of charged polymer brushes, the functional nanoparticles can achieve a good lubricating effect in aqueous media via hydration lubrication mechanism. The ionic polymer is from 3-sulfopropyl methacrylate potassium salt. 
+
+![image](https://hackmd.io/_uploads/BkC6RtuCC.png)
+
+
+
+
+
+:::info
+**Example Questions**
+
+1. Compared to conventional radical polymerization what RDRP can control or improve? Average chain length, polymerization rate, molecular weight distribution, tacticity of polymers, chain end functionality, rate of termination, etc. 
+2. Why conventional radical, cationic, and coordination polymerizations are not living polymerization?
+3. What are the features of living polymerization?
+4. Describe the main components in a NMP, normal ATRP, ICAR ATRP, and RAFT system. 
+5. What are typical strategies to convert a non-living polymerization into a process mimicking the features of living polymerization? 
+6. Why can the Polymerase Chain Reaction (PCR) method synthesize DNA strands with a specific sequence structure in a mixture of many other sequence structures? 
+7. Describe the species involved in the equilibria of NMP, normal ATRP, ICAR ATRP, and RAFT. What are the expressions of the equilibria constants?
+8. Compare a conventional radical polymerization and a ICAR ATRP under identical eraction conditions after the same reaction time, except that the ICAR ATRP has alkyle halide initiator and trace amount of Cu catalyst added. What are the same and what are different? Monomer conversion, number of polymers, molecular weight and molecular weight distribution of the resulting polymers, reaction rate of AIBN decomposition, propogation, radical termination. 
+:::
+
+
+{{markdown ./license.md}}
+
+</script>
+
+<script data-orz-asset="engine" src="https://cdn.jsdelivr.net/npm/orz-paged-browser@0.6.1/orz-paged.browser.js"></script>
+<script>
+(function (global) {
+  var expandedQr = null;
+  var expandedSourceQr = null;
+
+  function collapseQr() {
+    if (!expandedQr) return;
+
+    if (expandedSourceQr) {
+      expandedSourceQr.classList.remove('is-expanded');
+      expandedSourceQr.setAttribute('aria-expanded', 'false');
+    }
+
+    if (expandedQr.parentNode) {
+      expandedQr.parentNode.removeChild(expandedQr);
+    }
+
+    if (global.document && global.document.body) {
+      global.document.body.style.overflow = '';
+    }
+    expandedQr = null;
+    expandedSourceQr = null;
+  }
+
+  function toggleQr(node) {
+    if (expandedSourceQr === node) {
+      collapseQr();
+      return;
+    }
+
+    collapseQr();
+    if (!global.document || !global.document.body) {
+      return;
+    }
+
+    expandedSourceQr = node;
+    expandedSourceQr.classList.add('is-expanded');
+    expandedSourceQr.setAttribute('aria-expanded', 'true');
+
+    expandedQr = node.cloneNode(true);
+    expandedQr.classList.add('qrcode-overlay', 'is-expanded');
+    expandedQr.setAttribute('aria-hidden', 'true');
+    expandedQr.removeAttribute('aria-expanded');
+    expandedQr.removeAttribute('tabindex');
+    expandedQr.removeAttribute('role');
+    expandedQr.addEventListener('click', function (event) {
+      event.stopPropagation();
+      collapseQr();
+    });
+
+    global.document.body.appendChild(expandedQr);
+
+    if (global.document && global.document.body) {
+      global.document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function initQrCodes(root) {
+    if (!root || typeof root.querySelectorAll !== 'function') return;
+
+    Array.prototype.slice.call(root.querySelectorAll('.qrcode')).forEach(function (node) {
+      if (node.getAttribute('data-qr-ready') === '1') return;
+
+      node.setAttribute('data-qr-ready', '1');
+      node.addEventListener('click', function (event) {
+        event.stopPropagation();
+        toggleQr(node);
+      });
+      node.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleQr(node);
+        }
+        if (event.key === 'Escape') {
+          collapseQr();
+        }
+      });
+    });
+  }
+
+  function initTabs(root) {
+    if (!root || typeof root.querySelectorAll !== 'function') return;
+    Array.prototype.slice.call(root.querySelectorAll('.tabs')).forEach(function (tabs) {
+      // data-js both guards re-init and switches the theme CSS from the no-JS
+      // fallback (all panels shown) to JS mode (only the .active panel shown).
+      if (tabs.getAttribute('data-js') === '1') return;
+      var panels = Array.prototype.slice.call(tabs.querySelectorAll(':scope > .tab'));
+      if (!panels.length) return;
+      tabs.setAttribute('data-js', '1');
+
+      var bar = global.document.createElement('div');
+      bar.className = 'tabs-bar';
+      panels.forEach(function (panel, i) {
+        var label = panel.getAttribute('data-label') || 'Tab ' + (i + 1);
+        var btn = global.document.createElement('button');
+        btn.className = 'tabs-bar-btn' + (i === 0 ? ' active' : '');
+        btn.textContent = label;
+        btn.addEventListener('click', function () {
+          Array.prototype.slice.call(tabs.querySelectorAll('.tabs-bar-btn')).forEach(function (b) { b.classList.remove('active'); });
+          panels.forEach(function (p) { p.classList.remove('active'); });
+          btn.classList.add('active');
+          panel.classList.add('active');
+        });
+        bar.appendChild(btn);
+      });
+      tabs.insertBefore(bar, tabs.firstChild);
+      panels[0].classList.add('active');
+    });
+  }
+
+  function init(root) {
+    var r = root || global.document;
+    initQrCodes(r);
+    initTabs(r);
+  }
+
+  // ---- copy-as-markdown: DOM -> Markdown walker ---------------------------
+  // Converts a selected DOM fragment back to Markdown so that copying rendered
+  // content yields source, not HTML. Standard constructs are reconstructed from
+  // their tags; generated constructs (math, mermaid, smiles, qr, youtube, chart) carry
+  // a [data-md] breadcrumb that is emitted verbatim. Written without template
+  // literals/backticks because this whole file is a String.raw template.
+  var BT = String.fromCharCode(96);
+  var FENCE = BT + BT + BT;
+
+  function rt_repeat(s, n) {
+    var out = '';
+    for (var i = 0; i < n; i++) out += s;
+    return out;
+  }
+
+  function rt_attr(node, name) {
+    return node && node.getAttribute ? node.getAttribute(name) : null;
+  }
+
+  function rt_isBlockElement(node) {
+    if (!node || node.nodeType !== 1) return false;
+    if (rt_attr(node, 'data-md') != null) return true;
+    var tag = node.tagName.toLowerCase();
+    if (/^(p|div|section|article|figure|h[1-6]|ul|ol|li|blockquote|pre|table|thead|tbody|tr|hr|details)$/.test(tag)) return true;
+    if (node.classList && (node.classList.contains('katex-display') || node.classList.contains('mermaid'))) return true;
+    return false;
+  }
+
+  function rt_katex(node, display) {
+    var ann = node.querySelector ? node.querySelector('annotation[encoding="application/x-tex"]') : null;
+    var tex = (ann ? ann.textContent : node.textContent) || '';
+    tex = tex.replace(/^\s+|\s+$/g, '');
+    if (display) return '$$\n' + tex + '\n$$';
+    return '$' + tex + '$';
+  }
+
+  function rt_img(node) {
+    var alt = rt_attr(node, 'alt') || '';
+    var src = rt_attr(node, 'src') || '';
+    var title = rt_attr(node, 'title');
+    return '![' + alt + '](' + src + (title ? ' "' + title + '"' : '') + ')';
+  }
+
+  function rt_inlineChildren(node) {
+    var out = '';
+    var kids = node.childNodes;
+    for (var i = 0; i < kids.length; i++) out += rt_inlineNode(kids[i]);
+    return out;
+  }
+
+  function rt_inlineNode(node) {
+    if (node.nodeType === 3) return node.nodeValue.replace(/\s+/g, ' ');
+    if (node.nodeType !== 1) return '';
+    var dm = rt_attr(node, 'data-md');
+    if (dm != null) return dm;
+    if (node.classList && node.classList.contains('katex')) return rt_katex(node, false);
+    var tag = node.tagName.toLowerCase();
+    switch (tag) {
+      case 'strong': case 'b': return '**' + rt_inlineChildren(node) + '**';
+      case 'em': case 'i': return '*' + rt_inlineChildren(node) + '*';
+      case 'code': return BT + (node.textContent || '') + BT;
+      case 'a':
+        var href = rt_attr(node, 'href') || '';
+        var title = rt_attr(node, 'title');
+        return '[' + rt_inlineChildren(node) + '](' + href + (title ? ' "' + title + '"' : '') + ')';
+      case 'del': case 's': return '~~' + rt_inlineChildren(node) + '~~';
+      case 'ins': return '++' + rt_inlineChildren(node) + '++';
+      case 'mark': return '==' + rt_inlineChildren(node) + '==';
+      case 'sub': return '~' + rt_inlineChildren(node) + '~';
+      case 'sup': return '^' + rt_inlineChildren(node) + '^';
+      case 'br': return '  \n';
+      case 'img': return rt_img(node);
+      case 'input': return '';
+      case 'span':
+        var spCls = (rt_attr(node, 'class') || '').trim();
+        return spCls ? '{{sp[' + spCls + '] ' + rt_inlineChildren(node) + '}}' : rt_inlineChildren(node);
+      default: return rt_inlineChildren(node);
+    }
+  }
+
+  function rt_align(cell) {
+    var style = (rt_attr(cell, 'style') || '').toLowerCase();
+    if (style.indexOf('center') !== -1) return 'center';
+    if (style.indexOf('right') !== -1) return 'right';
+    if (style.indexOf('left') !== -1) return 'left';
+    return '';
+  }
+
+  function rt_sep(align) {
+    if (align === 'center') return ':---:';
+    if (align === 'right') return '---:';
+    if (align === 'left') return ':---';
+    return '---';
+  }
+
+  function rt_tableRows(headRow, bodyRows) {
+    var rows = [];
+    var header = [];
+    var aligns = [];
+    if (headRow) {
+      var hc = headRow.children;
+      for (var i = 0; i < hc.length; i++) { header.push(rt_inlineChildren(hc[i]).trim()); aligns.push(rt_align(hc[i])); }
+    }
+    rows.push('| ' + header.join(' | ') + ' |');
+    var seps = [];
+    for (var s = 0; s < header.length; s++) seps.push(rt_sep(aligns[s]));
+    rows.push('| ' + seps.join(' | ') + ' |');
+    for (var r = 0; r < bodyRows.length; r++) {
+      var cells = [];
+      var tds = bodyRows[r].children;
+      for (var c = 0; c < tds.length; c++) cells.push(rt_inlineChildren(tds[c]).trim());
+      rows.push('| ' + cells.join(' | ') + ' |');
+    }
+    return rows.join('\n');
+  }
+
+  function rt_table(tbl) {
+    var headRow = tbl.querySelector ? tbl.querySelector('thead tr') : null;
+    var bodyRows = tbl.querySelectorAll ? tbl.querySelectorAll('tbody tr') : [];
+    return rt_tableRows(headRow, bodyRows);
+  }
+
+  // Reconstruct a table from bare table-internal nodes (thead/tbody/tr), e.g.
+  // when a selection inside a table loses its <table> wrapper.
+  function rt_tableFromParts(parts) {
+    var headRow = null;
+    var bodyRows = [];
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      var tag = p.tagName.toLowerCase();
+      if (tag === 'thead') { var tr = p.querySelector ? p.querySelector('tr') : null; if (tr && !headRow) headRow = tr; }
+      else if (tag === 'tbody') { var trs = p.querySelectorAll ? p.querySelectorAll('tr') : []; for (var j = 0; j < trs.length; j++) bodyRows.push(trs[j]); }
+      else if (tag === 'tr') { if (!headRow) headRow = p; else bodyRows.push(p); }
+    }
+    return rt_tableRows(headRow, bodyRows);
+  }
+
+  function rt_codeBlock(pre) {
+    var code = pre.querySelector ? (pre.querySelector('code') || pre) : pre;
+    var lang = '';
+    var cls = rt_attr(code, 'class') || '';
+    var m = cls.match(/language-([A-Za-z0-9_+#-]+)/);
+    if (m) lang = m[1];
+    var text = (code.textContent || '').replace(/\n$/, '');
+    return FENCE + lang + '\n' + text + '\n' + FENCE;
+  }
+
+  function rt_list(node, ordered, depth) {
+    var items = [];
+    var idx = 1;
+    var kids = node.childNodes;
+    for (var i = 0; i < kids.length; i++) {
+      var li = kids[i];
+      if (li.nodeType !== 1 || li.tagName.toLowerCase() !== 'li') continue;
+      items.push(rt_listItem(li, ordered, idx, depth));
+      idx++;
+    }
+    return items.join('\n');
+  }
+
+  function rt_listItem(li, ordered, idx, depth) {
+    var indent = rt_repeat('  ', depth);
+    var marker = ordered ? (idx + '. ') : '- ';
+    var task = '';
+    var cb = li.querySelector ? li.querySelector('input[type="checkbox"]') : null;
+    if (cb) task = (cb.checked || rt_attr(cb, 'checked') != null) ? '[x] ' : '[ ] ';
+    var inlineParts = '';
+    var nested = '';
+    var kids = li.childNodes;
+    for (var i = 0; i < kids.length; i++) {
+      var c = kids[i];
+      if (c.nodeType === 1 && /^(ul|ol)$/.test(c.tagName.toLowerCase())) {
+        nested += '\n' + rt_list(c, c.tagName.toLowerCase() === 'ol', depth + 1);
+      } else {
+        inlineParts += rt_inlineNode(c);
+      }
+    }
+    inlineParts = inlineParts.replace(/\s+/g, ' ').trim();
+    return indent + marker + task + inlineParts + nested;
+  }
+
+  function rt_blockquote(node) {
+    var inner = rt_blockChildren(node);
+    var lines = inner.split('\n');
+    var out = [];
+    for (var i = 0; i < lines.length; i++) out.push(lines[i] ? '> ' + lines[i] : '>');
+    return out.join('\n');
+  }
+
+  function rt_blockChildren(node) {
+    var parts = [];
+    var kids = node.childNodes;
+    var i = 0;
+    while (i < kids.length) {
+      var k = kids[i];
+      // A selection can contain bare <li> elements (when the user selects a
+      // list's contents rather than the <ul>/<ol> wrapper). Group a run of them
+      // into a bullet list instead of emitting each as a separate block.
+      if (k.nodeType === 1 && k.tagName.toLowerCase() === 'li') {
+        var lis = [];
+        while (i < kids.length) {
+          var kk = kids[i];
+          if (kk.nodeType === 1 && kk.tagName.toLowerCase() === 'li') { lis.push(kk); i++; }
+          else if (kk.nodeType === 3 && !(kk.nodeValue || '').trim()) { i++; }
+          else break;
+        }
+        var items = [];
+        for (var j = 0; j < lis.length; j++) items.push(rt_listItem(lis[j], false, j + 1, 0));
+        parts.push(items.join('\n'));
+        continue;
+      }
+      // Bare table-internal nodes (selection inside a table that lost its
+      // <table> wrapper) — reconstruct a Markdown table.
+      if (k.nodeType === 1 && /^(thead|tbody|tr)$/.test(k.tagName.toLowerCase())) {
+        var trows = [];
+        while (i < kids.length) {
+          var tk = kids[i];
+          if (tk.nodeType === 1 && /^(thead|tbody|tr)$/.test(tk.tagName.toLowerCase())) { trows.push(tk); i++; }
+          else if (tk.nodeType === 3 && !(tk.nodeValue || '').trim()) { i++; }
+          else break;
+        }
+        parts.push(rt_tableFromParts(trows));
+        continue;
+      }
+      var s = rt_blockNode(k);
+      if (s && s.replace(/\s/g, '') !== '') parts.push(s.replace(/\s+$/, ''));
+      i++;
+    }
+    return parts.join('\n\n');
+  }
+
+  var rt_containerNames = ['info', 'success', 'warning', 'danger', 'left', 'right', 'center', 'cols', 'col', 'tabs', 'tab'];
+  // A markdown-it-container div.name (or details.spoil) -> its ::: name
+  // directive name, or null if the node is not a container.
+  function rt_containerName(node) {
+    if (node.nodeType !== 1 || !node.classList) return null;
+    var tag = node.tagName.toLowerCase();
+    if (tag === 'details' && node.classList.contains('spoil')) {
+      var sum = node.querySelector ? node.querySelector('summary') : null;
+      var title = sum ? (sum.textContent || '').trim() : '';
+      return title ? 'spoil ' + title : 'spoil';
+    }
+    if (tag !== 'div') return null;
+    for (var i = 0; i < rt_containerNames.length; i++) {
+      var n = rt_containerNames[i];
+      if (node.classList.contains(n)) {
+        if (n === 'tab') { var lbl = rt_attr(node, 'data-label'); return lbl ? 'tab ' + lbl : 'tab'; }
+        return n;
+      }
+    }
+    return null;
+  }
+  // Emit a ::: name ... ::: block, using a fence longer than any inner fence so
+  // nested containers (cols > col, tabs > tab) re-parse correctly.
+  function rt_containerMd(node, name) {
+    var parts = [];
+    var kids = node.childNodes;
+    for (var i = 0; i < kids.length; i++) {
+      var k = kids[i];
+      if (k.nodeType === 1) {
+        var ktag = k.tagName.toLowerCase();
+        if (ktag === 'summary') continue; // spoil title, captured in the name
+        if (k.classList && k.classList.contains('tabs-bar')) continue; // JS-injected tab buttons
+      }
+      var m = rt_blockNode(k);
+      if (m && m.trim()) parts.push(m.trim());
+    }
+    var inner = parts.join('\n\n');
+    var maxFence = 2;
+    var lines = inner.split('\n');
+    for (var j = 0; j < lines.length; j++) {
+      var mm = lines[j].match(/^(:{3,})/);
+      if (mm && mm[1].length > maxFence) maxFence = mm[1].length;
+    }
+    var fence = rt_repeat(':', Math.max(3, maxFence + 1));
+    return fence + ' ' + name + '\n' + inner + '\n' + fence;
+  }
+
+  function rt_blockNode(node) {
+    if (node.nodeType === 3) {
+      var t = node.nodeValue;
+      return (t && t.trim()) ? t.replace(/\s+/g, ' ').trim() : '';
+    }
+    if (node.nodeType !== 1) return '';
+    var dm = rt_attr(node, 'data-md');
+    if (dm != null) return dm;
+    if (node.classList) {
+      // Display math: the katex-display span OR its katex-block <p> wrapper.
+      // Without this the wrapper is walked as a paragraph and the inner katex is
+      // emitted as inline math instead of a block equation.
+      if (node.classList.contains('katex-display') || node.classList.contains('katex-block')) {
+        var k = node.querySelector ? node.querySelector('.katex') : null;
+        return rt_katex(k || node, true);
+      }
+      if (node.classList.contains('mermaid')) return '{{mermaid\n' + (node.textContent || '').trim() + '\n}}';
+    }
+    var tag = node.tagName.toLowerCase();
+    var hm = tag.match(/^h([1-6])$/);
+    if (hm) return rt_repeat('#', parseInt(hm[1], 10)) + ' ' + rt_inlineChildren(node).trim();
+    switch (tag) {
+      case 'p': return rt_inlineChildren(node).trim();
+      case 'ul': return rt_list(node, false, 0);
+      case 'ol': return rt_list(node, true, 0);
+      case 'pre': return rt_codeBlock(node);
+      case 'blockquote': return rt_blockquote(node);
+      case 'table': return rt_table(node);
+      case 'hr': return '---';
+      case 'li': return rt_inlineChildren(node).trim();
+      case 'figure': case 'div': case 'section': case 'article': case 'details': case 'summary':
+        var cn = rt_containerName(node);
+        if (cn) return rt_containerMd(node, cn);
+        return rt_blockChildren(node);
+      default: return rt_inlineNode(node).trim();
+    }
+  }
+
+  function elementToMarkdown(root) {
+    if (!root) return '';
+    var hasBlock = false;
+    var kids = root.childNodes || [];
+    for (var i = 0; i < kids.length; i++) {
+      if (rt_isBlockElement(kids[i])) { hasBlock = true; break; }
+    }
+    var out = hasBlock ? rt_blockChildren(root) : rt_inlineChildren(root);
+    return out.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').replace(/^\s+|\s+$/g, '');
+  }
+
+  function rt_isEditable(node) {
+    while (node) {
+      if (node.nodeType === 1) {
+        var tag = node.tagName.toLowerCase();
+        if (tag === 'input' || tag === 'textarea') return true;
+        if (node.isContentEditable) return true;
+      }
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  function rt_isCopyRoot(node) {
+    return node.nodeType === 1 && node.classList &&
+      (node.classList.contains('markdown-body') || rt_attr(node, 'data-orz-copy') != null);
+  }
+  function rt_withinCopyRoot(node) {
+    while (node) {
+      if (rt_isCopyRoot(node)) return true;
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  // When a selection sits entirely within one table/blockquote/pre — or inside a
+  // ::: container — copy that whole block, so the wrapper is included (a partial
+  // table/quote fragment isn't valid Markdown, and a copied container should keep
+  // its ::: fence). Browsers often clone such selections without the wrapper.
+  // Tables/quotes/code don't nest, so the innermost wins; containers DO nest
+  // (cols > col, tabs > tab), so promote to the OUTERMOST one.
+  function rt_promotableBlock(node) {
+    var container = null;
+    while (node && !rt_isCopyRoot(node)) {
+      if (node.nodeType === 1) {
+        var tag = node.tagName.toLowerCase();
+        if (tag === 'table' || tag === 'blockquote' || tag === 'pre') return node;
+        // A selection inside a display equation copies the whole block equation;
+        // a partial KaTeX fragment is not valid Markdown.
+        if (node.classList &&
+            (node.classList.contains('katex-block') || node.classList.contains('katex-display'))) return node;
+        if (rt_containerName(node)) container = node;
+      }
+      node = node.parentNode;
+    }
+    return container;
+  }
+
+  function onCopy(event) {
+    if (!global.document) return;
+    var sel = global.getSelection ? global.getSelection()
+      : (global.document.getSelection ? global.document.getSelection() : null);
+    if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return;
+    if (rt_isEditable(sel.anchorNode) || rt_isEditable(sel.focusNode)) return;
+    if (!rt_withinCopyRoot(sel.anchorNode) && !rt_withinCopyRoot(sel.focusNode)) return;
+
+    var md;
+    var range0 = sel.getRangeAt(0);
+    var common = range0.commonAncestorContainer;
+    var promoted = rt_promotableBlock(common.nodeType === 1 ? common : common.parentNode);
+    if (promoted && sel.rangeCount === 1) {
+      var pwrap = global.document.createElement('div');
+      pwrap.appendChild(promoted.cloneNode(true));
+      md = elementToMarkdown(pwrap);
+    } else {
+      var container = global.document.createElement('div');
+      for (var i = 0; i < sel.rangeCount; i++) container.appendChild(sel.getRangeAt(i).cloneContents());
+      md = elementToMarkdown(container);
+    }
+    if (!md) return;
+    var cd = event.clipboardData || global.clipboardData;
+    if (cd && cd.setData) {
+      cd.setData('text/plain', md);
+      if (event.preventDefault) event.preventDefault();
+    }
+  }
+
+  function bindGlobalHandlers() {
+    if (!global.document || global.__orzMarkdownRuntimeBound) return;
+    global.__orzMarkdownRuntimeBound = true;
+
+    global.document.addEventListener('click', function (event) {
+      if (expandedQr && !expandedQr.contains(event.target)) {
+        collapseQr();
+      }
+    });
+
+    global.document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        collapseQr();
+      }
+    });
+
+    // Copy rendered selections as Markdown source.
+    global.document.addEventListener('copy', onCopy);
+  }
+
+  global.OrzMarkdownRuntime = Object.assign({}, global.OrzMarkdownRuntime, {
+    init: init,
+    initQrCodes: initQrCodes,
+    initTabs: initTabs,
+    collapseQr: collapseQr,
+    elementToMarkdown: elementToMarkdown,
+  });
+
+  bindGlobalHandlers();
+
+  if (global.document) {
+    if (global.document.readyState === 'loading') {
+      global.document.addEventListener('DOMContentLoaded', function () {
+        init(global.document);
+      }, { once: true });
+    } else {
+      init(global.document);
+    }
+  }
+})(typeof globalThis !== 'undefined' ? globalThis : window);
+</script>
+<script data-orz-asset="config">window.__ORZ_PAGED__ = {"mode":"cdn","katexCss":"https://cdn.jsdelivr.net/npm/katex@0.16.35/dist/katex.min.css","hljsCss":"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css","enhancers":{"mermaidJs":"https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js","smilesJs":"https://unpkg.com/smiles-drawer@1.0.10/dist/smiles-drawer.min.js","chartJs":"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js","hljsJs":"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"},"version":"0.6.1","templates":[{"id":"article-page","label":"Article — title page","description":"Academic paper with a dedicated title page, then abstract + body.","group":"Article","skeleton":"{{nyml\nkind: document\ntemplate: article-page\nfront_matter: clean\n}}\n\n{{nyml\nkind: article-title\ntitle: Your Article Title\nsubtitle: A Concise, Descriptive Subtitle\nauthors: |\n  First Author | 1,* | first.author@example.edu | 0000-0002-1825-0097\n  Second Author | 2 | second.author@example.org\n  Third Author | 1,2\naffiliations: |\n  1: Department of Example, University of Example\n  2: Institute of Example, Example City\nnotes: |\n  *: Corresponding author\ndate: Month Year\nplacement: page\n}}\n\n{{nyml\nkind: abstract\ntext: Briefly state the problem, what you did, and what you found. Summarize your main contribution in one or two sentences. Close with the significance of the result for the field.\nkeywords: keyword one, keyword two, keyword three\nplacement: page\n}}\n\n## Introduction\n\nOpen with the context and motivation for your work. State the gap your study\naddresses and the question you set out to answer. End the section with a short\nstatement of your contribution and an outline of what follows.\n\n## Methods\n\nDescribe your approach so that a reader could reproduce it. Summarize the key\nparameters of your setup in a compact table:\n\n| Parameter | Symbol | Value |\n|---|---|---|\n| Sample size | $n$ | 120 |\n| Trials per group | $k$ | 5 |\n| Significance level | $\\alpha$ | 0.05 |\n\nQuantities are reported with their uncertainties, and the mass–energy relation\n$E = mc^2$ is used where relevant. The core model is given by\n\n$$\n\\hat{y} = \\beta_0 + \\sum_{i=1}^{n} \\beta_i x_i + \\varepsilon\n$$\n\nwhere the residual term $\\varepsilon$ is assumed normally distributed.\n\n## Results\n\n- The primary measure improved by 18% over the baseline.\n- The effect held across all three experimental groups.\n- Results were statistically significant ($p < 0.05$).\n\n## Conclusion\n\nRestate the main finding, note its limitations, and point to one direction for\nfuture work.\n\n## References\n\n1. Author Name. *Title of the First Reference.* Journal Name, Year, pp. 1–10.\n2. Author Name. *Title of the Second Reference.* Publisher, Year.\n"},{"id":"article-section","label":"Article — title section","description":"Academic paper with an inline title block above the body.","group":"Article","skeleton":"{{nyml\nkind: document\ntemplate: article-section\n}}\n\n{{nyml\nkind: article-title\ntitle: Your Article Title Goes Here\nsubtitle: A short, descriptive subtitle for your paper\nauthors: |\n  First Author | 1,* | first.author@example.edu | 0000-0002-1825-0097\n  Second Author | 2\naffiliations: |\n  1: Department of Example, University of Example\n  2: Institute of Example, Example City\nnotes: |\n  *: Corresponding author\ndate: June 2026\nplacement: section\n}}\n\n{{nyml\nkind: abstract\ntext: |\n  Summarize your work in two or three sentences. State the problem you\n  address, the approach you took, and the headline result a reader should\n  remember. Keep it self-contained so it makes sense without the body.\nkeywords: keyword one, keyword two, keyword three\n}}\n\n## Introduction\n\nOpen with the context and motivation for your work. Describe the gap or open\nquestion your study addresses, and end the section by stating your contribution\nin one or two clear sentences. Replace this placeholder text with your own.\n\nYou can cite prior work informally here and expand on it in the References\nsection below. Aim for a paragraph or two that orients the reader before the\nmethods.\n\n## Methods\n\nDescribe your approach so that it could be reproduced. Inline math renders with\nsingle dollar signs — for example, the sample size $n = 120$ and a significance\nthreshold of $\\alpha = 0.05$.\n\nThe table below is a placeholder; replace the rows with your own conditions.\n\n| Condition | Parameter | Value |\n|-----------|-----------|-------|\n| Baseline  | rate      | 0.10  |\n| Treatment | rate      | 0.42  |\n| Control   | rate      | 0.09  |\n\nDisplay equations use double dollar signs and are centered on their own line:\n\n$$\n\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i\n$$\n\nExplain each symbol in the surrounding text so the equation is self-explanatory.\n\n## Results\n\nSummarize your findings as a short list, then expand on the most important ones\nin prose if needed.\n\n- The treatment condition outperformed the baseline by a wide margin.\n- The effect held across all three replicates.\n- No significant difference was observed between the control and baseline.\n\n## Conclusion\n\nRestate your main finding and its significance in plain language. Note the key\nlimitations of the study and suggest one or two concrete directions for future\nwork. Close with a sentence that leaves the reader with your central takeaway.\n\n## References\n\n1. Author, A. B., & Author, C. D. (Year). *Title of the first referenced work.*\n   Journal or Publisher, volume(issue), pages.\n2. Author, E. F. (Year). *Title of the second referenced work.* Journal or\n   Publisher, volume(issue), pages.\n"},{"id":"report-page","label":"Report — title page","description":"Business/technical report with a cover page, TOC, then body.","group":"Report","skeleton":"{{nyml\nkind: document\ntemplate: report-page\nheader_center: Report Title\nfooter_left: Confidential\npage_number_position: footer-right\npage_number_style: page-n-of-N\nfront_matter: clean\n}}\n\n{{nyml\nkind: report-title\ntitle: Report Title\nsubtitle: A short, descriptive subtitle\nauthor: Team / Author\ndate: Q3 2026\nplacement: page\n}}\n\n{{nyml\nkind: toc\ntitle: Contents\nmax_level: 2\nplacement: page\n}}\n\n## Executive Summary\n\nThis report summarizes the key findings and recommendations for the quarter. In\none or two sentences, state the headline outcome and the decision you are asking\nthe reader to make. Replace this paragraph with a concise overview that a busy\nstakeholder can read in under a minute.\n\n## Background\n\nDescribe the context and why this work was undertaken. Reference the original\ngoal, the time period covered, and any prior reports this one builds on. Keep it\nbrief — enough for a new reader to understand the rest of the document without\nprior knowledge.\n\n## Findings\n\nThe data below summarizes performance against the targets set at the start of\nthe period.\n\n| Metric          | Target | Actual | Status      |\n|-----------------|--------|--------|-------------|\n| Revenue         | $1.2M  | $1.35M | On track    |\n| New customers   | 250    | 218    | Below plan  |\n| Churn rate      | 4.0%   | 3.2%   | Ahead       |\n| Support tickets | 1,000  | 1,140  | Watch       |\n\nOverall results were mixed: revenue and retention exceeded expectations, while\nnew-customer acquisition fell short of plan. Summarize the most important\ntakeaway in a sentence here.\n\n::: page-break\n:::\n\n## Recommendations\n\nBased on the findings above, we recommend the following actions:\n\n1. Increase top-of-funnel marketing spend to close the new-customer gap.\n2. Invest in support tooling to absorb rising ticket volume without adding cost.\n3. Maintain the retention initiatives that drove the lower churn rate.\n\n## Next Steps\n\n- Assign an owner and a due date to each recommendation.\n- Review progress at the next quarterly checkpoint.\n- Circulate this report to stakeholders for feedback by end of week.\n"},{"id":"report-section","label":"Report — title section","description":"Business/technical report with an inline title block.","group":"Report","skeleton":"{{nyml\nkind: document\ntemplate: report-section\nheader_center: Report Title\npage_number_position: footer-right\npage_number_style: page-n-of-N\n}}\n\n{{nyml\nkind: report-title\ntitle: Report Title\nsubtitle: A Short, Descriptive Subtitle\nauthor: Author Name, Team or Department\ndate: Month Year\nplacement: section\n}}\n\n{{nyml\nkind: toc\ntitle: Contents\nmax_level: 2\n}}\n\n## Executive Summary\n\nSummarize the report in a few sentences for a reader who will not go further.\nState the purpose of the work, the most important finding, and the single action\nyou are recommending. Keep this to a short paragraph that a busy decision-maker\ncan absorb at a glance.\n\nThis section should make sense on its own. Lead with the conclusion, then let the\nrest of the report supply the supporting detail.\n\n## Background\n\nExplain the context that prompted this report. Describe the situation, the problem\nor opportunity, and why it matters now. Note any relevant history, prior decisions,\nor constraints that shape the analysis.\n\nState the scope clearly: what this report covers and, where useful, what it\ndeliberately leaves out. Briefly describe how the information was gathered (for\nexample, interviews, system metrics, or a review of existing documents).\n\n## Findings\n\nThe analysis surfaced the following key results. Each finding is stated with its\nobserved impact and current status.\n\n| # | Finding | Impact | Status |\n|---|---------|--------|--------|\n| 1 | Describe the first observation here. | High | Confirmed |\n| 2 | Describe the second observation here. | Medium | Confirmed |\n| 3 | Describe the third observation here. | Low | Needs review |\n\nAdd a sentence or two of interpretation after the table. Point out any patterns\nthat connect the findings, and flag anything that contradicts an initial\nassumption.\n\n## Recommendations\n\nBased on the findings above, we recommend the following actions, listed in\npriority order:\n\n1. **Recommendation one.** State the action and the outcome it is meant to\n   achieve. Name the owner if one is known.\n2. **Recommendation two.** Describe the change and the effort it requires.\n3. **Recommendation three.** Note any dependency on an earlier recommendation.\n\nEach recommendation should trace back to at least one finding so the reasoning is\neasy to follow.\n\n## Next Steps\n\nOutline how to move from recommendations to action over the coming weeks.\n\n- **This week:** Confirm priorities and assign an owner to each recommendation.\n- **This month:** Begin the highest-priority work and define success measures.\n- **Next quarter:** Review progress against the measures and adjust the plan.\n\nClose by naming a point of contact and the date of the next review.\n"},{"id":"exam-page","label":"Exam — cover page","description":"Exam with a cover/instructions page, then numbered questions.","group":"Exam","skeleton":"{{nyml\nkind: document\ntemplate: exam-page\npage_number_position: footer-center\npage_number_style: page-n-of-N\ndynamic_choices: |\n  answer-key: hide\n}}\n\n<!-- One source, two printouts: this is the student copy (answer-key: hide).\n     Switch to `answer-key: show` here — or use the editor's answer-key toggle —\n     to reveal the ✓ marks and model answers for the instructor key. -->\n\n\n{{nyml\nkind: exam-title\ntitle: Course Name — Exam 1\nsubtitle: Fall Term, October Date\nauthor: Instructor Name\nduration: 60 minutes\ntotal_points: 100 points\nstudent_fields: |\n  Name | Student ID | Score / 100\ninstructions: |\n  **Instructions.** Read each question carefully before answering.\n\n  - Answer all questions. Multiple-choice questions are worth 5 points each; open-response questions are worth the points indicated.\n  - For multiple-choice questions, circle the single best answer.\n  - For open-response questions, write your answer in the space provided. Show all work; partial credit is awarded for correct reasoning.\n  - No calculators, notes, or electronic devices are permitted unless otherwise stated. Do not turn the page until instructed.\nplacement: page\n}}\n\n{{nyml\nkind: question-mc\nn: 1\npts: 5 pts\nbody: Which of the following best describes the primary concept introduced in this unit?\noptions: |\n  A. The first plausible-sounding option.\n  B. The correct option that states the concept accurately.\n  C. A close but subtly incorrect option.\n  D. An option that is clearly unrelated.\nanswer: B\n}}\n\n{{nyml\nkind: question-mc\nn: 2\npts: 5 pts\nbody: Given the scenario above, what is the most likely outcome?\noptions: |\n  A. An outcome that contradicts the principle.\n  B. An outcome that ignores a key assumption.\n  C. The outcome consistent with the principle.\n  D. An outcome that is only true in a special case.\nanswer: C\n}}\n\n{{nyml\nkind: question-open\nn: 3\npts: 10 pts\nbody: Define the key term from this unit and explain, in two or three sentences, why it matters in practice.\nspace: 5cm\nanswer: A model answer briefly defines the term and gives one concrete reason it matters, demonstrating clear understanding of the concept.\n}}\n\n{{nyml\nkind: question-open\nn: 4\npts: 10 pts\nbody: Compare and contrast the two approaches discussed in class, giving one advantage and one limitation of each.\nspace: 5cm\nanswer: A model answer names both approaches, states one genuine advantage and one genuine limitation for each, and draws a clear comparison between them.\n}}\n"},{"id":"exam-section","label":"Exam — title section","description":"Exam with an inline header block, then numbered questions.","group":"Exam","skeleton":"{{nyml\nkind: document\ntemplate: exam-section\npage_number_position: footer-center\npage_number_style: page-n-of-N\ndynamic_choices: |\n  answer-key: hide\n}}\n\n{{nyml\nkind: exam-title\ntitle: Course Name — Midterm Exam\nsubtitle: Chapter 1–4 Assessment\nauthor: Instructor Name\nstudent_fields: |\n  Name | Student ID | Score / 100\nplacement: section\n}}\n\n<!-- This template leaves the exam-title `instructions:` field empty and puts the\n     instructions at the top of the content instead — either placement works. -->\n\n**Instructions.** Answer all questions in the space provided. Calculators are not\npermitted, and you have 60 minutes to complete this exam.\n\n{{nyml\nkind: question-mc\nn: 1\npts: 5 pts\nbody: Which of the following best describes the main concept covered in this section?\noptions: |\n  A. First plausible answer choice.\n  B. Second plausible answer choice.\n  C. Correct answer choice.\n  D. Fourth plausible answer choice.\nanswer: C\n}}\n\n{{nyml\nkind: question-mc\nn: 2\npts: 5 pts\nbody: Identify the term that matches the definition given in lecture.\noptions: |\n  A. Distractor term one.\n  B. Correct term.\n  C. Distractor term three.\n  D. Distractor term four.\nanswer: B\n}}\n\n{{nyml\nkind: question-open\nn: 3\npts: 10 pts\nbody: Explain the key idea in your own words and give one supporting example. Show all relevant reasoning.\nspace: 5cm\nanswer: A complete answer states the core principle, explains why it holds, and supports it with a concrete, correctly worked example. Full credit requires clear reasoning and an accurate example.\n}}\n"},{"id":"letter","label":"Letter","description":"Formal letter: letterhead, inside address, body, signature.","group":"Letter","skeleton":"{{nyml\nkind: document\ntemplate: letter\n}}\n\n{{nyml\nkind: letterhead\norganization: Your Organization\naddress: |\n  123 Main Street, Suite 400\n  Springfield, ST 00000\nemail: hello@your-organization.example\nphone: (555) 123-4567\n}}\n\nJune 29, 2026\n\n{{nyml\nkind: letter-inside-address\nto: Recipient Name\norganization: Recipient Organization\naddress: |\n  456 Market Avenue\n  Metropolis, ST 11111\n}}\n\nDear Recipient Name,\n\nI am writing to introduce Your Organization and to propose a brief conversation\nabout how we might work together. Open this paragraph by stating your purpose\nclearly and giving the reader a reason to keep reading.\n\nUse the middle of the letter to provide the supporting details. Explain the\nbackground, outline what you are asking for, and note any relevant dates or\ndeliverables. Keep each point concise so the entire letter fits comfortably on a\nsingle page.\n\nClose by stating the specific next step you would like the reader to take and\nhow best to reach you. Thank you for your time and consideration; I look forward\nto your reply.\n\n{{nyml\nkind: letter-signature\nfrom: Your Name\nclosing: Sincerely\ntitle: Your Title\n}}\n"},{"id":"cover-letter","label":"Cover letter","description":"Job cover letter: sender header, recipient, body, sign-off.","group":"Letter","skeleton":"{{nyml\nkind: document\ntemplate: cover-letter\n}}\n\n{{nyml\nkind: letterhead\norganization: Your Name\naddress: |\n  123 Main Street\n  Your City, ST 00000\nemail: your.name@email.com\nphone: (555) 123-4567\n}}\n\nJune 29, 2026\n\n{{nyml\nkind: letter-inside-address\nto: Hiring Manager\norganization: Company Name\naddress: |\n  456 Corporate Boulevard\n  Their City, ST 00000\n}}\n\nDear Hiring Manager,\n\nI am writing to apply for the Position Title role at Company Name, which I\ndiscovered through where you saw the listing. From the moment I read the job\ndescription, I was excited by the chance to bring my background in your field\nto a team known for what the company is known for. This opportunity aligns\nclosely with both my skills and the direction I want my career to take.\n\nIn my current role as Your Current Title at Current or Previous Employer, I\nhave delivered describe a concrete result or responsibility, sharpening my\nstrengths in skill one, skill two, and skill three. I am confident these\nexperiences map directly to what this position requires: name one or two key\nrequirements from the posting. I pride myself on trait or working style, and I\nconsistently turn ambiguous problems into measurable outcomes.\n\nI would welcome the opportunity to discuss how my experience can contribute to\nCompany Name's goals. Thank you for considering my application; I have attached\nmy resume for your review and would be glad to provide any additional\ninformation. I look forward to speaking with you and can be reached at the\nphone number or email above to arrange a conversation.\n\n{{nyml\nkind: letter-signature\nfrom: Your Name\nclosing: Sincerely\ntitle: Position Title or Profession\n}}\n"},{"id":"cv","label":"CV — classic","description":"Résumé: name/contact header and clean sectioned body.","group":"CV","skeleton":"{{nyml\nkind: document\ntemplate: cv\n}}\n\n{{nyml\nkind: cv-header\nfull_name: Your Name\ntitle: Job Title / Professional Tagline\ncontacts: |\n  you@example.com\n  City, Country\n  linkedin.com/in/you\n  +1 555 0100\n}}\n\n## Summary\n\nA short, punchy two-sentence pitch describing who you are and the value you\nbring. Highlight your specialty, years of experience, and the kind of impact you\nare known for.\n\n## Experience\n\n### Job Title — Company (2022–Present)\n\n- Led a key initiative that delivered a measurable result, e.g. increased\n  revenue, cut costs, or improved performance by a specific percentage.\n- Owned a project end to end, collaborating across teams to ship on time.\n- Mentored teammates and improved a process that the whole team relied on.\n\n### Previous Job Title — Earlier Company (2019–2022)\n\n- Built or maintained a core product or system used by many people.\n- Drove an improvement with a clear, quantified outcome.\n\n## Education\n\n### Degree, Field of Study — University Name (2019)\n\n## Skills\n\n- **Core:** Skill One, Skill Two, Skill Three\n- **Tools:** Tool One, Tool Two, Tool Three\n- **Other:** Languages, Certifications, Soft Skills\n"},{"id":"cv-modern","label":"CV — modern","description":"Accent name + rule, uppercase section labels, right-aligned dates, skill chips.","group":"CV","skeleton":"{{nyml\nkind: document\ntemplate: cv-modern\ncustom_css: |\n  /* CV — modern: left-aligned, accent-forward, right-aligned dates, skill chips.\n     Theme-aware via tokens (falls back when a token is unset). */\n  .orz-el-cv-header .orz-cv-header-inner.orz-bordered { border-bottom: 0; }\n  .orz-el-cv-header {\n    text-align: left;\n    border-bottom: 3px solid var(--accent, #2b6cb0);\n    padding-bottom: 0.5em;\n    margin-bottom: 1.2em;\n  }\n  .orz-el-cv-header .orz-cv-top { justify-content: flex-start; }\n  .orz-el-cv-header .orz-cv-name { font-size: 2.3em; letter-spacing: -0.015em; }\n  .orz-el-cv-header .orz-cv-title { color: var(--text-muted, #666); font-size: 1.05em; }\n  .orz-el-cv-header .orz-cv-contacts { justify-content: flex-start; gap: 0.3em 1.1em; }\n  .orz-doc.markdown-body h2 {\n    font-size: 0.9em;\n    text-transform: uppercase;\n    letter-spacing: 0.14em;\n    color: var(--accent, #2b6cb0);\n    border-bottom: 0;\n    margin: 1.5em 0 0.5em;\n  }\n  .orz-doc.markdown-body h3 {\n    font-size: 1.06em;\n    margin: 0.7em 0 0.05em;\n    border-bottom: 0;\n  }\n  .orz-doc.markdown-body h3 + p { color: var(--text-muted, #555); font-style: italic; margin: 0 0 0.35em; }\n  .cv-date {\n    float: right;\n    font-weight: 400;\n    color: var(--text-muted, #777);\n    font-size: 0.88em;\n  }\n  .cv-chip {\n    display: inline-block;\n    background: var(--surface-2, #f0f2f5);\n    border: 1px solid var(--border, #e2e6ea);\n    border-radius: 999px;\n    padding: 0.12em 0.7em;\n    margin: 0.18em 0.25em 0.18em 0;\n    font-size: 0.85em;\n  }\n}}\n\n{{nyml\nkind: cv-header\nfull_name: Your Name\ntitle: Job Title / Professional Tagline\ncontacts: |\n  you@example.com\n  City, Country\n  linkedin.com/in/you\n  +1 555 0100\nsummary: Two-sentence pitch — who you are and the value you bring. Lead with your specialty and the kind of impact you are known for.\n}}\n\n## Experience\n\n### Senior Role {{span[cv-date] 2022 – Present}}\n\nCompany Name, City\n\n- Led a key initiative that delivered a measurable result (e.g. +X% revenue, −Y% cost).\n- Owned a project end to end, collaborating across teams to ship on time.\n- Mentored teammates and improved a process the whole team relied on.\n\n### Earlier Role {{span[cv-date] 2019 – 2022}}\n\nPrevious Company, City\n\n- Built or maintained a core product used by many people.\n- Drove an improvement with a clear, quantified outcome.\n\n## Education\n\n### Degree, Field of Study {{span[cv-date] 2015 – 2019}}\n\nUniversity Name, City\n\n## Skills\n\n{{span[cv-chip] Skill One}} {{span[cv-chip] Skill Two}} {{span[cv-chip] Skill Three}} {{span[cv-chip] Skill Four}} {{span[cv-chip] Skill Five}} {{span[cv-chip] Skill Six}}\n"},{"id":"cv-elegant","label":"CV — elegant","description":"Centered, letter-spaced name, hairline rules, two-column \"ledger\" entries.","group":"CV","skeleton":"{{nyml\nkind: document\ntemplate: cv-elegant\ncustom_css: |\n  /* CV — elegant: centered, letter-spaced name between hairlines, centered\n     small-caps section headers, borderless two-column \"ledger\" entries (years |\n     detail) that flow across pages. Theme-aware via tokens. */\n  .orz-el-cv-header .orz-cv-header-inner.orz-bordered { border-bottom: 0; }\n  .orz-el-cv-header {\n    text-align: center;\n    border-top: 1px solid var(--border-soft, #ddd);\n    border-bottom: 1px solid var(--border-soft, #ddd);\n    padding: 0.8em 0;\n    margin-bottom: 1.4em;\n  }\n  .orz-el-cv-header .orz-cv-top { justify-content: center; }\n  .orz-el-cv-header .orz-cv-name {\n    font-weight: 400;\n    text-transform: uppercase;\n    letter-spacing: 0.16em;\n    font-size: 1.85em;\n    color: var(--text-main, #222);\n  }\n  .orz-el-cv-header .orz-cv-title { font-style: italic; color: var(--text-muted, #666); }\n  .orz-el-cv-header .orz-cv-contacts { justify-content: center; font-size: 0.85em; gap: 0.3em 1em; }\n  .orz-doc.markdown-body h2 {\n    text-align: center;\n    font-size: 1em;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.2em;\n    color: var(--text-main, #222);\n    border-bottom: 0;\n    margin: 1.7em 0 0.7em;\n  }\n  .orz-doc.markdown-body h2::after {\n    content: \"\";\n    display: block;\n    width: 2.5em;\n    height: 1px;\n    background: var(--accent, #999);\n    margin: 0.5em auto 0;\n  }\n  .orz-doc.markdown-body table { width: 100%; border: 0; margin: 0.2em 0; }\n  .orz-doc.markdown-body thead { display: none; }\n  .orz-doc.markdown-body td {\n    border: 0;\n    border-bottom: 1px solid var(--border-soft, #eee);\n    padding: 0.5em 0.4em;\n    vertical-align: top;\n  }\n  .orz-doc.markdown-body td:first-child {\n    white-space: nowrap;\n    width: 9em;\n    text-align: right;\n    color: var(--text-muted, #777);\n    font-variant: small-caps;\n    font-size: 0.92em;\n  }\n  .orz-doc.markdown-body .cv-skills { text-align: center; font-size: 0.95em; line-height: 1.9; }\n}}\n\n{{nyml\nkind: cv-header\nfull_name: Your Name\ntitle: Job Title / Professional Tagline\ncontacts: |\n  you@example.com\n  City, Country\n  linkedin.com/in/you\n}}\n\nA one-sentence profile, set centered and understated, introducing who you are and the work you do.\n{{attrs[class=\"cv-skills\"]}}\n\n## Experience\n\n| Years | Detail |\n|---|---|\n| 2022 – Present | **Senior Role**, Company Name — led the team and shipped a measurable result. |\n| 2019 – 2022 | **Earlier Role**, Previous Company — built a core product used by many. |\n| 2016 – 2019 | **First Role**, First Employer — delivered an improvement with a clear outcome. |\n\n## Education\n\n| Years | Detail |\n|---|---|\n| 2015 – 2019 | **Degree, Field of Study** — University Name, City. |\n\n## Skills\n\nSkill One · Skill Two · Skill Three · Skill Four · Skill Five · Skill Six\n{{attrs[class=\"cv-skills\"]}}\n"},{"id":"note","label":"Note","description":"Clean readable note: minimal furniture on A4.","group":"Note","skeleton":"{{nyml\nkind: document\ntemplate: note\n}}\n\n# Note Title\n\nWrite a one-line statement of what this note is about. Keep the opening short\nso a reader knows the purpose before reaching the details below.\n\n## Section\n\nReplace this with the main point of the note in two or three sentences. Add any\ncontext a reader needs to follow along. Keep each idea tight and to the point.\n\n- First key item to remember.\n- Second key item, with a short detail.\n- Third key item.\n\n::: info\nA short note callout for a tip, reminder, or aside worth setting apart.\n:::\n\n## Next Steps\n\n- [ ] First action to take.\n- [ ] Second action to take.\n- [ ] Third action to take.\n"}]};</script>
+<script data-orz-asset="app">/* orz-paged in-file editor (A4). Plain browser JS, inlined into every
+ * .paged.html. The rendered pages are the live preview: editing re-assembles +
+ * re-paginates them (debounced). Save is self-reproducing — it serializes the
+ * whole document with the edited source baked back into #orz-src, stripping
+ * runtime-injected nodes ([data-orz-runtime]) and the rendered pages so the saved
+ * file re-renders cleanly on next open. Ported in spirit from orz-mdhtml/slides.
+ */
+(function () {
+  'use strict';
+  var CM_BASE = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16';
+  var cm = null;
+  var rerenderTimer = null;
+  var dirty = false; // edit-state, surfaced to an embedding host (orz-host-dirty)
+
+  function $(id) { return document.getElementById(id); }
+  function api() { return window.orzpaged; }
+  function srcEl() { return $('orz-src'); }
+  function currentSource() { return cm ? cm.getValue() : (srcEl() ? srcEl().textContent.replace(/^\n/, '').replace(/\n\s*$/, '') : ''); }
+
+  function toast(msg) {
+    var t = $('orz-toast'); if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(function () { t.classList.remove('show'); }, 1800);
+  }
+
+  /* ---- load CodeMirror on demand ---- */
+  function loadCss(href) {
+    if (document.querySelector('link[href="' + href + '"]')) return;
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href;
+    l.setAttribute('data-orz-runtime', '1'); document.head.appendChild(l);
+  }
+  function loadJs(src) {
+    return new Promise(function (resolve, reject) {
+      if (document.querySelector('script[data-cm="' + src + '"]')) return resolve();
+      var s = document.createElement('script'); s.src = src; s.async = false;
+      s.setAttribute('data-cm', src); s.setAttribute('data-orz-runtime', '1');
+      s.onload = resolve; s.onerror = reject; document.head.appendChild(s);
+    });
+  }
+  function ensureCodeMirror() {
+    if (window.CodeMirror) return Promise.resolve();
+    loadCss(CM_BASE + '/codemirror.min.css');
+    return loadJs(CM_BASE + '/codemirror.min.js')
+      .then(function () { return loadJs(CM_BASE + '/mode/markdown/markdown.min.js'); });
+  }
+
+  function pagesEl() { return $('orz-pages'); }
+  function isEdit() { return document.documentElement.getAttribute('data-mode') === 'edit'; }
+
+  /* ---- preview zoom-to-fit (side-by-side pane is narrower than an A4 page) ---- */
+  function fitPreview() {
+    var pages = pagesEl(); if (!pages) return;
+    var wrap = pages.querySelector('.pagedjs_pages'); if (!wrap) return;
+    if (!isEdit()) { wrap.style.zoom = ''; return; }
+    wrap.style.zoom = '';                       // measure natural page width
+    var page = pages.querySelector('.pagedjs_page');
+    var pageW = page ? page.getBoundingClientRect().width : 0;
+    if (!pageW) return;
+    wrap.style.zoom = Math.min(1, (pages.clientWidth - 28) / pageW);
+  }
+  window.__orzPagedAfterRender = function () { fitPreview(); buildDynControls(); }; // engine calls this after every render
+
+  /* ---- dynamic switch (live) — a control per key the document actually uses ---- */
+  function humanizeKey(k) { return String(k).replace(/_/g, ' '); }
+  function normKey(k) { return String(k).trim().toLowerCase().replace(/-/g, '_'); }
+
+  function buildDynControls() {
+    var host = $('orz-dyn'); if (!host) return;
+    if (!api() || !api().getDynamicState) { host.innerHTML = ''; host.removeAttribute('data-keys'); return; }
+    var st = api().getDynamicState();
+    var opts = st.options || {}, choices = st.choices || {};
+    // Only keys the CURRENT document actually uses (data-show-when / -hide-when),
+    // so the control disappears when you switch to a template that has none.
+    var keys = Object.keys(opts).sort();
+    if (!keys.length) { host.innerHTML = ''; host.removeAttribute('data-keys'); return; }
+    var sig = keys.join(',');
+    if (host.getAttribute('data-keys') === sig) {            // same keys → just sync values
+      keys.forEach(function (k) {
+        var s = host.querySelector('select[data-key="' + k + '"]');
+        if (s) s.value = choices[k] || '';
+      });
+      return;
+    }
+    host.setAttribute('data-keys', sig);
+    host.innerHTML = '';
+    keys.forEach(function (k) {
+      var vals = (opts[k] || []).slice();
+      var cur = choices[k] || '';
+      if (cur && vals.indexOf(cur) < 0) vals.unshift(cur);   // keep the current value selectable
+      var ctl = document.createElement('span'); ctl.className = 'orz-dyn-ctl';
+      var lab = document.createElement('label'); lab.textContent = humanizeKey(k); lab.htmlFor = 'orz-dyn-' + k;
+      var sel = document.createElement('select'); sel.id = 'orz-dyn-' + k; sel.setAttribute('data-key', k); sel.title = humanizeKey(k);
+      vals.forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); });
+      sel.value = cur;
+      // Write the choice back into the source's `dynamic_choices` block so the
+      // dropdown and the nyml stay in sync (and editing the nyml drives the dropdown).
+      sel.addEventListener('change', function () { applyDynChoiceToSource(k, sel.value); });
+      ctl.appendChild(lab); ctl.appendChild(sel); host.appendChild(ctl);
+    });
+  }
+
+  /** Set `key: value` inside the document block's `dynamic_choices:` map, matching
+   *  the key by normalized form (so `answer-key` and `answer_key` are the same). */
+  function setSourceDynamicChoice(src, key, value) {
+    key = normKey(key);
+    var lines = src.split('\n');
+    var dcIdx = -1, dcIndent = 0;
+    for (var i = 0; i < lines.length; i++) {
+      var m = lines[i].match(/^(\s*)dynamic_choices\s*:/);
+      if (m) { dcIdx = i; dcIndent = m[1].length; break; }
+    }
+    if (dcIdx < 0) return null;                       // no block — nothing to sync
+    for (var j = dcIdx + 1; j < lines.length; j++) {
+      if (lines[j].trim() === '') continue;
+      var lm = lines[j].match(/^(\s*)([A-Za-z][\w-]*)\s*:\s*(.*)$/);
+      if (!lm || lm[1].length <= dcIndent) break;     // dedented / not a key → end of block
+      if (normKey(lm[2]) === key) { lines[j] = lm[1] + lm[2] + ': ' + value; return lines.join('\n'); }
+    }
+    var indent = ''; for (var s = 0; s < dcIndent + 2; s++) indent += ' ';
+    lines.splice(dcIdx + 1, 0, indent + key.replace(/_/g, '-') + ': ' + value);
+    return lines.join('\n');
+  }
+
+  function applyDynChoiceToSource(key, value) {
+    var next = setSourceDynamicChoice(currentSource(), key, value);
+    if (next == null) return;
+    setDirty(true);
+    if (cm) cm.setValue(next);
+    else { var ta = $('orz-ta'); if (ta) ta.value = next; }
+    syncSource();
+    if (api() && api().refresh) api().refresh();
+  }
+
+  /* ---- draggable divider (relative width) ---- */
+  function wireDivider() {
+    var d = $('orz-divider'); if (!d || d.__wired) return; d.__wired = true;
+    var dragging = false;
+    d.addEventListener('mousedown', function (e) {
+      dragging = true; d.classList.add('dragging'); e.preventDefault();
+      document.body.style.userSelect = 'none';
+    });
+    document.addEventListener('mousemove', function (e) {
+      if (!dragging) return;
+      var pct = Math.max(20, Math.min(78, (e.clientX / window.innerWidth) * 100));
+      document.documentElement.style.setProperty('--orz-split', pct + '%');
+    });
+    document.addEventListener('mouseup', function () {
+      if (!dragging) return;
+      dragging = false; d.classList.remove('dragging'); document.body.style.userSelect = '';
+      if (cm) cm.refresh(); fitPreview();
+    });
+  }
+
+  /* ---- proportional editor <-> preview scroll sync (toggleable) ---- */
+  var syncLock = false;
+  var syncEnabled = true;
+  try { syncEnabled = localStorage.getItem('orz-paged-sync') !== '0'; } catch (e) {}
+  function setSync(on) {
+    syncEnabled = !!on;
+    try { localStorage.setItem('orz-paged-sync', syncEnabled ? '1' : '0'); } catch (e) {}
+    var b = $('orz-sync'); if (b) b.setAttribute('aria-pressed', syncEnabled ? 'true' : 'false');
+  }
+  function wireSync() {
+    if (!cm || cm.__sync) return; cm.__sync = true;
+    cm.on('scroll', function () {
+      if (!syncEnabled || syncLock || !isEdit()) return;
+      var info = cm.getScrollInfo(); var max = info.height - info.clientHeight;
+      if (max <= 0) return;
+      var pages = pagesEl(); var pmax = pages.scrollHeight - pages.clientHeight;
+      syncLock = true; pages.scrollTop = (info.top / max) * pmax;
+      setTimeout(function () { syncLock = false; }, 24);
+    });
+    pagesEl().addEventListener('scroll', function () {
+      if (!syncEnabled || syncLock || !isEdit()) return;
+      var pages = pagesEl(); var pmax = pages.scrollHeight - pages.clientHeight;
+      if (pmax <= 0) return;
+      var info = cm.getScrollInfo(); var max = info.height - info.clientHeight;
+      syncLock = true; cm.scrollTo(null, (pages.scrollTop / pmax) * max);
+      setTimeout(function () { syncLock = false; }, 24);
+    });
+  }
+
+  /* ---- edit mode ---- */
+  function enterEdit() {
+    document.documentElement.setAttribute('data-mode', 'edit');
+    checkVersion(); // edit view only — broad viewers never see the update banner
+    wireDivider();
+    // reflect the theme actually in effect (document theme or a prior override)
+    var th = $('orz-theme');
+    if (th && api() && api().getTheme) { var cur = api().getTheme(); if (cur) th.value = cur; }
+    ensureCodeMirror().then(function () {
+      if (!cm) {
+        var ta = $('orz-ta');
+        ta.value = currentSource();
+        cm = window.CodeMirror.fromTextArea(ta, {
+          mode: 'markdown', lineNumbers: true, lineWrapping: true, theme: 'default',
+        });
+        cm.on('change', scheduleRerender);
+      }
+      wireSync();
+      setTimeout(function () { if (cm) { cm.refresh(); cm.focus(); } fitPreview(); }, 30);
+      setTimeout(fitPreview, 260); // re-fit once the slide-in transition settles
+    }).catch(function () { toast('Could not load the editor (offline?)'); });
+  }
+  function exitEdit() {
+    document.documentElement.removeAttribute('data-mode');
+    fitPreview();                  // clear zoom immediately
+    setTimeout(fitPreview, 260);   // and again after the slide-out settles
+  }
+
+  function scheduleRerender() {
+    setDirty(true);
+    if (rerenderTimer) clearTimeout(rerenderTimer);
+    rerenderTimer = setTimeout(function () {
+      syncSource();
+      if (api() && api().refresh) api().refresh();
+    }, 500);
+  }
+
+  /** Keep #orz-src in sync with the editor (so refresh()/setTheme()/save use current text). */
+  function syncSource() {
+    var el = srcEl(); if (!el) return;
+    el.textContent = '\n' + currentSource() + '\n';
+  }
+
+  /* ---- self-reproducing save ---- */
+  function serialize() {
+    syncSource();
+    var clone = document.documentElement.cloneNode(true);
+    clone.removeAttribute('data-mode');
+    // strip runtime-injected nodes (fonts, libs, katex, CodeMirror assets)
+    var rt = clone.querySelectorAll('[data-orz-runtime]');
+    for (var i = 0; i < rt.length; i++) rt[i].parentNode.removeChild(rt[i]);
+    // clear the rendered pages (the engine re-renders on load)
+    var pages = clone.querySelector('#orz-pages'); if (pages) pages.innerHTML = '';
+    // never bake in the (edit-only) update banner so a viewer can't see it
+    var ub = clone.querySelector('#orz-update'); if (ub) { ub.classList.remove('show'); ub.removeAttribute('data-latest'); }
+    // reset the editor host to a bare textarea (drop CodeMirror DOM)
+    var host = clone.querySelector('#orz-editor-host');
+    if (host) host.innerHTML = '<textarea id="orz-ta" spellcheck="false"></textarea>';
+    // guard against a closing script tag inside the source breaking the file
+    var src = clone.querySelector('#orz-src');
+    if (src) src.textContent = src.textContent.replace(/<\/(script)/gi, '<\\/$1');
+    return '<!DOCTYPE html>\n' + clone.outerHTML;
+  }
+
+  function suggestedName() {
+    var t = (document.title || 'document').replace(/[^\w.-]+/g, '-');
+    return t.replace(/\.paged$/, '') + '.paged.html';
+  }
+
+  /** Write `html` to disk; resolves true if saved in place (FS-Access), false if downloaded. */
+  function persist(html) {
+    if (window.showSaveFilePicker) {
+      return window.showSaveFilePicker({
+        suggestedName: suggestedName(),
+        types: [{ description: 'paged HTML', accept: { 'text/html': ['.paged.html', '.html'] } }],
+      }).then(function (handle) {
+        return handle.createWritable().then(function (w) {
+          return w.write(html).then(function () { return w.close(); });
+        });
+      }).then(function () { return true; });
+    }
+    downloadFile(html);
+    return Promise.resolve(false);
+  }
+  function save() {
+    // A hosting platform (verified handshake) receives the save instead of the
+    // file system; the host acknowledges with orz-host-saved (see PROTOCOL.md).
+    if (isHosted()) { hostSave(currentSource(), serialize()); return; }
+    persist(serialize()).then(function (inPlace) { if (inPlace) { setDirty(false); toast('Saved'); } })
+      .catch(function (e) { if (e && e.name !== 'AbortError') downloadFile(serialize()); });
+  }
+  function downloadFile(html) {
+    var blob = new Blob([html], { type: 'text/html' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = suggestedName();
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    toast('Downloaded a copy');
+  }
+
+  /* ---- host embedding (orz-host-save@1) ----
+   * When a platform embeds this file in an iframe and announces the
+   * orz-host-save protocol (spec: PROTOCOL.md in the orz-mdhtml repo), Save
+   * posts the document to the host instead of touching the file system. Never
+   * enabled without the host's hello; protocol messages are accepted only from
+   * window.parent, and after the handshake only from the recorded host origin.
+   * Message content is read as data, never evaluated. Export/PDF keeps working. */
+  var HOST_PROTOCOL = 'orz-host-save';
+  var HOST_VERSION = 1;
+  var hostOrigin = null;    // recorded at handshake; null = unhosted
+  var hostSaveTimer = null; // watchdog for a save awaiting acknowledgement
+
+  function isHosted() { return hostOrigin !== null; }
+  // An opaque embedder (sandboxed/srcdoc host) serializes as the string 'null',
+  // which postMessage rejects as a targetOrigin — fall back to '*' (the payload
+  // contains nothing the host doesn't already have).
+  function hostTarget() { return hostOrigin && hostOrigin !== 'null' ? hostOrigin : '*'; }
+  function hostPost(msg) { try { window.parent.postMessage(msg, hostTarget()); } catch (e) {} }
+  function setDirty(d) {
+    d = !!d;
+    if (dirty === d) return;
+    dirty = d;
+    if (isHosted()) hostPost({ type: 'orz-host-dirty', protocol: HOST_PROTOCOL, version: HOST_VERSION, dirty: d });
+  }
+  function hostSave(src, html) {
+    if (hostSaveTimer) return; // one save in flight at a time
+    hostSaveTimer = setTimeout(function () {
+      hostSaveTimer = null;
+      toast('Save failed — no response from the host'); // document intact, still dirty
+    }, 10000);
+    hostPost({ type: 'orz-host-save', protocol: HOST_PROTOCOL, version: HOST_VERSION, source: src, html: html });
+  }
+  function onHostMessage(event) {
+    // only the embedding parent may speak the protocol
+    if (window.parent === window || event.source !== window.parent) return;
+    var d = event.data;
+    if (!d || typeof d !== 'object') return;
+    // after the handshake, hold the parent to the origin it introduced itself with
+    if (isHosted() && hostOrigin !== 'null' && event.origin !== hostOrigin) return;
+    if (d.type === 'orz-host-hello' && d.protocol === HOST_PROTOCOL && typeof d.version === 'number' && d.version >= 1) {
+      hostOrigin = event.origin;
+      // reply with the highest version we support ≤ the host's (we speak only 1)
+      hostPost({ type: 'orz-host-ready', protocol: HOST_PROTOCOL, version: HOST_VERSION, kind: 'paged' });
+      if (dirty) hostPost({ type: 'orz-host-dirty', protocol: HOST_PROTOCOL, version: HOST_VERSION, dirty: true });
+    } else if (d.type === 'orz-host-saved' && hostSaveTimer) {
+      clearTimeout(hostSaveTimer); hostSaveTimer = null;
+      if (d.ok) { setDirty(false); toast('Saved'); }
+      else { toast('Save failed' + (d.error ? ' — ' + String(d.error) : '')); }
+    }
+  }
+  // listen from script load so an early hello isn't missed
+  window.addEventListener('message', onHostMessage);
+
+  /* ---- framework self-update (checked only in edit view) ---- */
+  // SECURITY: the update source is HARDCODED here, never read from the file's
+  // config — so a tampered/forged file cannot redirect "Update" to fetch
+  // attacker-controlled code. The host is fixed to jsDelivr over HTTPS, and the
+  // exact URLs are shown to the user for confirmation before anything is fetched.
+  // (This protects genuine files; a wholly-malicious file controls this code too —
+  // see the security note in the README. Clicking Update trusts npm + jsDelivr.)
+  var UPD = {
+    host: 'https://cdn.jsdelivr.net/npm/',
+    manifest: 'https://data.jsdelivr.com/v1/packages/npm/orz-paged-browser/resolved',
+    enginePkg: 'orz-paged-browser',
+    engineFile: 'orz-paged.browser.js',
+    appPkg: 'orz-paged'
+  };
+  function CFG() { return window.__ORZ_PAGED__ || {}; }
+  function isNewer(a, b) {
+    var pa = String(a).split('.'), pb = String(b).split('.');
+    for (var i = 0; i < 3; i++) { var x = parseInt(pa[i], 10) || 0, y = parseInt(pb[i], 10) || 0; if (x > y) return true; if (x < y) return false; }
+    return false;
+  }
+  var versionChecked = false;
+  function checkVersion() {
+    if (versionChecked) return; versionChecked = true;
+    var c = CFG(); if (!c.version) return;
+    fetch(UPD.manifest).then(function (r) { return r.json(); }).then(function (j) {
+      var latest = j && j.version;
+      if (latest && isNewer(latest, c.version)) showUpdate(latest);
+    }).catch(function () {});
+  }
+  function showUpdate(latest) {
+    var bar = $('orz-update'); if (!bar) return;
+    bar.querySelector('.upd-text').textContent =
+      'Framework ' + latest + ' available (this file uses ' + CFG().version + ').';
+    bar.setAttribute('data-latest', latest);
+    bar.classList.add('show');
+  }
+  /** One-click update: re-fetch the engine bundle + app.js from the lockstep CDN
+   *  at the latest version, re-inline them, bump the version, save, and reload. */
+  function applyUpdate() {
+    var bar = $('orz-update'); var latest = bar && bar.getAttribute('data-latest'); if (!latest) return;
+    var engineUrl = UPD.host + UPD.enginePkg + '@' + latest + '/' + UPD.engineFile;
+    var appUrl = UPD.host + UPD.appPkg + '@' + latest + '/assets/app.js';
+    if (!window.confirm('Update the framework to ' + latest + '?\n\nThis downloads and runs code from:\n  ' + engineUrl + '\n  ' + appUrl + '\n\nOnly proceed if you trust this document and its publisher.')) return;
+    toast('Downloading framework ' + latest + '…');
+    Promise.all([
+      fetch(engineUrl).then(function (r) { if (!r.ok) throw new Error('engine'); return r.text(); }),
+      fetch(appUrl).then(function (r) { if (!r.ok) throw new Error('app'); return r.text(); }),
+    ]).then(function (res) {
+      var es = document.querySelector('script[data-orz-asset="engine"]');
+      if (es) { if (es.getAttribute('src')) es.setAttribute('src', engineUrl); else es.textContent = res[0]; }
+      var as = document.querySelector('script[data-orz-asset="app"]');
+      if (as) as.textContent = res[1];
+      var cs = document.querySelector('script[data-orz-asset="config"]');
+      if (cs) { c.version = latest; cs.textContent = 'window.__ORZ_PAGED__ = ' + JSON.stringify(c) + ';'; }
+      bar.classList.remove('show');
+      return persist(serialize());
+    }).then(function (inPlace) {
+      if (inPlace === undefined) return;
+      if (inPlace) { toast('Updated to ' + latest + ' — reloading…'); setTimeout(function () { location.reload(); }, 700); }
+      else { toast('Updated copy downloaded — reopen it to use the new framework.'); }
+    }).catch(function () { toast('Update failed — check your connection.'); });
+  }
+
+  /* ---- template picker ---- */
+  function templates() { return (window.__ORZ_PAGED__ && window.__ORZ_PAGED__.templates) || []; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  var TPL_ACCENT = { Article: '#2962a4', Report: '#2f6fe0', Exam: '#9a2820', Letter: '#2e7d32', CV: '#7a3f9a', Note: '#b7791f' };
+  function buildTemplateMenu() {
+    var menu = $('orz-template-menu'); if (!menu || menu.getAttribute('data-built')) return;
+    var list = templates(); if (!list.length) return;
+    var html = '', lastGroup = '';
+    for (var i = 0; i < list.length; i++) {
+      var t = list[i];
+      if (t.group !== lastGroup) { lastGroup = t.group; html += '<div class="tpl-group">' + esc(t.group) + '</div>'; }
+      html += '<button type="button" class="tpl" data-i="' + i + '" style="--tpl-accent:' + (TPL_ACCENT[t.group] || '#2f6fe0') + '">'
+        + '<span class="tpl-ic"></span>'
+        + '<span class="tpl-meta"><span class="tpl-label">' + esc(t.label) + '</span>'
+        + '<span class="tpl-desc">' + esc(t.description) + '</span></span></button>';
+    }
+    menu.innerHTML = html;
+    menu.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('.tpl') : null;
+      if (!b) return;
+      applyTemplate(list[+b.getAttribute('data-i')]);
+      menu.hidden = true;
+    });
+    menu.setAttribute('data-built', '1');
+  }
+  function toggleTemplateMenu(show) {
+    var menu = $('orz-template-menu'); if (!menu) return;
+    if (show === undefined) show = menu.hidden;
+    if (show) buildTemplateMenu();
+    menu.hidden = !show;
+  }
+  function applyTemplate(t) {
+    if (!t || !t.skeleton) return;
+    var cur = currentSource().trim();
+    var next = t.skeleton;
+    // Preserve the old content in a comment so it's kept but inert (nyml blocks
+    // inside a comment don't render). Neutralize any `-->` in it first, else the
+    // first one would close the wrapper early and leak the rest back in.
+    if (cur) next += '\n\n<!-- Previous content (kept below — edit or delete):\n\n'
+      + cur.replace(/--+>/g, '--​>') + '\n-->\n';
+    setDirty(true);
+    if (cm) { cm.setValue(next); cm.focus(); }
+    else { var ta = $('orz-ta'); if (ta) ta.value = next; syncSource(); if (api() && api().refresh) api().refresh(); }
+    toast('Started from "' + t.label + '"');
+  }
+
+  /* ---- wire up ---- */
+  function init() {
+    var fab = $('orz-edit-fab'); if (fab) fab.addEventListener('click', enterEdit);
+    var close = $('orz-close'); if (close) close.addEventListener('click', exitEdit);
+    var exp = $('orz-export'); if (exp) exp.addEventListener('click', function () { if (api()) api().exportPdf(); });
+    var sav = $('orz-save'); if (sav) sav.addEventListener('click', save);
+    var tpl = $('orz-template'); if (tpl) tpl.addEventListener('click', function (e) { e.stopPropagation(); toggleTemplateMenu(); });
+    document.addEventListener('click', function (e) {
+      var menu = $('orz-template-menu'), btn = $('orz-template');
+      if (menu && !menu.hidden && !menu.contains(e.target) && (!btn || !btn.contains(e.target))) menu.hidden = true;
+    });
+    var theme = $('orz-theme');
+    if (theme) theme.addEventListener('change', function () { if (api() && api().setTheme) api().setTheme(theme.value); });
+    var sync = $('orz-sync');
+    if (sync) { setSync(syncEnabled); sync.addEventListener('click', function () { setSync(!syncEnabled); }); }
+    var updApply = $('orz-upd-apply'); if (updApply) updApply.addEventListener('click', applyUpdate);
+    var updDismiss = $('orz-upd-dismiss');
+    if (updDismiss) updDismiss.addEventListener('click', function () { var u = $('orz-update'); if (u) u.classList.remove('show'); });
+    var rz; window.addEventListener('resize', function () {
+      if (!isEdit()) return; clearTimeout(rz);
+      rz = setTimeout(function () { if (cm) cm.refresh(); fitPreview(); }, 120);
+    });
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && (e.key === 's' || e.key === 'S')) { e.preventDefault(); save(); }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>

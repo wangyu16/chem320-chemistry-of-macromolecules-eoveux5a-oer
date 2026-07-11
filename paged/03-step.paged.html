@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="orz-paged 0.6.1">
+<title>Ch03 - Step Growth</title>
+<meta name="author" content="Dr. Yu Wang">
+<meta name="description" content="This course introduces polymer chemistry as a structure-processing-property discipline. It begins with polymer definitions, molar mass, degree of polymerization, historical development, and environmental motivation; then moves through architecture, stereochemistry, copolymer composition, molar-mass distributions, and the two major polymerization families. The central synthesis sequence covers step-growth polymerization, chain-growth polymerization, precision/controlled methods, macromolecular engineering, and depolymerization/recycling by design. The final sequence connects molecular structure to single-chain conformation, polymer solutions and mixtures, molar-mass characterization, glass transition, and crystallinity. Viscoelasticity and rubber elasticity are treated only as optional instructor/advanced supplements.">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<meta name="dcterms.license" content="CC-BY-4.0">
+<link rel="canonical" href="https://github.com/wangyu16/chem320-chemistry-of-macromolecules-eoveux5a-oer">
+<style>
+  html, body { margin: 0; height: 100%; background: #f0f0f2; }
+  :root { --orz-split: 44%; }
+  /* the preview is a fixed full-window scroll container; in edit mode its left
+     edge animates inward to make room for the docked editor (side-by-side). */
+  #orz-pages { box-sizing: border-box; position: fixed; inset: 0; left: 0;
+    overflow: auto; background: #f0f0f2; transition: left .22s ease; }
+  [data-mode="edit"] #orz-pages { left: calc(var(--orz-split) + 6px); }
+  /* paged.js page boxes get a subtle drop shadow + centered layout */
+  .pagedjs_pages { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 0; }
+  .pagedjs_page { background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.18); }
+  @media print {
+    body { background: #fff; }
+    #orz-bar, #orz-panel, #orz-edit-fab, #orz-divider, #orz-close, .orz-banner, #orz-toast { display: none !important; }
+    #orz-pages { position: static; overflow: visible; left: 0; }
+    .pagedjs_pages { gap: 0; padding: 0; zoom: 1 !important; }
+    .pagedjs_page { box-shadow: none; }
+  }
+
+  #orz-edit-fab {
+    position: fixed; left: 22px; bottom: 18px; z-index: 30;
+    width: 42px; height: 42px; border: 0; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #2f6fe0; color: #fff; cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25); opacity: .9;
+  }
+  #orz-edit-fab svg { width: 19px; height: 19px; display: block; }
+  #orz-edit-fab:hover { opacity: 1; transform: scale(1.06); }
+  [data-mode="edit"] #orz-edit-fab { display: none; }
+
+  #orz-divider { display: none; }
+  [data-mode="edit"] #orz-divider {
+    display: block; position: fixed; top: 0; bottom: 0; left: var(--orz-split);
+    width: 6px; z-index: 45; cursor: col-resize; background: #34383f;
+  }
+  #orz-divider:hover, #orz-divider.dragging { background: #3b82f6; }
+
+  #orz-panel {
+    display: flex; flex-direction: column;
+    position: fixed; left: 0; top: 0; bottom: 0; width: var(--orz-split); z-index: 40;
+    background: #1f2228; border-right: 1px solid #333; box-shadow: 2px 0 16px rgba(0,0,0,.25);
+    /* extra offset so the protruding close tab also clears the viewport */
+    transform: translateX(calc(-100% - 24px)); transition: transform .22s ease;
+  }
+  [data-mode="edit"] #orz-panel { transform: translateX(0); }
+  /* close tab — a small handle on the editor's right edge that slides it away */
+  #orz-close {
+    position: absolute; top: 50%; right: -19px; transform: translateY(-50%);
+    width: 19px; height: 48px; z-index: 46; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 0; border-radius: 0 8px 8px 0; background: #23262c; color: #c2c8d0;
+    cursor: pointer; box-shadow: 2px 0 8px rgba(0,0,0,.18);
+  }
+  #orz-close:hover { background: #383d45; color: #fff; }
+  #orz-close svg { width: 15px; height: 15px; display: block; }
+  #orz-toolbar { display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    padding: 7px 10px; background: #23262c; border-bottom: 1px solid #34383f; }
+  #orz-toolbar .ic { width: 32px; height: 30px; display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: 0; border-radius: 7px; color: #c2c8d0; cursor: pointer; font-size: 16px; }
+  #orz-toolbar .ic:hover { background: #383d45; color: #fff; }
+  #orz-toolbar .ic svg { width: 17px; height: 17px; display: block; }
+  #orz-toolbar .ic[aria-pressed="true"] { color: #3b82f6; }
+  #orz-toolbar .ic[aria-pressed="false"] { opacity: .5; }
+  #orz-toolbar .ic.primary { background: #3b82f6; color: #fff; }
+  #orz-toolbar select { font: 500 12.5px/1 system-ui, sans-serif; color: #e6e8ec; background: #34383f;
+    border: 1px solid #454b55; border-radius: 7px; padding: 6px 8px; cursor: pointer; margin: 0 2px; }
+  #orz-toolbar .orz-sep { width: 1px; height: 20px; background: #3c414a; margin: 0 5px; }
+  #orz-dyn { display: inline-flex; align-items: center; gap: 4px; }
+  #orz-dyn .orz-dyn-ctl { display: inline-flex; align-items: center; gap: 4px; }
+  #orz-dyn label { font: 600 11px/1 system-ui, sans-serif; color: #9aa3b2; text-transform: capitalize; }
+  #orz-toolbar .orz-spacer { flex: 1; }
+  #orz-brand { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #cdd3df; padding: 2px 7px; border-radius: 7px; }
+  #orz-brand:hover { color: #fff; background: #383d45; }
+  #orz-brand .orz-logo svg { height: 22px; width: auto; display: block; }
+  #orz-brand .orz-brand-name { font: 700 13px/1 system-ui, sans-serif; }
+  #orz-brand .orz-gh { display: inline-flex; opacity: .55; }
+  #orz-brand:hover .orz-gh { opacity: 1; }
+  #orz-brand .orz-gh svg { width: 15px; height: 15px; display: block; }
+  #orz-editor-host { flex: 1; min-height: 0; overflow: hidden; }
+  #orz-editor-host .CodeMirror { height: 100%; font-size: 14px; }
+  #orz-foot { flex: 0 0 auto; height: 24px; display: flex; align-items: center; justify-content: center;
+    font: 11.5px/1 system-ui, sans-serif; color: #8b93a0; background: #23262c; border-top: 1px solid #34383f; gap: 4px; }
+  #orz-foot a { color: #9aa3b2; text-decoration: none; }
+  #orz-foot a:hover { color: #fff; text-decoration: underline; }
+  #orz-ta { width: 100%; height: 100%; box-sizing: border-box; border: 0; padding: 10px;
+    font: 14px/1.5 ui-monospace, Menlo, Consolas, monospace; }
+  #orz-toast { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%) translateY(20px);
+    z-index: 70; background: #111; color: #fff; padding: 9px 16px; border-radius: 8px;
+    font: 13px system-ui, sans-serif; opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; }
+  #orz-toast.show { opacity: .95; transform: translateX(-50%) translateY(0); }
+
+  /* template picker — a popover under the toolbar listing starter templates */
+  #orz-template-menu { position: absolute; left: 10px; right: 10px; top: 46px; z-index: 60;
+    max-height: 70vh; overflow: auto; padding: 8px; border-radius: 10px;
+    background: #23262c; border: 1px solid #3c414a; box-shadow: 0 8px 26px rgba(0,0,0,.4); }
+  #orz-template-menu[hidden] { display: none; }
+  #orz-template-menu .tpl-group { font: 700 10.5px/1 system-ui, sans-serif; text-transform: uppercase;
+    letter-spacing: .06em; color: #7f8896; padding: 8px 8px 4px; }
+  #orz-template-menu .tpl {
+    display: flex; gap: 9px; align-items: flex-start; width: 100%; text-align: left;
+    padding: 8px 9px; border: 0; border-radius: 8px; background: transparent; color: #dfe3ea; cursor: pointer; }
+  #orz-template-menu .tpl:hover { background: #34383f; }
+  #orz-template-menu .tpl .tpl-ic { flex: 0 0 auto; width: 30px; height: 38px; border-radius: 4px;
+    background: #fff; border: 1px solid #c9ccd2; position: relative; overflow: hidden; }
+  #orz-template-menu .tpl .tpl-ic::before { content: ""; position: absolute; left: 4px; right: 4px; top: 4px;
+    height: 7px; border-radius: 2px; background: var(--tpl-accent, #2f6fe0); }
+  #orz-template-menu .tpl .tpl-ic::after { content: ""; position: absolute; left: 4px; right: 4px; top: 15px;
+    bottom: 4px; background:
+      repeating-linear-gradient(#c7ccd4 0 1.5px, transparent 1.5px 5px); }
+  #orz-template-menu .tpl .tpl-meta { min-width: 0; }
+  #orz-template-menu .tpl .tpl-label { display: block; font: 600 13px/1.2 system-ui, sans-serif; }
+  #orz-template-menu .tpl .tpl-desc { display: block; font: 11.5px/1.35 system-ui, sans-serif; color: #98a0ae; margin-top: 2px; }
+
+  /* update banner — shown only in edit view (the editor triggers the check) */
+  .orz-banner { position: fixed; left: 50%; top: 14px; transform: translateX(-50%); z-index: 80;
+    display: none; align-items: center; gap: 10px; background: #2b2f36; color: #eee;
+    border: 1px solid #444; border-radius: 9px; padding: 9px 14px;
+    font: 13px/1.3 system-ui, sans-serif; box-shadow: 0 4px 16px rgba(0,0,0,.3); }
+  .orz-banner.show { display: flex; }
+  .orz-banner button { font: 500 12.5px system-ui, sans-serif; color: #e6e8ec; background: #3a3f48;
+    border: 1px solid #4a505a; border-radius: 6px; padding: 5px 11px; cursor: pointer; }
+  .orz-banner button.upd-primary { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+  .orz-banner button:hover { filter: brightness(1.1); }
+</style>
+<script type="application/orz-meta+json" id="orz-meta">
+{
+  "title": "Ch03 - Step Growth",
+  "author": "Dr. Yu Wang",
+  "description": "This course introduces polymer chemistry as a structure-processing-property discipline. It begins with polymer definitions, molar mass, degree of polymerization, historical development, and environmental motivation; then moves through architecture, stereochemistry, copolymer composition, molar-mass distributions, and the two major polymerization families. The central synthesis sequence covers step-growth polymerization, chain-growth polymerization, precision/controlled methods, macromolecular engineering, and depolymerization/recycling by design. The final sequence connects molecular structure to single-chain conformation, polymer solutions and mixtures, molar-mass characterization, glass transition, and crystallinity. Viscoelasticity and rubber elasticity are treated only as optional instructor/advanced supplements.",
+  "source": "https://github.com/wangyu16/chem320-chemistry-of-macromolecules-eoveux5a-oer",
+  "license": {
+    "spdx": "CC-BY-4.0",
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  }
+}
+</script>
+</head>
+<body>
+<!-- ═══════════ orz · editing this document with an AI agent ═══════════
+  This is a self-contained, EDITABLE orz-paged document (.paged.html). The editable
+  source of truth is the markdown in the embedded source island below (kind: paged,
+  format: 1) — NOT the rendered HTML.
+
+  To edit it correctly, load the official orz-paged agent skill first: it defines
+  the page model (templates, page size, margins, running headers/footers, page
+  breaks) and guarantees a byte-identical round-trip.
+    - Fetch the skill: https://cdn.jsdelivr.net/npm/orz-paged/orz-paged-skills/SKILL.md
+    - Install routes:  https://markdown.orz.how/agents.html
+
+  Rules: edit ONLY the embedded source; re-embed it in place; preserve block IDs.
+═══════════════════════════════════════════════════════════════════ -->
+
+<div id="orz-pages" data-orz-copy></div>
+<div id="orz-divider" title="Drag to resize"></div>
+
+<button id="orz-edit-fab" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>
+
+<div id="orz-panel">
+  <div id="orz-toolbar">
+    <a id="orz-brand" href="https://github.com/wangyu16/orz-paged" target="_blank" rel="noopener noreferrer" title="orz-paged on GitHub"><span class="orz-logo"><svg viewBox="-5 -5 180 100" xmlns="http://www.w3.org/2000/svg" class="orz-mark" aria-hidden="true"><defs><filter id="orzlogo-rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G"/></filter><path d="M 20,23 C 33,16 57,17 84,13 C 111,8 137,4 153,6 C 165,7 170,13 169,25 L 167,66 C 166,79 159,87 146,89 C 121,93 92,92 60,91 C 41,90 27,92 16,89 C 6,86 1,79 1,67 L 1,50 C 1,35 7,25 20,23 Z" id="orzlogo-seal"/><filter id="orzlogo-stone" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="11" result="noise"/><feColorMatrix in="noise" type="saturate" values="0" result="mono"/><feComponentTransfer in="mono" result="grain"><feFuncA type="table" tableValues="0 0.16"/></feComponentTransfer></filter><mask id="orzlogo-mask"><use href="#orzlogo-seal" fill="white"/><path d="M37.81 80.31Q30.44 80.31 24.50 77Q18.56 73.69 15.25 67.75Q11.94 61.81 11.94 54.19L11.94 54.19Q11.94 41.69 21.13 35.56Q30.31 29.44 43.69 29.44L43.69 29.44Q49.81 29.44 55.13 32.44Q60.44 35.44 63.69 41.06Q66.94 46.69 66.94 54.06L66.94 54.06Q66.94 62.06 62.81 68Q58.69 73.94 52 77.13Q45.31 80.31 37.81 80.31L37.81 80.31ZM36.44 73.19Q48.06 73.19 54.06 67.94Q60.06 62.69 60.06 52.56L60.06 52.56Q60.06 45.69 55.38 40.69Q50.69 35.69 42.31 35.69L42.31 35.69Q36.69 35.69 30.94 37.81Q25.19 39.94 21.44 44.19Q17.69 48.44 17.69 54.44L17.69 54.44Q17.69 59.44 20.19 63.75Q22.69 68.06 27 70.63Q31.31 73.19 36.44 73.19L36.44 73.19ZM87.94 80.19Q82.81 70.19 79.88 56.69Q76.94 43.19 76.94 33.31L76.94 33.31Q76.94 29.44 78.69 28.31L78.69 28.31Q79.69 27.69 80.19 27.69L80.19 27.69Q81.06 27.69 81.50 29.06Q81.94 30.44 82.44 34.06L82.44 34.06L83.06 38.56Q84.44 31.81 88.38 27.88Q92.31 23.94 98.06 23.94L98.06 23.94Q104.44 23.94 107.56 26.38Q110.69 28.81 110.69 34.44L110.69 34.44Q104.44 31.44 99.31 31.44L99.31 31.44Q94.44 31.44 90.94 34.06Q87.44 36.69 86.06 41.81L86.06 41.81Q84.94 45.31 84.94 48.44L84.94 48.44Q84.94 51.81 85.88 54.75Q86.81 57.69 88.81 61.94L88.81 61.94Q90.69 66.31 91.75 69.44Q92.81 72.56 92.94 76.19L92.94 76.19Q92.94 78.31 91.44 79.25Q89.94 80.19 87.94 80.19L87.94 80.19ZM160.56 66.19Q163.06 68.06 163.06 70.19L163.06 70.19Q163.06 73.56 157.31 75.81Q151.56 78.06 144.31 79.13Q137.06 80.19 132.81 80.19L132.81 80.19Q128.06 80.19 123.75 78.63Q119.44 77.06 119.44 73.19L119.44 73.19Q119.44 69.44 123.63 63.44Q127.81 57.44 133.69 51.19L133.69 51.19L117.56 51.19Q116.31 51.19 116.31 48.94L116.31 48.94Q116.31 47.19 116.69 46.50Q117.06 45.81 117.69 45.69Q118.31 45.56 120.06 45.56L120.06 45.56L139.31 45.56Q143.94 39.69 146.38 35.50Q148.81 31.31 148.81 27.69L148.81 27.69Q148.81 24.06 146.31 21.19L146.31 21.19Q142.44 20.44 138.81 20.44L138.81 20.44Q131.94 20.44 127.19 22.75Q122.44 25.06 121.94 28.81L121.94 28.81Q119.06 28.81 118.13 27.81Q117.19 26.81 117.19 24.44L117.19 24.44Q117.19 21.94 119.75 19.63Q122.31 17.31 126.94 15.88Q131.56 14.44 137.31 14.44L137.31 14.44Q142.06 14.44 147.31 15.56L147.31 15.56Q150.56 16.19 152.81 19.69Q155.06 23.19 155.06 27.44L155.06 27.44Q155.06 31.19 152.75 35.31Q150.44 39.44 145.94 45.56L145.94 45.56L152.06 45.56Q156.81 45.56 158.38 46.06Q159.94 46.56 159.94 48.06L159.94 48.06Q159.94 49.31 159.13 50.19Q158.31 51.06 157.44 51.06L157.44 51.06L140.19 51.06Q134.06 57.94 130.81 63.25Q127.56 68.56 128.19 70.81L128.19 70.81Q128.69 73.19 135.94 74.06L135.94 74.06Q144.06 74.06 149.69 72.13Q155.31 70.19 160.56 66.19L160.56 66.19Z" fill="black" stroke="black" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></mask></defs><g filter="url(#orzlogo-rough)"><use href="#orzlogo-seal" fill="#96d969" mask="url(#orzlogo-mask)"/><use href="#orzlogo-seal" fill="#6ea84d" opacity="0.28" filter="url(#orzlogo-stone)" mask="url(#orzlogo-mask)"/><use href="#orzlogo-seal" fill="none" stroke="#c8f7a5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.42" mask="url(#orzlogo-mask)"/><use href="#orzlogo-seal" fill="none" stroke="#5f8f44" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.35" mask="url(#orzlogo-mask)"/></g></svg></span><span class="orz-brand-name">paged</span><span class="orz-gh"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></span></a>
+    <span class="orz-sep"></span>
+    <button id="orz-save" class="ic primary" title="Save (Ctrl/Cmd+S)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg></button>
+    <button id="orz-export" class="ic" title="Export PDF (print)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg></button>
+    <button id="orz-template" class="ic" title="Start from a template"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></button>
+    <span class="orz-spacer"></span>
+    <button id="orz-sync" class="ic" title="Sync scrolling on/off" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><path d="M8 12h8"/></svg></button>
+    <span id="orz-dyn"></span>
+    <select id="orz-theme" title="Theme"><option value="beige-decent-1">beige-decent-1</option><option value="beige-decent-2">beige-decent-2</option><option value="light-academic-1">light-academic-1</option><option value="light-academic-2">light-academic-2</option><option value="light-neat-1">light-neat-1</option><option value="light-neat-2">light-neat-2</option><option value="light-neat-3">light-neat-3</option></select>
+  </div>
+  <div id="orz-template-menu" hidden></div>
+  <button id="orz-close" title="Close editor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div id="orz-editor-host"><textarea id="orz-ta" spellcheck="false"></textarea></div>
+  <div id="orz-foot">© <a href="https://markdown.orz.how" target="_blank" rel="noopener noreferrer">orz-markdown</a></div>
+</div>
+
+<div id="orz-update" class="orz-banner">
+  <span class="upd-text"></span>
+  <button id="orz-upd-apply" class="upd-primary">Update</button>
+  <button id="orz-upd-dismiss">Dismiss</button>
+</div>
+
+<div id="orz-toast"></div>
+
+<script type="text/markdown" id="orz-src">
+# Ch03 Step-Growth Polymerization
+
+## Commercial products{{attrs[#blk-84gg4uyw71vi]}}
+
+For each type of polymer, think about these two questions:
+1. What are the challenges in the production process?
+2. Could you predict the property based on the structure? 
+
+### Polyamides
+
+A polyamide is a polymer with repeating units linked by amide bonds which is naturally the reaction product from carboxylic acid and amine. Protein is a type of polyamide. Nylon is a family of synthetic polyamide, usually linking aliphatic or semi-aromatic groups.
+
+::: left
+![](https://upload.wikimedia.org/wikipedia/commons/5/53/Polyamide_Amidegroup_V.1.png =300x)
+:::
+
+**Production**
+
+Nylon 66 and related polyamides are condensation polymers forms from equal parts of diamine and dicarboxylic acids. The numbers in the name indicates the monomer units involved. For example, 66 means the diamine is hexamethylene diamine which has 6 carbon atoms and the dicarboxylic acid is adipic acid which also has 6 carbon atoms. In case of Nylon 610, the diamine has 6 carbon atoms while the dicarboxylic acid has 10 carbon atoms. Similarly, there are products named Nylon 46, 410, 510, 612, 1010, etc. There are also Nylon products with only one number, such as Nylon 6 which is produced using an amino acid that has 6 carbon atom molecule with a carboxylic acid group at one end and an amino group the other end. Nylon 6 can also be produced by ring-opening polymerization of lactam. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/8/8e/Synth%C3%A8se_Nylon_6%2C6.png =600x)
+
+In case of Nylon 66, the stoichiometric balance between reactive groups is readily obtained by precipitating the 1:1 ammonium salt from ethanol. This compound is sometimes called a nylon salt. The salt/polymer equilibrium is more favorable to the production of polymer than in the case of polyesters, so this reaction is often carried out in a sealed tube or autoclave at about 200 °C until a fairly high extent of reaction is reached; then the temperature is raised and the water driven off to attain high molecular weight polymer. 
+
+**Properties**
+
+The planar amide ($\ce{-CO-NH -}$) groups are very polar, so nylon forms multiple hydrogen bonds among adjacent strands. 
+
+Below $T_m$, amorphous regions alternate with regions which are lamellar crystals. The amorphous regions contribute elasticity, and the crystalline regions contribute strength and rigidity. Because the nylon backbone is so regular and symmetrical, especially if all the amide bonds are in the trans configuration, nylons often have high crystallinity and make excellent fibers.
+
+Nylons are hygroscopic and will absorb or desorb moisture as a function of the ambient humidity.
+
+All nylons are susceptible to hydrolysis, especially by strong acids, a reaction essentially the reverse of their synthesis. The molecular weight of nylon products so attacked drops, and cracks form quickly at the affected zones.
+
+**Applications**
+
+Nylon 66 is frequently used when high mechanical strength, rigidity, good stability under heat and/or chemical resistance are required. Fiber is the most important form of application but other types such as film and bulk plastics are also available. 
+
+![](https://acw1.com/wp-content/uploads/2023/04/xlg_22-1024x748.jpg =300x)
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGZsY3T9zMSpXqVKGjmf1xod_AArTuC-7FEQ&s =300x)
+![](https://www.aiplastics.com/media/wysiwyg/nylon.png =300x)
+
+**Kevlar** is a type of polyamide. What makes it special? How to produce it? What are the properties?
+
+### Polyesters
+
+Polyester is a category of polymers that contain one or two ester linkages in every repeat unit of their main chain. The most commonly used polyester is polyethylene terephthalate (PET). Polyesters include naturally occurring chemicals, such as in plants and insects. Natural polyesters and a few synthetic ones are biodegradable, but most synthetic polyesters are not. Synthetic polyesters are used extensively in clothing.
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/ee/Polyethyleneterephthalate.svg =300x)
+
+**Production**
+
+Since the methyl ester of a dicarboxylic acid is often more soluble and easier to purify than the diacid itself, the dimethyl terephthalate process was employed first and lasted for a long time. Now, purified terephthalic acid is more widely available, thus the teraphthalic acid process is also used. 
+
+In the dimethyl terephthalate (DMT) process, DMT and excess ethylene glycol (MEG) are transesterified in the melt at 150–200 °C with a basic catalyst. Methanol ($\ce{CH3OH}$) is removed by distillation to drive the reaction forward. Excess MEG is distilled off at higher temperature with the aid of vacuum. The second transesterification step proceeds at 270–280 °C, with continuous distillation of MEG as well.
+
+![](https://upload.wikimedia.org/wikipedia/commons/b/b5/PET_by_Transesterification_V1.svg =400x)
+
+In the terephthalic acid process, MEG and PTA are esterified directly at moderate pressure (2.7–5.5 bar) and high temperature (220–260 °C). Water is eliminated in the reaction, and it is also continuously removed by distillation. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/8/83/PET_by_Polycondensation_V1.svg =400x)
+
+**Properties**
+
+PET is widely used as drink bottles and fibers for clothes. It has fairly good mechanical properties and durability, but less strong compared to Nylon. 
+
+PET is subject to degradation during processing. If the moisture level is too high, hydrolysis will reduce the molecular weight by chain scission, resulting in brittleness.
+
+**Applications**
+
+![](https://upload.wikimedia.org/wikipedia/commons/8/89/Symbol_Resin_Code_1_PETE.svg =100x)
+![](https://upload.wikimedia.org/wikipedia/commons/d/d4/Plastic_bottle.jpg =150x)
+![](https://upload.wikimedia.org/wikipedia/commons/6/63/Thistle_dinghy_with_skipper_Terry_Lettenmaier_sailing_downwind.jpg =150x)
+![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAEP1M3mjopvy_Q0fRE1VlOeZixJYJTkwPEHgtF0xuq3zfTPiFZiwkamVVibmsrWgZ5YrlyHfk6ISZ-3qS1_VbtyWvFKBl3nv5mwIuhnTw1-UnxO9IyGnCxd7QMV25angIAMlYJqOC4MM/s1600/therogueginger_Why+I+will+never+buy+clothing+made+of+recycled+plastic+01.jpg =200x)
+
+### Polycarbonates
+
+**Production**
+
+The main polycarbonate material is produced by the reaction of bisphenol A (BPA) and phosgene $\ce{COCl2}$. The overall reaction can be written as follows:
+
+![](https://upload.wikimedia.org/wikipedia/commons/f/fc/Polycarbonatsynthese.svg =600x)
+
+The reaction is often performed as a stirred interfacial polymerization
+
+- The first step of the synthesis involves treatment of bisphenol A with sodium hydroxide, which deprotonates the hydroxyl groups of the bisphenol A.
+- The diphenoxide ($\ce{Na2(OC6H4)2CMe2}$) reacts with phosgene to give a chloroformate, which subsequently is attacked by another phenoxide.
+
+The organic solvent is added (along with phosgene) to maintain polymer solubility.
+
+**Properties**
+
+* Thermoplastic, 
+* usually totally amorphous, thus with exceptional transparency, 
+* high impact-resistance but low scratch-resistance,
+* can undergo large plastic deformations without cracking or breaking,
+* high glass transition temperature ($T_g = \pu{150 ^\circ C}$).
+
+**Applications**
+
+![](https://upload.wikimedia.org/wikipedia/commons/d/d7/Polycarbonate_water_bottle.JPG =200x)
+![](https://upload.wikimedia.org/wikipedia/commons/6/6d/F-22_Raptor_and_pilot_at_Marine_Corps_Air_Station_Miramar_25_Jun_2010.jpg =400x)
+![](https://upload.wikimedia.org/wikipedia/commons/5/5d/Dome_06_56_41_960000.jpeg =250x)
+![](https://live.staticflickr.com/65535/49583438262_5d8b5bff4a_b.jpg =300x)
+![](https://upload.wikimedia.org/wikipedia/commons/8/89/Laboratory_protection_goggles-blue.jpg =200x)
+
+### Polyimides
+
+Polyimides are representative of a class of high temperature thermoplastics, sometimes termed engineering plastics. Polyimide is prepared from the reaction of a dianhydride with a diamine. One example is Kapton^TM^, which is produced using pyromellitic dianhydride and 4,4′-diaminodiphenyl ether. 
+
+**Production**
+
+Polyimide is prepared from the reaction of a dianhydride with a diamine. One example is Kapton^TM^, which is produced using pyromellitic dianhydride and 4,4′-diaminodiphenyl ether. A complication arises that is common with highly aromatic polymers, namely that the resulting polymers become insoluble at very low degrees of polymerization. Thus, the polymer is usually synthesized in two steps. The first step results in a high molar mass polyamic acid. Secondly, high temperature is used to facilitate removal of water and residual solvent. The final polyimides are in most cases infusible and insoluble. Different dianhydrides and diamines can be used to prepare a variety of polyimides. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/0/0f/Polyimide_Formation_%28schematic%29_V1.png =400x)
+
+**Properties**
+
+- Stable across a wide range of temperatures from $\pu{-269 ^\circ C}$ to $\pu{400 ^\circ C}$; 
+- good chemical resistance; 
+- excellent mechanical properties;
+- inherently resistant to flame combustion;
+- characteristic orange/yellow color.
+
+Kapton insulation ages poorly: an FAA study shows degradation in hot, humid environments or in the presence of seawater. It was found to have very poor resistance to mechanical wear, mainly abrasion within cable harnesses due to aircraft movement. Many aircraft models have had to undergo extensive rewiring modifications—sometimes completely replacing all the Kapton-insulated wiring—because of short circuits caused by the faulty insulation.
+
+**Applications**
+
+Test unit of the James Webb Space Telescope sunshield, made of aluminized Kapton.
+
+![](https://upload.wikimedia.org/wikipedia/commons/d/d9/James_Webb_telescope_sunshield.jpg =600x)
+
+Aluminized Kapton thermal cover was used on the Ultra Heavy Cosmic Ray Experiment.
+
+![](https://upload.wikimedia.org/wikipedia/commons/a/ac/EL-1994-00018.jpeg =600x)
+
+### Polyurethanes
+
+**Production**
+
+The general synthesis process involves the reaction between a di-isocyanate and a diol, as shown in the scheme below. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/7/75/Polyurethane_synthesis.svg =600x)
+
+Reaction mechanism:
+
+![urethane](https://hackmd.io/_uploads/SkCHbk__1e.jpg =600x)
+
+
+There are different types of di-isocyanate can be used for polyurethane synthesis. There are a large variety of diol to be considered. This chemical variety produces polyurethanes with different chemical structures leading to many different applications. These include rigid and flexible foams, and coatings, adhesives, electrical potting compounds, and fibers such as spandex and polyurethane laminate (PUL). In general, long and flexible diol results in flexible or elastic polyurethane, while short diol produces rigid and hard polyurethane. 
+
+Foams are typically produced by introducing a small amount of water. In this process, $\ce{CO2}$ is released causing the formation of foam. 
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/9bfbab6bcdb2b48aca822083d63d757617fe6ea3)
+
+If multifunctional monomers are introduced, network will be formed. 
+
+**Properties**
+
+**Applications**
+
+- Low-density flexible foam used in upholstery, bedding, automotive and truck seating, and novel inorganic plant substrates for roof or wall gardens
+- Low density elastomers used in footwear
+- Hard solid plastics used as electronic instrument bezels and structural parts
+- Flexible plastics used as straps and bands
+- Cast and injection molded components for various markets – i.e., agriculture, military, automotive, industrial, etc.
+
+![](https://upload.wikimedia.org/wikipedia/commons/d/d8/%C3%89ponge_type_4_%281%29.jpg =300x)
+![](https://upload.wikimedia.org/wikipedia/commons/c/ce/Shoe-sole_01.jpg =300x)
+![](https://upload.wikimedia.org/wikipedia/commons/b/b0/Industrial_Insulation.png =300x)
+![](https://upload.wikimedia.org/wikipedia/commons/2/2c/Mlycra1.jpg =150x)
+![](https://upload.wikimedia.org/wikipedia/commons/5/55/Flooring.jpg =150x)
+
+### Polysiloxanes
+
+A silicone or polysiloxane is a polymer composed of repeating units of siloxane ($\ce{−O−R2Si−O−SiR2 −}$, where R = organic group, often methyl group). They are typically colorless oils or rubber-like substances.
+
+**Production**
+
+![](https://upload.wikimedia.org/wikipedia/commons/5/59/Linear_dimethyl_polysiloxane_polymer_reaction.svg)
+
+**Properties**
+
+- Low thermal conductivity
+- Low chemical reactivity
+- Low toxicity
+- Thermal stability (constancy of properties over a wide temperature range of −100 to 250 °C)
+- The ability to repel water and form watertight seals.
+- Does not stick to many substrates, but adheres very well to others, e.g. glass
+- Does not support microbiological growth
+- Resistance to creasing and wrinkling
+- Resistance to oxygen, ozone, and ultraviolet (UV) light. This property has led to the widespread use of silicones in the construction industry (e.g. coatings, fire protection, glazing seals) and the automotive industry (external gaskets, external trim).
+- Electrical insulation properties. Because silicone can be formulated to be electrically insulative or conductive, it is suitable for a wide range of electrical applications.
+- High gas permeability.
+
+**Applications**
+
+In the automotive field, silicone grease is typically used as a lubricant for brake components. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/d/de/Kitchen-Silicone-Brush.jpg =400x)
+
+### Practice: polyether ether ketone
+
+PEEK is a colourless organic thermoplastic polymer in the polyaryletherketone (PAEK) family with keton and ether linkers in the main chain. What properties do you expect from the structure? How is it produced? What applications are suitable for this polymer?
+
+### Practice: epoxy resin -- a thermoset
+
+Epoxy resins are widely used by artists to create models mimicking water. They can also be used as high-strength glue. What are the typical structures? What is the reaction mechanism? What properties do you expect? Any other applications?
+
+## Kinetics{{attrs[#blk-qey49l78h609]}}
+
+Assumption of equal reactivity
+: The reactivity of a functional group is independent of the size of the molecule containing it. 
+
+- Early work by Carothers, Flory, and others explored the influence of molecular size on reactivity by studying esterification and saponification rates.
+- These reactions exhibit an initial dependence on molecular size for small molecules.
+- The rate constants rapidly converge to a constant value, independent of molecular size, as the molecules get larger.
+- In carboxylic acid esterification, for example, the rate constants vary for acetic, propionic, and butyric acids.
+- However, the rate constants become consistent for carboxylic acids with 4 to 18 carbon atoms.
+- This principle, initially observed in non-polymeric systems, has been extended to polymerization reactions.
+
+### Polyesterification
+
+The kinetics and rates of step-growth polymerization can be described using a polyesterification mechanism. The simple esterification is an acid-catalyzed process in which protonation of the acid is followed by interaction with the alcohol to produce an ester and water. A few assumptions needed with this kinetic model: 
+1. Water (or any other condensation product) is efficiently removed; 
+2. The functional group reactivities are independent of chain length; 
+3. Each step only involves one alcohol and one acid.
+
+
+
+#### Self-catalyzed polyesterification
+
+If no acid catalyst is added, the reaction will still proceed because the acid can act as its own catalyst. The rate of condensation at any time $t$ can then be derived from the rate of disappearance of $\ce{COOH}$ groups and
+
+$$rate=\frac{-d[\ce{COOH}]}{dt}=k[\ce{COOH}]^2[\ce{OH}]$$
+
+The second-order $[\ce{COOH}]$ term arises from its use as a catalyst, and $k$ is the rate constant. For a system with equivalent quantities of acid and alcohol, 
+
+$$c=[\ce{COOH}]=[\ce{OH}]$$
+
+the functional group concentration can be written simply as
+
+$$rate=\frac{-dc}{dt}=kc^3$$
+
+After integration and substitution from Carothers equation, the final form is the following
+
+$$\frac{1}{(1-p)^2}=2ktc^2+1=DP^2_n$$
+
+For a self-catalyzed system, the number average degree of polymerization $DP_n$ grows proportionally with $\sqrt{t}$.
+
+#### External catalyzed polyesterification
+
+The uncatalyzed reaction is rather slow, and a high $DP_n$ is not readily attained. In the presence of an externally added catalyst, there is an acceleration of the rate, and the kinetic expression is altered to
+
+$$\frac{-d[\ce{COOH}]}{dt}=k[\ce{COOH}][\ce{OH}]$$
+
+which is kinetically first order in each functional group. Hence,
+
+$$\frac{-dc}{dt}=kc^2$$
+
+for equal amount of acid and alcohol, and integration gives finally
+
+$$\frac{1}{1-p}=1+ckt=DP_n$$
+
+For an externally catalyzed system, the number average degree of polymerization grows proportionally with $t$.
+
+## Molecular weight of the product{{attrs[#blk-v0wlf7b37is8]}}
+
+To understand better, use the following simulator:
+
+> [OVESET -- Step growth polymerization](https://colab.research.google.com/github/wangyu16/PolymerScienceEducation/blob/master/OVESET/02_Step_Growth_Polymerization.ipynb)
+
+In step-growth polymerization, the keys to find the number average degree of polymerization ($DP_n$) are:
+1. $DP_n$ equals the ratio between the initial and final numbers of molecules;
+2. The final number of molecules equas the initial number subtract the number of reactions have happened. 
+
+Be careful, the number of molecules and the number of functional groups are two different concepts. 
+
+### Stoichiometric balance
+
+#### Number average degree of polymerization
+
+Imagine a simple step-growth polymerization of AB type monomers. The initial number of monomers is $N_0$. The initial number of each type of functional group should be the same, 
+
+$$N_0=N_{A,0}=N_{B,0}$$
+
+A reaction between A and B 
+- reduces the number of both types of functional groups by one;
+- If intermolecular reaction is omitted, the number of molecules should also decrease by one. 
+
+Thus, at time $t$, the number of molecules becomes
+
+$$N_t=N_{A,t}=N_{B,t}$$
+
+The extent of reaction $p$ is defined as the conversion of the functional groups. In this case, it does not matter A or B type of functional group, since they always have the same number. 
+
+$$p=\frac{N_{A,0}-N_{A,t}}{N_{A,0}}$$
+
+The number average degree of polymerization ($DP_n$) equals to the initial numbers of monomers devided by the number of molecules at time $t$. 
+
+$$DP_n = \frac{N_0}{N_t} = \frac{N_{A,0}}{N_{A,t}} = \frac{1}{1-p}$$
+
+In order to get high $DP_n$, the extent of reaction must be close to 1. If $p=0.99$, the $DP_n$ is 100, which is usually still too low for commercial use. 
+
+If we consider a polymerization of AA and BB type monomers with exactly equal mole fraction, the above conclusion does not change. 
+
+#### Molecular weight distribution
+
+**The number fraction of $i$-mers**
+
+Consider the polymerization of AB type monomers. Assume the extent of reaction is $p$, the number fraction of $i$-mers is $x(i)$. 
+
+The extent of reaction is also the conversion of functional group A. Thus, the probability that a randomly chosen A functional group has reacted equals to $p$. In an $i$-mer, there must be $i-1$ A functional groups that have reacted and one not reacted. Thus, the probability is
+
+$$x(i) = p^{i-1}(1-p)$$
+
+It is easy to prove that the sum of $x(i)$ equals 1. 
+
+$$
+\begin{align*}
+\sum_{i=1}^\infty x(i) & = \sum_{i=1}^\infty p^{i-1}(1-p) \\
+& = (1-p)\sum_{i=0}^\infty p^i \\
+& = (1-p)\times\frac{1}{1-p} \\
+& = 1
+\end{align*}
+$$
+
+The **number average degree of polymerization** can be calculated as the first moment of the distribution: 
+
+$$
+\begin{align*}
+DP_n & = \sum_{i=1}^\infty i x(i) \\
+& = \sum_{i=1}^\infty i p^{i-1}(1-p) \\
+& = (1-p)\sum_{i=1}^\infty ip^{i-1} \\
+& = (1-p)\times\frac{1}{(1-p)^2} \\
+& = \frac{1}{1-p}
+\end{align*}
+$$
+
+The **weight average degree of polymerization** can be calculated as the second moment devided by the first moment: 
+
+$$
+\begin{align*}
+DP_w & = \frac{\sum_{i=1}^\infty i^2 x(i)}{\sum_{i=1}^\infty i x(i)} \\
+& = (1-p)\sum_{i=1}^\infty i^2x(i) \\
+& = (1-p)^2\sum_{i=1}^\infty i^2p^{i-1} \\
+& = (1-p)^2\times\frac{1+p}{(1-p)^3} \\
+& = \frac{1+p}{1-p}
+\end{align*}
+$$
+
+Another way to derive the expression is as follows: 
+
+1. The weight fraction of $i$-mer is 
+
+$$w(i) = \frac{i x(i)}{\sum_{i=1}^\infty i x(i)}$$
+
+2. The weight average molecular weight is the mean value 
+
+$$DP_w = \sum_{i=1}^\infty iw(i)$$
+
+The **molecular weight distribution** is represented by $M_w/M_n$:
+
+$$M_w/M_n = \frac{DP_w}{DP_n} = 1+p$$
+
+When $p$ is close to 1, the $M_w/M_n$ value is close to 2. 
+
+The above discussion is valid for polymerization of AB type monomers and polymerization of AA + BB type monomers with exact stoichiometric balance. 
+
+### Stoichiometric imbalance  
+
+Regarding the polymerization of AA + BB type monomers, consider to scenario: 
+
+1. the two types of monomers do not have a stoichiometric balance; 
+2. small amount of monofunctional monomers exist in the system. 
+
+How would these factors influence the molecular weight of the resulting polymers? 
+
+#### Simple stoichiometric imbalance
+
+Assume AA monomer is less than BB monomer. The ratio between the number of A and B functional groups is:
+
+$$r = \frac{N_{A,0}}{N_{B,0}}$$
+
+We have the correlation
+
+$$N_0 = \frac{N_{A,0}}{2} + \frac{N_{B,0}}{2} = \frac{(1+1/r)N_{A,0}}{2}$$
+
+where $N_0$ is the total number of monomers at time 0. 
+
+The extent of reaction ($p$) is defined as the conversion of A functional groups. 
+
+The number average degree of polymerization can be calculated as
+
+$$DP_n = \frac{N_0}{N_t}$$
+
+Neglecting intramolecular reactions, each reaction would reduce the number of molecules by one. The number of reactions happend is 
+
+$$pN_{A,0}$$
+
+Thus,
+
+$$N_t = N_0 - pN_{A,0} = \frac{(1+1/r)N_{A,0}}{2} - pN_{A,0}$$
+
+
+The number average degree of polymerization is
+
+$$DP_n = \frac{N_0}{N_t} = \frac{\frac{(1+1/r)N_{A,0}}{2}}{\frac{(1+1/r)N_{A,0}}{2} - pN_{A,0}} =\frac{1+1/r}{1+1/r-2p} = \frac{r+1}{r+1-2rp}
+$$
+
+When $r=1$, we get $DP_n = 1/(1-p)$, which agrees the above conclusions.
+
+When $r=0.99$ and $p=1$, we have $DP_n = 199$, which means even if all A type of functional groups are consumed, the $DP_n$ is limited to 199. 
+
+#### Presence of monofunctional monomer
+
+If initially there are AA, BB and RB type of monomers, where RB are monofunctional monomers, what would be $DP_n$ at reaction extent $p$? Assume the total number of A functional groups is less than that of B. 
+
+The total number of monomers is 
+
+$$N_0 = N_{RB,0} + \frac{N_{A,0}}{2} + \frac{N_{B,0}}{2}$$
+
+where $N_{B,0}$ means the number of B type functional groups originated from BB type monomers only. 
+
+At time $t$ when reaction extent is $p$, the number of molecules becomes
+
+$$N_t = N_0 - pN_{A,0}$$
+
+Thus $DP_n$ is 
+
+$$DP_n = \frac{N_0}{N_t} = \frac{2N_{RB,0}+N_{A,0}+N_{B,0}}{2N_{RB,0}+N_{A,0}+N_{B,0}-2pN_{A,0}}$$
+
+Define a ratio $r'$ as
+
+$$r' = \frac{N_{A,0}}{2N_{RB,0} + N_{B,0}}$$
+
+we get
+
+$$DP_n = \frac{1+r'}{1+r'-2r'p}$$
+
+The meaning of $r'$ is not straightforward. It is kind of the ratio between A and B, but the number of RB is counted twice. Regardless, the formula for $DP_n$ is quite simple, which has the same format as the above case.
+
+## Network formation{{attrs[#blk-a6va799z04cb]}}
+
+### Network formation systems
+
+Assuming functional groups A and B react efficiently to form covalent linkages, and given the following monomers (where the numbers indicate the quantity of A or B functional groups per monomer), determine which monomers can form a network and which cannot.
+
+1. AB2
+2. A2B2
+3. AB and AB2
+4. AA and AB2
+5. AB and A3
+6. AA and B3
+7. AA, BB and A3
+8. AA, BB and AB2
+
+
+
+### Gelation theory of Carothers
+
+Define the number-average functionality $f_{av}$ as the total number of functional groups devided by the total number of molecules. If there are $N_0$ molecules, there would be $N_0f_{av}$ functional groups.  
+
+Since each reaction would reduce the number of molecules by one (intramolecular raction is omitted), at time $t$ if the number of moleclues is $N$, the number of functional groups that have reacted is $2(N_0 - N)$.
+
+Define the extend of reaction $p$ as the probability that a functional group has reacted, i.e.,
+
+$$p = \frac{2(N_0 - N)}{N_0f_{av}}$$
+
+The average degree of polymerization is
+
+$$DP_n = \frac{N_0}{N} = \frac{2}{2-pf_{av}}$$
+
+Thus,
+
+$$\boxed{p_c \geq \frac{2}{f_{av}}}$$
+
+leads to
+
+$$DP_n \to \infty$$
+
+Note, gelation would occur before the predicted $p_c$.
+
+Carothers gelation theory can be applied to both polymerization of pre-existing linear polymers each with $N$ functionalitites and polymerization of multifunctional small molecules.
+
+Assume there are many pre-existing linear chains each has $N$ monomer units.
+
+Reactions can take place between any two monomer units on these polymer chains to create a cross-link.
+
+Define the extent of reaction $p$, i.e., the percent of monomer units have reacted.
+
+On average, there are $Np$ cross-link points on each polymer chain.
+
+The question is, on average, how many chains are linked together at this moment. Or, start from one chain, how likely to find another chain linked to this chain, and then another chain, and so on. If the number approaches infinity, the system is crosslinked, the extent of reaction is called the critical extent of reaction $p_c$.
+
+$$p_c = \frac{1}{N-1} \approx \frac{1}{N}$$
+
+If the pre-existing chains have a molecular distribution. Use weight average degree of polymerization $N_w$ to replace $N$ and the way to calculate $p_c$ remains the same.
+
+$$p_c \approx \frac{1}{N_w}$$
+
+### Stockmayer and Flory theory of gelation.
+
+Think about a reaction of AA, BB, AB, Af and Bf. Assume B groups are present in excess.
+1. The ratio of the intial number of A to B is $r = N_A^0/N_B^0$.
+2. The fraction of A present in multifunctional molecules is defined as
+$$\rho=\frac{fN_{Af}^0}{N_A^0}$$
+where $N^0_{Af}$ means the number of Af type molecules and $N_A^0$ means the number of all A type functional groups. 
+3. The extent of reaction $p$ is based on A.
+4. The branching coefficient $\alpha$ is the probability that a chain segment is capped at both ends by a branch unit.
+
+#### Calculation of the branching coefficient
+
+Calculate the probability that starts from an Af, reacts with BB, AA, BB, AA, ..., BB, and finally another Af.
+
+* The first step has a probability $p$.
+* The second step $rp(1-\rho)$.
+* Next step, again $p$.
+* Then again $rp(1-\rho)$.
+* The final step $rp\rho$.
+
+The overall probability is
+
+$$p[rp(1-\rho)p]^irp\rho$$
+
+The branching coefficient gives the probability of a chain segment being capped by potential branch points
+
+$$
+\begin{align*}
+\alpha & = \sum_{i=0}^\infty rp^2\rho[rp^2(1-\rho)]^i \\
+& = \frac{rp^2\rho}{1-rp^2(1-\rho)}
+\end{align*}
+$$
+
+#### Gel point
+
+Consider these linear strands each with two Af end caps. Start from one strand how likely to find another strand linked to it, and then another one, and go on.
+
+Start from one Af chain end, there are $f-1$ A groups need to be considered, each one has the probability $\alpha$ that it is reacted. If the value $(f-1)\alpha$ is less than one, the chance to go from one strand to another and another vanishes sooner or later. If the value $(f-1)\alpha$ is greater than one, it is likely to find infinity number of strands that has been linked together. Thus, the critical extent of reaction is given by
+
+$$\alpha_c = \frac{1}{f-1}$$
+
+thus
+
+$$\boxed{p_c = \frac{1}{\sqrt{r + r\rho(f-2)}}}$$
+
+The formation of loops and the reduced reactivity due to steric hinderance are omitted. The actually gelation point may occur later than the prediction.
+
+#### Molecular weight averages
+
+In the system generated from AA, BB and Af, we restrict to the condition of $N_A^0 =  N_B^0$. The average functionality of a monomer $\langle f\rangle$ is defined as
+
+$$\langle f\rangle \equiv \frac{\sum_i n_if_i}{\sum_i n_i}$$
+
+The number average degree of polymerization of the sol fraction is given by the Carothers equation.
+
+An analysis of the polymerization of Af monomers gives the number average and weight average degree of polymerization
+
+$$N_n = \frac{2}{2-\alpha f}$$
+
+and
+
+$$N_w = \frac{1+\alpha}{1-\alpha(f-1)}$$
+
+At the gel point $\alpha_c = 1/(f-1)$, $N_w$ becomes infinite, whereas $N_n$ remains finite.
+
+As $\alpha\to\alpha_c$, the ratio $N_w/N_n$ indicates a divergence of the dispersity. It emphasizes that in addition to the network molecule, or gel fraction, of essentially infinite molecular weight, there are still many other molecules present at the gel point, the sol fraction.
+
+#### Sol-gel fractions
+
+In polymer science, the terms "sol" and "gel" fractions refer to two distinct components of a polymer network, typically encountered when studying crosslinked polymers or during processes like gelation.
+
+The **sol fraction** is the portion of a polymer sample that remains soluble in a solvent. It consists of low molecular weight chains, uncrosslinked molecules, or loosely connected polymer fragments that don’t form part of the larger, interconnected network. Essentially, these are the bits that can still dissolve and be extracted because they aren’t tied into the permanent structure. Think of it as the "loose" or "free-floating" part of the system.
+
+The **gel fraction**, on the other hand, is the insoluble portion—the crosslinked, three-dimensional network of polymer chains that forms a solid-like structure. Once the polymer reaches a certain level of crosslinking (past the gel point), it transitions into this gel state, where it can no longer dissolve but might swell in a solvent. This is the "fixed" or "solid" part that gives the material its structural integrity.
+
+These concepts are key in understanding how polymers behave, especially in applications like hydrogels, rubbers, or coatings. For example, in a crosslinked rubber, the gel fraction determines its strength and elasticity, while the sol fraction might indicate incomplete crosslinking or leftover monomers. Researchers often measure these fractions experimentally by soaking a sample in a solvent and weighing what dissolves (sol) versus what remains (gel).
+
+#### Simulation of network
+
+What happens when the system approaching the gel point? What types of molecules are there in the system? What are the sol and gel fractions? A simulator can help you. 
+
+> [OVESET Network Formation](https://colab.research.google.com/github/wangyu16/PolymerScienceEducation/blob/master/OVESET/06_Network_Formation.ipynb)
+
+:::info
+**Example Questions Level 1**
+
+1. For a linear polycondensation reaction of AA and BB type monomers
+	1. Calculate the extent of reaction ($p$) necessary to achieve a number average degree of polymerization ($DP_n$) of 400, assuming you start with 50 moles of AA and 50 moles of BB monomers. 
+	2. Calculate the maximum possible $DP_n$ if the initial amount of AA is 50 moles, and that of BB is 51 moles. 
+	3. Calculate the degree of polymerization that could be achieved at this degree of conversion $p=0.999$ if there were an impurity present, such that you not only had 50 moles of AA and 50 moles of BB monomers, but also 1 mole of a monofunctional (RB) molecule. 
+1. Describe how urethane chemistry can be used to make both flexible and rigid foams.
+1. What is the commercial name of the Nylon shown in the following figure regarding the number of carbon atoms?
+![](https://upload.wikimedia.org/wikipedia/commons/0/00/Nylon_46.svg =300x) 
+
+
+:::
+
+
+{{markdown ./license.md}}
+
+</script>
+
+<script data-orz-asset="engine" src="https://cdn.jsdelivr.net/npm/orz-paged-browser@0.6.1/orz-paged.browser.js"></script>
+<script>
+(function (global) {
+  var expandedQr = null;
+  var expandedSourceQr = null;
+
+  function collapseQr() {
+    if (!expandedQr) return;
+
+    if (expandedSourceQr) {
+      expandedSourceQr.classList.remove('is-expanded');
+      expandedSourceQr.setAttribute('aria-expanded', 'false');
+    }
+
+    if (expandedQr.parentNode) {
+      expandedQr.parentNode.removeChild(expandedQr);
+    }
+
+    if (global.document && global.document.body) {
+      global.document.body.style.overflow = '';
+    }
+    expandedQr = null;
+    expandedSourceQr = null;
+  }
+
+  function toggleQr(node) {
+    if (expandedSourceQr === node) {
+      collapseQr();
+      return;
+    }
+
+    collapseQr();
+    if (!global.document || !global.document.body) {
+      return;
+    }
+
+    expandedSourceQr = node;
+    expandedSourceQr.classList.add('is-expanded');
+    expandedSourceQr.setAttribute('aria-expanded', 'true');
+
+    expandedQr = node.cloneNode(true);
+    expandedQr.classList.add('qrcode-overlay', 'is-expanded');
+    expandedQr.setAttribute('aria-hidden', 'true');
+    expandedQr.removeAttribute('aria-expanded');
+    expandedQr.removeAttribute('tabindex');
+    expandedQr.removeAttribute('role');
+    expandedQr.addEventListener('click', function (event) {
+      event.stopPropagation();
+      collapseQr();
+    });
+
+    global.document.body.appendChild(expandedQr);
+
+    if (global.document && global.document.body) {
+      global.document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function initQrCodes(root) {
+    if (!root || typeof root.querySelectorAll !== 'function') return;
+
+    Array.prototype.slice.call(root.querySelectorAll('.qrcode')).forEach(function (node) {
+      if (node.getAttribute('data-qr-ready') === '1') return;
+
+      node.setAttribute('data-qr-ready', '1');
+      node.addEventListener('click', function (event) {
+        event.stopPropagation();
+        toggleQr(node);
+      });
+      node.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleQr(node);
+        }
+        if (event.key === 'Escape') {
+          collapseQr();
+        }
+      });
+    });
+  }
+
+  function initTabs(root) {
+    if (!root || typeof root.querySelectorAll !== 'function') return;
+    Array.prototype.slice.call(root.querySelectorAll('.tabs')).forEach(function (tabs) {
+      // data-js both guards re-init and switches the theme CSS from the no-JS
+      // fallback (all panels shown) to JS mode (only the .active panel shown).
+      if (tabs.getAttribute('data-js') === '1') return;
+      var panels = Array.prototype.slice.call(tabs.querySelectorAll(':scope > .tab'));
+      if (!panels.length) return;
+      tabs.setAttribute('data-js', '1');
+
+      var bar = global.document.createElement('div');
+      bar.className = 'tabs-bar';
+      panels.forEach(function (panel, i) {
+        var label = panel.getAttribute('data-label') || 'Tab ' + (i + 1);
+        var btn = global.document.createElement('button');
+        btn.className = 'tabs-bar-btn' + (i === 0 ? ' active' : '');
+        btn.textContent = label;
+        btn.addEventListener('click', function () {
+          Array.prototype.slice.call(tabs.querySelectorAll('.tabs-bar-btn')).forEach(function (b) { b.classList.remove('active'); });
+          panels.forEach(function (p) { p.classList.remove('active'); });
+          btn.classList.add('active');
+          panel.classList.add('active');
+        });
+        bar.appendChild(btn);
+      });
+      tabs.insertBefore(bar, tabs.firstChild);
+      panels[0].classList.add('active');
+    });
+  }
+
+  function init(root) {
+    var r = root || global.document;
+    initQrCodes(r);
+    initTabs(r);
+  }
+
+  // ---- copy-as-markdown: DOM -> Markdown walker ---------------------------
+  // Converts a selected DOM fragment back to Markdown so that copying rendered
+  // content yields source, not HTML. Standard constructs are reconstructed from
+  // their tags; generated constructs (math, mermaid, smiles, qr, youtube, chart) carry
+  // a [data-md] breadcrumb that is emitted verbatim. Written without template
+  // literals/backticks because this whole file is a String.raw template.
+  var BT = String.fromCharCode(96);
+  var FENCE = BT + BT + BT;
+
+  function rt_repeat(s, n) {
+    var out = '';
+    for (var i = 0; i < n; i++) out += s;
+    return out;
+  }
+
+  function rt_attr(node, name) {
+    return node && node.getAttribute ? node.getAttribute(name) : null;
+  }
+
+  function rt_isBlockElement(node) {
+    if (!node || node.nodeType !== 1) return false;
+    if (rt_attr(node, 'data-md') != null) return true;
+    var tag = node.tagName.toLowerCase();
+    if (/^(p|div|section|article|figure|h[1-6]|ul|ol|li|blockquote|pre|table|thead|tbody|tr|hr|details)$/.test(tag)) return true;
+    if (node.classList && (node.classList.contains('katex-display') || node.classList.contains('mermaid'))) return true;
+    return false;
+  }
+
+  function rt_katex(node, display) {
+    var ann = node.querySelector ? node.querySelector('annotation[encoding="application/x-tex"]') : null;
+    var tex = (ann ? ann.textContent : node.textContent) || '';
+    tex = tex.replace(/^\s+|\s+$/g, '');
+    if (display) return '$$\n' + tex + '\n$$';
+    return '$' + tex + '$';
+  }
+
+  function rt_img(node) {
+    var alt = rt_attr(node, 'alt') || '';
+    var src = rt_attr(node, 'src') || '';
+    var title = rt_attr(node, 'title');
+    return '![' + alt + '](' + src + (title ? ' "' + title + '"' : '') + ')';
+  }
+
+  function rt_inlineChildren(node) {
+    var out = '';
+    var kids = node.childNodes;
+    for (var i = 0; i < kids.length; i++) out += rt_inlineNode(kids[i]);
+    return out;
+  }
+
+  function rt_inlineNode(node) {
+    if (node.nodeType === 3) return node.nodeValue.replace(/\s+/g, ' ');
+    if (node.nodeType !== 1) return '';
+    var dm = rt_attr(node, 'data-md');
+    if (dm != null) return dm;
+    if (node.classList && node.classList.contains('katex')) return rt_katex(node, false);
+    var tag = node.tagName.toLowerCase();
+    switch (tag) {
+      case 'strong': case 'b': return '**' + rt_inlineChildren(node) + '**';
+      case 'em': case 'i': return '*' + rt_inlineChildren(node) + '*';
+      case 'code': return BT + (node.textContent || '') + BT;
+      case 'a':
+        var href = rt_attr(node, 'href') || '';
+        var title = rt_attr(node, 'title');
+        return '[' + rt_inlineChildren(node) + '](' + href + (title ? ' "' + title + '"' : '') + ')';
+      case 'del': case 's': return '~~' + rt_inlineChildren(node) + '~~';
+      case 'ins': return '++' + rt_inlineChildren(node) + '++';
+      case 'mark': return '==' + rt_inlineChildren(node) + '==';
+      case 'sub': return '~' + rt_inlineChildren(node) + '~';
+      case 'sup': return '^' + rt_inlineChildren(node) + '^';
+      case 'br': return '  \n';
+      case 'img': return rt_img(node);
+      case 'input': return '';
+      case 'span':
+        var spCls = (rt_attr(node, 'class') || '').trim();
+        return spCls ? '{{sp[' + spCls + '] ' + rt_inlineChildren(node) + '}}' : rt_inlineChildren(node);
+      default: return rt_inlineChildren(node);
+    }
+  }
+
+  function rt_align(cell) {
+    var style = (rt_attr(cell, 'style') || '').toLowerCase();
+    if (style.indexOf('center') !== -1) return 'center';
+    if (style.indexOf('right') !== -1) return 'right';
+    if (style.indexOf('left') !== -1) return 'left';
+    return '';
+  }
+
+  function rt_sep(align) {
+    if (align === 'center') return ':---:';
+    if (align === 'right') return '---:';
+    if (align === 'left') return ':---';
+    return '---';
+  }
+
+  function rt_tableRows(headRow, bodyRows) {
+    var rows = [];
+    var header = [];
+    var aligns = [];
+    if (headRow) {
+      var hc = headRow.children;
+      for (var i = 0; i < hc.length; i++) { header.push(rt_inlineChildren(hc[i]).trim()); aligns.push(rt_align(hc[i])); }
+    }
+    rows.push('| ' + header.join(' | ') + ' |');
+    var seps = [];
+    for (var s = 0; s < header.length; s++) seps.push(rt_sep(aligns[s]));
+    rows.push('| ' + seps.join(' | ') + ' |');
+    for (var r = 0; r < bodyRows.length; r++) {
+      var cells = [];
+      var tds = bodyRows[r].children;
+      for (var c = 0; c < tds.length; c++) cells.push(rt_inlineChildren(tds[c]).trim());
+      rows.push('| ' + cells.join(' | ') + ' |');
+    }
+    return rows.join('\n');
+  }
+
+  function rt_table(tbl) {
+    var headRow = tbl.querySelector ? tbl.querySelector('thead tr') : null;
+    var bodyRows = tbl.querySelectorAll ? tbl.querySelectorAll('tbody tr') : [];
+    return rt_tableRows(headRow, bodyRows);
+  }
+
+  // Reconstruct a table from bare table-internal nodes (thead/tbody/tr), e.g.
+  // when a selection inside a table loses its <table> wrapper.
+  function rt_tableFromParts(parts) {
+    var headRow = null;
+    var bodyRows = [];
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      var tag = p.tagName.toLowerCase();
+      if (tag === 'thead') { var tr = p.querySelector ? p.querySelector('tr') : null; if (tr && !headRow) headRow = tr; }
+      else if (tag === 'tbody') { var trs = p.querySelectorAll ? p.querySelectorAll('tr') : []; for (var j = 0; j < trs.length; j++) bodyRows.push(trs[j]); }
+      else if (tag === 'tr') { if (!headRow) headRow = p; else bodyRows.push(p); }
+    }
+    return rt_tableRows(headRow, bodyRows);
+  }
+
+  function rt_codeBlock(pre) {
+    var code = pre.querySelector ? (pre.querySelector('code') || pre) : pre;
+    var lang = '';
+    var cls = rt_attr(code, 'class') || '';
+    var m = cls.match(/language-([A-Za-z0-9_+#-]+)/);
+    if (m) lang = m[1];
+    var text = (code.textContent || '').replace(/\n$/, '');
+    return FENCE + lang + '\n' + text + '\n' + FENCE;
+  }
+
+  function rt_list(node, ordered, depth) {
+    var items = [];
+    var idx = 1;
+    var kids = node.childNodes;
+    for (var i = 0; i < kids.length; i++) {
+      var li = kids[i];
+      if (li.nodeType !== 1 || li.tagName.toLowerCase() !== 'li') continue;
+      items.push(rt_listItem(li, ordered, idx, depth));
+      idx++;
+    }
+    return items.join('\n');
+  }
+
+  function rt_listItem(li, ordered, idx, depth) {
+    var indent = rt_repeat('  ', depth);
+    var marker = ordered ? (idx + '. ') : '- ';
+    var task = '';
+    var cb = li.querySelector ? li.querySelector('input[type="checkbox"]') : null;
+    if (cb) task = (cb.checked || rt_attr(cb, 'checked') != null) ? '[x] ' : '[ ] ';
+    var inlineParts = '';
+    var nested = '';
+    var kids = li.childNodes;
+    for (var i = 0; i < kids.length; i++) {
+      var c = kids[i];
+      if (c.nodeType === 1 && /^(ul|ol)$/.test(c.tagName.toLowerCase())) {
+        nested += '\n' + rt_list(c, c.tagName.toLowerCase() === 'ol', depth + 1);
+      } else {
+        inlineParts += rt_inlineNode(c);
+      }
+    }
+    inlineParts = inlineParts.replace(/\s+/g, ' ').trim();
+    return indent + marker + task + inlineParts + nested;
+  }
+
+  function rt_blockquote(node) {
+    var inner = rt_blockChildren(node);
+    var lines = inner.split('\n');
+    var out = [];
+    for (var i = 0; i < lines.length; i++) out.push(lines[i] ? '> ' + lines[i] : '>');
+    return out.join('\n');
+  }
+
+  function rt_blockChildren(node) {
+    var parts = [];
+    var kids = node.childNodes;
+    var i = 0;
+    while (i < kids.length) {
+      var k = kids[i];
+      // A selection can contain bare <li> elements (when the user selects a
+      // list's contents rather than the <ul>/<ol> wrapper). Group a run of them
+      // into a bullet list instead of emitting each as a separate block.
+      if (k.nodeType === 1 && k.tagName.toLowerCase() === 'li') {
+        var lis = [];
+        while (i < kids.length) {
+          var kk = kids[i];
+          if (kk.nodeType === 1 && kk.tagName.toLowerCase() === 'li') { lis.push(kk); i++; }
+          else if (kk.nodeType === 3 && !(kk.nodeValue || '').trim()) { i++; }
+          else break;
+        }
+        var items = [];
+        for (var j = 0; j < lis.length; j++) items.push(rt_listItem(lis[j], false, j + 1, 0));
+        parts.push(items.join('\n'));
+        continue;
+      }
+      // Bare table-internal nodes (selection inside a table that lost its
+      // <table> wrapper) — reconstruct a Markdown table.
+      if (k.nodeType === 1 && /^(thead|tbody|tr)$/.test(k.tagName.toLowerCase())) {
+        var trows = [];
+        while (i < kids.length) {
+          var tk = kids[i];
+          if (tk.nodeType === 1 && /^(thead|tbody|tr)$/.test(tk.tagName.toLowerCase())) { trows.push(tk); i++; }
+          else if (tk.nodeType === 3 && !(tk.nodeValue || '').trim()) { i++; }
+          else break;
+        }
+        parts.push(rt_tableFromParts(trows));
+        continue;
+      }
+      var s = rt_blockNode(k);
+      if (s && s.replace(/\s/g, '') !== '') parts.push(s.replace(/\s+$/, ''));
+      i++;
+    }
+    return parts.join('\n\n');
+  }
+
+  var rt_containerNames = ['info', 'success', 'warning', 'danger', 'left', 'right', 'center', 'cols', 'col', 'tabs', 'tab'];
+  // A markdown-it-container div.name (or details.spoil) -> its ::: name
+  // directive name, or null if the node is not a container.
+  function rt_containerName(node) {
+    if (node.nodeType !== 1 || !node.classList) return null;
+    var tag = node.tagName.toLowerCase();
+    if (tag === 'details' && node.classList.contains('spoil')) {
+      var sum = node.querySelector ? node.querySelector('summary') : null;
+      var title = sum ? (sum.textContent || '').trim() : '';
+      return title ? 'spoil ' + title : 'spoil';
+    }
+    if (tag !== 'div') return null;
+    for (var i = 0; i < rt_containerNames.length; i++) {
+      var n = rt_containerNames[i];
+      if (node.classList.contains(n)) {
+        if (n === 'tab') { var lbl = rt_attr(node, 'data-label'); return lbl ? 'tab ' + lbl : 'tab'; }
+        return n;
+      }
+    }
+    return null;
+  }
+  // Emit a ::: name ... ::: block, using a fence longer than any inner fence so
+  // nested containers (cols > col, tabs > tab) re-parse correctly.
+  function rt_containerMd(node, name) {
+    var parts = [];
+    var kids = node.childNodes;
+    for (var i = 0; i < kids.length; i++) {
+      var k = kids[i];
+      if (k.nodeType === 1) {
+        var ktag = k.tagName.toLowerCase();
+        if (ktag === 'summary') continue; // spoil title, captured in the name
+        if (k.classList && k.classList.contains('tabs-bar')) continue; // JS-injected tab buttons
+      }
+      var m = rt_blockNode(k);
+      if (m && m.trim()) parts.push(m.trim());
+    }
+    var inner = parts.join('\n\n');
+    var maxFence = 2;
+    var lines = inner.split('\n');
+    for (var j = 0; j < lines.length; j++) {
+      var mm = lines[j].match(/^(:{3,})/);
+      if (mm && mm[1].length > maxFence) maxFence = mm[1].length;
+    }
+    var fence = rt_repeat(':', Math.max(3, maxFence + 1));
+    return fence + ' ' + name + '\n' + inner + '\n' + fence;
+  }
+
+  function rt_blockNode(node) {
+    if (node.nodeType === 3) {
+      var t = node.nodeValue;
+      return (t && t.trim()) ? t.replace(/\s+/g, ' ').trim() : '';
+    }
+    if (node.nodeType !== 1) return '';
+    var dm = rt_attr(node, 'data-md');
+    if (dm != null) return dm;
+    if (node.classList) {
+      // Display math: the katex-display span OR its katex-block <p> wrapper.
+      // Without this the wrapper is walked as a paragraph and the inner katex is
+      // emitted as inline math instead of a block equation.
+      if (node.classList.contains('katex-display') || node.classList.contains('katex-block')) {
+        var k = node.querySelector ? node.querySelector('.katex') : null;
+        return rt_katex(k || node, true);
+      }
+      if (node.classList.contains('mermaid')) return '{{mermaid\n' + (node.textContent || '').trim() + '\n}}';
+    }
+    var tag = node.tagName.toLowerCase();
+    var hm = tag.match(/^h([1-6])$/);
+    if (hm) return rt_repeat('#', parseInt(hm[1], 10)) + ' ' + rt_inlineChildren(node).trim();
+    switch (tag) {
+      case 'p': return rt_inlineChildren(node).trim();
+      case 'ul': return rt_list(node, false, 0);
+      case 'ol': return rt_list(node, true, 0);
+      case 'pre': return rt_codeBlock(node);
+      case 'blockquote': return rt_blockquote(node);
+      case 'table': return rt_table(node);
+      case 'hr': return '---';
+      case 'li': return rt_inlineChildren(node).trim();
+      case 'figure': case 'div': case 'section': case 'article': case 'details': case 'summary':
+        var cn = rt_containerName(node);
+        if (cn) return rt_containerMd(node, cn);
+        return rt_blockChildren(node);
+      default: return rt_inlineNode(node).trim();
+    }
+  }
+
+  function elementToMarkdown(root) {
+    if (!root) return '';
+    var hasBlock = false;
+    var kids = root.childNodes || [];
+    for (var i = 0; i < kids.length; i++) {
+      if (rt_isBlockElement(kids[i])) { hasBlock = true; break; }
+    }
+    var out = hasBlock ? rt_blockChildren(root) : rt_inlineChildren(root);
+    return out.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').replace(/^\s+|\s+$/g, '');
+  }
+
+  function rt_isEditable(node) {
+    while (node) {
+      if (node.nodeType === 1) {
+        var tag = node.tagName.toLowerCase();
+        if (tag === 'input' || tag === 'textarea') return true;
+        if (node.isContentEditable) return true;
+      }
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  function rt_isCopyRoot(node) {
+    return node.nodeType === 1 && node.classList &&
+      (node.classList.contains('markdown-body') || rt_attr(node, 'data-orz-copy') != null);
+  }
+  function rt_withinCopyRoot(node) {
+    while (node) {
+      if (rt_isCopyRoot(node)) return true;
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  // When a selection sits entirely within one table/blockquote/pre — or inside a
+  // ::: container — copy that whole block, so the wrapper is included (a partial
+  // table/quote fragment isn't valid Markdown, and a copied container should keep
+  // its ::: fence). Browsers often clone such selections without the wrapper.
+  // Tables/quotes/code don't nest, so the innermost wins; containers DO nest
+  // (cols > col, tabs > tab), so promote to the OUTERMOST one.
+  function rt_promotableBlock(node) {
+    var container = null;
+    while (node && !rt_isCopyRoot(node)) {
+      if (node.nodeType === 1) {
+        var tag = node.tagName.toLowerCase();
+        if (tag === 'table' || tag === 'blockquote' || tag === 'pre') return node;
+        // A selection inside a display equation copies the whole block equation;
+        // a partial KaTeX fragment is not valid Markdown.
+        if (node.classList &&
+            (node.classList.contains('katex-block') || node.classList.contains('katex-display'))) return node;
+        if (rt_containerName(node)) container = node;
+      }
+      node = node.parentNode;
+    }
+    return container;
+  }
+
+  function onCopy(event) {
+    if (!global.document) return;
+    var sel = global.getSelection ? global.getSelection()
+      : (global.document.getSelection ? global.document.getSelection() : null);
+    if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return;
+    if (rt_isEditable(sel.anchorNode) || rt_isEditable(sel.focusNode)) return;
+    if (!rt_withinCopyRoot(sel.anchorNode) && !rt_withinCopyRoot(sel.focusNode)) return;
+
+    var md;
+    var range0 = sel.getRangeAt(0);
+    var common = range0.commonAncestorContainer;
+    var promoted = rt_promotableBlock(common.nodeType === 1 ? common : common.parentNode);
+    if (promoted && sel.rangeCount === 1) {
+      var pwrap = global.document.createElement('div');
+      pwrap.appendChild(promoted.cloneNode(true));
+      md = elementToMarkdown(pwrap);
+    } else {
+      var container = global.document.createElement('div');
+      for (var i = 0; i < sel.rangeCount; i++) container.appendChild(sel.getRangeAt(i).cloneContents());
+      md = elementToMarkdown(container);
+    }
+    if (!md) return;
+    var cd = event.clipboardData || global.clipboardData;
+    if (cd && cd.setData) {
+      cd.setData('text/plain', md);
+      if (event.preventDefault) event.preventDefault();
+    }
+  }
+
+  function bindGlobalHandlers() {
+    if (!global.document || global.__orzMarkdownRuntimeBound) return;
+    global.__orzMarkdownRuntimeBound = true;
+
+    global.document.addEventListener('click', function (event) {
+      if (expandedQr && !expandedQr.contains(event.target)) {
+        collapseQr();
+      }
+    });
+
+    global.document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        collapseQr();
+      }
+    });
+
+    // Copy rendered selections as Markdown source.
+    global.document.addEventListener('copy', onCopy);
+  }
+
+  global.OrzMarkdownRuntime = Object.assign({}, global.OrzMarkdownRuntime, {
+    init: init,
+    initQrCodes: initQrCodes,
+    initTabs: initTabs,
+    collapseQr: collapseQr,
+    elementToMarkdown: elementToMarkdown,
+  });
+
+  bindGlobalHandlers();
+
+  if (global.document) {
+    if (global.document.readyState === 'loading') {
+      global.document.addEventListener('DOMContentLoaded', function () {
+        init(global.document);
+      }, { once: true });
+    } else {
+      init(global.document);
+    }
+  }
+})(typeof globalThis !== 'undefined' ? globalThis : window);
+</script>
+<script data-orz-asset="config">window.__ORZ_PAGED__ = {"mode":"cdn","katexCss":"https://cdn.jsdelivr.net/npm/katex@0.16.35/dist/katex.min.css","hljsCss":"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css","enhancers":{"mermaidJs":"https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js","smilesJs":"https://unpkg.com/smiles-drawer@1.0.10/dist/smiles-drawer.min.js","chartJs":"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js","hljsJs":"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"},"version":"0.6.1","templates":[{"id":"article-page","label":"Article — title page","description":"Academic paper with a dedicated title page, then abstract + body.","group":"Article","skeleton":"{{nyml\nkind: document\ntemplate: article-page\nfront_matter: clean\n}}\n\n{{nyml\nkind: article-title\ntitle: Your Article Title\nsubtitle: A Concise, Descriptive Subtitle\nauthors: |\n  First Author | 1,* | first.author@example.edu | 0000-0002-1825-0097\n  Second Author | 2 | second.author@example.org\n  Third Author | 1,2\naffiliations: |\n  1: Department of Example, University of Example\n  2: Institute of Example, Example City\nnotes: |\n  *: Corresponding author\ndate: Month Year\nplacement: page\n}}\n\n{{nyml\nkind: abstract\ntext: Briefly state the problem, what you did, and what you found. Summarize your main contribution in one or two sentences. Close with the significance of the result for the field.\nkeywords: keyword one, keyword two, keyword three\nplacement: page\n}}\n\n## Introduction\n\nOpen with the context and motivation for your work. State the gap your study\naddresses and the question you set out to answer. End the section with a short\nstatement of your contribution and an outline of what follows.\n\n## Methods\n\nDescribe your approach so that a reader could reproduce it. Summarize the key\nparameters of your setup in a compact table:\n\n| Parameter | Symbol | Value |\n|---|---|---|\n| Sample size | $n$ | 120 |\n| Trials per group | $k$ | 5 |\n| Significance level | $\\alpha$ | 0.05 |\n\nQuantities are reported with their uncertainties, and the mass–energy relation\n$E = mc^2$ is used where relevant. The core model is given by\n\n$$\n\\hat{y} = \\beta_0 + \\sum_{i=1}^{n} \\beta_i x_i + \\varepsilon\n$$\n\nwhere the residual term $\\varepsilon$ is assumed normally distributed.\n\n## Results\n\n- The primary measure improved by 18% over the baseline.\n- The effect held across all three experimental groups.\n- Results were statistically significant ($p < 0.05$).\n\n## Conclusion\n\nRestate the main finding, note its limitations, and point to one direction for\nfuture work.\n\n## References\n\n1. Author Name. *Title of the First Reference.* Journal Name, Year, pp. 1–10.\n2. Author Name. *Title of the Second Reference.* Publisher, Year.\n"},{"id":"article-section","label":"Article — title section","description":"Academic paper with an inline title block above the body.","group":"Article","skeleton":"{{nyml\nkind: document\ntemplate: article-section\n}}\n\n{{nyml\nkind: article-title\ntitle: Your Article Title Goes Here\nsubtitle: A short, descriptive subtitle for your paper\nauthors: |\n  First Author | 1,* | first.author@example.edu | 0000-0002-1825-0097\n  Second Author | 2\naffiliations: |\n  1: Department of Example, University of Example\n  2: Institute of Example, Example City\nnotes: |\n  *: Corresponding author\ndate: June 2026\nplacement: section\n}}\n\n{{nyml\nkind: abstract\ntext: |\n  Summarize your work in two or three sentences. State the problem you\n  address, the approach you took, and the headline result a reader should\n  remember. Keep it self-contained so it makes sense without the body.\nkeywords: keyword one, keyword two, keyword three\n}}\n\n## Introduction\n\nOpen with the context and motivation for your work. Describe the gap or open\nquestion your study addresses, and end the section by stating your contribution\nin one or two clear sentences. Replace this placeholder text with your own.\n\nYou can cite prior work informally here and expand on it in the References\nsection below. Aim for a paragraph or two that orients the reader before the\nmethods.\n\n## Methods\n\nDescribe your approach so that it could be reproduced. Inline math renders with\nsingle dollar signs — for example, the sample size $n = 120$ and a significance\nthreshold of $\\alpha = 0.05$.\n\nThe table below is a placeholder; replace the rows with your own conditions.\n\n| Condition | Parameter | Value |\n|-----------|-----------|-------|\n| Baseline  | rate      | 0.10  |\n| Treatment | rate      | 0.42  |\n| Control   | rate      | 0.09  |\n\nDisplay equations use double dollar signs and are centered on their own line:\n\n$$\n\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i\n$$\n\nExplain each symbol in the surrounding text so the equation is self-explanatory.\n\n## Results\n\nSummarize your findings as a short list, then expand on the most important ones\nin prose if needed.\n\n- The treatment condition outperformed the baseline by a wide margin.\n- The effect held across all three replicates.\n- No significant difference was observed between the control and baseline.\n\n## Conclusion\n\nRestate your main finding and its significance in plain language. Note the key\nlimitations of the study and suggest one or two concrete directions for future\nwork. Close with a sentence that leaves the reader with your central takeaway.\n\n## References\n\n1. Author, A. B., & Author, C. D. (Year). *Title of the first referenced work.*\n   Journal or Publisher, volume(issue), pages.\n2. Author, E. F. (Year). *Title of the second referenced work.* Journal or\n   Publisher, volume(issue), pages.\n"},{"id":"report-page","label":"Report — title page","description":"Business/technical report with a cover page, TOC, then body.","group":"Report","skeleton":"{{nyml\nkind: document\ntemplate: report-page\nheader_center: Report Title\nfooter_left: Confidential\npage_number_position: footer-right\npage_number_style: page-n-of-N\nfront_matter: clean\n}}\n\n{{nyml\nkind: report-title\ntitle: Report Title\nsubtitle: A short, descriptive subtitle\nauthor: Team / Author\ndate: Q3 2026\nplacement: page\n}}\n\n{{nyml\nkind: toc\ntitle: Contents\nmax_level: 2\nplacement: page\n}}\n\n## Executive Summary\n\nThis report summarizes the key findings and recommendations for the quarter. In\none or two sentences, state the headline outcome and the decision you are asking\nthe reader to make. Replace this paragraph with a concise overview that a busy\nstakeholder can read in under a minute.\n\n## Background\n\nDescribe the context and why this work was undertaken. Reference the original\ngoal, the time period covered, and any prior reports this one builds on. Keep it\nbrief — enough for a new reader to understand the rest of the document without\nprior knowledge.\n\n## Findings\n\nThe data below summarizes performance against the targets set at the start of\nthe period.\n\n| Metric          | Target | Actual | Status      |\n|-----------------|--------|--------|-------------|\n| Revenue         | $1.2M  | $1.35M | On track    |\n| New customers   | 250    | 218    | Below plan  |\n| Churn rate      | 4.0%   | 3.2%   | Ahead       |\n| Support tickets | 1,000  | 1,140  | Watch       |\n\nOverall results were mixed: revenue and retention exceeded expectations, while\nnew-customer acquisition fell short of plan. Summarize the most important\ntakeaway in a sentence here.\n\n::: page-break\n:::\n\n## Recommendations\n\nBased on the findings above, we recommend the following actions:\n\n1. Increase top-of-funnel marketing spend to close the new-customer gap.\n2. Invest in support tooling to absorb rising ticket volume without adding cost.\n3. Maintain the retention initiatives that drove the lower churn rate.\n\n## Next Steps\n\n- Assign an owner and a due date to each recommendation.\n- Review progress at the next quarterly checkpoint.\n- Circulate this report to stakeholders for feedback by end of week.\n"},{"id":"report-section","label":"Report — title section","description":"Business/technical report with an inline title block.","group":"Report","skeleton":"{{nyml\nkind: document\ntemplate: report-section\nheader_center: Report Title\npage_number_position: footer-right\npage_number_style: page-n-of-N\n}}\n\n{{nyml\nkind: report-title\ntitle: Report Title\nsubtitle: A Short, Descriptive Subtitle\nauthor: Author Name, Team or Department\ndate: Month Year\nplacement: section\n}}\n\n{{nyml\nkind: toc\ntitle: Contents\nmax_level: 2\n}}\n\n## Executive Summary\n\nSummarize the report in a few sentences for a reader who will not go further.\nState the purpose of the work, the most important finding, and the single action\nyou are recommending. Keep this to a short paragraph that a busy decision-maker\ncan absorb at a glance.\n\nThis section should make sense on its own. Lead with the conclusion, then let the\nrest of the report supply the supporting detail.\n\n## Background\n\nExplain the context that prompted this report. Describe the situation, the problem\nor opportunity, and why it matters now. Note any relevant history, prior decisions,\nor constraints that shape the analysis.\n\nState the scope clearly: what this report covers and, where useful, what it\ndeliberately leaves out. Briefly describe how the information was gathered (for\nexample, interviews, system metrics, or a review of existing documents).\n\n## Findings\n\nThe analysis surfaced the following key results. Each finding is stated with its\nobserved impact and current status.\n\n| # | Finding | Impact | Status |\n|---|---------|--------|--------|\n| 1 | Describe the first observation here. | High | Confirmed |\n| 2 | Describe the second observation here. | Medium | Confirmed |\n| 3 | Describe the third observation here. | Low | Needs review |\n\nAdd a sentence or two of interpretation after the table. Point out any patterns\nthat connect the findings, and flag anything that contradicts an initial\nassumption.\n\n## Recommendations\n\nBased on the findings above, we recommend the following actions, listed in\npriority order:\n\n1. **Recommendation one.** State the action and the outcome it is meant to\n   achieve. Name the owner if one is known.\n2. **Recommendation two.** Describe the change and the effort it requires.\n3. **Recommendation three.** Note any dependency on an earlier recommendation.\n\nEach recommendation should trace back to at least one finding so the reasoning is\neasy to follow.\n\n## Next Steps\n\nOutline how to move from recommendations to action over the coming weeks.\n\n- **This week:** Confirm priorities and assign an owner to each recommendation.\n- **This month:** Begin the highest-priority work and define success measures.\n- **Next quarter:** Review progress against the measures and adjust the plan.\n\nClose by naming a point of contact and the date of the next review.\n"},{"id":"exam-page","label":"Exam — cover page","description":"Exam with a cover/instructions page, then numbered questions.","group":"Exam","skeleton":"{{nyml\nkind: document\ntemplate: exam-page\npage_number_position: footer-center\npage_number_style: page-n-of-N\ndynamic_choices: |\n  answer-key: hide\n}}\n\n<!-- One source, two printouts: this is the student copy (answer-key: hide).\n     Switch to `answer-key: show` here — or use the editor's answer-key toggle —\n     to reveal the ✓ marks and model answers for the instructor key. -->\n\n\n{{nyml\nkind: exam-title\ntitle: Course Name — Exam 1\nsubtitle: Fall Term, October Date\nauthor: Instructor Name\nduration: 60 minutes\ntotal_points: 100 points\nstudent_fields: |\n  Name | Student ID | Score / 100\ninstructions: |\n  **Instructions.** Read each question carefully before answering.\n\n  - Answer all questions. Multiple-choice questions are worth 5 points each; open-response questions are worth the points indicated.\n  - For multiple-choice questions, circle the single best answer.\n  - For open-response questions, write your answer in the space provided. Show all work; partial credit is awarded for correct reasoning.\n  - No calculators, notes, or electronic devices are permitted unless otherwise stated. Do not turn the page until instructed.\nplacement: page\n}}\n\n{{nyml\nkind: question-mc\nn: 1\npts: 5 pts\nbody: Which of the following best describes the primary concept introduced in this unit?\noptions: |\n  A. The first plausible-sounding option.\n  B. The correct option that states the concept accurately.\n  C. A close but subtly incorrect option.\n  D. An option that is clearly unrelated.\nanswer: B\n}}\n\n{{nyml\nkind: question-mc\nn: 2\npts: 5 pts\nbody: Given the scenario above, what is the most likely outcome?\noptions: |\n  A. An outcome that contradicts the principle.\n  B. An outcome that ignores a key assumption.\n  C. The outcome consistent with the principle.\n  D. An outcome that is only true in a special case.\nanswer: C\n}}\n\n{{nyml\nkind: question-open\nn: 3\npts: 10 pts\nbody: Define the key term from this unit and explain, in two or three sentences, why it matters in practice.\nspace: 5cm\nanswer: A model answer briefly defines the term and gives one concrete reason it matters, demonstrating clear understanding of the concept.\n}}\n\n{{nyml\nkind: question-open\nn: 4\npts: 10 pts\nbody: Compare and contrast the two approaches discussed in class, giving one advantage and one limitation of each.\nspace: 5cm\nanswer: A model answer names both approaches, states one genuine advantage and one genuine limitation for each, and draws a clear comparison between them.\n}}\n"},{"id":"exam-section","label":"Exam — title section","description":"Exam with an inline header block, then numbered questions.","group":"Exam","skeleton":"{{nyml\nkind: document\ntemplate: exam-section\npage_number_position: footer-center\npage_number_style: page-n-of-N\ndynamic_choices: |\n  answer-key: hide\n}}\n\n{{nyml\nkind: exam-title\ntitle: Course Name — Midterm Exam\nsubtitle: Chapter 1–4 Assessment\nauthor: Instructor Name\nstudent_fields: |\n  Name | Student ID | Score / 100\nplacement: section\n}}\n\n<!-- This template leaves the exam-title `instructions:` field empty and puts the\n     instructions at the top of the content instead — either placement works. -->\n\n**Instructions.** Answer all questions in the space provided. Calculators are not\npermitted, and you have 60 minutes to complete this exam.\n\n{{nyml\nkind: question-mc\nn: 1\npts: 5 pts\nbody: Which of the following best describes the main concept covered in this section?\noptions: |\n  A. First plausible answer choice.\n  B. Second plausible answer choice.\n  C. Correct answer choice.\n  D. Fourth plausible answer choice.\nanswer: C\n}}\n\n{{nyml\nkind: question-mc\nn: 2\npts: 5 pts\nbody: Identify the term that matches the definition given in lecture.\noptions: |\n  A. Distractor term one.\n  B. Correct term.\n  C. Distractor term three.\n  D. Distractor term four.\nanswer: B\n}}\n\n{{nyml\nkind: question-open\nn: 3\npts: 10 pts\nbody: Explain the key idea in your own words and give one supporting example. Show all relevant reasoning.\nspace: 5cm\nanswer: A complete answer states the core principle, explains why it holds, and supports it with a concrete, correctly worked example. Full credit requires clear reasoning and an accurate example.\n}}\n"},{"id":"letter","label":"Letter","description":"Formal letter: letterhead, inside address, body, signature.","group":"Letter","skeleton":"{{nyml\nkind: document\ntemplate: letter\n}}\n\n{{nyml\nkind: letterhead\norganization: Your Organization\naddress: |\n  123 Main Street, Suite 400\n  Springfield, ST 00000\nemail: hello@your-organization.example\nphone: (555) 123-4567\n}}\n\nJune 29, 2026\n\n{{nyml\nkind: letter-inside-address\nto: Recipient Name\norganization: Recipient Organization\naddress: |\n  456 Market Avenue\n  Metropolis, ST 11111\n}}\n\nDear Recipient Name,\n\nI am writing to introduce Your Organization and to propose a brief conversation\nabout how we might work together. Open this paragraph by stating your purpose\nclearly and giving the reader a reason to keep reading.\n\nUse the middle of the letter to provide the supporting details. Explain the\nbackground, outline what you are asking for, and note any relevant dates or\ndeliverables. Keep each point concise so the entire letter fits comfortably on a\nsingle page.\n\nClose by stating the specific next step you would like the reader to take and\nhow best to reach you. Thank you for your time and consideration; I look forward\nto your reply.\n\n{{nyml\nkind: letter-signature\nfrom: Your Name\nclosing: Sincerely\ntitle: Your Title\n}}\n"},{"id":"cover-letter","label":"Cover letter","description":"Job cover letter: sender header, recipient, body, sign-off.","group":"Letter","skeleton":"{{nyml\nkind: document\ntemplate: cover-letter\n}}\n\n{{nyml\nkind: letterhead\norganization: Your Name\naddress: |\n  123 Main Street\n  Your City, ST 00000\nemail: your.name@email.com\nphone: (555) 123-4567\n}}\n\nJune 29, 2026\n\n{{nyml\nkind: letter-inside-address\nto: Hiring Manager\norganization: Company Name\naddress: |\n  456 Corporate Boulevard\n  Their City, ST 00000\n}}\n\nDear Hiring Manager,\n\nI am writing to apply for the Position Title role at Company Name, which I\ndiscovered through where you saw the listing. From the moment I read the job\ndescription, I was excited by the chance to bring my background in your field\nto a team known for what the company is known for. This opportunity aligns\nclosely with both my skills and the direction I want my career to take.\n\nIn my current role as Your Current Title at Current or Previous Employer, I\nhave delivered describe a concrete result or responsibility, sharpening my\nstrengths in skill one, skill two, and skill three. I am confident these\nexperiences map directly to what this position requires: name one or two key\nrequirements from the posting. I pride myself on trait or working style, and I\nconsistently turn ambiguous problems into measurable outcomes.\n\nI would welcome the opportunity to discuss how my experience can contribute to\nCompany Name's goals. Thank you for considering my application; I have attached\nmy resume for your review and would be glad to provide any additional\ninformation. I look forward to speaking with you and can be reached at the\nphone number or email above to arrange a conversation.\n\n{{nyml\nkind: letter-signature\nfrom: Your Name\nclosing: Sincerely\ntitle: Position Title or Profession\n}}\n"},{"id":"cv","label":"CV — classic","description":"Résumé: name/contact header and clean sectioned body.","group":"CV","skeleton":"{{nyml\nkind: document\ntemplate: cv\n}}\n\n{{nyml\nkind: cv-header\nfull_name: Your Name\ntitle: Job Title / Professional Tagline\ncontacts: |\n  you@example.com\n  City, Country\n  linkedin.com/in/you\n  +1 555 0100\n}}\n\n## Summary\n\nA short, punchy two-sentence pitch describing who you are and the value you\nbring. Highlight your specialty, years of experience, and the kind of impact you\nare known for.\n\n## Experience\n\n### Job Title — Company (2022–Present)\n\n- Led a key initiative that delivered a measurable result, e.g. increased\n  revenue, cut costs, or improved performance by a specific percentage.\n- Owned a project end to end, collaborating across teams to ship on time.\n- Mentored teammates and improved a process that the whole team relied on.\n\n### Previous Job Title — Earlier Company (2019–2022)\n\n- Built or maintained a core product or system used by many people.\n- Drove an improvement with a clear, quantified outcome.\n\n## Education\n\n### Degree, Field of Study — University Name (2019)\n\n## Skills\n\n- **Core:** Skill One, Skill Two, Skill Three\n- **Tools:** Tool One, Tool Two, Tool Three\n- **Other:** Languages, Certifications, Soft Skills\n"},{"id":"cv-modern","label":"CV — modern","description":"Accent name + rule, uppercase section labels, right-aligned dates, skill chips.","group":"CV","skeleton":"{{nyml\nkind: document\ntemplate: cv-modern\ncustom_css: |\n  /* CV — modern: left-aligned, accent-forward, right-aligned dates, skill chips.\n     Theme-aware via tokens (falls back when a token is unset). */\n  .orz-el-cv-header .orz-cv-header-inner.orz-bordered { border-bottom: 0; }\n  .orz-el-cv-header {\n    text-align: left;\n    border-bottom: 3px solid var(--accent, #2b6cb0);\n    padding-bottom: 0.5em;\n    margin-bottom: 1.2em;\n  }\n  .orz-el-cv-header .orz-cv-top { justify-content: flex-start; }\n  .orz-el-cv-header .orz-cv-name { font-size: 2.3em; letter-spacing: -0.015em; }\n  .orz-el-cv-header .orz-cv-title { color: var(--text-muted, #666); font-size: 1.05em; }\n  .orz-el-cv-header .orz-cv-contacts { justify-content: flex-start; gap: 0.3em 1.1em; }\n  .orz-doc.markdown-body h2 {\n    font-size: 0.9em;\n    text-transform: uppercase;\n    letter-spacing: 0.14em;\n    color: var(--accent, #2b6cb0);\n    border-bottom: 0;\n    margin: 1.5em 0 0.5em;\n  }\n  .orz-doc.markdown-body h3 {\n    font-size: 1.06em;\n    margin: 0.7em 0 0.05em;\n    border-bottom: 0;\n  }\n  .orz-doc.markdown-body h3 + p { color: var(--text-muted, #555); font-style: italic; margin: 0 0 0.35em; }\n  .cv-date {\n    float: right;\n    font-weight: 400;\n    color: var(--text-muted, #777);\n    font-size: 0.88em;\n  }\n  .cv-chip {\n    display: inline-block;\n    background: var(--surface-2, #f0f2f5);\n    border: 1px solid var(--border, #e2e6ea);\n    border-radius: 999px;\n    padding: 0.12em 0.7em;\n    margin: 0.18em 0.25em 0.18em 0;\n    font-size: 0.85em;\n  }\n}}\n\n{{nyml\nkind: cv-header\nfull_name: Your Name\ntitle: Job Title / Professional Tagline\ncontacts: |\n  you@example.com\n  City, Country\n  linkedin.com/in/you\n  +1 555 0100\nsummary: Two-sentence pitch — who you are and the value you bring. Lead with your specialty and the kind of impact you are known for.\n}}\n\n## Experience\n\n### Senior Role {{span[cv-date] 2022 – Present}}\n\nCompany Name, City\n\n- Led a key initiative that delivered a measurable result (e.g. +X% revenue, −Y% cost).\n- Owned a project end to end, collaborating across teams to ship on time.\n- Mentored teammates and improved a process the whole team relied on.\n\n### Earlier Role {{span[cv-date] 2019 – 2022}}\n\nPrevious Company, City\n\n- Built or maintained a core product used by many people.\n- Drove an improvement with a clear, quantified outcome.\n\n## Education\n\n### Degree, Field of Study {{span[cv-date] 2015 – 2019}}\n\nUniversity Name, City\n\n## Skills\n\n{{span[cv-chip] Skill One}} {{span[cv-chip] Skill Two}} {{span[cv-chip] Skill Three}} {{span[cv-chip] Skill Four}} {{span[cv-chip] Skill Five}} {{span[cv-chip] Skill Six}}\n"},{"id":"cv-elegant","label":"CV — elegant","description":"Centered, letter-spaced name, hairline rules, two-column \"ledger\" entries.","group":"CV","skeleton":"{{nyml\nkind: document\ntemplate: cv-elegant\ncustom_css: |\n  /* CV — elegant: centered, letter-spaced name between hairlines, centered\n     small-caps section headers, borderless two-column \"ledger\" entries (years |\n     detail) that flow across pages. Theme-aware via tokens. */\n  .orz-el-cv-header .orz-cv-header-inner.orz-bordered { border-bottom: 0; }\n  .orz-el-cv-header {\n    text-align: center;\n    border-top: 1px solid var(--border-soft, #ddd);\n    border-bottom: 1px solid var(--border-soft, #ddd);\n    padding: 0.8em 0;\n    margin-bottom: 1.4em;\n  }\n  .orz-el-cv-header .orz-cv-top { justify-content: center; }\n  .orz-el-cv-header .orz-cv-name {\n    font-weight: 400;\n    text-transform: uppercase;\n    letter-spacing: 0.16em;\n    font-size: 1.85em;\n    color: var(--text-main, #222);\n  }\n  .orz-el-cv-header .orz-cv-title { font-style: italic; color: var(--text-muted, #666); }\n  .orz-el-cv-header .orz-cv-contacts { justify-content: center; font-size: 0.85em; gap: 0.3em 1em; }\n  .orz-doc.markdown-body h2 {\n    text-align: center;\n    font-size: 1em;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.2em;\n    color: var(--text-main, #222);\n    border-bottom: 0;\n    margin: 1.7em 0 0.7em;\n  }\n  .orz-doc.markdown-body h2::after {\n    content: \"\";\n    display: block;\n    width: 2.5em;\n    height: 1px;\n    background: var(--accent, #999);\n    margin: 0.5em auto 0;\n  }\n  .orz-doc.markdown-body table { width: 100%; border: 0; margin: 0.2em 0; }\n  .orz-doc.markdown-body thead { display: none; }\n  .orz-doc.markdown-body td {\n    border: 0;\n    border-bottom: 1px solid var(--border-soft, #eee);\n    padding: 0.5em 0.4em;\n    vertical-align: top;\n  }\n  .orz-doc.markdown-body td:first-child {\n    white-space: nowrap;\n    width: 9em;\n    text-align: right;\n    color: var(--text-muted, #777);\n    font-variant: small-caps;\n    font-size: 0.92em;\n  }\n  .orz-doc.markdown-body .cv-skills { text-align: center; font-size: 0.95em; line-height: 1.9; }\n}}\n\n{{nyml\nkind: cv-header\nfull_name: Your Name\ntitle: Job Title / Professional Tagline\ncontacts: |\n  you@example.com\n  City, Country\n  linkedin.com/in/you\n}}\n\nA one-sentence profile, set centered and understated, introducing who you are and the work you do.\n{{attrs[class=\"cv-skills\"]}}\n\n## Experience\n\n| Years | Detail |\n|---|---|\n| 2022 – Present | **Senior Role**, Company Name — led the team and shipped a measurable result. |\n| 2019 – 2022 | **Earlier Role**, Previous Company — built a core product used by many. |\n| 2016 – 2019 | **First Role**, First Employer — delivered an improvement with a clear outcome. |\n\n## Education\n\n| Years | Detail |\n|---|---|\n| 2015 – 2019 | **Degree, Field of Study** — University Name, City. |\n\n## Skills\n\nSkill One · Skill Two · Skill Three · Skill Four · Skill Five · Skill Six\n{{attrs[class=\"cv-skills\"]}}\n"},{"id":"note","label":"Note","description":"Clean readable note: minimal furniture on A4.","group":"Note","skeleton":"{{nyml\nkind: document\ntemplate: note\n}}\n\n# Note Title\n\nWrite a one-line statement of what this note is about. Keep the opening short\nso a reader knows the purpose before reaching the details below.\n\n## Section\n\nReplace this with the main point of the note in two or three sentences. Add any\ncontext a reader needs to follow along. Keep each idea tight and to the point.\n\n- First key item to remember.\n- Second key item, with a short detail.\n- Third key item.\n\n::: info\nA short note callout for a tip, reminder, or aside worth setting apart.\n:::\n\n## Next Steps\n\n- [ ] First action to take.\n- [ ] Second action to take.\n- [ ] Third action to take.\n"}]};</script>
+<script data-orz-asset="app">/* orz-paged in-file editor (A4). Plain browser JS, inlined into every
+ * .paged.html. The rendered pages are the live preview: editing re-assembles +
+ * re-paginates them (debounced). Save is self-reproducing — it serializes the
+ * whole document with the edited source baked back into #orz-src, stripping
+ * runtime-injected nodes ([data-orz-runtime]) and the rendered pages so the saved
+ * file re-renders cleanly on next open. Ported in spirit from orz-mdhtml/slides.
+ */
+(function () {
+  'use strict';
+  var CM_BASE = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16';
+  var cm = null;
+  var rerenderTimer = null;
+  var dirty = false; // edit-state, surfaced to an embedding host (orz-host-dirty)
+
+  function $(id) { return document.getElementById(id); }
+  function api() { return window.orzpaged; }
+  function srcEl() { return $('orz-src'); }
+  function currentSource() { return cm ? cm.getValue() : (srcEl() ? srcEl().textContent.replace(/^\n/, '').replace(/\n\s*$/, '') : ''); }
+
+  function toast(msg) {
+    var t = $('orz-toast'); if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(function () { t.classList.remove('show'); }, 1800);
+  }
+
+  /* ---- load CodeMirror on demand ---- */
+  function loadCss(href) {
+    if (document.querySelector('link[href="' + href + '"]')) return;
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href;
+    l.setAttribute('data-orz-runtime', '1'); document.head.appendChild(l);
+  }
+  function loadJs(src) {
+    return new Promise(function (resolve, reject) {
+      if (document.querySelector('script[data-cm="' + src + '"]')) return resolve();
+      var s = document.createElement('script'); s.src = src; s.async = false;
+      s.setAttribute('data-cm', src); s.setAttribute('data-orz-runtime', '1');
+      s.onload = resolve; s.onerror = reject; document.head.appendChild(s);
+    });
+  }
+  function ensureCodeMirror() {
+    if (window.CodeMirror) return Promise.resolve();
+    loadCss(CM_BASE + '/codemirror.min.css');
+    return loadJs(CM_BASE + '/codemirror.min.js')
+      .then(function () { return loadJs(CM_BASE + '/mode/markdown/markdown.min.js'); });
+  }
+
+  function pagesEl() { return $('orz-pages'); }
+  function isEdit() { return document.documentElement.getAttribute('data-mode') === 'edit'; }
+
+  /* ---- preview zoom-to-fit (side-by-side pane is narrower than an A4 page) ---- */
+  function fitPreview() {
+    var pages = pagesEl(); if (!pages) return;
+    var wrap = pages.querySelector('.pagedjs_pages'); if (!wrap) return;
+    if (!isEdit()) { wrap.style.zoom = ''; return; }
+    wrap.style.zoom = '';                       // measure natural page width
+    var page = pages.querySelector('.pagedjs_page');
+    var pageW = page ? page.getBoundingClientRect().width : 0;
+    if (!pageW) return;
+    wrap.style.zoom = Math.min(1, (pages.clientWidth - 28) / pageW);
+  }
+  window.__orzPagedAfterRender = function () { fitPreview(); buildDynControls(); }; // engine calls this after every render
+
+  /* ---- dynamic switch (live) — a control per key the document actually uses ---- */
+  function humanizeKey(k) { return String(k).replace(/_/g, ' '); }
+  function normKey(k) { return String(k).trim().toLowerCase().replace(/-/g, '_'); }
+
+  function buildDynControls() {
+    var host = $('orz-dyn'); if (!host) return;
+    if (!api() || !api().getDynamicState) { host.innerHTML = ''; host.removeAttribute('data-keys'); return; }
+    var st = api().getDynamicState();
+    var opts = st.options || {}, choices = st.choices || {};
+    // Only keys the CURRENT document actually uses (data-show-when / -hide-when),
+    // so the control disappears when you switch to a template that has none.
+    var keys = Object.keys(opts).sort();
+    if (!keys.length) { host.innerHTML = ''; host.removeAttribute('data-keys'); return; }
+    var sig = keys.join(',');
+    if (host.getAttribute('data-keys') === sig) {            // same keys → just sync values
+      keys.forEach(function (k) {
+        var s = host.querySelector('select[data-key="' + k + '"]');
+        if (s) s.value = choices[k] || '';
+      });
+      return;
+    }
+    host.setAttribute('data-keys', sig);
+    host.innerHTML = '';
+    keys.forEach(function (k) {
+      var vals = (opts[k] || []).slice();
+      var cur = choices[k] || '';
+      if (cur && vals.indexOf(cur) < 0) vals.unshift(cur);   // keep the current value selectable
+      var ctl = document.createElement('span'); ctl.className = 'orz-dyn-ctl';
+      var lab = document.createElement('label'); lab.textContent = humanizeKey(k); lab.htmlFor = 'orz-dyn-' + k;
+      var sel = document.createElement('select'); sel.id = 'orz-dyn-' + k; sel.setAttribute('data-key', k); sel.title = humanizeKey(k);
+      vals.forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); });
+      sel.value = cur;
+      // Write the choice back into the source's `dynamic_choices` block so the
+      // dropdown and the nyml stay in sync (and editing the nyml drives the dropdown).
+      sel.addEventListener('change', function () { applyDynChoiceToSource(k, sel.value); });
+      ctl.appendChild(lab); ctl.appendChild(sel); host.appendChild(ctl);
+    });
+  }
+
+  /** Set `key: value` inside the document block's `dynamic_choices:` map, matching
+   *  the key by normalized form (so `answer-key` and `answer_key` are the same). */
+  function setSourceDynamicChoice(src, key, value) {
+    key = normKey(key);
+    var lines = src.split('\n');
+    var dcIdx = -1, dcIndent = 0;
+    for (var i = 0; i < lines.length; i++) {
+      var m = lines[i].match(/^(\s*)dynamic_choices\s*:/);
+      if (m) { dcIdx = i; dcIndent = m[1].length; break; }
+    }
+    if (dcIdx < 0) return null;                       // no block — nothing to sync
+    for (var j = dcIdx + 1; j < lines.length; j++) {
+      if (lines[j].trim() === '') continue;
+      var lm = lines[j].match(/^(\s*)([A-Za-z][\w-]*)\s*:\s*(.*)$/);
+      if (!lm || lm[1].length <= dcIndent) break;     // dedented / not a key → end of block
+      if (normKey(lm[2]) === key) { lines[j] = lm[1] + lm[2] + ': ' + value; return lines.join('\n'); }
+    }
+    var indent = ''; for (var s = 0; s < dcIndent + 2; s++) indent += ' ';
+    lines.splice(dcIdx + 1, 0, indent + key.replace(/_/g, '-') + ': ' + value);
+    return lines.join('\n');
+  }
+
+  function applyDynChoiceToSource(key, value) {
+    var next = setSourceDynamicChoice(currentSource(), key, value);
+    if (next == null) return;
+    setDirty(true);
+    if (cm) cm.setValue(next);
+    else { var ta = $('orz-ta'); if (ta) ta.value = next; }
+    syncSource();
+    if (api() && api().refresh) api().refresh();
+  }
+
+  /* ---- draggable divider (relative width) ---- */
+  function wireDivider() {
+    var d = $('orz-divider'); if (!d || d.__wired) return; d.__wired = true;
+    var dragging = false;
+    d.addEventListener('mousedown', function (e) {
+      dragging = true; d.classList.add('dragging'); e.preventDefault();
+      document.body.style.userSelect = 'none';
+    });
+    document.addEventListener('mousemove', function (e) {
+      if (!dragging) return;
+      var pct = Math.max(20, Math.min(78, (e.clientX / window.innerWidth) * 100));
+      document.documentElement.style.setProperty('--orz-split', pct + '%');
+    });
+    document.addEventListener('mouseup', function () {
+      if (!dragging) return;
+      dragging = false; d.classList.remove('dragging'); document.body.style.userSelect = '';
+      if (cm) cm.refresh(); fitPreview();
+    });
+  }
+
+  /* ---- proportional editor <-> preview scroll sync (toggleable) ---- */
+  var syncLock = false;
+  var syncEnabled = true;
+  try { syncEnabled = localStorage.getItem('orz-paged-sync') !== '0'; } catch (e) {}
+  function setSync(on) {
+    syncEnabled = !!on;
+    try { localStorage.setItem('orz-paged-sync', syncEnabled ? '1' : '0'); } catch (e) {}
+    var b = $('orz-sync'); if (b) b.setAttribute('aria-pressed', syncEnabled ? 'true' : 'false');
+  }
+  function wireSync() {
+    if (!cm || cm.__sync) return; cm.__sync = true;
+    cm.on('scroll', function () {
+      if (!syncEnabled || syncLock || !isEdit()) return;
+      var info = cm.getScrollInfo(); var max = info.height - info.clientHeight;
+      if (max <= 0) return;
+      var pages = pagesEl(); var pmax = pages.scrollHeight - pages.clientHeight;
+      syncLock = true; pages.scrollTop = (info.top / max) * pmax;
+      setTimeout(function () { syncLock = false; }, 24);
+    });
+    pagesEl().addEventListener('scroll', function () {
+      if (!syncEnabled || syncLock || !isEdit()) return;
+      var pages = pagesEl(); var pmax = pages.scrollHeight - pages.clientHeight;
+      if (pmax <= 0) return;
+      var info = cm.getScrollInfo(); var max = info.height - info.clientHeight;
+      syncLock = true; cm.scrollTo(null, (pages.scrollTop / pmax) * max);
+      setTimeout(function () { syncLock = false; }, 24);
+    });
+  }
+
+  /* ---- edit mode ---- */
+  function enterEdit() {
+    document.documentElement.setAttribute('data-mode', 'edit');
+    checkVersion(); // edit view only — broad viewers never see the update banner
+    wireDivider();
+    // reflect the theme actually in effect (document theme or a prior override)
+    var th = $('orz-theme');
+    if (th && api() && api().getTheme) { var cur = api().getTheme(); if (cur) th.value = cur; }
+    ensureCodeMirror().then(function () {
+      if (!cm) {
+        var ta = $('orz-ta');
+        ta.value = currentSource();
+        cm = window.CodeMirror.fromTextArea(ta, {
+          mode: 'markdown', lineNumbers: true, lineWrapping: true, theme: 'default',
+        });
+        cm.on('change', scheduleRerender);
+      }
+      wireSync();
+      setTimeout(function () { if (cm) { cm.refresh(); cm.focus(); } fitPreview(); }, 30);
+      setTimeout(fitPreview, 260); // re-fit once the slide-in transition settles
+    }).catch(function () { toast('Could not load the editor (offline?)'); });
+  }
+  function exitEdit() {
+    document.documentElement.removeAttribute('data-mode');
+    fitPreview();                  // clear zoom immediately
+    setTimeout(fitPreview, 260);   // and again after the slide-out settles
+  }
+
+  function scheduleRerender() {
+    setDirty(true);
+    if (rerenderTimer) clearTimeout(rerenderTimer);
+    rerenderTimer = setTimeout(function () {
+      syncSource();
+      if (api() && api().refresh) api().refresh();
+    }, 500);
+  }
+
+  /** Keep #orz-src in sync with the editor (so refresh()/setTheme()/save use current text). */
+  function syncSource() {
+    var el = srcEl(); if (!el) return;
+    el.textContent = '\n' + currentSource() + '\n';
+  }
+
+  /* ---- self-reproducing save ---- */
+  function serialize() {
+    syncSource();
+    var clone = document.documentElement.cloneNode(true);
+    clone.removeAttribute('data-mode');
+    // strip runtime-injected nodes (fonts, libs, katex, CodeMirror assets)
+    var rt = clone.querySelectorAll('[data-orz-runtime]');
+    for (var i = 0; i < rt.length; i++) rt[i].parentNode.removeChild(rt[i]);
+    // clear the rendered pages (the engine re-renders on load)
+    var pages = clone.querySelector('#orz-pages'); if (pages) pages.innerHTML = '';
+    // never bake in the (edit-only) update banner so a viewer can't see it
+    var ub = clone.querySelector('#orz-update'); if (ub) { ub.classList.remove('show'); ub.removeAttribute('data-latest'); }
+    // reset the editor host to a bare textarea (drop CodeMirror DOM)
+    var host = clone.querySelector('#orz-editor-host');
+    if (host) host.innerHTML = '<textarea id="orz-ta" spellcheck="false"></textarea>';
+    // guard against a closing script tag inside the source breaking the file
+    var src = clone.querySelector('#orz-src');
+    if (src) src.textContent = src.textContent.replace(/<\/(script)/gi, '<\\/$1');
+    return '<!DOCTYPE html>\n' + clone.outerHTML;
+  }
+
+  function suggestedName() {
+    var t = (document.title || 'document').replace(/[^\w.-]+/g, '-');
+    return t.replace(/\.paged$/, '') + '.paged.html';
+  }
+
+  /** Write `html` to disk; resolves true if saved in place (FS-Access), false if downloaded. */
+  function persist(html) {
+    if (window.showSaveFilePicker) {
+      return window.showSaveFilePicker({
+        suggestedName: suggestedName(),
+        types: [{ description: 'paged HTML', accept: { 'text/html': ['.paged.html', '.html'] } }],
+      }).then(function (handle) {
+        return handle.createWritable().then(function (w) {
+          return w.write(html).then(function () { return w.close(); });
+        });
+      }).then(function () { return true; });
+    }
+    downloadFile(html);
+    return Promise.resolve(false);
+  }
+  function save() {
+    // A hosting platform (verified handshake) receives the save instead of the
+    // file system; the host acknowledges with orz-host-saved (see PROTOCOL.md).
+    if (isHosted()) { hostSave(currentSource(), serialize()); return; }
+    persist(serialize()).then(function (inPlace) { if (inPlace) { setDirty(false); toast('Saved'); } })
+      .catch(function (e) { if (e && e.name !== 'AbortError') downloadFile(serialize()); });
+  }
+  function downloadFile(html) {
+    var blob = new Blob([html], { type: 'text/html' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = suggestedName();
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    toast('Downloaded a copy');
+  }
+
+  /* ---- host embedding (orz-host-save@1) ----
+   * When a platform embeds this file in an iframe and announces the
+   * orz-host-save protocol (spec: PROTOCOL.md in the orz-mdhtml repo), Save
+   * posts the document to the host instead of touching the file system. Never
+   * enabled without the host's hello; protocol messages are accepted only from
+   * window.parent, and after the handshake only from the recorded host origin.
+   * Message content is read as data, never evaluated. Export/PDF keeps working. */
+  var HOST_PROTOCOL = 'orz-host-save';
+  var HOST_VERSION = 1;
+  var hostOrigin = null;    // recorded at handshake; null = unhosted
+  var hostSaveTimer = null; // watchdog for a save awaiting acknowledgement
+
+  function isHosted() { return hostOrigin !== null; }
+  // An opaque embedder (sandboxed/srcdoc host) serializes as the string 'null',
+  // which postMessage rejects as a targetOrigin — fall back to '*' (the payload
+  // contains nothing the host doesn't already have).
+  function hostTarget() { return hostOrigin && hostOrigin !== 'null' ? hostOrigin : '*'; }
+  function hostPost(msg) { try { window.parent.postMessage(msg, hostTarget()); } catch (e) {} }
+  function setDirty(d) {
+    d = !!d;
+    if (dirty === d) return;
+    dirty = d;
+    if (isHosted()) hostPost({ type: 'orz-host-dirty', protocol: HOST_PROTOCOL, version: HOST_VERSION, dirty: d });
+  }
+  function hostSave(src, html) {
+    if (hostSaveTimer) return; // one save in flight at a time
+    hostSaveTimer = setTimeout(function () {
+      hostSaveTimer = null;
+      toast('Save failed — no response from the host'); // document intact, still dirty
+    }, 10000);
+    hostPost({ type: 'orz-host-save', protocol: HOST_PROTOCOL, version: HOST_VERSION, source: src, html: html });
+  }
+  function onHostMessage(event) {
+    // only the embedding parent may speak the protocol
+    if (window.parent === window || event.source !== window.parent) return;
+    var d = event.data;
+    if (!d || typeof d !== 'object') return;
+    // after the handshake, hold the parent to the origin it introduced itself with
+    if (isHosted() && hostOrigin !== 'null' && event.origin !== hostOrigin) return;
+    if (d.type === 'orz-host-hello' && d.protocol === HOST_PROTOCOL && typeof d.version === 'number' && d.version >= 1) {
+      hostOrigin = event.origin;
+      // reply with the highest version we support ≤ the host's (we speak only 1)
+      hostPost({ type: 'orz-host-ready', protocol: HOST_PROTOCOL, version: HOST_VERSION, kind: 'paged' });
+      if (dirty) hostPost({ type: 'orz-host-dirty', protocol: HOST_PROTOCOL, version: HOST_VERSION, dirty: true });
+    } else if (d.type === 'orz-host-saved' && hostSaveTimer) {
+      clearTimeout(hostSaveTimer); hostSaveTimer = null;
+      if (d.ok) { setDirty(false); toast('Saved'); }
+      else { toast('Save failed' + (d.error ? ' — ' + String(d.error) : '')); }
+    }
+  }
+  // listen from script load so an early hello isn't missed
+  window.addEventListener('message', onHostMessage);
+
+  /* ---- framework self-update (checked only in edit view) ---- */
+  // SECURITY: the update source is HARDCODED here, never read from the file's
+  // config — so a tampered/forged file cannot redirect "Update" to fetch
+  // attacker-controlled code. The host is fixed to jsDelivr over HTTPS, and the
+  // exact URLs are shown to the user for confirmation before anything is fetched.
+  // (This protects genuine files; a wholly-malicious file controls this code too —
+  // see the security note in the README. Clicking Update trusts npm + jsDelivr.)
+  var UPD = {
+    host: 'https://cdn.jsdelivr.net/npm/',
+    manifest: 'https://data.jsdelivr.com/v1/packages/npm/orz-paged-browser/resolved',
+    enginePkg: 'orz-paged-browser',
+    engineFile: 'orz-paged.browser.js',
+    appPkg: 'orz-paged'
+  };
+  function CFG() { return window.__ORZ_PAGED__ || {}; }
+  function isNewer(a, b) {
+    var pa = String(a).split('.'), pb = String(b).split('.');
+    for (var i = 0; i < 3; i++) { var x = parseInt(pa[i], 10) || 0, y = parseInt(pb[i], 10) || 0; if (x > y) return true; if (x < y) return false; }
+    return false;
+  }
+  var versionChecked = false;
+  function checkVersion() {
+    if (versionChecked) return; versionChecked = true;
+    var c = CFG(); if (!c.version) return;
+    fetch(UPD.manifest).then(function (r) { return r.json(); }).then(function (j) {
+      var latest = j && j.version;
+      if (latest && isNewer(latest, c.version)) showUpdate(latest);
+    }).catch(function () {});
+  }
+  function showUpdate(latest) {
+    var bar = $('orz-update'); if (!bar) return;
+    bar.querySelector('.upd-text').textContent =
+      'Framework ' + latest + ' available (this file uses ' + CFG().version + ').';
+    bar.setAttribute('data-latest', latest);
+    bar.classList.add('show');
+  }
+  /** One-click update: re-fetch the engine bundle + app.js from the lockstep CDN
+   *  at the latest version, re-inline them, bump the version, save, and reload. */
+  function applyUpdate() {
+    var bar = $('orz-update'); var latest = bar && bar.getAttribute('data-latest'); if (!latest) return;
+    var engineUrl = UPD.host + UPD.enginePkg + '@' + latest + '/' + UPD.engineFile;
+    var appUrl = UPD.host + UPD.appPkg + '@' + latest + '/assets/app.js';
+    if (!window.confirm('Update the framework to ' + latest + '?\n\nThis downloads and runs code from:\n  ' + engineUrl + '\n  ' + appUrl + '\n\nOnly proceed if you trust this document and its publisher.')) return;
+    toast('Downloading framework ' + latest + '…');
+    Promise.all([
+      fetch(engineUrl).then(function (r) { if (!r.ok) throw new Error('engine'); return r.text(); }),
+      fetch(appUrl).then(function (r) { if (!r.ok) throw new Error('app'); return r.text(); }),
+    ]).then(function (res) {
+      var es = document.querySelector('script[data-orz-asset="engine"]');
+      if (es) { if (es.getAttribute('src')) es.setAttribute('src', engineUrl); else es.textContent = res[0]; }
+      var as = document.querySelector('script[data-orz-asset="app"]');
+      if (as) as.textContent = res[1];
+      var cs = document.querySelector('script[data-orz-asset="config"]');
+      if (cs) { c.version = latest; cs.textContent = 'window.__ORZ_PAGED__ = ' + JSON.stringify(c) + ';'; }
+      bar.classList.remove('show');
+      return persist(serialize());
+    }).then(function (inPlace) {
+      if (inPlace === undefined) return;
+      if (inPlace) { toast('Updated to ' + latest + ' — reloading…'); setTimeout(function () { location.reload(); }, 700); }
+      else { toast('Updated copy downloaded — reopen it to use the new framework.'); }
+    }).catch(function () { toast('Update failed — check your connection.'); });
+  }
+
+  /* ---- template picker ---- */
+  function templates() { return (window.__ORZ_PAGED__ && window.__ORZ_PAGED__.templates) || []; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  var TPL_ACCENT = { Article: '#2962a4', Report: '#2f6fe0', Exam: '#9a2820', Letter: '#2e7d32', CV: '#7a3f9a', Note: '#b7791f' };
+  function buildTemplateMenu() {
+    var menu = $('orz-template-menu'); if (!menu || menu.getAttribute('data-built')) return;
+    var list = templates(); if (!list.length) return;
+    var html = '', lastGroup = '';
+    for (var i = 0; i < list.length; i++) {
+      var t = list[i];
+      if (t.group !== lastGroup) { lastGroup = t.group; html += '<div class="tpl-group">' + esc(t.group) + '</div>'; }
+      html += '<button type="button" class="tpl" data-i="' + i + '" style="--tpl-accent:' + (TPL_ACCENT[t.group] || '#2f6fe0') + '">'
+        + '<span class="tpl-ic"></span>'
+        + '<span class="tpl-meta"><span class="tpl-label">' + esc(t.label) + '</span>'
+        + '<span class="tpl-desc">' + esc(t.description) + '</span></span></button>';
+    }
+    menu.innerHTML = html;
+    menu.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('.tpl') : null;
+      if (!b) return;
+      applyTemplate(list[+b.getAttribute('data-i')]);
+      menu.hidden = true;
+    });
+    menu.setAttribute('data-built', '1');
+  }
+  function toggleTemplateMenu(show) {
+    var menu = $('orz-template-menu'); if (!menu) return;
+    if (show === undefined) show = menu.hidden;
+    if (show) buildTemplateMenu();
+    menu.hidden = !show;
+  }
+  function applyTemplate(t) {
+    if (!t || !t.skeleton) return;
+    var cur = currentSource().trim();
+    var next = t.skeleton;
+    // Preserve the old content in a comment so it's kept but inert (nyml blocks
+    // inside a comment don't render). Neutralize any `-->` in it first, else the
+    // first one would close the wrapper early and leak the rest back in.
+    if (cur) next += '\n\n<!-- Previous content (kept below — edit or delete):\n\n'
+      + cur.replace(/--+>/g, '--​>') + '\n-->\n';
+    setDirty(true);
+    if (cm) { cm.setValue(next); cm.focus(); }
+    else { var ta = $('orz-ta'); if (ta) ta.value = next; syncSource(); if (api() && api().refresh) api().refresh(); }
+    toast('Started from "' + t.label + '"');
+  }
+
+  /* ---- wire up ---- */
+  function init() {
+    var fab = $('orz-edit-fab'); if (fab) fab.addEventListener('click', enterEdit);
+    var close = $('orz-close'); if (close) close.addEventListener('click', exitEdit);
+    var exp = $('orz-export'); if (exp) exp.addEventListener('click', function () { if (api()) api().exportPdf(); });
+    var sav = $('orz-save'); if (sav) sav.addEventListener('click', save);
+    var tpl = $('orz-template'); if (tpl) tpl.addEventListener('click', function (e) { e.stopPropagation(); toggleTemplateMenu(); });
+    document.addEventListener('click', function (e) {
+      var menu = $('orz-template-menu'), btn = $('orz-template');
+      if (menu && !menu.hidden && !menu.contains(e.target) && (!btn || !btn.contains(e.target))) menu.hidden = true;
+    });
+    var theme = $('orz-theme');
+    if (theme) theme.addEventListener('change', function () { if (api() && api().setTheme) api().setTheme(theme.value); });
+    var sync = $('orz-sync');
+    if (sync) { setSync(syncEnabled); sync.addEventListener('click', function () { setSync(!syncEnabled); }); }
+    var updApply = $('orz-upd-apply'); if (updApply) updApply.addEventListener('click', applyUpdate);
+    var updDismiss = $('orz-upd-dismiss');
+    if (updDismiss) updDismiss.addEventListener('click', function () { var u = $('orz-update'); if (u) u.classList.remove('show'); });
+    var rz; window.addEventListener('resize', function () {
+      if (!isEdit()) return; clearTimeout(rz);
+      rz = setTimeout(function () { if (cm) cm.refresh(); fitPreview(); }, 120);
+    });
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && (e.key === 's' || e.key === 'S')) { e.preventDefault(); save(); }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>

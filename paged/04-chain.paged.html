@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="orz-paged 0.6.1">
+<title>Ch04 - Chain Growth</title>
+<meta name="author" content="Dr. Yu Wang">
+<meta name="description" content="This course introduces polymer chemistry as a structure-processing-property discipline. It begins with polymer definitions, molar mass, degree of polymerization, historical development, and environmental motivation; then moves through architecture, stereochemistry, copolymer composition, molar-mass distributions, and the two major polymerization families. The central synthesis sequence covers step-growth polymerization, chain-growth polymerization, precision/controlled methods, macromolecular engineering, and depolymerization/recycling by design. The final sequence connects molecular structure to single-chain conformation, polymer solutions and mixtures, molar-mass characterization, glass transition, and crystallinity. Viscoelasticity and rubber elasticity are treated only as optional instructor/advanced supplements.">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<meta name="dcterms.license" content="CC-BY-4.0">
+<link rel="canonical" href="https://github.com/wangyu16/chem320-chemistry-of-macromolecules-eoveux5a-oer">
+<style>
+  html, body { margin: 0; height: 100%; background: #f0f0f2; }
+  :root { --orz-split: 44%; }
+  /* the preview is a fixed full-window scroll container; in edit mode its left
+     edge animates inward to make room for the docked editor (side-by-side). */
+  #orz-pages { box-sizing: border-box; position: fixed; inset: 0; left: 0;
+    overflow: auto; background: #f0f0f2; transition: left .22s ease; }
+  [data-mode="edit"] #orz-pages { left: calc(var(--orz-split) + 6px); }
+  /* paged.js page boxes get a subtle drop shadow + centered layout */
+  .pagedjs_pages { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 0; }
+  .pagedjs_page { background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.18); }
+  @media print {
+    body { background: #fff; }
+    #orz-bar, #orz-panel, #orz-edit-fab, #orz-divider, #orz-close, .orz-banner, #orz-toast { display: none !important; }
+    #orz-pages { position: static; overflow: visible; left: 0; }
+    .pagedjs_pages { gap: 0; padding: 0; zoom: 1 !important; }
+    .pagedjs_page { box-shadow: none; }
+  }
+
+  #orz-edit-fab {
+    position: fixed; left: 22px; bottom: 18px; z-index: 30;
+    width: 42px; height: 42px; border: 0; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #2f6fe0; color: #fff; cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25); opacity: .9;
+  }
+  #orz-edit-fab svg { width: 19px; height: 19px; display: block; }
+  #orz-edit-fab:hover { opacity: 1; transform: scale(1.06); }
+  [data-mode="edit"] #orz-edit-fab { display: none; }
+
+  #orz-divider { display: none; }
+  [data-mode="edit"] #orz-divider {
+    display: block; position: fixed; top: 0; bottom: 0; left: var(--orz-split);
+    width: 6px; z-index: 45; cursor: col-resize; background: #34383f;
+  }
+  #orz-divider:hover, #orz-divider.dragging { background: #3b82f6; }
+
+  #orz-panel {
+    display: flex; flex-direction: column;
+    position: fixed; left: 0; top: 0; bottom: 0; width: var(--orz-split); z-index: 40;
+    background: #1f2228; border-right: 1px solid #333; box-shadow: 2px 0 16px rgba(0,0,0,.25);
+    /* extra offset so the protruding close tab also clears the viewport */
+    transform: translateX(calc(-100% - 24px)); transition: transform .22s ease;
+  }
+  [data-mode="edit"] #orz-panel { transform: translateX(0); }
+  /* close tab — a small handle on the editor's right edge that slides it away */
+  #orz-close {
+    position: absolute; top: 50%; right: -19px; transform: translateY(-50%);
+    width: 19px; height: 48px; z-index: 46; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 0; border-radius: 0 8px 8px 0; background: #23262c; color: #c2c8d0;
+    cursor: pointer; box-shadow: 2px 0 8px rgba(0,0,0,.18);
+  }
+  #orz-close:hover { background: #383d45; color: #fff; }
+  #orz-close svg { width: 15px; height: 15px; display: block; }
+  #orz-toolbar { display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    padding: 7px 10px; background: #23262c; border-bottom: 1px solid #34383f; }
+  #orz-toolbar .ic { width: 32px; height: 30px; display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: 0; border-radius: 7px; color: #c2c8d0; cursor: pointer; font-size: 16px; }
+  #orz-toolbar .ic:hover { background: #383d45; color: #fff; }
+  #orz-toolbar .ic svg { width: 17px; height: 17px; display: block; }
+  #orz-toolbar .ic[aria-pressed="true"] { color: #3b82f6; }
+  #orz-toolbar .ic[aria-pressed="false"] { opacity: .5; }
+  #orz-toolbar .ic.primary { background: #3b82f6; color: #fff; }
+  #orz-toolbar select { font: 500 12.5px/1 system-ui, sans-serif; color: #e6e8ec; background: #34383f;
+    border: 1px solid #454b55; border-radius: 7px; padding: 6px 8px; cursor: pointer; margin: 0 2px; }
+  #orz-toolbar .orz-sep { width: 1px; height: 20px; background: #3c414a; margin: 0 5px; }
+  #orz-dyn { display: inline-flex; align-items: center; gap: 4px; }
+  #orz-dyn .orz-dyn-ctl { display: inline-flex; align-items: center; gap: 4px; }
+  #orz-dyn label { font: 600 11px/1 system-ui, sans-serif; color: #9aa3b2; text-transform: capitalize; }
+  #orz-toolbar .orz-spacer { flex: 1; }
+  #orz-brand { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #cdd3df; padding: 2px 7px; border-radius: 7px; }
+  #orz-brand:hover { color: #fff; background: #383d45; }
+  #orz-brand .orz-logo svg { height: 22px; width: auto; display: block; }
+  #orz-brand .orz-brand-name { font: 700 13px/1 system-ui, sans-serif; }
+  #orz-brand .orz-gh { display: inline-flex; opacity: .55; }
+  #orz-brand:hover .orz-gh { opacity: 1; }
+  #orz-brand .orz-gh svg { width: 15px; height: 15px; display: block; }
+  #orz-editor-host { flex: 1; min-height: 0; overflow: hidden; }
+  #orz-editor-host .CodeMirror { height: 100%; font-size: 14px; }
+  #orz-foot { flex: 0 0 auto; height: 24px; display: flex; align-items: center; justify-content: center;
+    font: 11.5px/1 system-ui, sans-serif; color: #8b93a0; background: #23262c; border-top: 1px solid #34383f; gap: 4px; }
+  #orz-foot a { color: #9aa3b2; text-decoration: none; }
+  #orz-foot a:hover { color: #fff; text-decoration: underline; }
+  #orz-ta { width: 100%; height: 100%; box-sizing: border-box; border: 0; padding: 10px;
+    font: 14px/1.5 ui-monospace, Menlo, Consolas, monospace; }
+  #orz-toast { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%) translateY(20px);
+    z-index: 70; background: #111; color: #fff; padding: 9px 16px; border-radius: 8px;
+    font: 13px system-ui, sans-serif; opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; }
+  #orz-toast.show { opacity: .95; transform: translateX(-50%) translateY(0); }
+
+  /* template picker — a popover under the toolbar listing starter templates */
+  #orz-template-menu { position: absolute; left: 10px; right: 10px; top: 46px; z-index: 60;
+    max-height: 70vh; overflow: auto; padding: 8px; border-radius: 10px;
+    background: #23262c; border: 1px solid #3c414a; box-shadow: 0 8px 26px rgba(0,0,0,.4); }
+  #orz-template-menu[hidden] { display: none; }
+  #orz-template-menu .tpl-group { font: 700 10.5px/1 system-ui, sans-serif; text-transform: uppercase;
+    letter-spacing: .06em; color: #7f8896; padding: 8px 8px 4px; }
+  #orz-template-menu .tpl {
+    display: flex; gap: 9px; align-items: flex-start; width: 100%; text-align: left;
+    padding: 8px 9px; border: 0; border-radius: 8px; background: transparent; color: #dfe3ea; cursor: pointer; }
+  #orz-template-menu .tpl:hover { background: #34383f; }
+  #orz-template-menu .tpl .tpl-ic { flex: 0 0 auto; width: 30px; height: 38px; border-radius: 4px;
+    background: #fff; border: 1px solid #c9ccd2; position: relative; overflow: hidden; }
+  #orz-template-menu .tpl .tpl-ic::before { content: ""; position: absolute; left: 4px; right: 4px; top: 4px;
+    height: 7px; border-radius: 2px; background: var(--tpl-accent, #2f6fe0); }
+  #orz-template-menu .tpl .tpl-ic::after { content: ""; position: absolute; left: 4px; right: 4px; top: 15px;
+    bottom: 4px; background:
+      repeating-linear-gradient(#c7ccd4 0 1.5px, transparent 1.5px 5px); }
+  #orz-template-menu .tpl .tpl-meta { min-width: 0; }
+  #orz-template-menu .tpl .tpl-label { display: block; font: 600 13px/1.2 system-ui, sans-serif; }
+  #orz-template-menu .tpl .tpl-desc { display: block; font: 11.5px/1.35 system-ui, sans-serif; color: #98a0ae; margin-top: 2px; }
+
+  /* update banner — shown only in edit view (the editor triggers the check) */
+  .orz-banner { position: fixed; left: 50%; top: 14px; transform: translateX(-50%); z-index: 80;
+    display: none; align-items: center; gap: 10px; background: #2b2f36; color: #eee;
+    border: 1px solid #444; border-radius: 9px; padding: 9px 14px;
+    font: 13px/1.3 system-ui, sans-serif; box-shadow: 0 4px 16px rgba(0,0,0,.3); }
+  .orz-banner.show { display: flex; }
+  .orz-banner button { font: 500 12.5px system-ui, sans-serif; color: #e6e8ec; background: #3a3f48;
+    border: 1px solid #4a505a; border-radius: 6px; padding: 5px 11px; cursor: pointer; }
+  .orz-banner button.upd-primary { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+  .orz-banner button:hover { filter: brightness(1.1); }
+</style>
+<script type="application/orz-meta+json" id="orz-meta">
+{
+  "title": "Ch04 - Chain Growth",
+  "author": "Dr. Yu Wang",
+  "description": "This course introduces polymer chemistry as a structure-processing-property discipline. It begins with polymer definitions, molar mass, degree of polymerization, historical development, and environmental motivation; then moves through architecture, stereochemistry, copolymer composition, molar-mass distributions, and the two major polymerization families. The central synthesis sequence covers step-growth polymerization, chain-growth polymerization, precision/controlled methods, macromolecular engineering, and depolymerization/recycling by design. The final sequence connects molecular structure to single-chain conformation, polymer solutions and mixtures, molar-mass characterization, glass transition, and crystallinity. Viscoelasticity and rubber elasticity are treated only as optional instructor/advanced supplements.",
+  "source": "https://github.com/wangyu16/chem320-chemistry-of-macromolecules-eoveux5a-oer",
+  "license": {
+    "spdx": "CC-BY-4.0",
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  }
+}
+</script>
+</head>
+<body>
+<!-- ═══════════ orz · editing this document with an AI agent ═══════════
+  This is a self-contained, EDITABLE orz-paged document (.paged.html). The editable
+  source of truth is the markdown in the embedded source island below (kind: paged,
+  format: 1) — NOT the rendered HTML.
+
+  To edit it correctly, load the official orz-paged agent skill first: it defines
+  the page model (templates, page size, margins, running headers/footers, page
+  breaks) and guarantees a byte-identical round-trip.
+    - Fetch the skill: https://cdn.jsdelivr.net/npm/orz-paged/orz-paged-skills/SKILL.md
+    - Install routes:  https://markdown.orz.how/agents.html
+
+  Rules: edit ONLY the embedded source; re-embed it in place; preserve block IDs.
+═══════════════════════════════════════════════════════════════════ -->
+
+<div id="orz-pages" data-orz-copy></div>
+<div id="orz-divider" title="Drag to resize"></div>
+
+<button id="orz-edit-fab" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>
+
+<div id="orz-panel">
+  <div id="orz-toolbar">
+    <a id="orz-brand" href="https://github.com/wangyu16/orz-paged" target="_blank" rel="noopener noreferrer" title="orz-paged on GitHub"><span class="orz-logo"><svg viewBox="-5 -5 180 100" xmlns="http://www.w3.org/2000/svg" class="orz-mark" aria-hidden="true"><defs><filter id="orzlogo-rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G"/></filter><path d="M 20,23 C 33,16 57,17 84,13 C 111,8 137,4 153,6 C 165,7 170,13 169,25 L 167,66 C 166,79 159,87 146,89 C 121,93 92,92 60,91 C 41,90 27,92 16,89 C 6,86 1,79 1,67 L 1,50 C 1,35 7,25 20,23 Z" id="orzlogo-seal"/><filter id="orzlogo-stone" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="11" result="noise"/><feColorMatrix in="noise" type="saturate" values="0" result="mono"/><feComponentTransfer in="mono" result="grain"><feFuncA type="table" tableValues="0 0.16"/></feComponentTransfer></filter><mask id="orzlogo-mask"><use href="#orzlogo-seal" fill="white"/><path d="M37.81 80.31Q30.44 80.31 24.50 77Q18.56 73.69 15.25 67.75Q11.94 61.81 11.94 54.19L11.94 54.19Q11.94 41.69 21.13 35.56Q30.31 29.44 43.69 29.44L43.69 29.44Q49.81 29.44 55.13 32.44Q60.44 35.44 63.69 41.06Q66.94 46.69 66.94 54.06L66.94 54.06Q66.94 62.06 62.81 68Q58.69 73.94 52 77.13Q45.31 80.31 37.81 80.31L37.81 80.31ZM36.44 73.19Q48.06 73.19 54.06 67.94Q60.06 62.69 60.06 52.56L60.06 52.56Q60.06 45.69 55.38 40.69Q50.69 35.69 42.31 35.69L42.31 35.69Q36.69 35.69 30.94 37.81Q25.19 39.94 21.44 44.19Q17.69 48.44 17.69 54.44L17.69 54.44Q17.69 59.44 20.19 63.75Q22.69 68.06 27 70.63Q31.31 73.19 36.44 73.19L36.44 73.19ZM87.94 80.19Q82.81 70.19 79.88 56.69Q76.94 43.19 76.94 33.31L76.94 33.31Q76.94 29.44 78.69 28.31L78.69 28.31Q79.69 27.69 80.19 27.69L80.19 27.69Q81.06 27.69 81.50 29.06Q81.94 30.44 82.44 34.06L82.44 34.06L83.06 38.56Q84.44 31.81 88.38 27.88Q92.31 23.94 98.06 23.94L98.06 23.94Q104.44 23.94 107.56 26.38Q110.69 28.81 110.69 34.44L110.69 34.44Q104.44 31.44 99.31 31.44L99.31 31.44Q94.44 31.44 90.94 34.06Q87.44 36.69 86.06 41.81L86.06 41.81Q84.94 45.31 84.94 48.44L84.94 48.44Q84.94 51.81 85.88 54.75Q86.81 57.69 88.81 61.94L88.81 61.94Q90.69 66.31 91.75 69.44Q92.81 72.56 92.94 76.19L92.94 76.19Q92.94 78.31 91.44 79.25Q89.94 80.19 87.94 80.19L87.94 80.19ZM160.56 66.19Q163.06 68.06 163.06 70.19L163.06 70.19Q163.06 73.56 157.31 75.81Q151.56 78.06 144.31 79.13Q137.06 80.19 132.81 80.19L132.81 80.19Q128.06 80.19 123.75 78.63Q119.44 77.06 119.44 73.19L119.44 73.19Q119.44 69.44 123.63 63.44Q127.81 57.44 133.69 51.19L133.69 51.19L117.56 51.19Q116.31 51.19 116.31 48.94L116.31 48.94Q116.31 47.19 116.69 46.50Q117.06 45.81 117.69 45.69Q118.31 45.56 120.06 45.56L120.06 45.56L139.31 45.56Q143.94 39.69 146.38 35.50Q148.81 31.31 148.81 27.69L148.81 27.69Q148.81 24.06 146.31 21.19L146.31 21.19Q142.44 20.44 138.81 20.44L138.81 20.44Q131.94 20.44 127.19 22.75Q122.44 25.06 121.94 28.81L121.94 28.81Q119.06 28.81 118.13 27.81Q117.19 26.81 117.19 24.44L117.19 24.44Q117.19 21.94 119.75 19.63Q122.31 17.31 126.94 15.88Q131.56 14.44 137.31 14.44L137.31 14.44Q142.06 14.44 147.31 15.56L147.31 15.56Q150.56 16.19 152.81 19.69Q155.06 23.19 155.06 27.44L155.06 27.44Q155.06 31.19 152.75 35.31Q150.44 39.44 145.94 45.56L145.94 45.56L152.06 45.56Q156.81 45.56 158.38 46.06Q159.94 46.56 159.94 48.06L159.94 48.06Q159.94 49.31 159.13 50.19Q158.31 51.06 157.44 51.06L157.44 51.06L140.19 51.06Q134.06 57.94 130.81 63.25Q127.56 68.56 128.19 70.81L128.19 70.81Q128.69 73.19 135.94 74.06L135.94 74.06Q144.06 74.06 149.69 72.13Q155.31 70.19 160.56 66.19L160.56 66.19Z" fill="black" stroke="black" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></mask></defs><g filter="url(#orzlogo-rough)"><use href="#orzlogo-seal" fill="#96d969" mask="url(#orzlogo-mask)"/><use href="#orzlogo-seal" fill="#6ea84d" opacity="0.28" filter="url(#orzlogo-stone)" mask="url(#orzlogo-mask)"/><use href="#orzlogo-seal" fill="none" stroke="#c8f7a5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.42" mask="url(#orzlogo-mask)"/><use href="#orzlogo-seal" fill="none" stroke="#5f8f44" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.35" mask="url(#orzlogo-mask)"/></g></svg></span><span class="orz-brand-name">paged</span><span class="orz-gh"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></span></a>
+    <span class="orz-sep"></span>
+    <button id="orz-save" class="ic primary" title="Save (Ctrl/Cmd+S)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg></button>
+    <button id="orz-export" class="ic" title="Export PDF (print)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg></button>
+    <button id="orz-template" class="ic" title="Start from a template"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></button>
+    <span class="orz-spacer"></span>
+    <button id="orz-sync" class="ic" title="Sync scrolling on/off" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><path d="M8 12h8"/></svg></button>
+    <span id="orz-dyn"></span>
+    <select id="orz-theme" title="Theme"><option value="beige-decent-1">beige-decent-1</option><option value="beige-decent-2">beige-decent-2</option><option value="light-academic-1">light-academic-1</option><option value="light-academic-2">light-academic-2</option><option value="light-neat-1">light-neat-1</option><option value="light-neat-2">light-neat-2</option><option value="light-neat-3">light-neat-3</option></select>
+  </div>
+  <div id="orz-template-menu" hidden></div>
+  <button id="orz-close" title="Close editor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div id="orz-editor-host"><textarea id="orz-ta" spellcheck="false"></textarea></div>
+  <div id="orz-foot">© <a href="https://markdown.orz.how" target="_blank" rel="noopener noreferrer">orz-markdown</a></div>
+</div>
+
+<div id="orz-update" class="orz-banner">
+  <span class="upd-text"></span>
+  <button id="orz-upd-apply" class="upd-primary">Update</button>
+  <button id="orz-upd-dismiss">Dismiss</button>
+</div>
+
+<div id="orz-toast"></div>
+
+<script type="text/markdown" id="orz-src">
+## Methods and products{{attrs[#blk-n92d9d05lsnc]}}
+
+A chain reaction describes a whole series of successive events triggered by some initial occurrence. 
+
+Two major catagories of chain-growth polymerization: 
+
+1. Polymerization of vinyl monomers (such as styrene and vinyl chloride) or monomers with substituted vinyl groups (such as methyl methacrylate and tetrafluoroethylene); 
+2. Ring-opening polymerization of cyclic monomers (such as caprolactam and epoxide). 
+
+For simplicity, in the rest of this document, when vinyl monomers are refered, monomers with both vinyl groups and substituted vinly groups are included. There are a large variety of vinyl monomers, some representative ones are shown below. 
+
+![](https://raw.githubusercontent.com/wangyu16/PolymerScienceEducation/master/Fig/Vinyl-monomers.svg)
+
+The carbon-carbon double bond is typically reactive. In organic chemistry, we learned about several types of addition reactions that can occur to a carbon-carbon double bond. One such reaction is nucleophilic addition, which results in a negatively charged carbanion as an intermediate product. With appropriate substituents, this carbanion can attack another molecule with a carbon-carbon double bond, i.e., a vinyl monomer, leading to a chain addition. This chain reaction, known as anionic polymerization, can be used to produce polymers. Addition reactions can also follow radical or cationic pathways, resulting in radical polymerization and cationic polymerization, respectively. Additionally, some organometallic species can trigger a coordination, insertion, and addition process, leading to coordination polymerization. Many vinyl monomers can undergo one or several types of polymerizations described above.  Consequently, many commercially useful products can be produced through these processes. The backbones of resulting polymers consist exclusively $\ce{-C-C -}$ bonds.
+
+Ring-opening polymerization can proceed via anionic, or cationic mechanisms, or with the assistance of organometallic catalysts. Radical mechanism is also possible, though not very common. This type of polymerization is particularly useful for producing polymers with heteroatoms in the backbone, such as oxygen, nitrogen, or sulfur, which can impart unique properties to the resulting materials. 
+
+### Radical polymerization
+
+#### Properties of free radicals and features of radical polymerization
+
+Free radicals are very active species which can potentially react with all components in the reaction system, such as the monomer, the polymer, the solvent, etc. Free radicals can also react one another resulting in stable species. Thus, the life-time of radicals is usually just a few seconds. However, this short time period is sufficient to lead to long chain molecules with thousands of monomer units or even above. 
+
+One important feature of radicals is that they are electrically neutral and typically do not behave as either nucleophile or electrophile, thus radical polymerization can be carried out even in water regardless the medium is neutral, acidic or basic. Radical polymerization is not sensitive to many functional groups as well. Ionic polymerizations, on the other hand, are sensitive to tiny amount of moisture or functional groups prone to nucleophilic or electrophilic attacks. 
+
+Radical polymerization is one of the easiest polymerization reactions to be carried out. Generally, small amount of impurities in the monomer, a little oxygen, and the presence of water do not prevent the formation of high molecular weight polymers. With sufficient amount of initiator and proper temperature (usually $\pu{50 ^\circ C}$ to $\pu{100 ^\circ C}$), the polymerization can reach high monomer conversion in one or a few hours. 
+
+#### Available monomers  
+
+Majority of vinyl monomers can be polymerized via radical polymerization. Exceptions include isobutylene, propylene, and vinyl ether. Monomers with functional groups such as carboxylic acid, hydroxyl, and amino can also be polymerized directly via radical polymerization.  
+
+#### Reaction techniques
+
+**Solution polymerization** 
+
+Solution reactions are typically the most convenient method for performing organic synthesis, including polymerizations. The presence of a solvent helps maintain the polymerization system as a fluid rather than a solid mass, making it easier to remove the product from the reactor. If the resulting polymer is water-soluble, the polymerization can be carried out in an aqueous solution. Otherwise, many organic solvents can be used. However, some commonly used organic solvents, such as chloroform, may react rapidly with radicals and should be avoided 
+
+**Bulk polymerization**
+
+In solution polymerization, removing the solvent after polymerization is essential. To reuse the solvent, further purification is required. Both incur additional costs. In some cases, avoiding the use of solvents altogether is advisable if possible. 
+
+Bulk polymerization involves only the monomer and initiator as starting agents. Commercial examples of bulk radical polymerization are limited due to heat dissipation and viscosity issues. However, for products like flat plastic plates or sheets, bulk polymerization is convenient.
+
+Polymethyl methacrylate (PMMA) is a highly transparent and rigid plastic that can replace glass. To make PMMA plates, the monomer and initiator are polymerized to a low conversion to form a syrup, which is essentially a solution of PMMA in its own monomers. This viscous syrup is cast into a mold and further polymerized to consume all the monomers, resulting in a solidified product.
+
+During this process, it is crucial to avoid air bubbles. Additionally, the expansion during polymerization and shrinkage upon cooling must be considered. 
+
+**Suspension polymerization** 
+
+In contrast to solution polymerization, if you choose a solvent that is immiscible with the monomer and does not dissolve the polymer, a suspension system can be created under mechanical agitation. The most commonly used suspension system involves water and non-water-soluble monomers. Polymerization under these conditions offers several advantages over solution polymerization:
+
+1. The monomer forms small droplets in the suspension system and eventually becomes polymer particles. The viscosity of the system remains low since the polymers are solid particles.  
+2. Heat dissipation is easier than in solution polymerization.  
+3. Removal of water by simple filtration is possible.
+
+**Emulsion polymerization**
+
+Emulsions can be created by adding surfactants to immiscible monomers and solvents. In this case, mild stirring is sufficient to prevent phase separation. Polymerization can be carried out in emulsions, which offer all the advantages of suspension polymerization. The monomer droplets and polymer particles, typically 50–500 nm, are even smaller than in suspension polymerization. Radicals are often separated in individual monomer droplets, resulting in longer lifetimes and higher molecular weights compared to other radical polymerization techniques.
+
+However, the addition of surfactants raises the question of how to remove them after polymerization. Additionally, since the polymer particles are much smaller than in suspension polymerization, separating the polymers from water is more challenging. In many cases, when using emulsion polymerization, the resulting mixture is used directly without further separation. The latex, i.e., the dispersion resulting from emulsion polymerization, is used directly in adhesives, paints, paper coatings, and textile coatings. These are often preferred over solvent-based products due to the absence of volatile organic compounds.
+
+#### Products
+
+**Low density polyethylene (LDPE)** 
+
+Ethylene can be polymerized via a radical mechanism. However, ethylene is a gas at ambient conditions and has relatively low reactivity towards radical addition. Therefore, high pressure, e.g., 1200 -- 3000 bar, is required for the radical polymerization of ethylene. During this polymerization process, the propagating radicals can also react with already-formed polymer chains, causing radical transfer from the chain end to the mid-chain and initiating branches. As a result, radical polymerization of ethylene under high pressure produces branched polyethylene, which has relatively low crystallinity and low density. 
+
+> Why not polypropylene produced by radical polymerization?
+
+**Polytetrafluoroethylene (PTFE)**
+
+Tetrafluoroethylene is ethylene with the four hydrogen atoms replaced by fluorine. PTFE is produced by free-radical polymerization of tetrafluoroethylene. The commonly known brand name of PTFE-based composition is Teflon by Chemours, a spin-off from DuPont, which originally discovered the compound in 1938.
+
+Because tetrafluoroethylene can explosively decompose to tetrafluoromethane ($\ce{CF4}$) and carbon, a special apparatus is required for the polymerization to prevent hot spots that might initiate this dangerous side reaction. The process is typically initiated with persulfate, which homolyzes to generate sulfate radicals. The molecular weights of the polymers are high, ranging up to $10^5 - 10^6$, due to the lack of appreciable chain transfer reactions and the precipitation of growing radicals leading to greatly decreased termination. 
+
+Granular PTFE is produced via suspension polymerization, where PTFE is suspended in an aqueous medium primarily via agitation and sometimes with the use of a surfactant. PTFE is also synthesized via emulsion polymerization, where a surfactant is the primary means of keeping PTFE in an aqueous medium. Surfactants in the past have included toxic perfluorooctanoic acid (PFOA) and perfluorooctanesulfonic acid (PFOS). More recently, Perfluoro 3,6 dioxaoctanoic acid (PFO2OA) and FRD-903 (GenX) are being used as an alternative surfactants.
+
+Properties: 
+- chemically inert
+- wide range of temperature 
+- coefficient of friction
+- flexible and tough
+
+Health concerns of Teflon non-sticky cookwares. 
+
+1. Overheating: When Teflon-coated cookware is heated above 500°F (260°C), it can start to break down and release toxic fumes. Inhaling these fumes can cause flu-like symptoms known as “polymer fume fever” or "Teflon flu".
+2. PFOA and PFAS: Previously, Teflon production involved perfluorooctanoic acid (PFOA), a chemical linked to various health issues such as thyroid disorders, chronic kidney disease, liver disease, and certain cancers. Although PFOA has been phased out since 2013, concerns remain about other per- and polyfluoroalkyl substances (PFAS) used in non-stick coatings.
+3. Long-term Exposure: Studies have shown that chemicals in Teflon can persist in the environment and human body, potentially leading to health risks over time
+
+Environmental issues caused by PFAS. 
+
+1. Persistence: PFAS are often referred to as “forever chemicals” because they break down very slowly in the environment. This means they can accumulate over time in soil, water, and living organisms.
+2. Water Contamination: PFAS have been found in drinking water supplies, groundwater, and surface water. Contaminated water sources can affect entire communities, leading to widespread exposure.
+3. Bioaccumulation: These chemicals can accumulate in the bodies of animals and humans. This bioaccumulation can lead to higher concentrations of PFAS in the food chain, affecting wildlife and potentially human health.
+4. Soil and Air Pollution: PFAS can also contaminate soil and air, particularly near industrial sites where they are produced or used. This contamination can spread to nearby areas, affecting agriculture and residential zones.
+5. Health Risks: Environmental exposure to PFAS has been linked to various health issues, including cancers, liver and thyroid diseases, developmental issues in infants and children, and immune system effects. 
+
+Other commonly used plastics made by radical polymerization are **Polystyrene (PS)**, **Poly(vinyl chloride) (PVC)**, **Poly(methyl methacrylate) (PMMA)**, **Polyacrylonitrile (PAN)**, **Poly(vinyl acetate)**. Find out their structure, production methods, special properties, applications. Any thing special or interesting? Feel free to share. 
+
+### Anionic polymerization 
+
+#### Properties of carbanions and features of anionic polymerization
+
+A carbanion is the conjugate base of a carbon acid:
+
+$$\ce{R3CH + B− → R3C− + HB}$$
+
+where B stands for the base.
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/34/Carbanion_Structural_Formulae_V.1.svg =300x)
+
+Carbanions have a concentration of electron density at the negatively charged carbon, which, in most cases, reacts efficiently with a variety of electrophiles of varying strengths, including carbonyl groups, imines/iminium salts, halogenating reagents (e.g., N-bromosuccinimide and diiodine), and proton donors. Usually, only systems with high purity monomers and aprotic solvent can lead to sufficient polymerization. Monomers with proton donating functional groups apparently will not work. Tiny amount of moisture can affect the polymerization. 
+
+Example of anionic polymerization: 
+
+![](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-642-36199-9_188-1/MediaObjects/300049_0_En_188-1_Fig1_HTML.gif)
+
+
+A well purified and isolated polymerization system, however, will preserve active carbanions even after consumption of all monomers. Thus, it is possible to add a second batch of monomer to produce block copolymers. Finaly, the reaction can be quenched by adding of protic agents. 
+
+Carbanions resulted from different monomers have dramatically differient activities. Less active carbanion cannot initiate polymerization of monomers that would result in more active carbanions. 
+
+#### Available monomers 
+
+Monomers with electron withdrawing substituents can be polymerized by anionic polymerization. the most important ones are styrene, butadiene, and isoprene. A second major class of monomers are acrylates, acrylonitrile, methacrylate, cyanoacrylate, etc. 
+
+#### Products
+
+**SBS rubber**
+
+Polymer styrene can be produced by radical polymerization, which is much easier to carry out than anionic polymerization. Any reason that people would employ anionic polymerization for industrial production of polystyrene? SBS rubber is one of the examples why anionic polymerization is needed. Find out the method to produce SBS rubber. What special molecular structure does SBS have and how does such molecular structure affect the mechanical property of the material?
+
+**Super glue and liquid bandage**
+
+Super Glue 502 is essentially a monomer with a vinyl group. It remains as small molecules in a sealed bottle but polymerizes spontaneously when exposed to air. This polymerization is anionic. What is the structure of the monomer? Why it is not sensitive to impurities or moisture that polymers can be obtained even in open air? Super Glue 502 results in a relatively rigid plastic. Similar monomers can be used as liquid bandages, which result in more flexible plastics. What are the difference of their structures?
+
+**polyformaldehyde**
+
+Polyformaldehyde is an example that not only vinyl group is polymerizable. The $\ce{C=O}$ bond in formaldehyde can also lead to polymerization. What is special of this polymer? Any interesting products? 
+
+### Cationic polymerization
+
+#### Properties of carbocations and features of cationic polymerization
+
+A carbocation is any even-electron cation with significant partial positive charge on a carbon atom. In polymerization, the carbocation is formed by protonation of alkene resulting in a formal positive charge that is surrounded by a sextet of electrons instead of the usual octet required to fill the valence shell of carbon. Therefore, carbenium ions (and carbocations in general) are often reactive, seeking to fill the octet of valence electrons as well as regain a neutral charge. The protonation is a reversible process. When the deprotonation happens, a chain end double bond will be formed and the proton would transfer to the counterion or another monomer. 
+
+Propagation 
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/3f/Lewis_acid_initiation.png =400x)
+
+Chain transfer
+
+![](https://upload.wikimedia.org/wikipedia/commons/c/c9/Termination.png =400x)
+
+![](https://upload.wikimedia.org/wikipedia/commons/f/fd/Charge_transfer_with_monomer.png =400x)
+
+
+#### Available monomers 
+
+The types of monomers necessary for cationic polymerization are limited to alkenes with electron-donating substituents as shown in the figure below. Vinyl ether and isobutylene can be polymerized only by cationic polymerization. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/6/6e/Olefin_Reactivity.png =600x)
+
+#### Products
+
+**Polyisobutylene** must be produced by cationic polymerization. It is a very special polymer with unique properties. What is unique? What special applications does it have?
+
+**Poly(vinyl ether)** must be produced by cationic polymerization as well. Any specific applications that must use poly(vinyl ether)? 
+
+### Coordination polymerization
+
+#### Features of coordination polymerization
+
+Ziegler-Natta catalysts based on titanium tetrachloride and organoaluminium co-catalysts are widely used for the production of polyethylene and polypropylene which occupy more than a quarter of all plastic production. One significant feature is that the polymerization process is stereoselective that isotactic or syndiotactic polypropylene can be produced instead of atactic.The stereoregulating capability of Ziegler–Natta catalysts is believed to depend on a coordination mechanism in which both the growing polymer chain and the monomer coordinate with the catalyst. The addition then occurs by insertion of the monomer between the growing chain and the catalysts by a concerted mechanism. Since the coordination almost certainly involves the transition metal atom, there is a resemblance here to anionic polymerization. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/ee/ZNonSingleSite.png =600x)
+
+Monometallic mechanism
+
+![](https://media.springernature.com/full/springer-static/image/chp%3A10.1007%2F978-3-642-38730-2_9/MediaObjects/307395_1_En_9_Sch1_HTML.gif?as=webp =400x)
+
+Bimetallic mechanism
+
+![](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-642-38730-2_9/MediaObjects/307395_1_En_9_Sch2_HTML.gif?as=webp =400x)
+
+#### Available monomers 
+
+Typically olefens are polymerized by coordination polymerization. Many alkenes do not polymerize in the presence of Ziegler–Natta or Kaminsky catalysts. This problem applies to polar olefins such as vinyl chloride, vinyl ethers, and acrylate esters.
+
+#### Products
+
+**Polypropylene (PP)** and **high density polyethylene (HDPE)** are representative products of coordination polymerization which have been discussed in previous chapters. 
+
+### Ring-opening polymerization (ROP)
+
+The initiators used for ROP are generally the same as being used for cationic and anionic polymerization of vinyl monomers. Monomers used for ROP inlcude cyclic ethers, acetals, amides, esters, siloxanes, as well as amines, sulfides, olefins, cyclotriphosphazenes, and N-carboxy-a-amino acid anhydrides. Some monomers can be polymerized via both cationic and anionic mechanisms, while some can only be polymerized in one way. The propagation rate constants for ring-opening polymerizations are generally similar to the rate constants in most step polymerizations, which makes them several orders of magnitude lower than those in typical polymerizations of carbon–carbon double-bond monomers.
+
+#### Cationic pathway 
+
+Cationic ROP usually involve the formation of oxonium ion centers and the nucleophilic attack of monomer on the oxonium ion. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/b/bb/ROP_cationic.png =600x)
+
+Some ROP proceed by a different route that the monomer is protonated and reacts with the neutral functional end group of the propagating polymer. 
+
+#### Anionic pathway 
+
+Typical anionic ROP involves the formation of propagating anionic centers and nucleophilic attack of the propagating anion on monomer. 
+
+![](.img/AnionROP.png =600x)
+
+#### Commercial products
+
+**Polymerization of cyclic ethers**
+
+![](https://upload.wikimedia.org/wikipedia/commons/6/64/PEG_Structural_Formula_V1.svg =200x)
+
+Polyethylene glycol (PEG) or polyethylene oxide (PEO) is a widely used polymer in industrial manufacturing and medicine. What is the monomer and what is the polymerization route? What is the typical properties of the product? What special applications does it have? 
+
+**Polylactams**
+
+![](https://upload.wikimedia.org/wikipedia/commons/4/4c/Caprolactam_polymerization.png =400x)
+
+In situ anionic polymerization is employed for cast nylon production where conversion from ε-caprolactam to Nylon 6 takes place inside a mold. In conjunction with endless fiber processing the term thermoplastic resin transfer molding (T-RTM) is often used.
+
+**Polylactones**
+
+Polyactic acid (PLA) can degrade into innocuous lactic acid, making it suitable for use as medical implants in the form of anchors, screws, plates, pins, rods, and mesh. Depending on the type used, it breaks down inside the body within 6 months to 2 years. This gradual degradation is desirable for a support structure, because it gradually transfers the load to the body (e.g., to the bone) as that area heals. The strength characteristics of PLA and PLLA implants are well documented.
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/e0/PLA_from_lactic_acid_%26_lactide.png =300x)
+
+Polycaprolactone (PCL) is degraded by hydrolysis of its ester linkages in physiological conditions (such as in the human body) and has therefore received a great deal of attention for use as an implantable biomaterial. In particular it is especially interesting for the preparation of long term implantable devices, owing to its degradation which is even slower than that of polylactide.
+
+![](https://upload.wikimedia.org/wikipedia/commons/6/63/Polycaprolactone_synthesis.png =400x)
+
+#### Ring-opening metathesis polymerization and products
+
+Olefin metathesis is an organic reaction that entails the redistribution of fragments of alkenes (olefins) by the scission and regeneration of carbon-carbon double bonds. Because of the relative simplicity of olefin metathesis, it often creates fewer undesired by-products and hazardous wastes than alternative organic reactions.
+
+![](https://upload.wikimedia.org/wikipedia/commons/8/8c/Reaction_scheme_of_the_olefin_metathesis.svg =300x)
+
+Schrock catalysts
+
+![](https://upload.wikimedia.org/wikipedia/commons/6/67/SchrockMetathesisCatalysts.png =500x)
+
+Grubbs catalysts
+
+![](https://upload.wikimedia.org/wikipedia/commons/7/7b/GrubbsMetathesisCatalysts.png =500x)
+
+Mechanism
+
+![](https://upload.wikimedia.org/wikipedia/commons/f/f6/Metathesis_mechanism_jypx3.png =400x)
+
+The ROMP process is useful because a regular polymer with a regular amount of double bonds is formed. The resulting product can be subjected to partial or total hydrogenation, crosslinking, or can be functionalized into more complex compounds.
+
+**Polynorbornene**  
+Norbornenes are important monomers in ring-opening metathesis polymerizations (ROMP). Typically these conversions are effected with ill-defined catalysts. Polynorbornenes exhibit high glass transition temperatures and high optical clarity.
+
+![](https://upload.wikimedia.org/wikipedia/commons/4/46/Polynbornene.png =400x)
+
+**Polydicyclopentadiene**(PDCPD) is a polymer material which is formed through ring-opening metathesis polymerization of dicyclopentadiene (DCPD). PDCPD exhibits high crosslinking, which grants its properties, such as high impact resistance, good chemical corrosion resistance, and high heat deflection temperature. PDCPD is frequently used in the automotive industry to make body panels, bumpers, and other components for trucks, buses, tractors, and construction equipment. PDCPD is being investigated for the creation of porous materials for tissue engineering or gas storage applications, as well as for self-healing polymers.
+
+![](https://ars.els-cdn.com/content/image/1-s2.0-S0141391014000470-fx1.jpg)
+
+## Kinetics and statistics{{attrs[#blk-zpozsa8mjabc]}}
+
+### Initiation
+
+One key feature of chain-growth polymerization is that monomers do not react directly with each other. Instead, a specific type of active center must be introduced into the polymerization system. This active center reacts with the monomers. After the addition of one monomer, the active center links to the monomer, generating a new active center of the same type on the opposite end of the newly attached monomer unit. 
+
+The addition of the first monomer units to either externally introduced or in-situ generated active centers is known as initiation. 
+
+<!--
+The number of initiation is directly related to the number of polymers you will get from the polymerization. In principle, each active center introduced to the system would create one polymer chain. However, some of the active centers may fail to initiate a chain. The actual number of active centers sucessfully initiate polymers to the total number of available active centers defines the initiation efficiency. 
+-->
+
+#### Radical initiators
+
+Some organic compounds decompose spontaneously at elavated temperatures and produce radicals, such as peroxides or hydroperoxides, azo compounds. Two commonly used thermal initiators are as follows:
+
+Benzoyl peroxide (BPO)
+
+![](https://upload.wikimedia.org/wikipedia/commons/f/fd/Initiation_-_thermal_decomp.png =400x)
+
+Azobisisobutyronitrile (AIBN)
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/3f/AIBN-radical-2D.png =400x)
+
+Some compounds, e.g., AIBN, can produce radicals under photo radiation.
+
+![](https://upload.wikimedia.org/wikipedia/commons/2/22/Initiation_-_photolysis.png =400x)
+
+Redox reactions can possibly create radicals. 
+
+$$\ce{H2O2 + Fe^{2+} -> Fe^{3+} + OH- +HO*}$$
+
+There are many other ways to produce radicals and be used to initiate radical polymerizations. 
+
+Due to side reactions, not all radicals formed by the dissociation of initiator molecules actually add monomers to form polymer chains. The efficiency factor $f$ is defined as the fraction of the original initiator which contributes to the polymerization reaction. The maximal value of $f$ is 1, but typical values range from 0.3 to 0.8.
+
+#### Acids for cationic polymerization
+
+During initiation, a carbenium ion is generated from which the polymer chain is made. The counterion should be non-nucleophilic, otherwise the reaction is terminated instantaneously.  
+
+Lewis acids are the most common compounds used for initiation of cationic polymerization. The more popular Lewis acids are $\ce{SnCl4}$, $\ce{AlCl3}$, $\ce{BF3}$, and $\ce{TiCl4}$. Although these Lewis acids alone are able to induce polymerization, the reaction occurs much faster with a suitable cation source. The cation source can be water, alcohols, or even a carbocation donor such as an ester or an anhydride. In these systems the Lewis acid is referred to as a coinitiator while the cation source is the initiator. Upon reaction of the initiator with the coinitiator, an intermediate complex is formed which then goes on to react with the monomer unit. The counterion produced by the initiator-coinitiator complex is less nucleophilic than that of the Brønsted acid $\ce{A−}$ counterion. Use Brønsted acid as the initiator for cationic polymerization is possible, but usually produce low molecular weight polymers only. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/3f/Lewis_acid_initiation.png =400x)
+
+![](https://upload.wikimedia.org/wikipedia/commons/c/c4/Carbenium_ion_initiation.png =400x)
+
+![](https://upload.wikimedia.org/wikipedia/commons/8/83/Ionizing_radiation_initiation.png =400x)
+
+#### Nucleophilic initiators for anionic polymerization
+
+Highly electrophilic monomers such as cyanoacrylates require only weakly nucleophilic initiators, such as amines, phosphines, or even halides. Less reactive monomers such as styrene require powerful nucleophiles such as butyl lithium. Reactions of intermediate strength are used for monomers of intermediate reactivity such as vinylpyridine.
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/38/RLi%2BStyrene.png =600x)
+
+![](https://upload.wikimedia.org/wikipedia/commons/b/b7/Wiki_Anion2.pn =600x)
+
+#### Transition metal complex for coordination polymerization
+
+Coordination polymerization started in the 1950s with heterogeneous Ziegler–Natta catalysts based on titanium tetrachloride and organoaluminium co-catalysts. The mixing of $\ce{TiCl4}$ with trialkylaluminium complexes produces Ti(III)-containing solids that catalyze the polymerization of ethene and propene. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/e/ee/ZNonSingleSite.png =600x)
+
+Monometallic mechanism
+
+![](https://media.springernature.com/full/springer-static/image/chp%3A10.1007%2F978-3-642-38730-2_9/MediaObjects/307395_1_En_9_Sch1_HTML.gif?as=webp)
+
+Bimetallic mechanism
+
+![](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-642-38730-2_9/MediaObjects/307395_1_En_9_Sch2_HTML.gif?as=webp)
+
+### Propagation
+
+Propagation is the process in which the active centers react with monomers repeatedly to form long chain molecules. Typically, the reaction rate is proportional to the concentrations of both the active centers and the monomers. 
+
+$$R_p = k_p[\ce{P}^*][\ce{M}]$$
+
+where $\ce{P}^*$ is the propogating polymer chain with an active species at the chain end and $\ce{M}$ is the monomer.  
+
+Temperature certainly plays a role on the propagation rate. Solvent can also affect the rate coefficient. In case of radical polymerization, the effect of solvent is relatively weak; while in case of ionic polymerizations, choice of solvents could be critical. The rate of ionic polymerization is also significantly influenced by the counterions.
+
+The reaction mechanisms are discussed in the "Methods and products" section.
+
+#### Concentration of active centers
+
+Active centers could be relatively stable under polymerization conditions and keep nearly constant concentrations until termination reagents are added on purpose. For example, in anionic polymerization, the number of propagating anions nearly do not change even after monomers are completely consumed. 
+
+In some other cases, the transfer of active centers happens frequently but the total concentration keeps nearly constant. Cationic polymerization could be in this category. 
+
+The other scenario is that the generation and consumption of the active center reaches a dynamic steady state that the concentration also maintains at a constant level in a relatively long time period. The example is radical polymerization. The radical concentration can be calculated by assuming the rate of initiation equals that of termination. This is called the **steady state assumption**.
+
+$$
+\begin{align*}
+& R_i = 2k_df[\ce{I}] \\
+& R_t = 2k_t[\ce{P*}]^2 \\
+& 2k_df[\ce{I}] = 2k_t[\ce{P*}]^2\\
+& [\ce{P*}] = \left(\frac{k_d[\ce{I}]f}{k_t}\right)^{1/2}
+\end{align*}
+$$
+
+#### Propagation rate coefficient
+
+Different monomers could have dramatically different propagation rate coefficient. In case of radical polymerization, the relative reactivity of monomers determines what kind of copolymer would be produced when copolymerization of these monomers is carried out. 
+
+In case of ionic polymerization, the reactivity of the active centers varies dramatically with the structure of the monomer. Usually, a less reactive propagating ion cannot add to a monomer and generate a more reactive propagating ion. Thus copolymerization is more challenging. 
+
+#### Trommsdorff–Norrish effect 
+
+In radical polymerization there is a common phenomenon where the rate of a radical polymerization reaction suddenly increases during the later stages of the reaction. Such phenomenon is called **self-acceleration** or **Trommsdorff-Norrish effect**. The reason lies in the increase of viscosity and the entanglement of polymer chains that they cannot easily collide and terminate, leading to a rapid acceleration in polymerization rate. 
+
+### Termination
+
+Termination can occur spontaneously among active centers, as seen in radical polymerization, or between propagating chains and externally added reagents. The result of termination is polymers with stable chain ends that no longer propagate.  
+
+In case of radical polymerization, the radicals can react with each other by either coupling or disproportionation. Both reactions cause termination of propagating chains. The rate coefficient is typically diffusion controlled because of the high activity of radicals that they react with each other once encounter with each other. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/b/b0/Termination_-_combination.png =400x)
+![](https://upload.wikimedia.org/wikipedia/commons/b/b1/Termination_-_disproportionation.png =400x)
+
+Ionic polymerizations do not have direct termination between two propagating chains because the same type of chain end ions repulse each other. 
+
+### Competing reactions towards propagation
+
+In an ideal scenario, active centers react exclusively with monomers according to the propagation reaction mechanism. However, due to the high reactivity of the active centers, many competing reactions often occur. These competing reactions add complexity to the reaction system, leading to undesired products. Nonetheless, they can also offer opportunities for tailoring the molecular architecture or controlling the chain length and functionality, which will be discussed in "Advanced polymerization methods".  
+
+Chain transfer
+: In polymer chemistry, chain transfer is a polymerization reaction by which the activity of a growing polymer chain is transferred to another molecule
+
+Chain transfer reactions occur in most forms of addition polymerization including radical polymerization, ring-opening polymerization, coordination polymerization, and cationic polymerization. Anionic polymerizations sometimes have extremely low level of chain transfer. 
+
+The high-pressure radical polymerization of ethylene, the method used to produce low-density polyethylene (LDPE), is characterized by significant branching due to prevalent chain transfer to polymer. In the radical polymerization of vinyl chloride, chain transfer to monomer is substantial, making it the primary factor regulating polymer molecular weight, rather than termination.
+
+### Average degree of polymerization
+
+**Instantaneous average degree of polymerization**
+
+The average degree of polymerization ($DP$) can be calculated by comparing the rate of propagation to the rate of all reactions that can potentially terminate the propagation process. In case there is no termination reactions, the result will be infinity. The actual $DP$ cannot be infinity, the calculation simply imply that the polymers have the potential to continue growing to infinity length. When there are reactions to stop propagation, this method defines the instantaneous average $DP$, i.e., the average $DP$ of polymers produced at a specific moment. 
+
+Due to the change of concentrations and viscosity, the reaction rates also vary during the polymerization. Thus, the polymers produced at the beginning of the reaction may have dramatically different lengths compared to the polymers produced at high monomer conversion. 
+
+**Overall number average degree of polymerization**
+
+The overall number average degree of polymerization can be calculated as the number of monomers have been consumed versus the number of polymers produced during the reaction. Since the number of monomers can be calculated easily based on the conversion, the critical question is what determines the number of polymers. 
+
+In a simplest case, one initiator create one active center which grow into one polymer chain. The number of polymers equals the number of initiators. Some anionic polymerization follow such a simple senario. 
+
+Radical polymerizations with thermal initiators are also relatively simple, if chain transfer reactions are not significant. Each initiator usually produce two primary radicals and result in one or two polymers. Remember to take into account the initiation efficiency, the calculated average $DP$ should not be far from the experimental value. 
+
+$$DP_n = \frac{k_p[\ce{M}]}{2k_t[\ce{P*}]} = \frac{k_p[\ce{M}]}{2(fk_tk_d[\ce{I}])^{1/2}}$$
+
+When chain transfer or other competing reactions are significant, the situation becomes more complicated and sometimes it is very difficult to estimate the average $DP$.
+
+
+### Molecular weight distribution
+
+Consider two systems.  
+1. Anionic polymerization with constant concentration of active centers, no termination, nor chain transfer. 
+2. Radical polymerization with initiation and termination reaches a stady state without significant chain transfer reactions. 
+
+#### Anionic polymerization
+
+The number fraction distribution function (the probability that a given chain has degree of polymerization *i*) is given by the **Poisson distribution** function:
+
+$$x(i)=\frac{(DP_n-1)^{i-1}}{(i-1)!}\exp(1-DP_n)$$
+
+where $i$ is an integer, i.e., 1, 2, 3, ...; $DP_n = \sum ix(i)$ is the number average degree of polymerization; $x(i)$ is the number fraction of $i$-mers in the system. 
+
+The weight fraction distribution function is determined following equation:
+
+$$w(i)=\frac{ix(i)}{\sum ix(i)}=\frac{i(DP_n-1)^{i-1}}{DP_n(i-1)!}\exp(1-DP_n)$$
+
+and 
+
+$$DP_w = \sum iw(i)$$
+
+The dispersity for the Poisson distribution is :
+
+$$\frac{DP_w}{DP_n}=1+\frac{1}{DP_n}-\frac{1}{DP_n^2}\approx 1 + \frac{1}{DP_n}$$
+
+This applies for ideal living polymerization. It indicates the distribution becomes narrower with increasing $DP$. The chain lengths get more uniform as $DP$ increases. 
+
+:::success 
+The process of anionic polymerization can be represented by a simple statistical model: $N$ balls are randomly thrown into $n$ boxes, where $N \gg n$. We want to find the probability, $x(i)$, that a specific box contains exactly $i$ balls. This scenario perfectly describes a binomial distribution, but because $N \gg n$, we can approximate the binomial distribution with a Poisson distribution.
+
+- For a single box, the probability of a ball landing in that box is $p = 1/n$.
+- We have $N$ independent trials (each ball toss).
+- The probability of exactly $i$ balls landing in that box is given by the binomial probability:
+$$x(i) = P(X = i) = (N \text{ choose } i) \times p^i \times (1-p)^{(N-i)}$$
+where $(N \text{ choose } i) = N! / (i! \times (N-i)!)$
+
+Poisson Approximation:
+
+When $N$ is large and $p$ is small, the binomial distribution can be approximated by a Poisson distribution.
+
+- The Poisson distribution has a single parameter, $\lambda$, which is the average number of events (in our case, balls in a box).
+- $\lambda = N \times p = N / n$ (the average number of balls per box, i.e., number average degree of polymerization $DP_n$).
+- The Poisson probability mass function is:
+$$x(i) = \frac{\lambda^i}{i!}e^{-\lambda} $$
+
+In this case, the value of $i$ could be 0, 1, 2, 3, .... In an actual polymerization system, the minimal value of $i$ is 1. 
+:::
+
+#### Radical polymerization 
+
+A propagating radical can undergo propagation or termination, while chain transfer is omitted. The probability of propagation versus propagation plus termination is defined as $p$ which resembles the extent of reaction in step-growth polymerization. If the termination is only by disproportionation, the probability to find an $i$-mer is 
+
+$$x(i) = p^{i-1}(1-p)$$
+
+This also has the same format as in step-growth polymerization. Thus,
+
+$$\frac{DP_w}{DP_n} = 1+p \approx 2$$
+
+In case of termination by coupling, the mathematics is a little more complicated. The result is
+
+$$\frac{DP_w}{DP_n} \approx 1.5$$
+
+Note that the value of $p$ changes during polymerization, the average chain lengthes of polymers produced at different time could be dramatically different. The overall $\frac{DP_w}{DP_n}$ value could be much greater than 2. 
+
+To understand better, use the following simulation tool:
+
+> [OVESET -- Radical polymerization](https://colab.research.google.com/github/wangyu16/PolymerScienceEducation/blob/master/OVESET/03_Radical_Polymerization.ipynb)
+
+## Copolymerization{{attrs[#blk-qdz2x337f0zn]}}
+
+A copolymer is a polymer derived from more than one species of monomer. Copolymers can be produced by concurrent polymerization of more than one type of monomers, or by sequential polymerization, or by post-polymerization reactions. Since a copolymer consists of at least two types of constituent units (also structural units), copolymers can be classified based on how these units are arranged along the chain. Linear copolymers consist of a single main chain and include alternating copolymers, statistical copolymers, and block copolymers. Branched copolymers consist of a single main chain with one or more polymeric side chains, and can be grafted, star shaped, or have other architectures.
+
+The concurrent polymerization of different types of monomers into copolymers is called copolymerization. In principle, such copolymerization should provide statistical linear copolymer. However, the actual result is more complicated. 
+
+### Reactivity ratio
+
+Recall that the rate of propagation in chain growth polymerization is proportional to the concentrations of both the active centers and the monomers. In the case of copolymerization involving two monomers, four concentrations must be considered: the two types of monomers and the two types of active centers derived from each kind of monomer unit. We assume that only the last monomer unit affects the activity of the active center, which, while not entirely accurate, serves as a reasonable simplification.
+
+In addition to the concentrations, the reaction rate also depends on the rate coefficient, which reflects the activities of the reacting species. With two types of active centers and two types of monomers, there are four possible pairs, each with its own rate coefficient. Therefore, four rate coefficients must be taken into account. 
+
+Consider two monomers, labeled as Monomer 1 and Monomer 2. The active centers derived from each monomer are also labeled as 1 and 2, respectively. The rate coefficients for the interactions between these monomers and active centers are shown in the table below:
+
+|                 | Monomer 1 | Monomer 2 |
+| --------------- | --------- | --------- |
+| Active center 1 | $k_{11}$  | $k_{12}$  |
+| Active center 2 | $k_{21}$  | $k_{22}$  |
+
+$$\ce{-M1* + M1 ->[k_{11}] -M1M1*}$$
+$$\ce{-M1* + M2 ->[k_{12}] -M1M2*}$$
+$$\ce{-M2* + M1 ->[k_{21}] -M2M1*}$$
+$$\ce{-M2* + M2 ->[k_{22}] -M2M2*}$$
+
+The four reaction rates are
+
+$$R_{p,11} = k_{11}[\ce{M1*}][\ce{M1}]$$
+$$R_{p,12} = k_{12}[\ce{M1*}][\ce{M2}]$$
+$$R_{p,21} = k_{21}[\ce{M2*}][\ce{M1}]$$
+$$R_{p,22} = k_{22}[\ce{M2*}][\ce{M2}]$$
+
+We are interested in the distribution of both monomer units in the resulting polymers. To describe this, we define two reactivity ratios:
+
+$$r_1 = \frac{k_{11}}{k_{12}}\quad\text{and}\quad r_2 = \frac{k_{22}}{k_{21}}$$
+
+These ratios represent the probability of a given active center adding a monomer of the same type versus a different type.
+
+### Product composition
+
+Consider the ratio of the instantenous consumption of each monomer that equals the ratio of composition of the copolymer formed at that moment. The consumption of each monomer can be expressed by:
+
+$$-\frac{\mathrm{d}[\ce{M1}]}{\mathrm{d}t} = k_{11}[\ce{M1*}][\ce{M1}] + k_{21}[\ce{M2*}][\ce{M1}]$$
+$$-\frac{\mathrm{d}[\ce{M2}]}{\mathrm{d}t} = k_{12}[\ce{M1*}][\ce{M2}] + k_{22}[\ce{M2*}][\ce{M2}]$$
+
+Thus,
+
+$$\frac{\mathrm{d}[\ce{M1}]}{\mathrm{d}[\ce{M2}]} = \frac{k_{11}[\ce{M1*}][\ce{M1}] + k_{21}[\ce{M2*}][\ce{M1}]}{k_{12}[\ce{M1*}][\ce{M2}] + k_{22}[\ce{M2*}][\ce{M2}]}$$
+
+Assume the concentration of both types of active centers are constant know as the steady-state approximation. As a result, the rate of crossover between the different types of terminal active centers must be equal, i.e., $R_{p,12} = R_{p,21}$.
+
+$$k_{12}[\ce{M1*}][\ce{M2}] = k_{21}[\ce{M2*}][\ce{M1}]$$
+
+thus, 
+
+$$\frac{[\ce{M1*}]}{[\ce{M2*}]} = \frac{k_{21}[\ce{M1}]}{k_{12}[\ce{M2}]}$$
+
+Combining above equations, we get the copolymer composition equation:
+
+$$\frac{\mathrm{d}[\ce{M1}]}{\mathrm{d}[\ce{M2}]} = \frac{[\ce{M1}]}{[\ce{M2}]}\frac{r_1[\ce{M1}] + [\ce{M2}]}{r_2[\ce{M2}] + [\ce{M1}]} = \frac{1+r_1[\ce{M1}]/[\ce{M2}]}{1+r_2[\ce{M2}]/[\ce{M1}]}$$
+
+Define the feedstock fractions of monomers are $f_1$ and $f_2$, respectively. The composition fractions of monomer units in the polymer are $F_1$ and $F_2$. 
+
+$$f_1 = 1-f_2 = \frac{[\ce{M1}]}{[\ce{M1}]+[\ce{M2}]}$$
+
+$$F_1 = 1-F_2 = \frac{\mathrm{d}[\ce{M1}]}{\mathrm{d}[\ce{M1}]+\mathrm{d}[\ce{M2}]}$$
+
+We have the correlation
+
+$$F_1 = \frac{r_1f_1^2 + f_1f_2}{r_1f_1^2 + 2f_1f_2 + r_2f_2^2}$$
+
+So far what we have discussed is valid for any type of chain-growth polymerization. However, radical polymerizaitonis the most extensively studied. The table below provides some experimental values of $r_1$ and $r_2$ for different monomer pairs. Simulate the copolymerization using these data and answer the questions:
+
+1. Which monomer pair results in roughly the same consumption rate of both monomers? (In this case, the feedstock fraction should remain more or less constant.) 
+2. Which monomer pair can give you truely random copolymer? (Always give polymers with randomly distributed sections of a few monomer 1 and sections of a few monomer 2.)
+3. Which monomer pair would result in alternating copolymer? 
+4. Which monomer pair will not result in meaningful copolymer but would first consume nealry exclusively one monomer and then start to consume the other monomer. 
+
+
+
+| $\ce{M1}$ | $\ce{M2}$ | $r_1$ | $r_2$ |
+| --------- | --------- | ----- | ----- |
+| Acrylonitrile | Methyl methacrylate | 0.13 | 1.16 |
+|       | Vinyl acetate | 4.05 | 0.061 |
+|       | Styrene | 0.020  | 0.29  |
+| Methyl methacrylate | Styrene | 0.46 | 0.52 |
+|       | Methacrylic acid | 1.18 | 0.63 |
+|       | Vinyl acetate | 20 | 0.015 |
+| Styrene | Vinyl acetate | 50 | 0.01 |
+|       | Vinyl chloride | 17 | 0.02 |
+|       | Maleic anhydride  | 0.05 | 0.005 |
+| Methyl acrylate | Acrylonitrile | 0.84 | 1.5 |
+|       | Styrene | 0.80 | 0.19 |
+|       | Methyl methacrylate | 0.4 | 2.2 |
+
+
+> [OVESET -- Radical copolymerization](https://colab.research.google.com/github/wangyu16/PolymerScienceEducation/blob/master/OVESET/05_Copolymerization.ipynb)
+
+### Example products
+
+**Ethylene and propylene copolymer** produced by coordination polymerization. What physical/mechanical properties does the copolymer have? What products and applications are expected? 
+
+**Surlyn** is the commercial name of a copolymer of ethylene and mechancrylic acid (MAA) with relatively low MAA content. Does it look like or behave like polyethylene? Any special properties? Any special applications?  
+
+**ABS resin** is the copolymer of acrylonitrile, butadiene, and styrene. Typically, it is produced by radical copolymerization of acrylonitrile and styrene in the presence of polybutadiene. Polybutadiene has main chain $\ce{-C=C-}$ that can participate in the polymerization to create graft polymer structure. The fractions of each componient can vary that leaves the opportunity to adjust the property of the product. What physical/mechanical properties do ABS resin have in general? Any special applications?  
+
+**Nafion** tetrafluoroethylene based fluoropolymer-copolymer. It maintains the physical/mechanical properties of PTFE and has excellent chemical stability. The acidic units provides proton conductivity properties and thus can be used as proton conducting or exchange membrane for fuel cells and electrolyzers. 
+
+
+
+
+:::info
+**Example Questions Level 1**
+
+1. Give following vinyl monomers, choose all that can be polymerized by cationic polymerization. (Ethylene, Propylene, Styrene, Acrylonitrile, Vinly ehter, Isobutylene)
+2. Given following polymers, tell what are the proper polymerization methods to produce them, which of the polymers can make transparent and stiff products, which of the polymers can be used to make a thermoplastic rubber, which can be used as bio-degradable plastics, such as medical implants. (Atactic poly(methyl methacrylate), High density polyethylene, SBS resin, Isotactic polypropylene, Polyactic acid)
+3. Give an example of typical initiators for radical, anionic, cationic, coordination polymerizations, respectively. 
+4. Explain what is Tromsdorff effect in radical polymerization. 
+5. Explain what does steady state assumption tell in radical polymerization. 
+6. In a radical polymerization, if the thermal initiator concentration is increased, how would the polymerization rate change? Will the average molecular weight of the resulting polymers increase or decrease? Why?
+7. In a radical polymerization of MMA with AIBN as the initiator, the initial mole ratio of MMA to AIBN is 200 to 1. Suppose the volume of MMA used for this reaction is 10.0 mL, calculate the weight of AIBN needed. (Density of MMA is 0.940 g/mL. Molar masses of MMA and AIBN are 100 g/mol and 164 g/mol, respectively)
+8. In a radical copolymerization of monomers 1 and 2, initially present in the mole ratio 2:1, what is the composition ($F_1$) of the copolymer formed initially, if $r_1 = 2.1$ and $r_2 = 0.52$?
+9. Following the previous question, which monomer will be consumed faster? What type of polymer will be produced at the beginning and towards the end, respectively?
+10. For the copolymerization of monomer 1 with monomer 2, the reactivity ratio’s are $r_1 = 2.7$, $r_2 = 1.3$. At what mole fraction of monomer 1 in the feed will the composition of the copolymer exactly equal this feed composition?
+:::
+
+
+{{markdown ./license.md}}
+
+</script>
+
+<script data-orz-asset="engine" src="https://cdn.jsdelivr.net/npm/orz-paged-browser@0.6.1/orz-paged.browser.js"></script>
+<script>
+(function (global) {
+  var expandedQr = null;
+  var expandedSourceQr = null;
+
+  function collapseQr() {
+    if (!expandedQr) return;
+
+    if (expandedSourceQr) {
+      expandedSourceQr.classList.remove('is-expanded');
+      expandedSourceQr.setAttribute('aria-expanded', 'false');
+    }
+
+    if (expandedQr.parentNode) {
+      expandedQr.parentNode.removeChild(expandedQr);
+    }
+
+    if (global.document && global.document.body) {
+      global.document.body.style.overflow = '';
+    }
+    expandedQr = null;
+    expandedSourceQr = null;
+  }
+
+  function toggleQr(node) {
+    if (expandedSourceQr === node) {
+      collapseQr();
+      return;
+    }
+
+    collapseQr();
+    if (!global.document || !global.document.body) {
+      return;
+    }
+
+    expandedSourceQr = node;
+    expandedSourceQr.classList.add('is-expanded');
+    expandedSourceQr.setAttribute('aria-expanded', 'true');
+
+    expandedQr = node.cloneNode(true);
+    expandedQr.classList.add('qrcode-overlay', 'is-expanded');
+    expandedQr.setAttribute('aria-hidden', 'true');
+    expandedQr.removeAttribute('aria-expanded');
+    expandedQr.removeAttribute('tabindex');
+    expandedQr.removeAttribute('role');
+    expandedQr.addEventListener('click', function (event) {
+      event.stopPropagation();
+      collapseQr();
+    });
+
+    global.document.body.appendChild(expandedQr);
+
+    if (global.document && global.document.body) {
+      global.document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function initQrCodes(root) {
+    if (!root || typeof root.querySelectorAll !== 'function') return;
+
+    Array.prototype.slice.call(root.querySelectorAll('.qrcode')).forEach(function (node) {
+      if (node.getAttribute('data-qr-ready') === '1') return;
+
+      node.setAttribute('data-qr-ready', '1');
+      node.addEventListener('click', function (event) {
+        event.stopPropagation();
+        toggleQr(node);
+      });
+      node.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleQr(node);
+        }
+        if (event.key === 'Escape') {
+          collapseQr();
+        }
+      });
+    });
+  }
+
+  function initTabs(root) {
+    if (!root || typeof root.querySelectorAll !== 'function') return;
+    Array.prototype.slice.call(root.querySelectorAll('.tabs')).forEach(function (tabs) {
+      // data-js both guards re-init and switches the theme CSS from the no-JS
+      // fallback (all panels shown) to JS mode (only the .active panel shown).
+      if (tabs.getAttribute('data-js') === '1') return;
+      var panels = Array.prototype.slice.call(tabs.querySelectorAll(':scope > .tab'));
+      if (!panels.length) return;
+      tabs.setAttribute('data-js', '1');
+
+      var bar = global.document.createElement('div');
+      bar.className = 'tabs-bar';
+      panels.forEach(function (panel, i) {
+        var label = panel.getAttribute('data-label') || 'Tab ' + (i + 1);
+        var btn = global.document.createElement('button');
+        btn.className = 'tabs-bar-btn' + (i === 0 ? ' active' : '');
+        btn.textContent = label;
+        btn.addEventListener('click', function () {
+          Array.prototype.slice.call(tabs.querySelectorAll('.tabs-bar-btn')).forEach(function (b) { b.classList.remove('active'); });
+          panels.forEach(function (p) { p.classList.remove('active'); });
+          btn.classList.add('active');
+          panel.classList.add('active');
+        });
+        bar.appendChild(btn);
+      });
+      tabs.insertBefore(bar, tabs.firstChild);
+      panels[0].classList.add('active');
+    });
+  }
+
+  function init(root) {
+    var r = root || global.document;
+    initQrCodes(r);
+    initTabs(r);
+  }
+
+  // ---- copy-as-markdown: DOM -> Markdown walker ---------------------------
+  // Converts a selected DOM fragment back to Markdown so that copying rendered
+  // content yields source, not HTML. Standard constructs are reconstructed from
+  // their tags; generated constructs (math, mermaid, smiles, qr, youtube, chart) carry
+  // a [data-md] breadcrumb that is emitted verbatim. Written without template
+  // literals/backticks because this whole file is a String.raw template.
+  var BT = String.fromCharCode(96);
+  var FENCE = BT + BT + BT;
+
+  function rt_repeat(s, n) {
+    var out = '';
+    for (var i = 0; i < n; i++) out += s;
+    return out;
+  }
+
+  function rt_attr(node, name) {
+    return node && node.getAttribute ? node.getAttribute(name) : null;
+  }
+
+  function rt_isBlockElement(node) {
+    if (!node || node.nodeType !== 1) return false;
+    if (rt_attr(node, 'data-md') != null) return true;
+    var tag = node.tagName.toLowerCase();
+    if (/^(p|div|section|article|figure|h[1-6]|ul|ol|li|blockquote|pre|table|thead|tbody|tr|hr|details)$/.test(tag)) return true;
+    if (node.classList && (node.classList.contains('katex-display') || node.classList.contains('mermaid'))) return true;
+    return false;
+  }
+
+  function rt_katex(node, display) {
+    var ann = node.querySelector ? node.querySelector('annotation[encoding="application/x-tex"]') : null;
+    var tex = (ann ? ann.textContent : node.textContent) || '';
+    tex = tex.replace(/^\s+|\s+$/g, '');
+    if (display) return '$$\n' + tex + '\n$$';
+    return '$' + tex + '$';
+  }
+
+  function rt_img(node) {
+    var alt = rt_attr(node, 'alt') || '';
+    var src = rt_attr(node, 'src') || '';
+    var title = rt_attr(node, 'title');
+    return '![' + alt + '](' + src + (title ? ' "' + title + '"' : '') + ')';
+  }
+
+  function rt_inlineChildren(node) {
+    var out = '';
+    var kids = node.childNodes;
+    for (var i = 0; i < kids.length; i++) out += rt_inlineNode(kids[i]);
+    return out;
+  }
+
+  function rt_inlineNode(node) {
+    if (node.nodeType === 3) return node.nodeValue.replace(/\s+/g, ' ');
+    if (node.nodeType !== 1) return '';
+    var dm = rt_attr(node, 'data-md');
+    if (dm != null) return dm;
+    if (node.classList && node.classList.contains('katex')) return rt_katex(node, false);
+    var tag = node.tagName.toLowerCase();
+    switch (tag) {
+      case 'strong': case 'b': return '**' + rt_inlineChildren(node) + '**';
+      case 'em': case 'i': return '*' + rt_inlineChildren(node) + '*';
+      case 'code': return BT + (node.textContent || '') + BT;
+      case 'a':
+        var href = rt_attr(node, 'href') || '';
+        var title = rt_attr(node, 'title');
+        return '[' + rt_inlineChildren(node) + '](' + href + (title ? ' "' + title + '"' : '') + ')';
+      case 'del': case 's': return '~~' + rt_inlineChildren(node) + '~~';
+      case 'ins': return '++' + rt_inlineChildren(node) + '++';
+      case 'mark': return '==' + rt_inlineChildren(node) + '==';
+      case 'sub': return '~' + rt_inlineChildren(node) + '~';
+      case 'sup': return '^' + rt_inlineChildren(node) + '^';
+      case 'br': return '  \n';
+      case 'img': return rt_img(node);
+      case 'input': return '';
+      case 'span':
+        var spCls = (rt_attr(node, 'class') || '').trim();
+        return spCls ? '{{sp[' + spCls + '] ' + rt_inlineChildren(node) + '}}' : rt_inlineChildren(node);
+      default: return rt_inlineChildren(node);
+    }
+  }
+
+  function rt_align(cell) {
+    var style = (rt_attr(cell, 'style') || '').toLowerCase();
+    if (style.indexOf('center') !== -1) return 'center';
+    if (style.indexOf('right') !== -1) return 'right';
+    if (style.indexOf('left') !== -1) return 'left';
+    return '';
+  }
+
+  function rt_sep(align) {
+    if (align === 'center') return ':---:';
+    if (align === 'right') return '---:';
+    if (align === 'left') return ':---';
+    return '---';
+  }
+
+  function rt_tableRows(headRow, bodyRows) {
+    var rows = [];
+    var header = [];
+    var aligns = [];
+    if (headRow) {
+      var hc = headRow.children;
+      for (var i = 0; i < hc.length; i++) { header.push(rt_inlineChildren(hc[i]).trim()); aligns.push(rt_align(hc[i])); }
+    }
+    rows.push('| ' + header.join(' | ') + ' |');
+    var seps = [];
+    for (var s = 0; s < header.length; s++) seps.push(rt_sep(aligns[s]));
+    rows.push('| ' + seps.join(' | ') + ' |');
+    for (var r = 0; r < bodyRows.length; r++) {
+      var cells = [];
+      var tds = bodyRows[r].children;
+      for (var c = 0; c < tds.length; c++) cells.push(rt_inlineChildren(tds[c]).trim());
+      rows.push('| ' + cells.join(' | ') + ' |');
+    }
+    return rows.join('\n');
+  }
+
+  function rt_table(tbl) {
+    var headRow = tbl.querySelector ? tbl.querySelector('thead tr') : null;
+    var bodyRows = tbl.querySelectorAll ? tbl.querySelectorAll('tbody tr') : [];
+    return rt_tableRows(headRow, bodyRows);
+  }
+
+  // Reconstruct a table from bare table-internal nodes (thead/tbody/tr), e.g.
+  // when a selection inside a table loses its <table> wrapper.
+  function rt_tableFromParts(parts) {
+    var headRow = null;
+    var bodyRows = [];
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      var tag = p.tagName.toLowerCase();
+      if (tag === 'thead') { var tr = p.querySelector ? p.querySelector('tr') : null; if (tr && !headRow) headRow = tr; }
+      else if (tag === 'tbody') { var trs = p.querySelectorAll ? p.querySelectorAll('tr') : []; for (var j = 0; j < trs.length; j++) bodyRows.push(trs[j]); }
+      else if (tag === 'tr') { if (!headRow) headRow = p; else bodyRows.push(p); }
+    }
+    return rt_tableRows(headRow, bodyRows);
+  }
+
+  function rt_codeBlock(pre) {
+    var code = pre.querySelector ? (pre.querySelector('code') || pre) : pre;
+    var lang = '';
+    var cls = rt_attr(code, 'class') || '';
+    var m = cls.match(/language-([A-Za-z0-9_+#-]+)/);
+    if (m) lang = m[1];
+    var text = (code.textContent || '').replace(/\n$/, '');
+    return FENCE + lang + '\n' + text + '\n' + FENCE;
+  }
+
+  function rt_list(node, ordered, depth) {
+    var items = [];
+    var idx = 1;
+    var kids = node.childNodes;
+    for (var i = 0; i < kids.length; i++) {
+      var li = kids[i];
+      if (li.nodeType !== 1 || li.tagName.toLowerCase() !== 'li') continue;
+      items.push(rt_listItem(li, ordered, idx, depth));
+      idx++;
+    }
+    return items.join('\n');
+  }
+
+  function rt_listItem(li, ordered, idx, depth) {
+    var indent = rt_repeat('  ', depth);
+    var marker = ordered ? (idx + '. ') : '- ';
+    var task = '';
+    var cb = li.querySelector ? li.querySelector('input[type="checkbox"]') : null;
+    if (cb) task = (cb.checked || rt_attr(cb, 'checked') != null) ? '[x] ' : '[ ] ';
+    var inlineParts = '';
+    var nested = '';
+    var kids = li.childNodes;
+    for (var i = 0; i < kids.length; i++) {
+      var c = kids[i];
+      if (c.nodeType === 1 && /^(ul|ol)$/.test(c.tagName.toLowerCase())) {
+        nested += '\n' + rt_list(c, c.tagName.toLowerCase() === 'ol', depth + 1);
+      } else {
+        inlineParts += rt_inlineNode(c);
+      }
+    }
+    inlineParts = inlineParts.replace(/\s+/g, ' ').trim();
+    return indent + marker + task + inlineParts + nested;
+  }
+
+  function rt_blockquote(node) {
+    var inner = rt_blockChildren(node);
+    var lines = inner.split('\n');
+    var out = [];
+    for (var i = 0; i < lines.length; i++) out.push(lines[i] ? '> ' + lines[i] : '>');
+    return out.join('\n');
+  }
+
+  function rt_blockChildren(node) {
+    var parts = [];
+    var kids = node.childNodes;
+    var i = 0;
+    while (i < kids.length) {
+      var k = kids[i];
+      // A selection can contain bare <li> elements (when the user selects a
+      // list's contents rather than the <ul>/<ol> wrapper). Group a run of them
+      // into a bullet list instead of emitting each as a separate block.
+      if (k.nodeType === 1 && k.tagName.toLowerCase() === 'li') {
+        var lis = [];
+        while (i < kids.length) {
+          var kk = kids[i];
+          if (kk.nodeType === 1 && kk.tagName.toLowerCase() === 'li') { lis.push(kk); i++; }
+          else if (kk.nodeType === 3 && !(kk.nodeValue || '').trim()) { i++; }
+          else break;
+        }
+        var items = [];
+        for (var j = 0; j < lis.length; j++) items.push(rt_listItem(lis[j], false, j + 1, 0));
+        parts.push(items.join('\n'));
+        continue;
+      }
+      // Bare table-internal nodes (selection inside a table that lost its
+      // <table> wrapper) — reconstruct a Markdown table.
+      if (k.nodeType === 1 && /^(thead|tbody|tr)$/.test(k.tagName.toLowerCase())) {
+        var trows = [];
+        while (i < kids.length) {
+          var tk = kids[i];
+          if (tk.nodeType === 1 && /^(thead|tbody|tr)$/.test(tk.tagName.toLowerCase())) { trows.push(tk); i++; }
+          else if (tk.nodeType === 3 && !(tk.nodeValue || '').trim()) { i++; }
+          else break;
+        }
+        parts.push(rt_tableFromParts(trows));
+        continue;
+      }
+      var s = rt_blockNode(k);
+      if (s && s.replace(/\s/g, '') !== '') parts.push(s.replace(/\s+$/, ''));
+      i++;
+    }
+    return parts.join('\n\n');
+  }
+
+  var rt_containerNames = ['info', 'success', 'warning', 'danger', 'left', 'right', 'center', 'cols', 'col', 'tabs', 'tab'];
+  // A markdown-it-container div.name (or details.spoil) -> its ::: name
+  // directive name, or null if the node is not a container.
+  function rt_containerName(node) {
+    if (node.nodeType !== 1 || !node.classList) return null;
+    var tag = node.tagName.toLowerCase();
+    if (tag === 'details' && node.classList.contains('spoil')) {
+      var sum = node.querySelector ? node.querySelector('summary') : null;
+      var title = sum ? (sum.textContent || '').trim() : '';
+      return title ? 'spoil ' + title : 'spoil';
+    }
+    if (tag !== 'div') return null;
+    for (var i = 0; i < rt_containerNames.length; i++) {
+      var n = rt_containerNames[i];
+      if (node.classList.contains(n)) {
+        if (n === 'tab') { var lbl = rt_attr(node, 'data-label'); return lbl ? 'tab ' + lbl : 'tab'; }
+        return n;
+      }
+    }
+    return null;
+  }
+  // Emit a ::: name ... ::: block, using a fence longer than any inner fence so
+  // nested containers (cols > col, tabs > tab) re-parse correctly.
+  function rt_containerMd(node, name) {
+    var parts = [];
+    var kids = node.childNodes;
+    for (var i = 0; i < kids.length; i++) {
+      var k = kids[i];
+      if (k.nodeType === 1) {
+        var ktag = k.tagName.toLowerCase();
+        if (ktag === 'summary') continue; // spoil title, captured in the name
+        if (k.classList && k.classList.contains('tabs-bar')) continue; // JS-injected tab buttons
+      }
+      var m = rt_blockNode(k);
+      if (m && m.trim()) parts.push(m.trim());
+    }
+    var inner = parts.join('\n\n');
+    var maxFence = 2;
+    var lines = inner.split('\n');
+    for (var j = 0; j < lines.length; j++) {
+      var mm = lines[j].match(/^(:{3,})/);
+      if (mm && mm[1].length > maxFence) maxFence = mm[1].length;
+    }
+    var fence = rt_repeat(':', Math.max(3, maxFence + 1));
+    return fence + ' ' + name + '\n' + inner + '\n' + fence;
+  }
+
+  function rt_blockNode(node) {
+    if (node.nodeType === 3) {
+      var t = node.nodeValue;
+      return (t && t.trim()) ? t.replace(/\s+/g, ' ').trim() : '';
+    }
+    if (node.nodeType !== 1) return '';
+    var dm = rt_attr(node, 'data-md');
+    if (dm != null) return dm;
+    if (node.classList) {
+      // Display math: the katex-display span OR its katex-block <p> wrapper.
+      // Without this the wrapper is walked as a paragraph and the inner katex is
+      // emitted as inline math instead of a block equation.
+      if (node.classList.contains('katex-display') || node.classList.contains('katex-block')) {
+        var k = node.querySelector ? node.querySelector('.katex') : null;
+        return rt_katex(k || node, true);
+      }
+      if (node.classList.contains('mermaid')) return '{{mermaid\n' + (node.textContent || '').trim() + '\n}}';
+    }
+    var tag = node.tagName.toLowerCase();
+    var hm = tag.match(/^h([1-6])$/);
+    if (hm) return rt_repeat('#', parseInt(hm[1], 10)) + ' ' + rt_inlineChildren(node).trim();
+    switch (tag) {
+      case 'p': return rt_inlineChildren(node).trim();
+      case 'ul': return rt_list(node, false, 0);
+      case 'ol': return rt_list(node, true, 0);
+      case 'pre': return rt_codeBlock(node);
+      case 'blockquote': return rt_blockquote(node);
+      case 'table': return rt_table(node);
+      case 'hr': return '---';
+      case 'li': return rt_inlineChildren(node).trim();
+      case 'figure': case 'div': case 'section': case 'article': case 'details': case 'summary':
+        var cn = rt_containerName(node);
+        if (cn) return rt_containerMd(node, cn);
+        return rt_blockChildren(node);
+      default: return rt_inlineNode(node).trim();
+    }
+  }
+
+  function elementToMarkdown(root) {
+    if (!root) return '';
+    var hasBlock = false;
+    var kids = root.childNodes || [];
+    for (var i = 0; i < kids.length; i++) {
+      if (rt_isBlockElement(kids[i])) { hasBlock = true; break; }
+    }
+    var out = hasBlock ? rt_blockChildren(root) : rt_inlineChildren(root);
+    return out.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').replace(/^\s+|\s+$/g, '');
+  }
+
+  function rt_isEditable(node) {
+    while (node) {
+      if (node.nodeType === 1) {
+        var tag = node.tagName.toLowerCase();
+        if (tag === 'input' || tag === 'textarea') return true;
+        if (node.isContentEditable) return true;
+      }
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  function rt_isCopyRoot(node) {
+    return node.nodeType === 1 && node.classList &&
+      (node.classList.contains('markdown-body') || rt_attr(node, 'data-orz-copy') != null);
+  }
+  function rt_withinCopyRoot(node) {
+    while (node) {
+      if (rt_isCopyRoot(node)) return true;
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  // When a selection sits entirely within one table/blockquote/pre — or inside a
+  // ::: container — copy that whole block, so the wrapper is included (a partial
+  // table/quote fragment isn't valid Markdown, and a copied container should keep
+  // its ::: fence). Browsers often clone such selections without the wrapper.
+  // Tables/quotes/code don't nest, so the innermost wins; containers DO nest
+  // (cols > col, tabs > tab), so promote to the OUTERMOST one.
+  function rt_promotableBlock(node) {
+    var container = null;
+    while (node && !rt_isCopyRoot(node)) {
+      if (node.nodeType === 1) {
+        var tag = node.tagName.toLowerCase();
+        if (tag === 'table' || tag === 'blockquote' || tag === 'pre') return node;
+        // A selection inside a display equation copies the whole block equation;
+        // a partial KaTeX fragment is not valid Markdown.
+        if (node.classList &&
+            (node.classList.contains('katex-block') || node.classList.contains('katex-display'))) return node;
+        if (rt_containerName(node)) container = node;
+      }
+      node = node.parentNode;
+    }
+    return container;
+  }
+
+  function onCopy(event) {
+    if (!global.document) return;
+    var sel = global.getSelection ? global.getSelection()
+      : (global.document.getSelection ? global.document.getSelection() : null);
+    if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return;
+    if (rt_isEditable(sel.anchorNode) || rt_isEditable(sel.focusNode)) return;
+    if (!rt_withinCopyRoot(sel.anchorNode) && !rt_withinCopyRoot(sel.focusNode)) return;
+
+    var md;
+    var range0 = sel.getRangeAt(0);
+    var common = range0.commonAncestorContainer;
+    var promoted = rt_promotableBlock(common.nodeType === 1 ? common : common.parentNode);
+    if (promoted && sel.rangeCount === 1) {
+      var pwrap = global.document.createElement('div');
+      pwrap.appendChild(promoted.cloneNode(true));
+      md = elementToMarkdown(pwrap);
+    } else {
+      var container = global.document.createElement('div');
+      for (var i = 0; i < sel.rangeCount; i++) container.appendChild(sel.getRangeAt(i).cloneContents());
+      md = elementToMarkdown(container);
+    }
+    if (!md) return;
+    var cd = event.clipboardData || global.clipboardData;
+    if (cd && cd.setData) {
+      cd.setData('text/plain', md);
+      if (event.preventDefault) event.preventDefault();
+    }
+  }
+
+  function bindGlobalHandlers() {
+    if (!global.document || global.__orzMarkdownRuntimeBound) return;
+    global.__orzMarkdownRuntimeBound = true;
+
+    global.document.addEventListener('click', function (event) {
+      if (expandedQr && !expandedQr.contains(event.target)) {
+        collapseQr();
+      }
+    });
+
+    global.document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        collapseQr();
+      }
+    });
+
+    // Copy rendered selections as Markdown source.
+    global.document.addEventListener('copy', onCopy);
+  }
+
+  global.OrzMarkdownRuntime = Object.assign({}, global.OrzMarkdownRuntime, {
+    init: init,
+    initQrCodes: initQrCodes,
+    initTabs: initTabs,
+    collapseQr: collapseQr,
+    elementToMarkdown: elementToMarkdown,
+  });
+
+  bindGlobalHandlers();
+
+  if (global.document) {
+    if (global.document.readyState === 'loading') {
+      global.document.addEventListener('DOMContentLoaded', function () {
+        init(global.document);
+      }, { once: true });
+    } else {
+      init(global.document);
+    }
+  }
+})(typeof globalThis !== 'undefined' ? globalThis : window);
+</script>
+<script data-orz-asset="config">window.__ORZ_PAGED__ = {"mode":"cdn","katexCss":"https://cdn.jsdelivr.net/npm/katex@0.16.35/dist/katex.min.css","hljsCss":"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css","enhancers":{"mermaidJs":"https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js","smilesJs":"https://unpkg.com/smiles-drawer@1.0.10/dist/smiles-drawer.min.js","chartJs":"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js","hljsJs":"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"},"version":"0.6.1","templates":[{"id":"article-page","label":"Article — title page","description":"Academic paper with a dedicated title page, then abstract + body.","group":"Article","skeleton":"{{nyml\nkind: document\ntemplate: article-page\nfront_matter: clean\n}}\n\n{{nyml\nkind: article-title\ntitle: Your Article Title\nsubtitle: A Concise, Descriptive Subtitle\nauthors: |\n  First Author | 1,* | first.author@example.edu | 0000-0002-1825-0097\n  Second Author | 2 | second.author@example.org\n  Third Author | 1,2\naffiliations: |\n  1: Department of Example, University of Example\n  2: Institute of Example, Example City\nnotes: |\n  *: Corresponding author\ndate: Month Year\nplacement: page\n}}\n\n{{nyml\nkind: abstract\ntext: Briefly state the problem, what you did, and what you found. Summarize your main contribution in one or two sentences. Close with the significance of the result for the field.\nkeywords: keyword one, keyword two, keyword three\nplacement: page\n}}\n\n## Introduction\n\nOpen with the context and motivation for your work. State the gap your study\naddresses and the question you set out to answer. End the section with a short\nstatement of your contribution and an outline of what follows.\n\n## Methods\n\nDescribe your approach so that a reader could reproduce it. Summarize the key\nparameters of your setup in a compact table:\n\n| Parameter | Symbol | Value |\n|---|---|---|\n| Sample size | $n$ | 120 |\n| Trials per group | $k$ | 5 |\n| Significance level | $\\alpha$ | 0.05 |\n\nQuantities are reported with their uncertainties, and the mass–energy relation\n$E = mc^2$ is used where relevant. The core model is given by\n\n$$\n\\hat{y} = \\beta_0 + \\sum_{i=1}^{n} \\beta_i x_i + \\varepsilon\n$$\n\nwhere the residual term $\\varepsilon$ is assumed normally distributed.\n\n## Results\n\n- The primary measure improved by 18% over the baseline.\n- The effect held across all three experimental groups.\n- Results were statistically significant ($p < 0.05$).\n\n## Conclusion\n\nRestate the main finding, note its limitations, and point to one direction for\nfuture work.\n\n## References\n\n1. Author Name. *Title of the First Reference.* Journal Name, Year, pp. 1–10.\n2. Author Name. *Title of the Second Reference.* Publisher, Year.\n"},{"id":"article-section","label":"Article — title section","description":"Academic paper with an inline title block above the body.","group":"Article","skeleton":"{{nyml\nkind: document\ntemplate: article-section\n}}\n\n{{nyml\nkind: article-title\ntitle: Your Article Title Goes Here\nsubtitle: A short, descriptive subtitle for your paper\nauthors: |\n  First Author | 1,* | first.author@example.edu | 0000-0002-1825-0097\n  Second Author | 2\naffiliations: |\n  1: Department of Example, University of Example\n  2: Institute of Example, Example City\nnotes: |\n  *: Corresponding author\ndate: June 2026\nplacement: section\n}}\n\n{{nyml\nkind: abstract\ntext: |\n  Summarize your work in two or three sentences. State the problem you\n  address, the approach you took, and the headline result a reader should\n  remember. Keep it self-contained so it makes sense without the body.\nkeywords: keyword one, keyword two, keyword three\n}}\n\n## Introduction\n\nOpen with the context and motivation for your work. Describe the gap or open\nquestion your study addresses, and end the section by stating your contribution\nin one or two clear sentences. Replace this placeholder text with your own.\n\nYou can cite prior work informally here and expand on it in the References\nsection below. Aim for a paragraph or two that orients the reader before the\nmethods.\n\n## Methods\n\nDescribe your approach so that it could be reproduced. Inline math renders with\nsingle dollar signs — for example, the sample size $n = 120$ and a significance\nthreshold of $\\alpha = 0.05$.\n\nThe table below is a placeholder; replace the rows with your own conditions.\n\n| Condition | Parameter | Value |\n|-----------|-----------|-------|\n| Baseline  | rate      | 0.10  |\n| Treatment | rate      | 0.42  |\n| Control   | rate      | 0.09  |\n\nDisplay equations use double dollar signs and are centered on their own line:\n\n$$\n\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i\n$$\n\nExplain each symbol in the surrounding text so the equation is self-explanatory.\n\n## Results\n\nSummarize your findings as a short list, then expand on the most important ones\nin prose if needed.\n\n- The treatment condition outperformed the baseline by a wide margin.\n- The effect held across all three replicates.\n- No significant difference was observed between the control and baseline.\n\n## Conclusion\n\nRestate your main finding and its significance in plain language. Note the key\nlimitations of the study and suggest one or two concrete directions for future\nwork. Close with a sentence that leaves the reader with your central takeaway.\n\n## References\n\n1. Author, A. B., & Author, C. D. (Year). *Title of the first referenced work.*\n   Journal or Publisher, volume(issue), pages.\n2. Author, E. F. (Year). *Title of the second referenced work.* Journal or\n   Publisher, volume(issue), pages.\n"},{"id":"report-page","label":"Report — title page","description":"Business/technical report with a cover page, TOC, then body.","group":"Report","skeleton":"{{nyml\nkind: document\ntemplate: report-page\nheader_center: Report Title\nfooter_left: Confidential\npage_number_position: footer-right\npage_number_style: page-n-of-N\nfront_matter: clean\n}}\n\n{{nyml\nkind: report-title\ntitle: Report Title\nsubtitle: A short, descriptive subtitle\nauthor: Team / Author\ndate: Q3 2026\nplacement: page\n}}\n\n{{nyml\nkind: toc\ntitle: Contents\nmax_level: 2\nplacement: page\n}}\n\n## Executive Summary\n\nThis report summarizes the key findings and recommendations for the quarter. In\none or two sentences, state the headline outcome and the decision you are asking\nthe reader to make. Replace this paragraph with a concise overview that a busy\nstakeholder can read in under a minute.\n\n## Background\n\nDescribe the context and why this work was undertaken. Reference the original\ngoal, the time period covered, and any prior reports this one builds on. Keep it\nbrief — enough for a new reader to understand the rest of the document without\nprior knowledge.\n\n## Findings\n\nThe data below summarizes performance against the targets set at the start of\nthe period.\n\n| Metric          | Target | Actual | Status      |\n|-----------------|--------|--------|-------------|\n| Revenue         | $1.2M  | $1.35M | On track    |\n| New customers   | 250    | 218    | Below plan  |\n| Churn rate      | 4.0%   | 3.2%   | Ahead       |\n| Support tickets | 1,000  | 1,140  | Watch       |\n\nOverall results were mixed: revenue and retention exceeded expectations, while\nnew-customer acquisition fell short of plan. Summarize the most important\ntakeaway in a sentence here.\n\n::: page-break\n:::\n\n## Recommendations\n\nBased on the findings above, we recommend the following actions:\n\n1. Increase top-of-funnel marketing spend to close the new-customer gap.\n2. Invest in support tooling to absorb rising ticket volume without adding cost.\n3. Maintain the retention initiatives that drove the lower churn rate.\n\n## Next Steps\n\n- Assign an owner and a due date to each recommendation.\n- Review progress at the next quarterly checkpoint.\n- Circulate this report to stakeholders for feedback by end of week.\n"},{"id":"report-section","label":"Report — title section","description":"Business/technical report with an inline title block.","group":"Report","skeleton":"{{nyml\nkind: document\ntemplate: report-section\nheader_center: Report Title\npage_number_position: footer-right\npage_number_style: page-n-of-N\n}}\n\n{{nyml\nkind: report-title\ntitle: Report Title\nsubtitle: A Short, Descriptive Subtitle\nauthor: Author Name, Team or Department\ndate: Month Year\nplacement: section\n}}\n\n{{nyml\nkind: toc\ntitle: Contents\nmax_level: 2\n}}\n\n## Executive Summary\n\nSummarize the report in a few sentences for a reader who will not go further.\nState the purpose of the work, the most important finding, and the single action\nyou are recommending. Keep this to a short paragraph that a busy decision-maker\ncan absorb at a glance.\n\nThis section should make sense on its own. Lead with the conclusion, then let the\nrest of the report supply the supporting detail.\n\n## Background\n\nExplain the context that prompted this report. Describe the situation, the problem\nor opportunity, and why it matters now. Note any relevant history, prior decisions,\nor constraints that shape the analysis.\n\nState the scope clearly: what this report covers and, where useful, what it\ndeliberately leaves out. Briefly describe how the information was gathered (for\nexample, interviews, system metrics, or a review of existing documents).\n\n## Findings\n\nThe analysis surfaced the following key results. Each finding is stated with its\nobserved impact and current status.\n\n| # | Finding | Impact | Status |\n|---|---------|--------|--------|\n| 1 | Describe the first observation here. | High | Confirmed |\n| 2 | Describe the second observation here. | Medium | Confirmed |\n| 3 | Describe the third observation here. | Low | Needs review |\n\nAdd a sentence or two of interpretation after the table. Point out any patterns\nthat connect the findings, and flag anything that contradicts an initial\nassumption.\n\n## Recommendations\n\nBased on the findings above, we recommend the following actions, listed in\npriority order:\n\n1. **Recommendation one.** State the action and the outcome it is meant to\n   achieve. Name the owner if one is known.\n2. **Recommendation two.** Describe the change and the effort it requires.\n3. **Recommendation three.** Note any dependency on an earlier recommendation.\n\nEach recommendation should trace back to at least one finding so the reasoning is\neasy to follow.\n\n## Next Steps\n\nOutline how to move from recommendations to action over the coming weeks.\n\n- **This week:** Confirm priorities and assign an owner to each recommendation.\n- **This month:** Begin the highest-priority work and define success measures.\n- **Next quarter:** Review progress against the measures and adjust the plan.\n\nClose by naming a point of contact and the date of the next review.\n"},{"id":"exam-page","label":"Exam — cover page","description":"Exam with a cover/instructions page, then numbered questions.","group":"Exam","skeleton":"{{nyml\nkind: document\ntemplate: exam-page\npage_number_position: footer-center\npage_number_style: page-n-of-N\ndynamic_choices: |\n  answer-key: hide\n}}\n\n<!-- One source, two printouts: this is the student copy (answer-key: hide).\n     Switch to `answer-key: show` here — or use the editor's answer-key toggle —\n     to reveal the ✓ marks and model answers for the instructor key. -->\n\n\n{{nyml\nkind: exam-title\ntitle: Course Name — Exam 1\nsubtitle: Fall Term, October Date\nauthor: Instructor Name\nduration: 60 minutes\ntotal_points: 100 points\nstudent_fields: |\n  Name | Student ID | Score / 100\ninstructions: |\n  **Instructions.** Read each question carefully before answering.\n\n  - Answer all questions. Multiple-choice questions are worth 5 points each; open-response questions are worth the points indicated.\n  - For multiple-choice questions, circle the single best answer.\n  - For open-response questions, write your answer in the space provided. Show all work; partial credit is awarded for correct reasoning.\n  - No calculators, notes, or electronic devices are permitted unless otherwise stated. Do not turn the page until instructed.\nplacement: page\n}}\n\n{{nyml\nkind: question-mc\nn: 1\npts: 5 pts\nbody: Which of the following best describes the primary concept introduced in this unit?\noptions: |\n  A. The first plausible-sounding option.\n  B. The correct option that states the concept accurately.\n  C. A close but subtly incorrect option.\n  D. An option that is clearly unrelated.\nanswer: B\n}}\n\n{{nyml\nkind: question-mc\nn: 2\npts: 5 pts\nbody: Given the scenario above, what is the most likely outcome?\noptions: |\n  A. An outcome that contradicts the principle.\n  B. An outcome that ignores a key assumption.\n  C. The outcome consistent with the principle.\n  D. An outcome that is only true in a special case.\nanswer: C\n}}\n\n{{nyml\nkind: question-open\nn: 3\npts: 10 pts\nbody: Define the key term from this unit and explain, in two or three sentences, why it matters in practice.\nspace: 5cm\nanswer: A model answer briefly defines the term and gives one concrete reason it matters, demonstrating clear understanding of the concept.\n}}\n\n{{nyml\nkind: question-open\nn: 4\npts: 10 pts\nbody: Compare and contrast the two approaches discussed in class, giving one advantage and one limitation of each.\nspace: 5cm\nanswer: A model answer names both approaches, states one genuine advantage and one genuine limitation for each, and draws a clear comparison between them.\n}}\n"},{"id":"exam-section","label":"Exam — title section","description":"Exam with an inline header block, then numbered questions.","group":"Exam","skeleton":"{{nyml\nkind: document\ntemplate: exam-section\npage_number_position: footer-center\npage_number_style: page-n-of-N\ndynamic_choices: |\n  answer-key: hide\n}}\n\n{{nyml\nkind: exam-title\ntitle: Course Name — Midterm Exam\nsubtitle: Chapter 1–4 Assessment\nauthor: Instructor Name\nstudent_fields: |\n  Name | Student ID | Score / 100\nplacement: section\n}}\n\n<!-- This template leaves the exam-title `instructions:` field empty and puts the\n     instructions at the top of the content instead — either placement works. -->\n\n**Instructions.** Answer all questions in the space provided. Calculators are not\npermitted, and you have 60 minutes to complete this exam.\n\n{{nyml\nkind: question-mc\nn: 1\npts: 5 pts\nbody: Which of the following best describes the main concept covered in this section?\noptions: |\n  A. First plausible answer choice.\n  B. Second plausible answer choice.\n  C. Correct answer choice.\n  D. Fourth plausible answer choice.\nanswer: C\n}}\n\n{{nyml\nkind: question-mc\nn: 2\npts: 5 pts\nbody: Identify the term that matches the definition given in lecture.\noptions: |\n  A. Distractor term one.\n  B. Correct term.\n  C. Distractor term three.\n  D. Distractor term four.\nanswer: B\n}}\n\n{{nyml\nkind: question-open\nn: 3\npts: 10 pts\nbody: Explain the key idea in your own words and give one supporting example. Show all relevant reasoning.\nspace: 5cm\nanswer: A complete answer states the core principle, explains why it holds, and supports it with a concrete, correctly worked example. Full credit requires clear reasoning and an accurate example.\n}}\n"},{"id":"letter","label":"Letter","description":"Formal letter: letterhead, inside address, body, signature.","group":"Letter","skeleton":"{{nyml\nkind: document\ntemplate: letter\n}}\n\n{{nyml\nkind: letterhead\norganization: Your Organization\naddress: |\n  123 Main Street, Suite 400\n  Springfield, ST 00000\nemail: hello@your-organization.example\nphone: (555) 123-4567\n}}\n\nJune 29, 2026\n\n{{nyml\nkind: letter-inside-address\nto: Recipient Name\norganization: Recipient Organization\naddress: |\n  456 Market Avenue\n  Metropolis, ST 11111\n}}\n\nDear Recipient Name,\n\nI am writing to introduce Your Organization and to propose a brief conversation\nabout how we might work together. Open this paragraph by stating your purpose\nclearly and giving the reader a reason to keep reading.\n\nUse the middle of the letter to provide the supporting details. Explain the\nbackground, outline what you are asking for, and note any relevant dates or\ndeliverables. Keep each point concise so the entire letter fits comfortably on a\nsingle page.\n\nClose by stating the specific next step you would like the reader to take and\nhow best to reach you. Thank you for your time and consideration; I look forward\nto your reply.\n\n{{nyml\nkind: letter-signature\nfrom: Your Name\nclosing: Sincerely\ntitle: Your Title\n}}\n"},{"id":"cover-letter","label":"Cover letter","description":"Job cover letter: sender header, recipient, body, sign-off.","group":"Letter","skeleton":"{{nyml\nkind: document\ntemplate: cover-letter\n}}\n\n{{nyml\nkind: letterhead\norganization: Your Name\naddress: |\n  123 Main Street\n  Your City, ST 00000\nemail: your.name@email.com\nphone: (555) 123-4567\n}}\n\nJune 29, 2026\n\n{{nyml\nkind: letter-inside-address\nto: Hiring Manager\norganization: Company Name\naddress: |\n  456 Corporate Boulevard\n  Their City, ST 00000\n}}\n\nDear Hiring Manager,\n\nI am writing to apply for the Position Title role at Company Name, which I\ndiscovered through where you saw the listing. From the moment I read the job\ndescription, I was excited by the chance to bring my background in your field\nto a team known for what the company is known for. This opportunity aligns\nclosely with both my skills and the direction I want my career to take.\n\nIn my current role as Your Current Title at Current or Previous Employer, I\nhave delivered describe a concrete result or responsibility, sharpening my\nstrengths in skill one, skill two, and skill three. I am confident these\nexperiences map directly to what this position requires: name one or two key\nrequirements from the posting. I pride myself on trait or working style, and I\nconsistently turn ambiguous problems into measurable outcomes.\n\nI would welcome the opportunity to discuss how my experience can contribute to\nCompany Name's goals. Thank you for considering my application; I have attached\nmy resume for your review and would be glad to provide any additional\ninformation. I look forward to speaking with you and can be reached at the\nphone number or email above to arrange a conversation.\n\n{{nyml\nkind: letter-signature\nfrom: Your Name\nclosing: Sincerely\ntitle: Position Title or Profession\n}}\n"},{"id":"cv","label":"CV — classic","description":"Résumé: name/contact header and clean sectioned body.","group":"CV","skeleton":"{{nyml\nkind: document\ntemplate: cv\n}}\n\n{{nyml\nkind: cv-header\nfull_name: Your Name\ntitle: Job Title / Professional Tagline\ncontacts: |\n  you@example.com\n  City, Country\n  linkedin.com/in/you\n  +1 555 0100\n}}\n\n## Summary\n\nA short, punchy two-sentence pitch describing who you are and the value you\nbring. Highlight your specialty, years of experience, and the kind of impact you\nare known for.\n\n## Experience\n\n### Job Title — Company (2022–Present)\n\n- Led a key initiative that delivered a measurable result, e.g. increased\n  revenue, cut costs, or improved performance by a specific percentage.\n- Owned a project end to end, collaborating across teams to ship on time.\n- Mentored teammates and improved a process that the whole team relied on.\n\n### Previous Job Title — Earlier Company (2019–2022)\n\n- Built or maintained a core product or system used by many people.\n- Drove an improvement with a clear, quantified outcome.\n\n## Education\n\n### Degree, Field of Study — University Name (2019)\n\n## Skills\n\n- **Core:** Skill One, Skill Two, Skill Three\n- **Tools:** Tool One, Tool Two, Tool Three\n- **Other:** Languages, Certifications, Soft Skills\n"},{"id":"cv-modern","label":"CV — modern","description":"Accent name + rule, uppercase section labels, right-aligned dates, skill chips.","group":"CV","skeleton":"{{nyml\nkind: document\ntemplate: cv-modern\ncustom_css: |\n  /* CV — modern: left-aligned, accent-forward, right-aligned dates, skill chips.\n     Theme-aware via tokens (falls back when a token is unset). */\n  .orz-el-cv-header .orz-cv-header-inner.orz-bordered { border-bottom: 0; }\n  .orz-el-cv-header {\n    text-align: left;\n    border-bottom: 3px solid var(--accent, #2b6cb0);\n    padding-bottom: 0.5em;\n    margin-bottom: 1.2em;\n  }\n  .orz-el-cv-header .orz-cv-top { justify-content: flex-start; }\n  .orz-el-cv-header .orz-cv-name { font-size: 2.3em; letter-spacing: -0.015em; }\n  .orz-el-cv-header .orz-cv-title { color: var(--text-muted, #666); font-size: 1.05em; }\n  .orz-el-cv-header .orz-cv-contacts { justify-content: flex-start; gap: 0.3em 1.1em; }\n  .orz-doc.markdown-body h2 {\n    font-size: 0.9em;\n    text-transform: uppercase;\n    letter-spacing: 0.14em;\n    color: var(--accent, #2b6cb0);\n    border-bottom: 0;\n    margin: 1.5em 0 0.5em;\n  }\n  .orz-doc.markdown-body h3 {\n    font-size: 1.06em;\n    margin: 0.7em 0 0.05em;\n    border-bottom: 0;\n  }\n  .orz-doc.markdown-body h3 + p { color: var(--text-muted, #555); font-style: italic; margin: 0 0 0.35em; }\n  .cv-date {\n    float: right;\n    font-weight: 400;\n    color: var(--text-muted, #777);\n    font-size: 0.88em;\n  }\n  .cv-chip {\n    display: inline-block;\n    background: var(--surface-2, #f0f2f5);\n    border: 1px solid var(--border, #e2e6ea);\n    border-radius: 999px;\n    padding: 0.12em 0.7em;\n    margin: 0.18em 0.25em 0.18em 0;\n    font-size: 0.85em;\n  }\n}}\n\n{{nyml\nkind: cv-header\nfull_name: Your Name\ntitle: Job Title / Professional Tagline\ncontacts: |\n  you@example.com\n  City, Country\n  linkedin.com/in/you\n  +1 555 0100\nsummary: Two-sentence pitch — who you are and the value you bring. Lead with your specialty and the kind of impact you are known for.\n}}\n\n## Experience\n\n### Senior Role {{span[cv-date] 2022 – Present}}\n\nCompany Name, City\n\n- Led a key initiative that delivered a measurable result (e.g. +X% revenue, −Y% cost).\n- Owned a project end to end, collaborating across teams to ship on time.\n- Mentored teammates and improved a process the whole team relied on.\n\n### Earlier Role {{span[cv-date] 2019 – 2022}}\n\nPrevious Company, City\n\n- Built or maintained a core product used by many people.\n- Drove an improvement with a clear, quantified outcome.\n\n## Education\n\n### Degree, Field of Study {{span[cv-date] 2015 – 2019}}\n\nUniversity Name, City\n\n## Skills\n\n{{span[cv-chip] Skill One}} {{span[cv-chip] Skill Two}} {{span[cv-chip] Skill Three}} {{span[cv-chip] Skill Four}} {{span[cv-chip] Skill Five}} {{span[cv-chip] Skill Six}}\n"},{"id":"cv-elegant","label":"CV — elegant","description":"Centered, letter-spaced name, hairline rules, two-column \"ledger\" entries.","group":"CV","skeleton":"{{nyml\nkind: document\ntemplate: cv-elegant\ncustom_css: |\n  /* CV — elegant: centered, letter-spaced name between hairlines, centered\n     small-caps section headers, borderless two-column \"ledger\" entries (years |\n     detail) that flow across pages. Theme-aware via tokens. */\n  .orz-el-cv-header .orz-cv-header-inner.orz-bordered { border-bottom: 0; }\n  .orz-el-cv-header {\n    text-align: center;\n    border-top: 1px solid var(--border-soft, #ddd);\n    border-bottom: 1px solid var(--border-soft, #ddd);\n    padding: 0.8em 0;\n    margin-bottom: 1.4em;\n  }\n  .orz-el-cv-header .orz-cv-top { justify-content: center; }\n  .orz-el-cv-header .orz-cv-name {\n    font-weight: 400;\n    text-transform: uppercase;\n    letter-spacing: 0.16em;\n    font-size: 1.85em;\n    color: var(--text-main, #222);\n  }\n  .orz-el-cv-header .orz-cv-title { font-style: italic; color: var(--text-muted, #666); }\n  .orz-el-cv-header .orz-cv-contacts { justify-content: center; font-size: 0.85em; gap: 0.3em 1em; }\n  .orz-doc.markdown-body h2 {\n    text-align: center;\n    font-size: 1em;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.2em;\n    color: var(--text-main, #222);\n    border-bottom: 0;\n    margin: 1.7em 0 0.7em;\n  }\n  .orz-doc.markdown-body h2::after {\n    content: \"\";\n    display: block;\n    width: 2.5em;\n    height: 1px;\n    background: var(--accent, #999);\n    margin: 0.5em auto 0;\n  }\n  .orz-doc.markdown-body table { width: 100%; border: 0; margin: 0.2em 0; }\n  .orz-doc.markdown-body thead { display: none; }\n  .orz-doc.markdown-body td {\n    border: 0;\n    border-bottom: 1px solid var(--border-soft, #eee);\n    padding: 0.5em 0.4em;\n    vertical-align: top;\n  }\n  .orz-doc.markdown-body td:first-child {\n    white-space: nowrap;\n    width: 9em;\n    text-align: right;\n    color: var(--text-muted, #777);\n    font-variant: small-caps;\n    font-size: 0.92em;\n  }\n  .orz-doc.markdown-body .cv-skills { text-align: center; font-size: 0.95em; line-height: 1.9; }\n}}\n\n{{nyml\nkind: cv-header\nfull_name: Your Name\ntitle: Job Title / Professional Tagline\ncontacts: |\n  you@example.com\n  City, Country\n  linkedin.com/in/you\n}}\n\nA one-sentence profile, set centered and understated, introducing who you are and the work you do.\n{{attrs[class=\"cv-skills\"]}}\n\n## Experience\n\n| Years | Detail |\n|---|---|\n| 2022 – Present | **Senior Role**, Company Name — led the team and shipped a measurable result. |\n| 2019 – 2022 | **Earlier Role**, Previous Company — built a core product used by many. |\n| 2016 – 2019 | **First Role**, First Employer — delivered an improvement with a clear outcome. |\n\n## Education\n\n| Years | Detail |\n|---|---|\n| 2015 – 2019 | **Degree, Field of Study** — University Name, City. |\n\n## Skills\n\nSkill One · Skill Two · Skill Three · Skill Four · Skill Five · Skill Six\n{{attrs[class=\"cv-skills\"]}}\n"},{"id":"note","label":"Note","description":"Clean readable note: minimal furniture on A4.","group":"Note","skeleton":"{{nyml\nkind: document\ntemplate: note\n}}\n\n# Note Title\n\nWrite a one-line statement of what this note is about. Keep the opening short\nso a reader knows the purpose before reaching the details below.\n\n## Section\n\nReplace this with the main point of the note in two or three sentences. Add any\ncontext a reader needs to follow along. Keep each idea tight and to the point.\n\n- First key item to remember.\n- Second key item, with a short detail.\n- Third key item.\n\n::: info\nA short note callout for a tip, reminder, or aside worth setting apart.\n:::\n\n## Next Steps\n\n- [ ] First action to take.\n- [ ] Second action to take.\n- [ ] Third action to take.\n"}]};</script>
+<script data-orz-asset="app">/* orz-paged in-file editor (A4). Plain browser JS, inlined into every
+ * .paged.html. The rendered pages are the live preview: editing re-assembles +
+ * re-paginates them (debounced). Save is self-reproducing — it serializes the
+ * whole document with the edited source baked back into #orz-src, stripping
+ * runtime-injected nodes ([data-orz-runtime]) and the rendered pages so the saved
+ * file re-renders cleanly on next open. Ported in spirit from orz-mdhtml/slides.
+ */
+(function () {
+  'use strict';
+  var CM_BASE = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16';
+  var cm = null;
+  var rerenderTimer = null;
+  var dirty = false; // edit-state, surfaced to an embedding host (orz-host-dirty)
+
+  function $(id) { return document.getElementById(id); }
+  function api() { return window.orzpaged; }
+  function srcEl() { return $('orz-src'); }
+  function currentSource() { return cm ? cm.getValue() : (srcEl() ? srcEl().textContent.replace(/^\n/, '').replace(/\n\s*$/, '') : ''); }
+
+  function toast(msg) {
+    var t = $('orz-toast'); if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(function () { t.classList.remove('show'); }, 1800);
+  }
+
+  /* ---- load CodeMirror on demand ---- */
+  function loadCss(href) {
+    if (document.querySelector('link[href="' + href + '"]')) return;
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href;
+    l.setAttribute('data-orz-runtime', '1'); document.head.appendChild(l);
+  }
+  function loadJs(src) {
+    return new Promise(function (resolve, reject) {
+      if (document.querySelector('script[data-cm="' + src + '"]')) return resolve();
+      var s = document.createElement('script'); s.src = src; s.async = false;
+      s.setAttribute('data-cm', src); s.setAttribute('data-orz-runtime', '1');
+      s.onload = resolve; s.onerror = reject; document.head.appendChild(s);
+    });
+  }
+  function ensureCodeMirror() {
+    if (window.CodeMirror) return Promise.resolve();
+    loadCss(CM_BASE + '/codemirror.min.css');
+    return loadJs(CM_BASE + '/codemirror.min.js')
+      .then(function () { return loadJs(CM_BASE + '/mode/markdown/markdown.min.js'); });
+  }
+
+  function pagesEl() { return $('orz-pages'); }
+  function isEdit() { return document.documentElement.getAttribute('data-mode') === 'edit'; }
+
+  /* ---- preview zoom-to-fit (side-by-side pane is narrower than an A4 page) ---- */
+  function fitPreview() {
+    var pages = pagesEl(); if (!pages) return;
+    var wrap = pages.querySelector('.pagedjs_pages'); if (!wrap) return;
+    if (!isEdit()) { wrap.style.zoom = ''; return; }
+    wrap.style.zoom = '';                       // measure natural page width
+    var page = pages.querySelector('.pagedjs_page');
+    var pageW = page ? page.getBoundingClientRect().width : 0;
+    if (!pageW) return;
+    wrap.style.zoom = Math.min(1, (pages.clientWidth - 28) / pageW);
+  }
+  window.__orzPagedAfterRender = function () { fitPreview(); buildDynControls(); }; // engine calls this after every render
+
+  /* ---- dynamic switch (live) — a control per key the document actually uses ---- */
+  function humanizeKey(k) { return String(k).replace(/_/g, ' '); }
+  function normKey(k) { return String(k).trim().toLowerCase().replace(/-/g, '_'); }
+
+  function buildDynControls() {
+    var host = $('orz-dyn'); if (!host) return;
+    if (!api() || !api().getDynamicState) { host.innerHTML = ''; host.removeAttribute('data-keys'); return; }
+    var st = api().getDynamicState();
+    var opts = st.options || {}, choices = st.choices || {};
+    // Only keys the CURRENT document actually uses (data-show-when / -hide-when),
+    // so the control disappears when you switch to a template that has none.
+    var keys = Object.keys(opts).sort();
+    if (!keys.length) { host.innerHTML = ''; host.removeAttribute('data-keys'); return; }
+    var sig = keys.join(',');
+    if (host.getAttribute('data-keys') === sig) {            // same keys → just sync values
+      keys.forEach(function (k) {
+        var s = host.querySelector('select[data-key="' + k + '"]');
+        if (s) s.value = choices[k] || '';
+      });
+      return;
+    }
+    host.setAttribute('data-keys', sig);
+    host.innerHTML = '';
+    keys.forEach(function (k) {
+      var vals = (opts[k] || []).slice();
+      var cur = choices[k] || '';
+      if (cur && vals.indexOf(cur) < 0) vals.unshift(cur);   // keep the current value selectable
+      var ctl = document.createElement('span'); ctl.className = 'orz-dyn-ctl';
+      var lab = document.createElement('label'); lab.textContent = humanizeKey(k); lab.htmlFor = 'orz-dyn-' + k;
+      var sel = document.createElement('select'); sel.id = 'orz-dyn-' + k; sel.setAttribute('data-key', k); sel.title = humanizeKey(k);
+      vals.forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); });
+      sel.value = cur;
+      // Write the choice back into the source's `dynamic_choices` block so the
+      // dropdown and the nyml stay in sync (and editing the nyml drives the dropdown).
+      sel.addEventListener('change', function () { applyDynChoiceToSource(k, sel.value); });
+      ctl.appendChild(lab); ctl.appendChild(sel); host.appendChild(ctl);
+    });
+  }
+
+  /** Set `key: value` inside the document block's `dynamic_choices:` map, matching
+   *  the key by normalized form (so `answer-key` and `answer_key` are the same). */
+  function setSourceDynamicChoice(src, key, value) {
+    key = normKey(key);
+    var lines = src.split('\n');
+    var dcIdx = -1, dcIndent = 0;
+    for (var i = 0; i < lines.length; i++) {
+      var m = lines[i].match(/^(\s*)dynamic_choices\s*:/);
+      if (m) { dcIdx = i; dcIndent = m[1].length; break; }
+    }
+    if (dcIdx < 0) return null;                       // no block — nothing to sync
+    for (var j = dcIdx + 1; j < lines.length; j++) {
+      if (lines[j].trim() === '') continue;
+      var lm = lines[j].match(/^(\s*)([A-Za-z][\w-]*)\s*:\s*(.*)$/);
+      if (!lm || lm[1].length <= dcIndent) break;     // dedented / not a key → end of block
+      if (normKey(lm[2]) === key) { lines[j] = lm[1] + lm[2] + ': ' + value; return lines.join('\n'); }
+    }
+    var indent = ''; for (var s = 0; s < dcIndent + 2; s++) indent += ' ';
+    lines.splice(dcIdx + 1, 0, indent + key.replace(/_/g, '-') + ': ' + value);
+    return lines.join('\n');
+  }
+
+  function applyDynChoiceToSource(key, value) {
+    var next = setSourceDynamicChoice(currentSource(), key, value);
+    if (next == null) return;
+    setDirty(true);
+    if (cm) cm.setValue(next);
+    else { var ta = $('orz-ta'); if (ta) ta.value = next; }
+    syncSource();
+    if (api() && api().refresh) api().refresh();
+  }
+
+  /* ---- draggable divider (relative width) ---- */
+  function wireDivider() {
+    var d = $('orz-divider'); if (!d || d.__wired) return; d.__wired = true;
+    var dragging = false;
+    d.addEventListener('mousedown', function (e) {
+      dragging = true; d.classList.add('dragging'); e.preventDefault();
+      document.body.style.userSelect = 'none';
+    });
+    document.addEventListener('mousemove', function (e) {
+      if (!dragging) return;
+      var pct = Math.max(20, Math.min(78, (e.clientX / window.innerWidth) * 100));
+      document.documentElement.style.setProperty('--orz-split', pct + '%');
+    });
+    document.addEventListener('mouseup', function () {
+      if (!dragging) return;
+      dragging = false; d.classList.remove('dragging'); document.body.style.userSelect = '';
+      if (cm) cm.refresh(); fitPreview();
+    });
+  }
+
+  /* ---- proportional editor <-> preview scroll sync (toggleable) ---- */
+  var syncLock = false;
+  var syncEnabled = true;
+  try { syncEnabled = localStorage.getItem('orz-paged-sync') !== '0'; } catch (e) {}
+  function setSync(on) {
+    syncEnabled = !!on;
+    try { localStorage.setItem('orz-paged-sync', syncEnabled ? '1' : '0'); } catch (e) {}
+    var b = $('orz-sync'); if (b) b.setAttribute('aria-pressed', syncEnabled ? 'true' : 'false');
+  }
+  function wireSync() {
+    if (!cm || cm.__sync) return; cm.__sync = true;
+    cm.on('scroll', function () {
+      if (!syncEnabled || syncLock || !isEdit()) return;
+      var info = cm.getScrollInfo(); var max = info.height - info.clientHeight;
+      if (max <= 0) return;
+      var pages = pagesEl(); var pmax = pages.scrollHeight - pages.clientHeight;
+      syncLock = true; pages.scrollTop = (info.top / max) * pmax;
+      setTimeout(function () { syncLock = false; }, 24);
+    });
+    pagesEl().addEventListener('scroll', function () {
+      if (!syncEnabled || syncLock || !isEdit()) return;
+      var pages = pagesEl(); var pmax = pages.scrollHeight - pages.clientHeight;
+      if (pmax <= 0) return;
+      var info = cm.getScrollInfo(); var max = info.height - info.clientHeight;
+      syncLock = true; cm.scrollTo(null, (pages.scrollTop / pmax) * max);
+      setTimeout(function () { syncLock = false; }, 24);
+    });
+  }
+
+  /* ---- edit mode ---- */
+  function enterEdit() {
+    document.documentElement.setAttribute('data-mode', 'edit');
+    checkVersion(); // edit view only — broad viewers never see the update banner
+    wireDivider();
+    // reflect the theme actually in effect (document theme or a prior override)
+    var th = $('orz-theme');
+    if (th && api() && api().getTheme) { var cur = api().getTheme(); if (cur) th.value = cur; }
+    ensureCodeMirror().then(function () {
+      if (!cm) {
+        var ta = $('orz-ta');
+        ta.value = currentSource();
+        cm = window.CodeMirror.fromTextArea(ta, {
+          mode: 'markdown', lineNumbers: true, lineWrapping: true, theme: 'default',
+        });
+        cm.on('change', scheduleRerender);
+      }
+      wireSync();
+      setTimeout(function () { if (cm) { cm.refresh(); cm.focus(); } fitPreview(); }, 30);
+      setTimeout(fitPreview, 260); // re-fit once the slide-in transition settles
+    }).catch(function () { toast('Could not load the editor (offline?)'); });
+  }
+  function exitEdit() {
+    document.documentElement.removeAttribute('data-mode');
+    fitPreview();                  // clear zoom immediately
+    setTimeout(fitPreview, 260);   // and again after the slide-out settles
+  }
+
+  function scheduleRerender() {
+    setDirty(true);
+    if (rerenderTimer) clearTimeout(rerenderTimer);
+    rerenderTimer = setTimeout(function () {
+      syncSource();
+      if (api() && api().refresh) api().refresh();
+    }, 500);
+  }
+
+  /** Keep #orz-src in sync with the editor (so refresh()/setTheme()/save use current text). */
+  function syncSource() {
+    var el = srcEl(); if (!el) return;
+    el.textContent = '\n' + currentSource() + '\n';
+  }
+
+  /* ---- self-reproducing save ---- */
+  function serialize() {
+    syncSource();
+    var clone = document.documentElement.cloneNode(true);
+    clone.removeAttribute('data-mode');
+    // strip runtime-injected nodes (fonts, libs, katex, CodeMirror assets)
+    var rt = clone.querySelectorAll('[data-orz-runtime]');
+    for (var i = 0; i < rt.length; i++) rt[i].parentNode.removeChild(rt[i]);
+    // clear the rendered pages (the engine re-renders on load)
+    var pages = clone.querySelector('#orz-pages'); if (pages) pages.innerHTML = '';
+    // never bake in the (edit-only) update banner so a viewer can't see it
+    var ub = clone.querySelector('#orz-update'); if (ub) { ub.classList.remove('show'); ub.removeAttribute('data-latest'); }
+    // reset the editor host to a bare textarea (drop CodeMirror DOM)
+    var host = clone.querySelector('#orz-editor-host');
+    if (host) host.innerHTML = '<textarea id="orz-ta" spellcheck="false"></textarea>';
+    // guard against a closing script tag inside the source breaking the file
+    var src = clone.querySelector('#orz-src');
+    if (src) src.textContent = src.textContent.replace(/<\/(script)/gi, '<\\/$1');
+    return '<!DOCTYPE html>\n' + clone.outerHTML;
+  }
+
+  function suggestedName() {
+    var t = (document.title || 'document').replace(/[^\w.-]+/g, '-');
+    return t.replace(/\.paged$/, '') + '.paged.html';
+  }
+
+  /** Write `html` to disk; resolves true if saved in place (FS-Access), false if downloaded. */
+  function persist(html) {
+    if (window.showSaveFilePicker) {
+      return window.showSaveFilePicker({
+        suggestedName: suggestedName(),
+        types: [{ description: 'paged HTML', accept: { 'text/html': ['.paged.html', '.html'] } }],
+      }).then(function (handle) {
+        return handle.createWritable().then(function (w) {
+          return w.write(html).then(function () { return w.close(); });
+        });
+      }).then(function () { return true; });
+    }
+    downloadFile(html);
+    return Promise.resolve(false);
+  }
+  function save() {
+    // A hosting platform (verified handshake) receives the save instead of the
+    // file system; the host acknowledges with orz-host-saved (see PROTOCOL.md).
+    if (isHosted()) { hostSave(currentSource(), serialize()); return; }
+    persist(serialize()).then(function (inPlace) { if (inPlace) { setDirty(false); toast('Saved'); } })
+      .catch(function (e) { if (e && e.name !== 'AbortError') downloadFile(serialize()); });
+  }
+  function downloadFile(html) {
+    var blob = new Blob([html], { type: 'text/html' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = suggestedName();
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    toast('Downloaded a copy');
+  }
+
+  /* ---- host embedding (orz-host-save@1) ----
+   * When a platform embeds this file in an iframe and announces the
+   * orz-host-save protocol (spec: PROTOCOL.md in the orz-mdhtml repo), Save
+   * posts the document to the host instead of touching the file system. Never
+   * enabled without the host's hello; protocol messages are accepted only from
+   * window.parent, and after the handshake only from the recorded host origin.
+   * Message content is read as data, never evaluated. Export/PDF keeps working. */
+  var HOST_PROTOCOL = 'orz-host-save';
+  var HOST_VERSION = 1;
+  var hostOrigin = null;    // recorded at handshake; null = unhosted
+  var hostSaveTimer = null; // watchdog for a save awaiting acknowledgement
+
+  function isHosted() { return hostOrigin !== null; }
+  // An opaque embedder (sandboxed/srcdoc host) serializes as the string 'null',
+  // which postMessage rejects as a targetOrigin — fall back to '*' (the payload
+  // contains nothing the host doesn't already have).
+  function hostTarget() { return hostOrigin && hostOrigin !== 'null' ? hostOrigin : '*'; }
+  function hostPost(msg) { try { window.parent.postMessage(msg, hostTarget()); } catch (e) {} }
+  function setDirty(d) {
+    d = !!d;
+    if (dirty === d) return;
+    dirty = d;
+    if (isHosted()) hostPost({ type: 'orz-host-dirty', protocol: HOST_PROTOCOL, version: HOST_VERSION, dirty: d });
+  }
+  function hostSave(src, html) {
+    if (hostSaveTimer) return; // one save in flight at a time
+    hostSaveTimer = setTimeout(function () {
+      hostSaveTimer = null;
+      toast('Save failed — no response from the host'); // document intact, still dirty
+    }, 10000);
+    hostPost({ type: 'orz-host-save', protocol: HOST_PROTOCOL, version: HOST_VERSION, source: src, html: html });
+  }
+  function onHostMessage(event) {
+    // only the embedding parent may speak the protocol
+    if (window.parent === window || event.source !== window.parent) return;
+    var d = event.data;
+    if (!d || typeof d !== 'object') return;
+    // after the handshake, hold the parent to the origin it introduced itself with
+    if (isHosted() && hostOrigin !== 'null' && event.origin !== hostOrigin) return;
+    if (d.type === 'orz-host-hello' && d.protocol === HOST_PROTOCOL && typeof d.version === 'number' && d.version >= 1) {
+      hostOrigin = event.origin;
+      // reply with the highest version we support ≤ the host's (we speak only 1)
+      hostPost({ type: 'orz-host-ready', protocol: HOST_PROTOCOL, version: HOST_VERSION, kind: 'paged' });
+      if (dirty) hostPost({ type: 'orz-host-dirty', protocol: HOST_PROTOCOL, version: HOST_VERSION, dirty: true });
+    } else if (d.type === 'orz-host-saved' && hostSaveTimer) {
+      clearTimeout(hostSaveTimer); hostSaveTimer = null;
+      if (d.ok) { setDirty(false); toast('Saved'); }
+      else { toast('Save failed' + (d.error ? ' — ' + String(d.error) : '')); }
+    }
+  }
+  // listen from script load so an early hello isn't missed
+  window.addEventListener('message', onHostMessage);
+
+  /* ---- framework self-update (checked only in edit view) ---- */
+  // SECURITY: the update source is HARDCODED here, never read from the file's
+  // config — so a tampered/forged file cannot redirect "Update" to fetch
+  // attacker-controlled code. The host is fixed to jsDelivr over HTTPS, and the
+  // exact URLs are shown to the user for confirmation before anything is fetched.
+  // (This protects genuine files; a wholly-malicious file controls this code too —
+  // see the security note in the README. Clicking Update trusts npm + jsDelivr.)
+  var UPD = {
+    host: 'https://cdn.jsdelivr.net/npm/',
+    manifest: 'https://data.jsdelivr.com/v1/packages/npm/orz-paged-browser/resolved',
+    enginePkg: 'orz-paged-browser',
+    engineFile: 'orz-paged.browser.js',
+    appPkg: 'orz-paged'
+  };
+  function CFG() { return window.__ORZ_PAGED__ || {}; }
+  function isNewer(a, b) {
+    var pa = String(a).split('.'), pb = String(b).split('.');
+    for (var i = 0; i < 3; i++) { var x = parseInt(pa[i], 10) || 0, y = parseInt(pb[i], 10) || 0; if (x > y) return true; if (x < y) return false; }
+    return false;
+  }
+  var versionChecked = false;
+  function checkVersion() {
+    if (versionChecked) return; versionChecked = true;
+    var c = CFG(); if (!c.version) return;
+    fetch(UPD.manifest).then(function (r) { return r.json(); }).then(function (j) {
+      var latest = j && j.version;
+      if (latest && isNewer(latest, c.version)) showUpdate(latest);
+    }).catch(function () {});
+  }
+  function showUpdate(latest) {
+    var bar = $('orz-update'); if (!bar) return;
+    bar.querySelector('.upd-text').textContent =
+      'Framework ' + latest + ' available (this file uses ' + CFG().version + ').';
+    bar.setAttribute('data-latest', latest);
+    bar.classList.add('show');
+  }
+  /** One-click update: re-fetch the engine bundle + app.js from the lockstep CDN
+   *  at the latest version, re-inline them, bump the version, save, and reload. */
+  function applyUpdate() {
+    var bar = $('orz-update'); var latest = bar && bar.getAttribute('data-latest'); if (!latest) return;
+    var engineUrl = UPD.host + UPD.enginePkg + '@' + latest + '/' + UPD.engineFile;
+    var appUrl = UPD.host + UPD.appPkg + '@' + latest + '/assets/app.js';
+    if (!window.confirm('Update the framework to ' + latest + '?\n\nThis downloads and runs code from:\n  ' + engineUrl + '\n  ' + appUrl + '\n\nOnly proceed if you trust this document and its publisher.')) return;
+    toast('Downloading framework ' + latest + '…');
+    Promise.all([
+      fetch(engineUrl).then(function (r) { if (!r.ok) throw new Error('engine'); return r.text(); }),
+      fetch(appUrl).then(function (r) { if (!r.ok) throw new Error('app'); return r.text(); }),
+    ]).then(function (res) {
+      var es = document.querySelector('script[data-orz-asset="engine"]');
+      if (es) { if (es.getAttribute('src')) es.setAttribute('src', engineUrl); else es.textContent = res[0]; }
+      var as = document.querySelector('script[data-orz-asset="app"]');
+      if (as) as.textContent = res[1];
+      var cs = document.querySelector('script[data-orz-asset="config"]');
+      if (cs) { c.version = latest; cs.textContent = 'window.__ORZ_PAGED__ = ' + JSON.stringify(c) + ';'; }
+      bar.classList.remove('show');
+      return persist(serialize());
+    }).then(function (inPlace) {
+      if (inPlace === undefined) return;
+      if (inPlace) { toast('Updated to ' + latest + ' — reloading…'); setTimeout(function () { location.reload(); }, 700); }
+      else { toast('Updated copy downloaded — reopen it to use the new framework.'); }
+    }).catch(function () { toast('Update failed — check your connection.'); });
+  }
+
+  /* ---- template picker ---- */
+  function templates() { return (window.__ORZ_PAGED__ && window.__ORZ_PAGED__.templates) || []; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  var TPL_ACCENT = { Article: '#2962a4', Report: '#2f6fe0', Exam: '#9a2820', Letter: '#2e7d32', CV: '#7a3f9a', Note: '#b7791f' };
+  function buildTemplateMenu() {
+    var menu = $('orz-template-menu'); if (!menu || menu.getAttribute('data-built')) return;
+    var list = templates(); if (!list.length) return;
+    var html = '', lastGroup = '';
+    for (var i = 0; i < list.length; i++) {
+      var t = list[i];
+      if (t.group !== lastGroup) { lastGroup = t.group; html += '<div class="tpl-group">' + esc(t.group) + '</div>'; }
+      html += '<button type="button" class="tpl" data-i="' + i + '" style="--tpl-accent:' + (TPL_ACCENT[t.group] || '#2f6fe0') + '">'
+        + '<span class="tpl-ic"></span>'
+        + '<span class="tpl-meta"><span class="tpl-label">' + esc(t.label) + '</span>'
+        + '<span class="tpl-desc">' + esc(t.description) + '</span></span></button>';
+    }
+    menu.innerHTML = html;
+    menu.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('.tpl') : null;
+      if (!b) return;
+      applyTemplate(list[+b.getAttribute('data-i')]);
+      menu.hidden = true;
+    });
+    menu.setAttribute('data-built', '1');
+  }
+  function toggleTemplateMenu(show) {
+    var menu = $('orz-template-menu'); if (!menu) return;
+    if (show === undefined) show = menu.hidden;
+    if (show) buildTemplateMenu();
+    menu.hidden = !show;
+  }
+  function applyTemplate(t) {
+    if (!t || !t.skeleton) return;
+    var cur = currentSource().trim();
+    var next = t.skeleton;
+    // Preserve the old content in a comment so it's kept but inert (nyml blocks
+    // inside a comment don't render). Neutralize any `-->` in it first, else the
+    // first one would close the wrapper early and leak the rest back in.
+    if (cur) next += '\n\n<!-- Previous content (kept below — edit or delete):\n\n'
+      + cur.replace(/--+>/g, '--​>') + '\n-->\n';
+    setDirty(true);
+    if (cm) { cm.setValue(next); cm.focus(); }
+    else { var ta = $('orz-ta'); if (ta) ta.value = next; syncSource(); if (api() && api().refresh) api().refresh(); }
+    toast('Started from "' + t.label + '"');
+  }
+
+  /* ---- wire up ---- */
+  function init() {
+    var fab = $('orz-edit-fab'); if (fab) fab.addEventListener('click', enterEdit);
+    var close = $('orz-close'); if (close) close.addEventListener('click', exitEdit);
+    var exp = $('orz-export'); if (exp) exp.addEventListener('click', function () { if (api()) api().exportPdf(); });
+    var sav = $('orz-save'); if (sav) sav.addEventListener('click', save);
+    var tpl = $('orz-template'); if (tpl) tpl.addEventListener('click', function (e) { e.stopPropagation(); toggleTemplateMenu(); });
+    document.addEventListener('click', function (e) {
+      var menu = $('orz-template-menu'), btn = $('orz-template');
+      if (menu && !menu.hidden && !menu.contains(e.target) && (!btn || !btn.contains(e.target))) menu.hidden = true;
+    });
+    var theme = $('orz-theme');
+    if (theme) theme.addEventListener('change', function () { if (api() && api().setTheme) api().setTheme(theme.value); });
+    var sync = $('orz-sync');
+    if (sync) { setSync(syncEnabled); sync.addEventListener('click', function () { setSync(!syncEnabled); }); }
+    var updApply = $('orz-upd-apply'); if (updApply) updApply.addEventListener('click', applyUpdate);
+    var updDismiss = $('orz-upd-dismiss');
+    if (updDismiss) updDismiss.addEventListener('click', function () { var u = $('orz-update'); if (u) u.classList.remove('show'); });
+    var rz; window.addEventListener('resize', function () {
+      if (!isEdit()) return; clearTimeout(rz);
+      rz = setTimeout(function () { if (cm) cm.refresh(); fitPreview(); }, 120);
+    });
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && (e.key === 's' || e.key === 'S')) { e.preventDefault(); save(); }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>
