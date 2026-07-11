@@ -1,0 +1,3 @@
+# Chapter 1 Practice Questions
+
+Chapter 1 assignment is due on 9/10...
